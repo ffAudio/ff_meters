@@ -21,7 +21,6 @@ instance. The number of channels will be updated automatically.
 The orientation is set by choosing the appropriate LookAndFeel class.
 There are also a lot of colours you can change in the LevelMeterLookAndFeel.
 
-\code{.cpp}
     // In your Editor's constructor:
     LevelMeterLookAndFeel* lnf = new LevelMeterLookAndFeelVertical();
     // adjust the colours to how you like them
@@ -47,7 +46,6 @@ There are also a lot of colours you can change in the LevelMeterLookAndFeel.
 
     private:
         LevelMeterSource meterSource;
-\endcode
 
 
 
