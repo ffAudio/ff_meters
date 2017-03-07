@@ -108,6 +108,11 @@ public:
             levels [channel].reduction = reduction;
     }
 
+    void setMaxHoldMS (const juce::int64 millis)
+    {
+        holdMSecs = millis;
+    }
+
     float getReductionLevel (const int channel) const
     {
         if (juce::isPositiveAndBelow (channel, static_cast<int> (levels.size ())))
