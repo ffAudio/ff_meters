@@ -74,7 +74,8 @@ private:
 public:
     LevelMeterSource () : holdMSecs   (500) {}
 
-    void measureBlock (const juce::AudioBuffer<float>& buffer)
+    template<typename FloatType>
+    void measureBlock (const juce::AudioBuffer<FloatType>& buffer)
     {
         const juce::int64 time = juce::Time::currentTimeMillis();
         const int         numChannels = buffer.getNumChannels ();
