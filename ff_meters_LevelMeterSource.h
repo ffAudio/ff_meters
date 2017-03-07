@@ -92,15 +92,12 @@ public:
 
     void setLevels (const juce::int64 time, const int channel, const float max, const float rms)
     {
-        jassert (max <= 1.0);
-        jassert (rms <= 1.0);
-
         if (max >= levels [channel].max) {
-            levels [channel].max = max;
+            levels [channel].max = std::min (1.0f, max);
             levels [channel].hold = time + holdMSecs;
         }
         else if (time > levels [channel].hold) {
-            levels [channel].max = max;
+            levels [channel].max = std::min (1.0f, max);
         }
         levels [channel].rms = rms;
     }
