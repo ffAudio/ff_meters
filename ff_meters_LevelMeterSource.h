@@ -55,23 +55,50 @@ private:
     public:
         ChannelData () :
         max (),
-        rms (),
         clip (false),
         reduction (-1.0f),
-        hold () {}
+        hold (0),
+        rmsHistory (8, 0.0),
+        rmsSum (0.0),
+        rmsPtr (0)
+        {}
 
         ChannelData (const ChannelData& other) :
         max       (other.max.load() ),
-        rms       (other.rms.load() ),
         clip      (other.clip.load() ),
         reduction (other.reduction.load()),
-        hold      (other.hold.load())
+        hold      (other.hold.load()),
+        rmsHistory (8, 0.0),
+        rmsSum    (0.0),
+        rmsPtr    (0)
         {}
         std::atomic<float>       max;
-        std::atomic<float>       rms;
         std::atomic<bool>        clip;
         std::atomic<float>       reduction;
         std::atomic<juce::int64> hold;
+
+        float getAvgRMS () const {
+            if (rmsHistory.size() > 0) {
+                return sqrtf (rmsSum / rmsHistory.size());
+            }
+            return sqrtf (rmsSum);
+        }
+        void pushNextRMS (const float newRMS) {
+            const float squaredRMS = newRMS * newRMS;
+            if (rmsHistory.size() > 0) {
+                float oldRMS = rmsSum - rmsHistory [rmsPtr];
+                rmsSum = oldRMS + squaredRMS;
+                rmsHistory [rmsPtr] = squaredRMS;
+                rmsPtr = ++rmsPtr % rmsHistory.size();
+            }
+            else {
+                rmsSum = squaredRMS;
+            }
+        }
+    private:
+        std::vector<float>       rmsHistory;
+        std::atomic<float>       rmsSum;
+        int                      rmsPtr;
     };
 
 public:
@@ -115,7 +142,7 @@ public:
         else if (time > levels [channel].hold) {
             levels [channel].max = std::min (1.0f, max);
         }
-        levels [channel].rms = rms;
+        levels [channel].pushNextRMS (rms);
     }
 
     void setReductionLevel (const int channel, const float reduction)
@@ -143,7 +170,7 @@ public:
 
     float getRMSLevel (const int channel) const
     {
-        return levels.at (channel).rms;
+        return levels.at (channel).getAvgRMS();
     }
 
     bool getClipFlag (const int channel) const
