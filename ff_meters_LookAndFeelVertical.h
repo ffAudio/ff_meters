@@ -98,7 +98,7 @@ public:
         const float corner = getCornerSize (bounds);
         g.setColour (getMeterColour (lmBackgroundColour));
         g.fillRoundedRectangle (bounds, corner);
-        g.setColour (getMeterColour (lmTicksColour));
+        g.setColour (getMeterColour (lmOutlineColour));
         g.drawRoundedRectangle (bounds.reduced (0.5), corner, 1.0);
     }
 

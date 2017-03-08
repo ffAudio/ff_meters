@@ -48,6 +48,7 @@ public:
         lmTextColour = 0,
         lmTextDeactiveColour,
         lmTicksColour,
+        lmOutlineColour,
         lmBackgroundColour,
         lmMeterForegroundColour,
         lmMeterBackgroundColour,
@@ -65,6 +66,7 @@ public:
         lmColoursMap.set (lmTextColour,             juce::Colours::green);
         lmColoursMap.set (lmTextDeactiveColour,     juce::Colours::darkgrey);
         lmColoursMap.set (lmTicksColour,            juce::Colours::orange);
+        lmColoursMap.set (lmOutlineColour,          juce::Colours::orange);
         lmColoursMap.set (lmBackgroundColour,       juce::Colour (0xff050a29));
         lmColoursMap.set (lmMeterForegroundColour,  juce::Colours::green);
         lmColoursMap.set (lmMeterBackgroundColour,  juce::Colours::darkgrey);
