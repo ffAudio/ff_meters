@@ -44,7 +44,7 @@ class LevelMeterLookAndFeel
 {
 public:
 
-    enum LMColours {
+    enum ColourIds {
         lmTextColour = 0,
         lmTextDeactiveColour,
         lmTicksColour,
@@ -114,18 +114,18 @@ public:
                                const float rms,
                                const float reduction = -1.0) = 0;
 
-    juce::Colour getMeterColour (const LMColours type) const
+    juce::Colour getMeterColour (const ColourIds type) const
     {
         return lmColoursMap [type];
     }
 
-    void setMeterColour (const LMColours type, const juce::Colour& colour)
+    void setMeterColour (const ColourIds type, const juce::Colour& colour)
     {
         lmColoursMap.set (type, colour);
     }
 
 private:
-    juce::HashMap<int, juce::Colour> lmColoursMap;
+    juce::HashMap<ColourIds, juce::Colour> lmColoursMap;
 
 };
 

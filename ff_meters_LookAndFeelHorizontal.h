@@ -117,8 +117,8 @@ public:
                        const float reduction = -1.0) override
     {
         const float infinity = -50.0f;
-        const float maxDb = juce::Decibels::gainToDecibels (max, infinity);
-        const float rmsDb = juce::Decibels::gainToDecibels (rms, infinity);
+        const float maxDb = std::min (juce::Decibels::gainToDecibels (max, infinity), 0.0f);
+        const float rmsDb = std::min (juce::Decibels::gainToDecibels (rms, infinity), 0.0f);
 
         g.setColour (getMeterColour (lmMeterBackgroundColour));
         g.fillRect  (bounds);
