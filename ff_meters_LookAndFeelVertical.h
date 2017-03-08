@@ -99,7 +99,7 @@ public:
         g.setColour (getMeterColour (lmBackgroundColour));
         g.fillRoundedRectangle (bounds, corner);
         g.setColour (getMeterColour (lmTicksColour));
-        g.drawRoundedRectangle (bounds, corner, 2.0);
+        g.drawRoundedRectangle (bounds.reduced (0.5), corner, 1.0);
     }
 
     void drawMeterTicks (juce::Graphics& g,
