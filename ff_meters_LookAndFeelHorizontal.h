@@ -94,9 +94,9 @@ public:
     {
         const float corner = getCornerSize (bounds);
         g.setColour (getMeterColour (lmBackgroundColour));
-        g.fillRect (bounds);
+        g.fillRoundedRectangle (bounds, corner);
         g.setColour (getMeterColour (lmTicksColour));
-        g.drawRoundedRectangle (bounds.reduced (3.0), corner, 1.0);
+        g.drawRoundedRectangle (bounds, corner, 2.0);
     }
 
     void drawMeterTicks (juce::Graphics& g,
