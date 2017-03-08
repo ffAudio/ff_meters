@@ -56,17 +56,20 @@ private:
         ChannelData () :
         max (),
         rms (),
+        clip (false),
         reduction (-1.0f),
         hold () {}
 
         ChannelData (const ChannelData& other) :
         max       (other.max.load() ),
         rms       (other.rms.load() ),
+        clip      (other.clip.load() ),
         reduction (other.reduction.load()),
         hold      (other.hold.load())
         {}
         std::atomic<float>       max;
         std::atomic<float>       rms;
+        std::atomic<bool>        clip;
         std::atomic<float>       reduction;
         std::atomic<juce::int64> hold;
     };
@@ -92,6 +95,9 @@ public:
 
     void setLevels (const juce::int64 time, const int channel, const float max, const float rms)
     {
+        if (max > 1.0 || rms > 1.0) {
+            levels [channel].clip = true;
+        }
         if (max >= levels [channel].max) {
             levels [channel].max = std::min (1.0f, max);
             levels [channel].hold = time + holdMSecs;
@@ -128,6 +134,23 @@ public:
     float getRMSLevel (const int channel) const
     {
         return levels.at (channel).rms;
+    }
+
+    bool getClipFlag (const int channel) const
+    {
+        return levels.at (channel).clip;
+    }
+
+    void clearClipFlag (const int channel)
+    {
+        levels.at (channel).clip = false;
+    }
+
+    void clearAllClipFlags ()
+    {
+        for (auto l : levels) {
+            l.clip = false;
+        }
     }
 
     int getNumChannels () const
