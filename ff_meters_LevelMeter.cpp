@@ -40,18 +40,26 @@
 //==============================================================================
 LevelMeter::LevelMeter (LevelMeterLookAndFeel* lnf)
   : source      (nullptr),
-    lookAndFeel (lnf)
+    lookAndFeel (lnf),
+    refreshRate (30)
 {
-    startTimerHz (30);
+    startTimerHz (refreshRate);
 }
 
 LevelMeter::~LevelMeter()
 {
+    stopTimer();
 }
 
 void LevelMeter::setMeterSource (LevelMeterSource* src)
 {
     source = src;
+}
+
+void LevelMeter::setRefreshRateHz (const int newRefreshRate)
+{
+    refreshRate = newRefreshRate;
+    startTimerHz (refreshRate);
 }
 
 void LevelMeter::setLookAndFeel (LevelMeterLookAndFeel* lnf)

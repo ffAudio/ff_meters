@@ -75,21 +75,26 @@ private:
     };
 
 public:
-    LevelMeterSource () : holdMSecs   (500) {}
+    LevelMeterSource () :
+    holdMSecs   (500),
+    suspended   (false)
+    {}
 
     template<typename FloatType>
     void measureBlock (const juce::AudioBuffer<FloatType>& buffer)
     {
-        const juce::int64 time = juce::Time::currentTimeMillis();
-        const int         numChannels = buffer.getNumChannels ();
-        const int         numSamples  = buffer.getNumSamples ();
+        if (! suspended) {
+            const juce::int64 time = juce::Time::currentTimeMillis();
+            const int         numChannels = buffer.getNumChannels ();
+            const int         numSamples  = buffer.getNumSamples ();
 
-        levels.resize (numChannels);
+            levels.resize (numChannels);
 
-        for (int channel=0; channel < numChannels; ++channel) {
-            setLevels (time, channel,
-                       buffer.getMagnitude (channel, 0, numSamples),
-                       buffer.getRMSLevel  (channel, 0, numSamples));
+            for (int channel=0; channel < numChannels; ++channel) {
+                setLevels (time, channel,
+                           buffer.getMagnitude (channel, 0, numSamples),
+                           buffer.getRMSLevel  (channel, 0, numSamples));
+            }
         }
     }
 
@@ -158,12 +163,18 @@ public:
         return levels.size();
     }
 
+    void setSuspended (const bool shouldBeSuspended)
+    {
+        suspended = shouldBeSuspended;
+    }
+
 private:
 
     std::vector<ChannelData> levels;
 
     juce::int64 holdMSecs;
 
+    bool suspended;
 };
 
 #endif /* FF_METER_LEVEL_METER_SOURCE_H_INCLUDED */

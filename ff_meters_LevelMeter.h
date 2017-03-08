@@ -54,6 +54,8 @@ public:
     
     void setMeterSource (LevelMeterSource* source);
 
+    void setRefreshRateHz (const int newRefreshRate);
+
     void setLookAndFeel (LevelMeterLookAndFeel* lnf);
 
 private:
@@ -62,6 +64,8 @@ private:
     LevelMeterSource* source;
 
     juce::ScopedPointer<LevelMeterLookAndFeel>  lookAndFeel;
+
+    int refreshRate;
 };
 
 
