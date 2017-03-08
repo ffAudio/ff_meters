@@ -53,12 +53,12 @@ class LevelMeterSource
 private:
     class ChannelData {
     public:
-        ChannelData () :
+        ChannelData (const int rmsWindow = 8) :
         max (),
         clip (false),
         reduction (-1.0f),
         hold (0),
-        rmsHistory (8, 0.0),
+        rmsHistory (rmsWindow, 0.0),
         rmsSum (0.0),
         rmsPtr (0)
         {}
@@ -95,6 +95,10 @@ private:
                 rmsSum = squaredRMS;
             }
         }
+        void setRMSsize (const int numBlocks) {
+            rmsHistory.resize (numBlocks);
+            rmsPtr %= rmsHistory.size();
+        }
     private:
         std::vector<float>       rmsHistory;
         std::atomic<float>       rmsSum;
@@ -110,6 +114,13 @@ public:
     ~LevelMeterSource ()
     {
         masterReference.clear();
+    }
+
+    void resize (const int channels, const int rmsWindow) {
+        levels.resize (channels, ChannelData (rmsWindow));
+        for (ChannelData& l : levels) {
+            l.setRMSsize (rmsWindow);
+        }
     }
 
     template<typename FloatType>
