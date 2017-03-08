@@ -80,3 +80,33 @@ void LevelMeter::timerCallback ()
 {
     repaint();
 }
+
+void LevelMeter::mouseDown (const juce::MouseEvent &event)
+{
+    if (event.mods.isLeftButtonDown() && source && lookAndFeel) {
+        const int numChannels = source->getNumChannels();
+        for (int i=0; i < numChannels; ++i) {
+            if (lookAndFeel->getClipLightBounds (getLocalBounds().toFloat(),
+                                                 numChannels, i)
+                .contains (event.getPosition().toFloat())) {
+                source->clearClipFlag (i);
+                return;
+            }
+        }
+    }
+}
+
+void LevelMeter::mouseDoubleClick (const juce::MouseEvent& event)
+{
+    if (source && lookAndFeel) {
+        const int numChannels = source->getNumChannels();
+        for (int i=0; i < numChannels; ++i) {
+            if (lookAndFeel->getClipLightBounds (getLocalBounds().toFloat(),
+                                                 numChannels, i)
+                .contains (event.getPosition().toFloat())) {
+                source->clearAllClipFlags();
+                return;
+            }
+        }
+    }
+}

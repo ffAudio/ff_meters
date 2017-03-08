@@ -50,11 +50,11 @@ public:
         drawMetersBackground (g, bounds);
 
         const float corner = getCornerSize (bounds);
-        const float barWidth  = bounds.getWidth() - 2.0 * corner;
-        const float barHeight = (bounds.getHeight() - 2.0 * corner) / (2 * numChannels - 1);
+        const float barHeight = (bounds.getHeight() - 3.0 * corner) / (2 * numChannels - 1);
+        const float barWidth  = bounds.getWidth() - 2.0 * corner - barHeight;
         const float x = bounds.getX () + corner;
         for (int channel=0; channel < numChannels; ++channel) {
-            const float y = bounds.getY() + corner + 2 * channel * barHeight;
+            const float y = bounds.getY() + corner * 1.5 + 2 * channel * barHeight;
 
             if (source) {
                 drawMeterBar (g, juce::Rectangle<float> (x, y, barWidth, barHeight).reduced (5, 2),
@@ -71,6 +71,19 @@ public:
                 drawMeterTicks (g, juce::Rectangle<float> (x, y + barHeight, barWidth, barHeight).reduced (5, 2));
             }
         }
+    }
+
+    juce::Rectangle<float> getClipLightBounds (const juce::Rectangle<float> bounds,
+                                               const int numChannels,
+                                               const int channel) override
+    {
+        const float corner    = getCornerSize (bounds);
+        const float barHeight = (bounds.getHeight() - 3.0 * corner) / (2 * numChannels - 1);
+        const float barWidth  = (bounds.getWidth() - 2.0 * corner) - barHeight;
+        juce::Rectangle<float> ledBounds (bounds.getX () + 5 + corner + barWidth - barHeight * 0.7,
+                                          bounds.getY() + 2 + corner * 1.5 + 2 * channel * barHeight,
+                                          barHeight * 0.7, barHeight - 4);
+        return ledBounds;
     }
 
     void drawMetersBackground (juce::Graphics& g,

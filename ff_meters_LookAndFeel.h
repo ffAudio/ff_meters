@@ -84,6 +84,20 @@ public:
         return juce::jmax (bounds.getWidth(), bounds.getHeight()) * 0.01;
     }
 
+    virtual void drawClipLED (juce::Graphics& g,
+                              const juce::Rectangle<float> bounds,
+                              const int numChannels,
+                              const int channel,
+                              const bool clipped)
+    {
+        g.setColour (getMeterColour (clipped ? lmMeterMaxOverColour : lmMeterBackgroundColour));
+        g.fillRect (getClipLightBounds (bounds, numChannels, channel));
+    }
+
+    virtual juce::Rectangle<float> getClipLightBounds (const juce::Rectangle<float> bounds,
+                                                       const int numChannels,
+                                                       const int channel) = 0;
+
     virtual void drawMetersBackground (juce::Graphics&,
                                        const juce::Rectangle<float> bounds) = 0;
 

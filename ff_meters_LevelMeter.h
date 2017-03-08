@@ -58,6 +58,10 @@ public:
 
     void setLookAndFeel (LevelMeterLookAndFeel* lnf);
 
+    void mouseDown (const juce::MouseEvent& event) override;
+
+    void mouseDoubleClick (const juce::MouseEvent& event) override;
+
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LevelMeter)
     

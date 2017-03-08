@@ -158,7 +158,7 @@ public:
 
     void clearAllClipFlags ()
     {
-        for (auto l : levels) {
+        for (ChannelData& l : levels) {
             l.clip = false;
         }
     }
