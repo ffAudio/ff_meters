@@ -80,6 +80,11 @@ public:
     suspended   (false)
     {}
 
+    ~LevelMeterSource ()
+    {
+        masterReference.clear();
+    }
+
     template<typename FloatType>
     void measureBlock (const juce::AudioBuffer<FloatType>& buffer)
     {
@@ -169,6 +174,9 @@ public:
     }
 
 private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LevelMeterSource)
+    juce::WeakReference<LevelMeterSource>::Master masterReference;
+    friend class juce::WeakReference<LevelMeterSource>;
 
     std::vector<ChannelData> levels;
 

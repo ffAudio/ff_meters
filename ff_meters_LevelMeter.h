@@ -61,7 +61,7 @@ public:
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LevelMeter)
     
-    LevelMeterSource* source;
+    juce::WeakReference<LevelMeterSource>       source;
 
     juce::ScopedPointer<LevelMeterLookAndFeel>  lookAndFeel;
 
