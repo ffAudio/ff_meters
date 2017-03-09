@@ -58,6 +58,8 @@ public:
 
     void setLookAndFeel (LevelMeterLookAndFeel* lnf);
 
+    LevelMeterLookAndFeel* getLookAndFeel ();
+
     void mouseDown (const juce::MouseEvent& event) override;
 
     void mouseDoubleClick (const juce::MouseEvent& event) override;

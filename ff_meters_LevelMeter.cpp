@@ -67,6 +67,11 @@ void LevelMeter::setLookAndFeel (LevelMeterLookAndFeel* lnf)
     lookAndFeel = lnf;
 }
 
+LevelMeterLookAndFeel* LevelMeter::getLookAndFeel ()
+{
+    return lookAndFeel;
+}
+
 void LevelMeter::paint (Graphics& g)
 {
     Graphics::ScopedSaveState saved (g);

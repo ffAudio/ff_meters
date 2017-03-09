@@ -46,6 +46,9 @@
 #ifndef FF_AUDIO_METERS_INCLUDED_H
 #define FF_AUDIO_METERS_INCLUDED_H
 
+#ifndef USE_FF_AUDIO_METERS
+#define USE_FF_AUDIO_METERS 1
+#endif
 
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_formats/juce_audio_formats.h>
