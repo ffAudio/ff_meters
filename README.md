@@ -25,10 +25,11 @@ There are also a lot of colours you can change in the LevelMeterLookAndFeel.
     LevelMeterLookAndFeel* lnf = new LevelMeterLookAndFeelVertical();
     // adjust the colours to how you like them
     lnf->setMeterColour (lmMeterGradientLowColour, juce::Colours::green);
+    
     // the meter takes ownership of the LookAndFeel
     meter = new LevelMeter (lnf);
     meter->setMeterSource (processor.getMeterSource());
-    addAndMakeVisible (inputMeter);
+    addAndMakeVisible (meter);
 
 
     // and in the processor:
@@ -40,7 +41,7 @@ There are also a lot of colours you can change in the LevelMeterLookAndFeel.
 
         void processBlock (AudioSampleBuffer& buffer, MidiBuffer&) override
         {
-            inputSource.measureBlock (buffer);
+            meterSource.measureBlock (buffer);
             // ...
         }
 
