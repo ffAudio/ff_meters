@@ -55,6 +55,7 @@ private:
     public:
         ChannelData (const int rmsWindow = 8) :
         max (),
+        maxOverall (),
         clip (false),
         reduction (-1.0f),
         hold (0),
@@ -65,6 +66,7 @@ private:
 
         ChannelData (const ChannelData& other) :
         max       (other.max.load() ),
+        maxOverall(other.maxOverall.load() ),
         clip      (other.clip.load() ),
         reduction (other.reduction.load()),
         hold      (other.hold.load()),
@@ -73,6 +75,7 @@ private:
         rmsPtr    (0)
         {}
         std::atomic<float>       max;
+        std::atomic<float>       maxOverall;
         std::atomic<bool>        clip;
         std::atomic<float>       reduction;
 
@@ -87,6 +90,7 @@ private:
             if (newMax > 1.0 || newRms > 1.0) {
                 clip = true;
             }
+            maxOverall = fmaxf (maxOverall, newMax);
             if (newMax >= max) {
                 max = std::min (1.0f, newMax);
                 hold = time + holdMSecs;
@@ -180,6 +184,11 @@ public:
         return levels.at (channel).max;
     }
 
+    float getMaxOverallLevel (const int channel) const
+    {
+        return levels.at (channel).maxOverall;
+    }
+
     float getRMSLevel (const int channel) const
     {
         return levels.at (channel).getAvgRMS();
@@ -193,12 +202,14 @@ public:
     void clearClipFlag (const int channel)
     {
         levels.at (channel).clip = false;
+        levels.at (channel).maxOverall = -100.0f;
     }
 
     void clearAllClipFlags ()
     {
         for (ChannelData& l : levels) {
             l.clip = false;
+            l.maxOverall = -100.0f;
         }
     }
 

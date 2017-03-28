@@ -47,6 +47,7 @@ public:
     enum ColourIds {
         lmTextColour = 0,
         lmTextDeactiveColour,
+        lmTextClipColour,
         lmTicksColour,
         lmOutlineColour,
         lmBackgroundColour,
@@ -63,7 +64,8 @@ public:
 
     LevelMeterLookAndFeel ()
     {
-        lmColoursMap.set (lmTextColour,             juce::Colours::green);
+        lmColoursMap.set (lmTextColour,             juce::Colours::lightgrey);
+        lmColoursMap.set (lmTextClipColour,         juce::Colours::white);
         lmColoursMap.set (lmTextDeactiveColour,     juce::Colours::darkgrey);
         lmColoursMap.set (lmTicksColour,            juce::Colours::orange);
         lmColoursMap.set (lmOutlineColour,          juce::Colours::orange);
@@ -90,10 +92,17 @@ public:
                               const juce::Rectangle<float> bounds,
                               const int numChannels,
                               const int channel,
-                              const bool clipped)
+                              const bool clipped,
+                              const juce::StringRef text = juce::String())
     {
+        const juce::Rectangle<float> b = getClipLightBounds (bounds, numChannels, channel);
         g.setColour (getMeterColour (clipped ? lmMeterMaxOverColour : lmMeterBackgroundColour));
-        g.fillRect (getClipLightBounds (bounds, numChannels, channel));
+        g.fillRect (b);
+        if (text.isNotEmpty()) {
+            g.setColour (getMeterColour (clipped ? lmTextClipColour : lmTextColour));
+            g.setFont (b.getHeight() * 0.8);
+            g.drawFittedText (text, b.toNearestInt(), juce::Justification::centred, 1);
+        }
     }
 
     virtual juce::Rectangle<float> getClipLightBounds (const juce::Rectangle<float> bounds,

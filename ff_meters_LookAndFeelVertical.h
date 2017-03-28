@@ -66,7 +66,9 @@ public:
                               source->getRMSLevel (channel),
                               source->getReductionLevel (channel));
 
-                drawClipLED (g, bounds, numChannels, channel, source->getClipFlag(channel));
+                drawClipLED (g, bounds, numChannels, channel,
+                             source->getClipFlag(channel),
+                             juce::String (juce::Decibels::gainToDecibels (source->getMaxOverallLevel (channel)), 1));
             }
             else {
                 drawMeterBar (g, juce::Rectangle<float> (x, y, barWidth, barHeight).reduced (2, 5),
