@@ -75,7 +75,6 @@ private:
         std::atomic<float>       max;
         std::atomic<bool>        clip;
         std::atomic<float>       reduction;
-        std::atomic<juce::int64> hold;
 
         float getAvgRMS () const {
             if (rmsHistory.size() > 0) {
@@ -83,6 +82,25 @@ private:
             }
             return sqrtf (rmsSum);
         }
+        void setLevels (const juce::int64 time, const float newMax, const float newRms, const juce::int64 holdMSecs)
+        {
+            if (newMax > 1.0 || newRms > 1.0) {
+                clip = true;
+            }
+            if (newMax >= max) {
+                max = std::min (1.0f, newMax);
+                hold = time + holdMSecs;
+            }
+            else if (time > hold) {
+                max = std::min (1.0f, newMax);
+            }
+            pushNextRMS (newRms);
+        }
+        void setRMSsize (const int numBlocks) {
+            rmsHistory.resize (numBlocks);
+            rmsPtr %= rmsHistory.size();
+        }
+    private:
         void pushNextRMS (const float newRMS) {
             const float squaredRMS = newRMS * newRMS;
             if (rmsHistory.size() > 0) {
@@ -95,11 +113,8 @@ private:
                 rmsSum = squaredRMS;
             }
         }
-        void setRMSsize (const int numBlocks) {
-            rmsHistory.resize (numBlocks);
-            rmsPtr %= rmsHistory.size();
-        }
-    private:
+
+        std::atomic<juce::int64> hold;
         std::vector<float>       rmsHistory;
         std::atomic<float>       rmsSum;
         int                      rmsPtr;
@@ -134,26 +149,12 @@ public:
             levels.resize (numChannels);
 
             for (int channel=0; channel < numChannels; ++channel) {
-                setLevels (time, channel,
-                           buffer.getMagnitude (channel, 0, numSamples),
-                           buffer.getRMSLevel  (channel, 0, numSamples));
+                levels [channel].setLevels (time,
+                                            buffer.getMagnitude (channel, 0, numSamples),
+                                            buffer.getRMSLevel  (channel, 0, numSamples),
+                                            holdMSecs);
             }
         }
-    }
-
-    void setLevels (const juce::int64 time, const int channel, const float max, const float rms)
-    {
-        if (max > 1.0 || rms > 1.0) {
-            levels [channel].clip = true;
-        }
-        if (max >= levels [channel].max) {
-            levels [channel].max = std::min (1.0f, max);
-            levels [channel].hold = time + holdMSecs;
-        }
-        else if (time > levels [channel].hold) {
-            levels [channel].max = std::min (1.0f, max);
-        }
-        levels [channel].pushNextRMS (rms);
     }
 
     void setReductionLevel (const int channel, const float reduction)
