@@ -94,6 +94,30 @@ void LevelMeter::timerCallback ()
     repaint();
 }
 
+void LevelMeter::clearClipIndicator (const int channel)
+{
+    if (source) {
+        if (channel < 0) {
+            source->clearAllClipFlags();
+        }
+        else {
+            source->clearClipFlag (channel);
+        }
+    }
+}
+
+void LevelMeter::clearMaxLevelDisplay (const int channel)
+{
+    if (source) {
+        if (channel < 0) {
+            source->clearAllMaxNums();
+        }
+        else {
+            source->clearMaxNum (channel);
+        }
+    }
+}
+
 void LevelMeter::mouseDown (const juce::MouseEvent &event)
 {
     if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&getLookAndFeel())) {
@@ -105,30 +129,27 @@ void LevelMeter::mouseDown (const juce::MouseEvent &event)
                                                  innerBounds,
                                                  source);
             if (hit >= 0) {
-                source->clearClipFlag (hit);
+                listeners.call (&LevelMeter::Listener::clipLightClicked, hit);
             }
             hit = lnf->hitTestMaxNumber (event.getPosition(),
                                          meterType,
                                          innerBounds,
                                          source);
             if (hit >= 0) {
-                source->clearMaxNum (hit);
+                listeners.call (&LevelMeter::Listener::maxLevelClicked, hit);
             }
         }
     }
 }
 
-void LevelMeter::mouseDoubleClick (const juce::MouseEvent& event)
+void LevelMeter::addListener (LevelMeter::Listener* listener)
 {
-    if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&getLookAndFeel())) {
-        if (event.mods.isLeftButtonDown() && source) {
-            int hit = lnf->hitTestClipIndicator (event.getPosition(),
-                                                 meterType,
-                                                 getLocalBounds().toFloat(),
-                                                 source);
-            if (hit >= 0) {
-                source->clearAllClipFlags();
-            }
-        }
-    }
+    listeners.add (listener);
 }
+
+void LevelMeter::removeListener (LevelMeter::Listener* listener)
+{
+    listeners.remove (listener);
+}
+
+

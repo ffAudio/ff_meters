@@ -172,9 +172,22 @@ public:
 
     void setRefreshRateHz (const int newRefreshRate);
 
+    void clearClipIndicator (const int channel=-1);
+
+    void clearMaxLevelDisplay (const int channel=-1);
+
     void mouseDown (const juce::MouseEvent& event) override;
 
-    void mouseDoubleClick (const juce::MouseEvent& event) override;
+    class Listener {
+    public:
+        virtual ~Listener () {}
+        virtual void clipLightClicked (const int channel) = 0;
+        virtual void maxLevelClicked (const int channel)  = 0;
+    };
+
+    void addListener (Listener*);
+
+    void removeListener (Listener*);
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LevelMeter)
@@ -186,6 +199,8 @@ private:
     MeterType                             meterType;
 
     int                                   refreshRate;
+
+    juce::ListenerList<LevelMeter::Listener> listeners;
 };
 
 
