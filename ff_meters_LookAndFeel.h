@@ -52,6 +52,7 @@ public:
         setColour (LevelMeter::lmTicksColour,            juce::Colours::orange);
         setColour (LevelMeter::lmOutlineColour,          juce::Colours::orange);
         setColour (LevelMeter::lmBackgroundColour,       juce::Colour (0xff050a29));
+        setColour (LevelMeter::lmBackgroundClipColour,   juce::Colours::red);
         setColour (LevelMeter::lmMeterForegroundColour,  juce::Colours::green);
         setColour (LevelMeter::lmMeterOutlineColour,     juce::Colours::lightgrey);
         setColour (LevelMeter::lmMeterBackgroundColour,  juce::Colours::darkgrey);
@@ -470,6 +471,7 @@ public:
             case LevelMeter::VerticalMinimal:
             {
                 const float h = (bounds.getHeight() - 2.0) * 0.1;
+                g.setFont (h * 0.8f);
                 for (int i=0; i<11; ++i) {
                     const float y = bounds.getY() + i * h;
                     g.drawHorizontalLine (y + 1,
@@ -477,7 +479,7 @@ public:
                                           bounds.getRight());
                     if (i < 10) {
                         g.drawFittedText (juce::String (i * -4),
-                                          bounds.getX(), y + 4, bounds.getWidth(), h * 0.7,
+                                          bounds.getX(), y + 4, bounds.getWidth(), h * 0.6,
                                           juce::Justification::centredTop, 1);
                     }
                 }
@@ -487,6 +489,7 @@ public:
             case LevelMeter::VerticalBarSingle:
             {
                 const float h = (bounds.getHeight() - 2.0) * 0.05;
+                g.setFont (h * 0.8f);
                 for (int i=0; i<21; ++i) {
                     const float y = bounds.getY() + i * h;
                     if (i % 2 == 0) {
@@ -495,7 +498,7 @@ public:
                                               bounds.getRight());
                         if (i < 20) {
                             g.drawFittedText (juce::String (i * -4),
-                                              bounds.getX(), y + 4, bounds.getWidth(), h * 0.7,
+                                              bounds.getX(), y + 4, bounds.getWidth(), h * 0.6,
                                               juce::Justification::topRight, 1);
                         }
                     }
@@ -527,7 +530,7 @@ public:
                             const juce::Rectangle<float> bounds,
                             const bool hasClipped) override
     {
-        g.setColour (findColour (hasClipped ? LevelMeter::lmTextClipColour : LevelMeter::lmMeterBackgroundColour));
+        g.setColour (findColour (hasClipped ? LevelMeter::lmBackgroundClipColour : LevelMeter::lmMeterBackgroundColour));
         g.fillRect (bounds);
         g.setColour (findColour (LevelMeter::lmMeterOutlineColour));
         g.drawRect (bounds, 1.0);

@@ -64,6 +64,7 @@ public:
         lmTicksColour,
         lmOutlineColour,
         lmBackgroundColour,
+        lmBackgroundClipColour,
         lmMeterForegroundColour,
         lmMeterOutlineColour,
         lmMeterBackgroundColour,
