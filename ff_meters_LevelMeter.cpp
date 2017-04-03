@@ -38,10 +38,11 @@
 
 
 //==============================================================================
-LevelMeter::LevelMeter (LevelMeterLookAndFeel* lnf)
-  : source      (nullptr),
-    lookAndFeel (lnf),
-    refreshRate (30)
+LevelMeter::LevelMeter (const MeterType type)
+  : source          (nullptr),
+    selectedChannel (-1),
+    meterType       (type),
+    refreshRate     (30)
 {
     startTimerHz (refreshRate);
 }
@@ -56,28 +57,35 @@ void LevelMeter::setMeterSource (LevelMeterSource* src)
     source = src;
 }
 
+void LevelMeter::setSelectedChannel (const int c)
+{
+    selectedChannel = c;
+}
+
 void LevelMeter::setRefreshRateHz (const int newRefreshRate)
 {
     refreshRate = newRefreshRate;
     startTimerHz (refreshRate);
 }
 
-void LevelMeter::setLookAndFeel (LevelMeterLookAndFeel* lnf)
-{
-    lookAndFeel = lnf;
-}
-
-LevelMeterLookAndFeel* LevelMeter::getLookAndFeel ()
-{
-    return lookAndFeel;
-}
-
 void LevelMeter::paint (Graphics& g)
 {
     Graphics::ScopedSaveState saved (g);
 
-    if (lookAndFeel) {
-        lookAndFeel->drawMeters (g, getLocalBounds().toFloat (), source);
+    LookAndFeel& l = getLookAndFeel();
+    if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l)) {
+        const juce::Rectangle<float> bounds = getLocalBounds().toFloat();
+        lnf->drawBackground (g, meterType, bounds);
+        lnf->drawMeterBars (g, meterType, bounds, source, selectedChannel);
+    }
+    else {
+        // This LookAndFeel is missing the LevelMeter::LookAndFeelMethods.
+        // If you work with the default LookAndFeel, set an instance of
+        // LevelMeterLookAndFeel as LookAndFeel of this component.
+        //
+        // If you write a LookAndFeel from scratch, inherit also
+        // LevelMeter::LookAndFeelMethods
+        jassertfalse;
     }
 }
 
@@ -88,14 +96,23 @@ void LevelMeter::timerCallback ()
 
 void LevelMeter::mouseDown (const juce::MouseEvent &event)
 {
-    if (event.mods.isLeftButtonDown() && source && lookAndFeel) {
-        const int numChannels = source->getNumChannels();
-        for (int i=0; i < numChannels; ++i) {
-            if (lookAndFeel->getClipLightBounds (getLocalBounds().toFloat(),
-                                                 numChannels, i)
-                .contains (event.getPosition().toFloat())) {
-                source->clearClipFlag (i);
-                return;
+    if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&getLookAndFeel())) {
+        const juce::Rectangle<float> innerBounds = lnf->getMeterInnerBounds (getLocalBounds().toFloat(),
+                                                                             meterType);
+        if (event.mods.isLeftButtonDown() && source) {
+            int hit = lnf->hitTestClipIndicator (event.getPosition(),
+                                                 meterType,
+                                                 innerBounds,
+                                                 source);
+            if (hit >= 0) {
+                source->clearClipFlag (hit);
+            }
+            hit = lnf->hitTestMaxNumber (event.getPosition(),
+                                         meterType,
+                                         innerBounds,
+                                         source);
+            if (hit >= 0) {
+                source->clearMaxNum (hit);
             }
         }
     }
@@ -103,14 +120,14 @@ void LevelMeter::mouseDown (const juce::MouseEvent &event)
 
 void LevelMeter::mouseDoubleClick (const juce::MouseEvent& event)
 {
-    if (source && lookAndFeel) {
-        const int numChannels = source->getNumChannels();
-        for (int i=0; i < numChannels; ++i) {
-            if (lookAndFeel->getClipLightBounds (getLocalBounds().toFloat(),
-                                                 numChannels, i)
-                .contains (event.getPosition().toFloat())) {
+    if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&getLookAndFeel())) {
+        if (event.mods.isLeftButtonDown() && source) {
+            int hit = lnf->hitTestClipIndicator (event.getPosition(),
+                                                 meterType,
+                                                 getLocalBounds().toFloat(),
+                                                 source);
+            if (hit >= 0) {
                 source->clearAllClipFlags();
-                return;
             }
         }
     }

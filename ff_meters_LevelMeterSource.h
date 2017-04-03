@@ -202,20 +202,30 @@ public:
     void clearClipFlag (const int channel)
     {
         levels.at (channel).clip = false;
-        levels.at (channel).maxOverall = -100.0f;
     }
 
     void clearAllClipFlags ()
     {
         for (ChannelData& l : levels) {
             l.clip = false;
-            l.maxOverall = -100.0f;
+        }
+    }
+
+    void clearMaxNum (const int channel)
+    {
+        levels.at (channel).maxOverall = -80.0f;
+    }
+
+    void clearAllMaxNums ()
+    {
+        for (ChannelData& l : levels) {
+            l.maxOverall = -80.0f;
         }
     }
 
     int getNumChannels () const
     {
-        return levels.size();
+        return static_cast<int> (levels.size());
     }
 
     void setSuspended (const bool shouldBeSuspended)

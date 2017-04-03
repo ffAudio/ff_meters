@@ -56,11 +56,11 @@
 #include <juce_audio_devices/juce_audio_devices.h>
 
 #include <ff_meters/ff_meters_LevelMeterSource.h>
-#include <ff_meters/ff_meters_LookAndFeel.h>
-#include <ff_meters/ff_meters_LookAndFeelVertical.h>
-#include <ff_meters/ff_meters_LookAndFeelHorizontal.h>
-#include <ff_meters/ff_meters_LookAndFeelVintage.h>
+//#include <ff_meters/ff_meters_LookAndFeelVertical.h>
+//#include <ff_meters/ff_meters_LookAndFeelHorizontal.h>
+//#include <ff_meters/ff_meters_LookAndFeelVintage.h>
 #include <ff_meters/ff_meters_LevelMeter.h>
+#include <ff_meters/ff_meters_LookAndFeel.h>
 
 #endif /* FF_AUDIO_METERS_INCLUDED_H */
 

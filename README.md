@@ -18,19 +18,28 @@ processBlock or getNextAudioBuffer method.
 On the Component use LevelMeter::setMeterSource to link to the LevelMeterSource 
 instance. The number of channels will be updated automatically.
 
-The orientation is set by choosing the appropriate LookAndFeel class.
-There are also a lot of colours you can change in the LevelMeterLookAndFeel.
+You can pull the drawing into your LookAndFeel by inheriting LevelMeter::LookAndFeelMethods
+and copying the default implementation from LevelMeterLookAndFeel in ff_meters_LookAndFeel.h
+into your class. Or use the LevelMeterLookAndFeel directly because it inherits from j
+uce::LookAndFeel_V3 for your convenience. You can set it as default LookAndFeel, if you 
+used the default, or set it only to the meters, if you don't want it to interfere.
 
-    // In your Editor's constructor:
-    LevelMeterLookAndFeel* lnf = new LevelMeterLookAndFeelVertical();
-    // adjust the colours to how you like them
-    lnf->setMeterColour (lmMeterGradientLowColour, juce::Colours::green);
+    // In your Editor
+    public:
+        PluginEditor () {
+            lnf = new LevelMeterLookAndFeel();
+            // adjust the colours to how you like them
+            lnf->setColour (LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
     
-    // the meter takes ownership of the LookAndFeel
-    meter = new LevelMeter (lnf);
-    meter->setMeterSource (processor.getMeterSource());
-    addAndMakeVisible (meter);
-
+            meter = new LevelMeter (LevelMeter::VerticalMeters);
+            meter->setLookAndFeel (lnf);
+            meter->setMeterSource (processor.getMeterSource());
+            addAndMakeVisible (meter);
+            // ...
+        }
+    private:
+        ScopedPointer<LevelMeter> meter;
+        ScopedPointer<LevelMeterLookAndFeel> lnf;
 
     // and in the processor:
     public:
