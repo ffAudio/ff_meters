@@ -397,9 +397,9 @@ public:
                        const juce::Rectangle<float> bounds,
                        const float rms, const float peak) override
     {
-        const float rmsDb  = juce::Decibels::gainToDecibels (rms);
-        const float peakDb = juce::Decibels::gainToDecibels (peak);
         const float infinity = -80.0f;
+        const float rmsDb  = juce::Decibels::gainToDecibels (rms,  infinity);
+        const float peakDb = juce::Decibels::gainToDecibels (peak, infinity);
         switch (meterType) {
             case LevelMeter::VerticalMinimal:
             case LevelMeter::VerticalBars:
