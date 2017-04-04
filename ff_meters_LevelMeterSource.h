@@ -106,7 +106,7 @@ private:
         }
     private:
         void pushNextRMS (const float newRMS) {
-            const float squaredRMS = newRMS * newRMS;
+            const float squaredRMS = std::min (newRMS * newRMS, 1.0f);
             if (rmsHistory.size() > 0) {
                 float oldRMS = rmsSum - rmsHistory [rmsPtr];
                 rmsSum = oldRMS + squaredRMS;

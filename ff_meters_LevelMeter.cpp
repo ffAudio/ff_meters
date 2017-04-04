@@ -38,7 +38,7 @@
 
 
 //==============================================================================
-LevelMeter::LevelMeter (const MeterType type)
+LevelMeter::LevelMeter (const MeterFlags type)
   : source          (nullptr),
     selectedChannel (-1),
     meterType       (type),

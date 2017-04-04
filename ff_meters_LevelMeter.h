@@ -46,15 +46,14 @@ class LevelMeter    : public juce::Component, private juce::Timer
 {
 public:
 
-    enum MeterType {
-        VerticalBars = 0,
-        VerticalBarSingle,
-        HorizontalBars,
-        HorizontalBarSingle,
-        VerticalMinimal,
-        HorizontalMinimal,
-        AnalogMeterSingle,
-        CustomMeterTypes = 256
+    enum MeterFlags {
+        Default         = 0x0000,
+        Horizontal      = 0x0001,
+        Vintage         = 0x0002,
+        SingleChannel   = 0x0004,
+        HasBorder       = 0x0008,
+        Reduction       = 0x0010,
+        Minimal         = 0x0020
     };
 
     enum ColourIds {
@@ -83,84 +82,84 @@ public:
 
         /** Override this to change the inner rectangle in case you want to paint a border e.g. */
         virtual juce::Rectangle<float> getMeterInnerBounds (const juce::Rectangle<float> bounds,
-                                                            const MeterType meterType) const = 0;
+                                                            const MeterFlags meterType) const = 0;
 
         /** Override this callback to define the placement of a meter channel. */
         virtual juce::Rectangle<float> getMeterBounds (const juce::Rectangle<float> bounds,
-                                                       const MeterType meterType,
+                                                       const MeterFlags meterType,
                                                        const int numChannels,
                                                        const int channel) const = 0;
 
         /** Override this callback to define the placement of the actual meter bar. */
         virtual juce::Rectangle<float> getMeterBarBounds (const juce::Rectangle<float> bounds,
-                                                          const MeterType meterType) const = 0;
+                                                          const MeterFlags meterType) const = 0;
 
         /** Override this callback to define the placement of the tickmarks.
          To disable this feature return an empty rectangle. */
         virtual juce::Rectangle<float> getMeterTickmarksBounds (const juce::Rectangle<float> bounds,
-                                                                const MeterType meterType) const = 0;
+                                                                const MeterFlags meterType) const = 0;
 
         /** Override this callback to define the placement of the clip indicator light.
          To disable this feature return an empty rectangle. */
         virtual juce::Rectangle<float> getMeterClipIndicatorBounds (const juce::Rectangle<float> bounds,
-                                                                    const MeterType meterType) const = 0;
+                                                                    const MeterFlags meterType) const = 0;
 
         /** Override this callback to define the placement of the max level.
          To disable this feature return an empty rectangle. */
         virtual juce::Rectangle<float> getMeterMaxNumberBounds (const juce::Rectangle<float> bounds,
-                                                                const MeterType meterType) const = 0;
+                                                                const MeterFlags meterType) const = 0;
 
         /** Override this to draw background and if wanted a frame. If the frame takes space away, 
          it should return the reduced bounds */
         virtual juce::Rectangle<float> drawBackground (juce::Graphics&,
-                                                       const MeterType meterType,
+                                                       const MeterFlags meterType,
                                                        const juce::Rectangle<float> bounds) = 0;
 
         virtual void drawMeterBars (juce::Graphics&,
-                                    const MeterType meterType,
+                                    const MeterFlags meterType,
                                     const juce::Rectangle<float> bounds,
                                     const LevelMeterSource* source,
                                     const int selectedChannel=-1) = 0;
 
         virtual void drawMeterChannel (juce::Graphics&,
-                                       const MeterType meterType,
+                                       const MeterFlags meterType,
                                        const juce::Rectangle<float> bounds,
                                        const LevelMeterSource* source,
                                        const int selectedChannel) = 0;
 
         virtual void drawMeterBar (juce::Graphics&,
-                                   const MeterType meterType,
+                                   const MeterFlags meterType,
                                    const juce::Rectangle<float> bounds,
                                    const float rms, const float peak) = 0;
 
         virtual void drawTickMarks (juce::Graphics&,
-                                    const MeterType meterType,
+                                    const MeterFlags meterType,
                                     const juce::Rectangle<float> bounds) = 0;
 
         virtual void drawClipIndicator (juce::Graphics&,
-                                        const MeterType meterType,
+                                        const MeterFlags meterType,
                                         const juce::Rectangle<float> bounds,
                                         const bool hasClipped) = 0;
 
         virtual void drawMaxNumber (juce::Graphics&,
-                                    const MeterType meterType,
+                                    const MeterFlags meterType,
                                     const juce::Rectangle<float> bounds,
                                     const float maxGain) = 0;
 
         virtual int hitTestClipIndicator (const juce::Point<int> position,
-                                          const MeterType meterType,
+                                          const MeterFlags meterType,
                                           const juce::Rectangle<float> bounds,
                                           const LevelMeterSource* source) const = 0;
 
         virtual int hitTestMaxNumber (const juce::Point<int> position,
-                                      const MeterType meterType,
+                                      const MeterFlags meterType,
                                       const juce::Rectangle<float> bounds,
                                       const LevelMeterSource* source) const = 0;
     };
 
     class LookAndFeelDefaultMethods;
 
-    LevelMeter (const MeterType type = VerticalBars);
+    LevelMeter (const MeterFlags type = HasBorder);
     ~LevelMeter ();
 
     void paint (juce::Graphics&) override;
@@ -197,12 +196,14 @@ private:
 
     int                                   selectedChannel;
 
-    MeterType                             meterType;
+    MeterFlags                            meterType;
 
     int                                   refreshRate;
 
     juce::ListenerList<LevelMeter::Listener> listeners;
 };
 
+inline LevelMeter::MeterFlags operator|(LevelMeter::MeterFlags a, LevelMeter::MeterFlags b)
+{return static_cast<LevelMeter::MeterFlags>(static_cast<int>(a) | static_cast<int>(b));}
 
 #endif  // LEVELMETER_H_INCLUDED
