@@ -19,10 +19,13 @@ On the Component use LevelMeter::setMeterSource to link to the LevelMeterSource
 instance. The number of channels will be updated automatically.
 
 You can pull the drawing into your LookAndFeel by inheriting LevelMeter::LookAndFeelMethods
-and copying the default implementation from LevelMeterLookAndFeel in ff_meters_LookAndFeel.h
-into your class. Or use the LevelMeterLookAndFeel directly because it inherits from j
-uce::LookAndFeel_V3 for your convenience. You can set it as default LookAndFeel, if you 
-used the default, or set it only to the meters, if you don't want it to interfere.
+and inlining the default implementation from LevelMeterLookAndFeel in 
+ff_meters_LookAndFeelMethods.h into a public section of your class declaration. To
+setup the default colour scheme, call setupDefaultMeterColours() in your constructor.
+
+Or you can use the LevelMeterLookAndFeel directly because it inherits from juce::LookAndFeel_V3 
+for your convenience. You can set it as default LookAndFeel, if you used the default, 
+or set it only to the meters, if you don't want it to interfere.
 
     // In your Editor
     public:

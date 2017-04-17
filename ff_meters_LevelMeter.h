@@ -80,6 +80,9 @@ public:
     public:
         virtual ~LookAndFeelMethods() {}
 
+        /** Define your default colours in this callback */
+        virtual void setupDefaultMeterColours () = 0;
+
         /** Override this to change the inner rectangle in case you want to paint a border e.g. */
         virtual juce::Rectangle<float> getMeterInnerBounds (const juce::Rectangle<float> bounds,
                                                             const MeterFlags meterType) const = 0;
