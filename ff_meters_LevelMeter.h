@@ -104,10 +104,6 @@ public:
         virtual juce::Rectangle<float> getMeterClipIndicatorBounds (const juce::Rectangle<float> bounds,
                                                                     const MeterFlags meterType) const = 0;
 
-        /** Override this callback to define the placement of the max level.
-         To disable this feature return an empty rectangle. */
-        virtual juce::Rectangle<float> getMeterMaxNumberBounds (const juce::Rectangle<float> bounds,
-                                                                const MeterFlags meterType) const = 0;
 
         /** Override this to draw background and if wanted a frame. If the frame takes space away, 
          it should return the reduced bounds */
@@ -115,54 +111,93 @@ public:
                                                        const MeterFlags meterType,
                                                        const juce::Rectangle<float> bounds) = 0;
 
+        /** This is called to draw the actual numbers and bars on top of the static background */
         virtual void drawMeterBars (juce::Graphics&,
                                     const MeterFlags meterType,
                                     const juce::Rectangle<float> bounds,
                                     const LevelMeterSource* source,
                                     const int selectedChannel=-1) = 0;
 
+        /** This draws the static background of the whole level meter group with all channels */
+        virtual void drawMeterBarsBackground (juce::Graphics&,
+                                              const MeterFlags meterType,
+                                              const juce::Rectangle<float> bounds,
+                                              const int numChannels) = 0;
+
+        /** This draws a group of informations representing one channel */
         virtual void drawMeterChannel (juce::Graphics&,
                                        const MeterFlags meterType,
                                        const juce::Rectangle<float> bounds,
                                        const LevelMeterSource* source,
                                        const int selectedChannel) = 0;
 
+        /** This draws the static backgrounds representing one channel */
+        virtual void drawMeterChannelBackground (juce::Graphics&,
+                                                 const MeterFlags meterType,
+                                                 const juce::Rectangle<float> bounds) = 0;
+
+        /** This callback draws the actual level bar. The background has an extra callback */
         virtual void drawMeterBar (juce::Graphics&,
                                    const MeterFlags meterType,
                                    const juce::Rectangle<float> bounds,
                                    const float rms, const float peak) = 0;
 
+        /** This draws the background for the actual level bar */
+        virtual void drawMeterBarBackground (juce::Graphics&,
+                                             const MeterFlags meterType,
+                                             const juce::Rectangle<float> bounds) = 0;
+
+        /** This draws the tickmarks for the level scale. It is painted on the static background */
         virtual void drawTickMarks (juce::Graphics&,
                                     const MeterFlags meterType,
                                     const juce::Rectangle<float> bounds) = 0;
 
+        /** This callback draws the clip indicator. The background has an extra callback */
         virtual void drawClipIndicator (juce::Graphics&,
                                         const MeterFlags meterType,
                                         const juce::Rectangle<float> bounds,
                                         const bool hasClipped) = 0;
 
+        /** This draws the background for the clip indicator LED */
+        virtual void drawClipIndicatorBackground (juce::Graphics&,
+                                                  const MeterFlags meterType,
+                                                  const juce::Rectangle<float> bounds) = 0;
+
+        /** Override this callback to define the placement of the max level.
+         To disable this feature return an empty rectangle. */
+        virtual juce::Rectangle<float> getMeterMaxNumberBounds (const juce::Rectangle<float> bounds,
+                                                                const MeterFlags meterType) const = 0;
+
+        /** This callback draws the number of maximum level. The background has an extra callback */
         virtual void drawMaxNumber (juce::Graphics&,
                                     const MeterFlags meterType,
                                     const juce::Rectangle<float> bounds,
                                     const float maxGain) = 0;
 
+        /** This draws the background for the maximum level display */
+        virtual void drawMaxNumberBackground (juce::Graphics&,
+                                              const MeterFlags meterType,
+                                              const juce::Rectangle<float> bounds) = 0;
+
+        /** This is called by the frontend to check, if the clip indicator was clicked (e.g. for reset) */
         virtual int hitTestClipIndicator (const juce::Point<int> position,
                                           const MeterFlags meterType,
                                           const juce::Rectangle<float> bounds,
                                           const LevelMeterSource* source) const = 0;
 
+        /** This is called by the frontend to check, if the maximum level number was clicked (e.g. for reset) */
         virtual int hitTestMaxNumber (const juce::Point<int> position,
                                       const MeterFlags meterType,
                                       const juce::Rectangle<float> bounds,
                                       const LevelMeterSource* source) const = 0;
     };
 
-    class LookAndFeelDefaultMethods;
-
     LevelMeter (const MeterFlags type = HasBorder);
     ~LevelMeter ();
 
     void paint (juce::Graphics&) override;
+
+    void resized () override;
 
     void timerCallback () override;
 
@@ -199,6 +234,12 @@ private:
     MeterFlags                            meterType;
 
     int                                   refreshRate;
+
+    bool                                  useBackgroundImage;
+
+    juce::Image                           backgroundImage;
+
+    bool                                  backgroundNeedsRepaint;
 
     juce::ListenerList<LevelMeter::Listener> listeners;
 };

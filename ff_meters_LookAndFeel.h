@@ -342,6 +342,60 @@ public:
         }
     }
 
+    void drawMeterBarsBackground (juce::Graphics& g,
+                                  const LevelMeter::MeterFlags meterType,
+                                  const juce::Rectangle<float> bounds,
+                                  const int numChannels) override
+    {
+        const juce::Rectangle<float> innerBounds = getMeterInnerBounds (bounds, meterType);
+        if (meterType & LevelMeter::Minimal) {
+            if (meterType & LevelMeter::Horizontal) {
+                const float height = innerBounds.getHeight() / (2 * numChannels - 1);
+                juce::Rectangle<float> meter = innerBounds.withHeight (height);
+                for (int channel=0; channel < numChannels; ++channel) {
+                    meter.setY (height * channel * 2);
+                    drawMeterBarBackground (g, meterType, getMeterBarBounds (meter, meterType));
+                    juce::Rectangle<float> clip = getMeterClipIndicatorBounds (meter, meterType);
+                    if (! clip.isEmpty())
+                        drawClipIndicatorBackground (g, meterType, clip);
+                    if (channel < numChannels-1) {
+                        meter.setY (height * (channel * 2 + 1));
+                        juce::Rectangle<float> ticks = getMeterTickmarksBounds (meter, meterType);
+                        if (! ticks.isEmpty())
+                            drawTickMarks (g, meterType, ticks);
+                    }
+                }
+            }
+            else {
+                const float width = innerBounds.getWidth() / (2 * numChannels - 1);
+                juce::Rectangle<float> meter = innerBounds.withWidth(width);
+                for (int channel=0; channel < numChannels; ++channel) {
+                    meter.setX (width * channel * 2);
+                    drawMeterBarBackground (g, meterType, getMeterBarBounds (meter, meterType));
+                    juce::Rectangle<float> clip = getMeterClipIndicatorBounds (meter, meterType);
+                    if (! clip.isEmpty())
+                        drawClipIndicatorBackground (g, meterType, clip);
+                    if (channel < numChannels-1) {
+                        meter.setX (width * (channel * 2 + 1));
+                        juce::Rectangle<float> ticks = getMeterTickmarksBounds (meter, meterType);
+                        if (! ticks.isEmpty())
+                            drawTickMarks (g, meterType, ticks);
+                    }
+                }
+            }
+        }
+        else if (meterType & LevelMeter::SingleChannel) {
+            drawMeterChannelBackground (g, meterType, innerBounds);
+        }
+        else {
+            for (int channel=0; channel < numChannels; ++channel) {
+                drawMeterChannelBackground (g, meterType,
+                                            getMeterBounds (innerBounds, meterType, numChannels, channel));
+            }
+        }
+    }
+
+
     void drawMeterChannel (juce::Graphics& g,
                            const LevelMeter::MeterFlags meterType,
                            const juce::Rectangle<float> bounds,
@@ -362,12 +416,11 @@ public:
                                   source->getMaxLevel (selectedChannel));
                 }
             }
-            juce::Rectangle<float> clip = getMeterClipIndicatorBounds (bounds, meterType);
-            if (! clip.isEmpty())
-                drawClipIndicator (g, meterType, clip, source->getClipFlag (selectedChannel));
-            juce::Rectangle<float> ticks = getMeterTickmarksBounds (bounds, meterType);
-            if (! ticks.isEmpty())
-                drawTickMarks (g, meterType, ticks);
+            if (source->getClipFlag (selectedChannel)) {
+                juce::Rectangle<float> clip = getMeterClipIndicatorBounds (bounds, meterType);
+                if (! clip.isEmpty())
+                    drawClipIndicator (g, meterType, clip, true);
+            }
             juce::Rectangle<float> maxes = getMeterMaxNumberBounds (bounds, meterType);
             if (! maxes.isEmpty()) {
                 if (meterType & LevelMeter::Reduction) {
@@ -380,6 +433,26 @@ public:
         }
     }
 
+    void drawMeterChannelBackground (juce::Graphics& g,
+                                     const LevelMeter::MeterFlags meterType,
+                                     const juce::Rectangle<float> bounds) override
+    {
+        juce::Rectangle<float> meter = getMeterBarBounds (bounds, meterType);
+        if (! meter.isEmpty()) {
+            drawMeterBarBackground (g, meterType, meter);
+        }
+        juce::Rectangle<float> clip = getMeterClipIndicatorBounds (bounds, meterType);
+        if (! clip.isEmpty())
+            drawClipIndicatorBackground (g, meterType, clip);
+        juce::Rectangle<float> ticks = getMeterTickmarksBounds (bounds, meterType);
+        if (! ticks.isEmpty())
+            drawTickMarks (g, meterType, ticks);
+        juce::Rectangle<float> maxes = getMeterMaxNumberBounds (bounds, meterType);
+        if (! maxes.isEmpty()) {
+            drawMaxNumberBackground (g, meterType, maxes);
+        }
+    }
+
     void drawMeterBar (juce::Graphics& g,
                        const LevelMeter::MeterFlags meterType,
                        const juce::Rectangle<float> bounds,
@@ -388,8 +461,6 @@ public:
         const float infinity = meterType & LevelMeter::Reduction ? -30.0f :  -80.0f;
         const float rmsDb  = juce::Decibels::gainToDecibels (rms,  infinity);
         const float peakDb = juce::Decibels::gainToDecibels (peak, infinity);
-        g.setColour (findColour (LevelMeter::lmMeterBackgroundColour));
-        g.fillRect  (bounds);
 
         if (meterType & LevelMeter::Vintage) {
             // TODO
@@ -442,6 +513,15 @@ public:
                 }
             }
         }
+    }
+
+    void drawMeterBarBackground (juce::Graphics& g,
+                                 const LevelMeter::MeterFlags meterType,
+                                 const juce::Rectangle<float> bounds) override
+    {
+        g.setColour (findColour (LevelMeter::lmMeterBackgroundColour));
+        g.fillRect  (bounds);
+
         g.setColour (findColour (LevelMeter::lmMeterOutlineColour));
         g.drawRect (bounds, 1.0);
     }
@@ -522,6 +602,16 @@ public:
         g.drawRect (bounds, 1.0);
     }
 
+    void drawClipIndicatorBackground (juce::Graphics& g,
+                                      const LevelMeter::MeterFlags meterType,
+                                      const juce::Rectangle<float> bounds) override
+    {
+        g.setColour (findColour (LevelMeter::lmMeterBackgroundColour));
+        g.fillRect (bounds);
+        g.setColour (findColour (LevelMeter::lmMeterOutlineColour));
+        g.drawRect (bounds, 1.0);
+    }
+
     void drawMaxNumber (juce::Graphics& g,
                         const LevelMeter::MeterFlags meterType,
                         const juce::Rectangle<float> bounds,
@@ -537,6 +627,14 @@ public:
                           juce::Justification::centred, 1);
         g.setColour (findColour (LevelMeter::lmMeterOutlineColour));
         g.drawRect (bounds, 1.0);
+    }
+
+    void drawMaxNumberBackground (juce::Graphics& g,
+                                  const LevelMeter::MeterFlags meterType,
+                                  const juce::Rectangle<float> bounds) override
+    {
+        g.setColour (findColour (LevelMeter::lmMeterBackgroundColour));
+        g.fillRect (bounds);
     }
 
     int hitTestClipIndicator (const juce::Point<int> position,

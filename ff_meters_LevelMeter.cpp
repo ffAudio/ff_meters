@@ -42,7 +42,9 @@ LevelMeter::LevelMeter (const MeterFlags type)
   : source          (nullptr),
     selectedChannel (-1),
     meterType       (type),
-    refreshRate     (30)
+    refreshRate     (30),
+    useBackgroundImage (false),
+    backgroundNeedsRepaint (true)
 {
     startTimerHz (refreshRate);
 }
@@ -75,8 +77,24 @@ void LevelMeter::paint (Graphics& g)
     LookAndFeel& l = getLookAndFeel();
     if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l)) {
         const juce::Rectangle<float> bounds = getLocalBounds().toFloat();
-        lnf->drawBackground (g, meterType, bounds);
-        lnf->drawMeterBars (g, meterType, bounds, source, selectedChannel);
+        if (useBackgroundImage) {
+            // This seems to only speed up, if you use complex drawings on the background. For
+            // "normal" vector graphics the image approach seems actually slower
+            if (backgroundNeedsRepaint) {
+                backgroundImage = Image (Image::ARGB, getWidth(), getHeight(), true);
+                Graphics backGraphics (backgroundImage);
+                lnf->drawBackground (backGraphics, meterType, bounds);
+                lnf->drawMeterBarsBackground (backGraphics, meterType, bounds, source ? source->getNumChannels() : 1);
+                backgroundNeedsRepaint = false;
+            }
+            g.drawImageAt (backgroundImage, 0, 0);
+            lnf->drawMeterBars (g, meterType, bounds, source, selectedChannel);
+        }
+        else {
+            lnf->drawBackground (g, meterType, bounds);
+            lnf->drawMeterBarsBackground (g, meterType, bounds, source ? source->getNumChannels() : 1);
+            lnf->drawMeterBars (g, meterType, bounds, source, selectedChannel);
+        }
     }
     else {
         // This LookAndFeel is missing the LevelMeter::LookAndFeelMethods.
@@ -87,6 +105,11 @@ void LevelMeter::paint (Graphics& g)
         // LevelMeter::LookAndFeelMethods
         jassertfalse;
     }
+}
+
+void LevelMeter::resized ()
+{
+    backgroundNeedsRepaint = true;
 }
 
 void LevelMeter::timerCallback ()
