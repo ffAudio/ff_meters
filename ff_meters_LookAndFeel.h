@@ -531,6 +531,7 @@ public:
         g.fillRect (bounds);
         const float maxDb = juce::Decibels::gainToDecibels (maxGain, -80.0f);
         g.setColour (findColour (maxDb > 0.0 ? LevelMeter::lmTextClipColour : LevelMeter::lmTextColour));
+        g.setFont (bounds.getHeight() * 0.5f);
         g.drawFittedText (juce::String (maxDb, 1) + " dB",
                           bounds.reduced (2.0).toNearestInt(),
                           juce::Justification::centred, 1);
