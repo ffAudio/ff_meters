@@ -34,7 +34,7 @@ or set it only to the meters, if you don't want it to interfere.
             // adjust the colours to how you like them
             lnf->setColour (LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
     
-            meter = new LevelMeter (LevelMeter::VerticalMeters);
+            meter = new LevelMeter (); // See LevelMeter::MeterFlags for options
             meter->setLookAndFeel (lnf);
             meter->setMeterSource (processor.getMeterSource());
             addAndMakeVisible (meter);
