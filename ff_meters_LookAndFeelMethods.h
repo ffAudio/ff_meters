@@ -27,7 +27,7 @@
  
  ==============================================================================
 
-    ff_meters_LookAndFeelMethods.h
+    \file ff_meters_LookAndFeelMethods.h
     Author:  Daniel Walz
 
     To use the default implementation of your LevelMeter in your LookAndFeel,

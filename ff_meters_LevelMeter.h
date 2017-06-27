@@ -37,6 +37,9 @@
 
 //==============================================================================
 /*
+ \class LevelMeter
+ \brief A component to display live gain and RMS readings
+
  This class is used to display a level reading. It supports max and RMS levels.
  You can also set a reduction value to display, the definition of that value is up to you.
 */
@@ -74,6 +77,11 @@ public:
         lmMeterReductionColour      /**< Colour for the reduction meter displayed within the meter */
     };
 
+    /**
+     These methods define a interface for the LookAndFeel class of juce.
+     The LevelMeter needs a LookAndFeel, that implements these methods.
+     There is a default implementation to be included in your custom LookAndFeel class, \see LookAndFeelMethods.h
+     */
     class LookAndFeelMethods {
     public:
         virtual ~LookAndFeelMethods() {}

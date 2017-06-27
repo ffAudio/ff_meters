@@ -27,7 +27,7 @@
  
  ==============================================================================
 
-    ff_meters_LookAndFeel.h
+    \file ff_meters_LookAndFeel.h
     Author:  Daniel Walz
 
  ==============================================================================
@@ -37,6 +37,26 @@
 
 class LevelMeterSource;
 
+
+/**
+   \class LevelMeterLookAndFeel
+   \brief Convenience LookAndFeel which derives from LookAndFeel_V3 and LevelMeter::LookAndFeelMethods
+
+   This is the shortcut, to get a component going without inheriting any LookAndFeel class.
+   If you write your own LookAndFeel, you can include ff_meters_LookAndFeelMethods.h inside your LookAndFeel:
+
+   \code{.cpp}
+       class MyLookAndFeel : public LookAndFeel_V4, LevelMeter::LookAndFeelMethods
+       {
+           public:
+ 
+               #include "ff_meters_LookAndFeelMethods.h"
+
+               // ...
+
+       };
+   \endcode
+*/
 class LevelMeterLookAndFeel : public juce::LookAndFeel_V3, public LevelMeter::LookAndFeelMethods
 {
 public:
