@@ -537,7 +537,7 @@ void drawTickMarks (juce::Graphics& g,
                                     bounds.getBottom() - 4);
         }
         else {
-            const float h = (bounds.getHeight() - 2.0) * 0.1;
+            const float h = (bounds.getHeight() - 2.0) * 0.05;
             g.setFont (h * 0.8f);
             for (int i=0; i<11; ++i) {
                 const float y = bounds.getY() + i * h;
