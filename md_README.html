@@ -83,8 +83,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>The ff_meters provide an easy to use Component to display a level reading for an AudioBuffer. It is to be used in the audio framework JUCE (www.juce.com).</p>
 <h1>Usage </h1>
 <p>To use it create a <a class="el" href="classLevelMeterSource.html" title="To get a nice meter GUI create a LevelMeterSource in your audioProcessor or whatever instance process...">LevelMeterSource</a> instance next to the AudioBuffer you want to display. To update the meter, call <a class="el" href="classLevelMeterSource.html#a8c6105a44bf02c03c39ef69063f89282">LevelMeterSource::measureBlock</a> (buffer) in your processBlock or getNextAudioBuffer method.</p>
-<p>On the Component use <a class="el" href="classLevelMeter.html#a45e328fc620d044ed58b0fc29c377bcb">LevelMeter::setMeterSource</a> to link to the <a class="el" href="classLevelMeterSource.html" title="To get a nice meter GUI create a LevelMeterSource in your audioProcessor or whatever instance process...">LevelMeterSource</a> instance. The number of channels will be updated automatically.</p>
-<p>You can pull the drawing into your LookAndFeel by inheriting <a class="el" href="classLevelMeter_1_1LookAndFeelMethods.html" title="This defines the interface for a LookAndFeel implementation. ">LevelMeter::LookAndFeelMethods</a> and inlining the default implementation from <a class="el" href="classLevelMeterLookAndFeel.html" title="Convenience LookAndFeel which derives from LookAndFeel_V3 and LevelMeter::LookAndFeelMethods. ">LevelMeterLookAndFeel</a> in <a class="el" href="ff__meters__LookAndFeelMethods_8h.html">ff_meters_LookAndFeelMethods.h</a> into a public section of your class declaration. To setup the default colour scheme, call <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ad01416fa193b26634eaa8330e69b07cb">setupDefaultMeterColours()</a> in your constructor.</p>
+<p>On the Component use <a class="el" href="classLevelMeter.html#a45e328fc620d044ed58b0fc29c377bcb" title="Set a LevelMeterSource to display. ">LevelMeter::setMeterSource</a> to link to the <a class="el" href="classLevelMeterSource.html" title="To get a nice meter GUI create a LevelMeterSource in your audioProcessor or whatever instance process...">LevelMeterSource</a> instance. The number of channels will be updated automatically.</p>
+<p>You can pull the drawing into your LookAndFeel by inheriting <a class="el" href="classLevelMeter_1_1LookAndFeelMethods.html" title="These methods define a interface for the LookAndFeel class of juce. ">LevelMeter::LookAndFeelMethods</a> and inlining the default implementation from <a class="el" href="classLevelMeterLookAndFeel.html" title="Convenience LookAndFeel which derives from LookAndFeel_V3 and LevelMeter::LookAndFeelMethods. ">LevelMeterLookAndFeel</a> in <a class="el" href="ff__meters__LookAndFeelMethods_8h.html">ff_meters_LookAndFeelMethods.h</a> into a public section of your class declaration. To setup the default colour scheme, call <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ad01416fa193b26634eaa8330e69b07cb">setupDefaultMeterColours()</a> in your constructor.</p>
 <p>Or you can use the <a class="el" href="classLevelMeterLookAndFeel.html" title="Convenience LookAndFeel which derives from LookAndFeel_V3 and LevelMeter::LookAndFeelMethods. ">LevelMeterLookAndFeel</a> directly because it inherits from juce::LookAndFeel_V3 for your convenience. You can set it as default LookAndFeel, if you used the default, or set it only to the meters, if you don't want it to interfere. </p>
 <pre class="fragment">// In your Editor
 public:
@@ -93,7 +93,7 @@ public:
         // adjust the colours to how you like them
         lnf-&gt;setColour (LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
 
-        meter = new LevelMeter (LevelMeter::VerticalMeters);
+        meter = new LevelMeter (); // See LevelMeter::MeterFlags for options
         meter-&gt;setLookAndFeel (lnf);
         meter-&gt;setMeterSource (processor.getMeterSource());
         addAndMakeVisible (meter);
@@ -125,7 +125,7 @@ private:
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 16 2017 00:50:29 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 28 2017 00:46:59 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

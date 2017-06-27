@@ -92,9 +92,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">LevelMeter Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>A component to display live gain and RMS readings.  
- <a href="classLevelMeter.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for LevelMeter:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -109,10 +106,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter_1_1Listener.html">Listener</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A listener can register to get callbacks, if clip light or max reading were clicked.  <a href="classLevelMeter_1_1Listener.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This <a class="el" href="classLevelMeter_1_1Listener.html" title="This Listener interface is meant to implement behaviour if either the clip indicator or the max level...">Listener</a> interface is meant to implement behaviour if either the clip indicator or the max level text is clicked.  <a href="classLevelMeter_1_1Listener.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter_1_1LookAndFeelMethods.html">LookAndFeelMethods</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This defines the interface for a LookAndFeel implementation.  <a href="classLevelMeter_1_1LookAndFeelMethods.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">These methods define a interface for the LookAndFeel class of juce.  <a href="classLevelMeter_1_1LookAndFeelMethods.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -168,14 +165,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a21661bb1ed0a6613d724cb754b413221"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter.html#a21661bb1ed0a6613d724cb754b413221">timerCallback</a> () override</td></tr>
 <tr class="separator:a21661bb1ed0a6613d724cb754b413221"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45e328fc620d044ed58b0fc29c377bcb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter.html#a45e328fc620d044ed58b0fc29c377bcb">setMeterSource</a> (<a class="el" href="classLevelMeterSource.html">LevelMeterSource</a> *source)</td></tr>
+<tr class="memdesc:a45e328fc620d044ed58b0fc29c377bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a <a class="el" href="classLevelMeterSource.html" title="To get a nice meter GUI create a LevelMeterSource in your audioProcessor or whatever instance process...">LevelMeterSource</a> to display.  <a href="#a45e328fc620d044ed58b0fc29c377bcb">More...</a><br/></td></tr>
 <tr class="separator:a45e328fc620d044ed58b0fc29c377bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a993b09a8c28ad3cd5b65f58c27fcee78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter.html#a993b09a8c28ad3cd5b65f58c27fcee78">setSelectedChannel</a> (const int c)</td></tr>
+<tr class="memdesc:a993b09a8c28ad3cd5b65f58c27fcee78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a specific channel to display.  <a href="#a993b09a8c28ad3cd5b65f58c27fcee78">More...</a><br/></td></tr>
 <tr class="separator:a993b09a8c28ad3cd5b65f58c27fcee78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41538026ef7469fe2ec9629edb05b6e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter.html#a41538026ef7469fe2ec9629edb05b6e6">setRefreshRateHz</a> (const int newRefreshRate)</td></tr>
 <tr class="separator:a41538026ef7469fe2ec9629edb05b6e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a409c0c524ca0fc3e15aa1401ae3384e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter.html#a409c0c524ca0fc3e15aa1401ae3384e5">clearClipIndicator</a> (const int channel=-1)</td></tr>
+<tr class="memdesc:a409c0c524ca0fc3e15aa1401ae3384e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unset the clip indicator flag for a channel.  <a href="#a409c0c524ca0fc3e15aa1401ae3384e5">More...</a><br/></td></tr>
 <tr class="separator:a409c0c524ca0fc3e15aa1401ae3384e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47a73da347b1f2ace02c4d2ccb626882"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter.html#a47a73da347b1f2ace02c4d2ccb626882">clearMaxLevelDisplay</a> (const int channel=-1)</td></tr>
+<tr class="memdesc:a47a73da347b1f2ace02c4d2ccb626882"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the max level display back to -inf for a channel.  <a href="#a47a73da347b1f2ace02c4d2ccb626882">More...</a><br/></td></tr>
 <tr class="separator:a47a73da347b1f2ace02c4d2ccb626882"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5608d438d55318d2c216de281970b327"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter.html#a5608d438d55318d2c216de281970b327">mouseDown</a> (const juce::MouseEvent &amp;event) override</td></tr>
 <tr class="separator:a5608d438d55318d2c216de281970b327"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,10 +185,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4c348d59069e977c18b948b6a3255953"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter.html#a4c348d59069e977c18b948b6a3255953">removeListener</a> (<a class="el" href="classLevelMeter_1_1Listener.html">Listener</a> *)</td></tr>
 <tr class="separator:a4c348d59069e977c18b948b6a3255953"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A component to display live gain and RMS readings. </p>
-<p>This class is used to display a level reading. It supports max and RMS levels. You can also set a reduction value to display, the definition of that value is up to you. </p>
-</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="a641c956e603301a1aa4db79e364ca5ea"></a>
 <div class="memitem">
 <div class="memproto">
@@ -199,18 +197,29 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a641c956e603301a1aa4db79e364ca5eaa4026b1dd05d2b4c15f2044d230f30c9f"></a>Default</em>&#160;</td><td class="fielddoc">
+<p>Default is showing all channels in the <a class="el" href="classLevelMeterSource.html" title="To get a nice meter GUI create a LevelMeterSource in your audioProcessor or whatever instance process...">LevelMeterSource</a> without a border. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a641c956e603301a1aa4db79e364ca5eaac2a8c51ced49ef6cb8d4f0bab7f7bd69"></a>Horizontal</em>&#160;</td><td class="fielddoc">
+<p>Displays the level bars horizontally. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a641c956e603301a1aa4db79e364ca5eaa5afd2c8505194d4d85e154f97bb5d92b"></a>Vintage</em>&#160;</td><td class="fielddoc">
+<p>Switches to a special mode of old school meters (to come) </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a641c956e603301a1aa4db79e364ca5eaaae65e1653edaa1c87fa3ff0a7f769e7b"></a>SingleChannel</em>&#160;</td><td class="fielddoc">
+<p>Display only one channel meter. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classLevelMeter.html#a993b09a8c28ad3cd5b65f58c27fcee78" title="Set a specific channel to display. ">setSelectedChannel</a> </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a641c956e603301a1aa4db79e364ca5eaae65c52c5898e4fc907873e6596b9994c"></a>HasBorder</em>&#160;</td><td class="fielddoc">
+<p>Displays a rounded border around the meter. </p>
+<p>This is used with the default constructor </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a641c956e603301a1aa4db79e364ca5eaaf49c4c0f8b87c8ec8b0b44d3cf3ceea1"></a>Reduction</em>&#160;</td><td class="fielddoc">
+<p>Add a reduction meter to be displayed within the meter bar. </p>
+<p>The value can be set in the <a class="el" href="classLevelMeterSource.html" title="To get a nice meter GUI create a LevelMeterSource in your audioProcessor or whatever instance process...">LevelMeterSource</a>, </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classLevelMeterSource.html#a4ff644f2bbb00d1cf0eed9266c0e68fb">LevelMeterSource::setReductionLevel</a> (currently unavailable) </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a641c956e603301a1aa4db79e364ca5eaaac3f3bce7da827d3bfd8852b20908bff"></a>Minimal</em>&#160;</td><td class="fielddoc">
+<p>For a stereo meter, this tries to save space by showing only one line tickmarks in the middle and no max numbers. </p>
 </td></tr>
 </table>
 
@@ -227,38 +236,55 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3a4701c51075a842e4ff9dc7b7e5119092"></a>lmTextColour</em>&#160;</td><td class="fielddoc">
+<p>Colour for the numbers etc. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3ab44acf19aab81a76cc9519f9e2400608"></a>lmTextDeactiveColour</em>&#160;</td><td class="fielddoc">
+<p>Unused, will eventually be removed. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3adae8152b4487e4e3ad1db46d081923de"></a>lmTextClipColour</em>&#160;</td><td class="fielddoc">
+<p>Colour to print the max number if it has clipped. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3af0bf3fafa4f83c9a7c587526f193802c"></a>lmTicksColour</em>&#160;</td><td class="fielddoc">
+<p>Colour for the tick marks. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3a0a68b6e929cd16a1d2f4218a842b3807"></a>lmOutlineColour</em>&#160;</td><td class="fielddoc">
+<p>Colour for the frame around all. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3a4000cf003605445615d2baa9c3b8c400"></a>lmBackgroundColour</em>&#160;</td><td class="fielddoc">
+<p>Background colour. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3a1bcdde046897d6b285578ec054a2f39c"></a>lmBackgroundClipColour</em>&#160;</td><td class="fielddoc">
+<p>This is the colour of the clip indicator if it has clipped. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3af168b816eed0fe9af7ee1055cb138063"></a>lmMeterForegroundColour</em>&#160;</td><td class="fielddoc">
+<p>Unused, will eventually be removed. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3a0c81a1678fb6e95f64cfcfc180c60103"></a>lmMeterOutlineColour</em>&#160;</td><td class="fielddoc">
+<p>Colour for the outlines of meter bars etc. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3a3f1c881cc999001056db57aaca329971"></a>lmMeterBackgroundColour</em>&#160;</td><td class="fielddoc">
+<p>Background colour for the actual meter bar and the max number. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3a6145b444a7cd81a4a663c8e3e941e497"></a>lmMeterMaxNormalColour</em>&#160;</td><td class="fielddoc">
+<p>Text colour for the max number, if under warn threshold. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3ade75b89ff063d8106060affcecd71ba5"></a>lmMeterMaxWarnColour</em>&#160;</td><td class="fielddoc">
+<p>Text colour for the max number, if between warn threshold and clip threshold. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3a9e22b3753c68a51af174ac5c50685a49"></a>lmMeterMaxOverColour</em>&#160;</td><td class="fielddoc">
+<p>Text colour for the max number, if above the clip threshold. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3a8449ea70b4c06ceea3f6081fea65349e"></a>lmMeterGradientLowColour</em>&#160;</td><td class="fielddoc">
+<p>Colour for the meter bar under the warn threshold. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3a7fafd2964f2604a80514355730a0b76e"></a>lmMeterGradientMidColour</em>&#160;</td><td class="fielddoc">
+<p>Colour for the meter bar in the warn area. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3a4b28025c19c745121ed211a6985eb51e"></a>lmMeterGradientMaxColour</em>&#160;</td><td class="fielddoc">
+<p>Colour for the meter bar at the clip threshold. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aebb71a7df2ebf267fa0326a95142cfa3a887102edab3b8a559917bb89aea0544f"></a>lmMeterReductionColour</em>&#160;</td><td class="fielddoc">
+<p>Colour for the reduction meter displayed within the meter. </p>
 </td></tr>
 </table>
 
@@ -381,6 +407,9 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Set a <a class="el" href="classLevelMeterSource.html" title="To get a nice meter GUI create a LevelMeterSource in your audioProcessor or whatever instance process...">LevelMeterSource</a> to display. </p>
+<p>This separation is used, so the source can work in the processing and the GUI can display the values. </p>
+
 </div>
 </div>
 <a class="anchor" id="a993b09a8c28ad3cd5b65f58c27fcee78"></a>
@@ -396,6 +425,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Set a specific channel to display. </p>
+<p>This is only useful, if MeterFlags::SingleChannel is set. </p>
 
 </div>
 </div>
@@ -429,6 +461,9 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Unset the clip indicator flag for a channel. </p>
+<p>Use -1 to reset all clip indicators. </p>
+
 </div>
 </div>
 <a class="anchor" id="a47a73da347b1f2ace02c4d2ccb626882"></a>
@@ -444,6 +479,9 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Set the max level display back to -inf for a channel. </p>
+<p>Use -1 to reset all max levels. </p>
 
 </div>
 </div>
@@ -469,7 +507,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="classLevelMeter_1_1Listener.html#a94fcfeb05677782f5f70f87e7ab3fff8">LevelMeter::Listener::clipLightClicked()</a>, and <a class="el" href="classLevelMeter_1_1Listener.html#af7c613bd73cb410f1c0743056bbda246">LevelMeter::Listener::maxLevelClicked()</a>.</p>
+<p>References <a class="el" href="classLevelMeter_1_1Listener.html#a9a7200bf8f5b70360f30e6fa5f2980da">LevelMeter::Listener::clipLightClicked()</a>, and <a class="el" href="classLevelMeter_1_1Listener.html#ae73ff5a9b0125e42da8e74b8a5523fdc">LevelMeter::Listener::maxLevelClicked()</a>.</p>
 
 </div>
 </div>
@@ -512,7 +550,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 16 2017 00:50:29 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 28 2017 00:46:59 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

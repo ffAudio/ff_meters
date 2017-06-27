@@ -95,21 +95,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>A listener can register to get callbacks, if clip light or max reading were clicked.  
+<p>This <a class="el" href="classLevelMeter_1_1Listener.html" title="This Listener interface is meant to implement behaviour if either the clip indicator or the max level...">Listener</a> interface is meant to implement behaviour if either the clip indicator or the max level text is clicked.  
  <a href="classLevelMeter_1_1Listener.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a338d7f63a6821d9e51be21201d82963c"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter_1_1Listener.html#a338d7f63a6821d9e51be21201d82963c">~Listener</a> ()</td></tr>
 <tr class="separator:a338d7f63a6821d9e51be21201d82963c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94fcfeb05677782f5f70f87e7ab3fff8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter_1_1Listener.html#a94fcfeb05677782f5f70f87e7ab3fff8">clipLightClicked</a> (const int channel)=0</td></tr>
-<tr class="separator:a94fcfeb05677782f5f70f87e7ab3fff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7c613bd73cb410f1c0743056bbda246"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter_1_1Listener.html#af7c613bd73cb410f1c0743056bbda246">maxLevelClicked</a> (const int channel)=0</td></tr>
-<tr class="separator:af7c613bd73cb410f1c0743056bbda246"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a7200bf8f5b70360f30e6fa5f2980da"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter_1_1Listener.html#a9a7200bf8f5b70360f30e6fa5f2980da">clipLightClicked</a> (<a class="el" href="classLevelMeter.html">LevelMeter</a> *meter, const int channel, juce::ModifierKeys mods)=0</td></tr>
+<tr class="memdesc:a9a7200bf8f5b70360f30e6fa5f2980da"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is called, when the user clicks a clip indicator.  <a href="#a9a7200bf8f5b70360f30e6fa5f2980da">More...</a><br/></td></tr>
+<tr class="separator:a9a7200bf8f5b70360f30e6fa5f2980da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae73ff5a9b0125e42da8e74b8a5523fdc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter_1_1Listener.html#ae73ff5a9b0125e42da8e74b8a5523fdc">maxLevelClicked</a> (<a class="el" href="classLevelMeter.html">LevelMeter</a> *meter, const int channel, juce::ModifierKeys mods)=0</td></tr>
+<tr class="memdesc:ae73ff5a9b0125e42da8e74b8a5523fdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is called, when the user clicks a max level text.  <a href="#ae73ff5a9b0125e42da8e74b8a5523fdc">More...</a><br/></td></tr>
+<tr class="separator:ae73ff5a9b0125e42da8e74b8a5523fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A listener can register to get callbacks, if clip light or max reading were clicked. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<div class="textblock"><p>This <a class="el" href="classLevelMeter_1_1Listener.html" title="This Listener interface is meant to implement behaviour if either the clip indicator or the max level...">Listener</a> interface is meant to implement behaviour if either the clip indicator or the max level text is clicked. </p>
+<p>An example implementation could look like this (+alt means clear all, else clear the clicked number): </p>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="classLevelMeter_1_1Listener.html#a9a7200bf8f5b70360f30e6fa5f2980da">clipLightClicked</a> (<a class="code" href="classLevelMeter.html">LevelMeter</a>* clickedMeter, <span class="keyword">const</span> <span class="keywordtype">int</span> channel, ModifierKeys mods)<span class="keyword"> override</span></div>
+<div class="line"><span class="keyword"></span>{</div>
+<div class="line">    clickedMeter-&gt;<a class="code" href="classLevelMeter.html#a409c0c524ca0fc3e15aa1401ae3384e5">clearClipIndicator</a> (mods.isAltDown() ? -1 : channel);</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="keywordtype">void</span> <a class="code" href="classLevelMeter_1_1Listener.html#ae73ff5a9b0125e42da8e74b8a5523fdc">maxLevelClicked</a> (<a class="code" href="classLevelMeter.html">LevelMeter</a>* clickedMeter, <span class="keyword">const</span> <span class="keywordtype">int</span> channel, ModifierKeys mods)<span class="keyword"> override</span></div>
+<div class="line"><span class="keyword"></span>{</div>
+<div class="line">    clickedMeter-&gt;<a class="code" href="classLevelMeter.html#a47a73da347b1f2ace02c4d2ccb626882">clearMaxLevelDisplay</a> (mods.isAltDown() ? -1 : channel);</div>
+<div class="line">}</div>
+</div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a338d7f63a6821d9e51be21201d82963c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -134,7 +146,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a94fcfeb05677782f5f70f87e7ab3fff8"></a>
+<a class="anchor" id="a9a7200bf8f5b70360f30e6fa5f2980da"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -144,9 +156,25 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void LevelMeter::Listener::clipLightClicked </td>
           <td>(</td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>channel</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classLevelMeter.html">LevelMeter</a> *&#160;</td>
+          <td class="paramname"><em>meter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">juce::ModifierKeys&#160;</td>
+          <td class="paramname"><em>mods</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -156,11 +184,15 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>This is called, when the user clicks a clip indicator. </p>
+<p>It can be used to reset the clip indicator. To allow different behaviour, e.g. resetting only one indicator or even all meters spread over the UI. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classLevelMeter.html#a409c0c524ca0fc3e15aa1401ae3384e5" title="Unset the clip indicator flag for a channel. ">clearClipIndicator</a>, <a class="el" href="classLevelMeter_1_1Listener.html#ae73ff5a9b0125e42da8e74b8a5523fdc" title="This is called, when the user clicks a max level text. ">maxLevelClicked</a> </dd></dl>
+
 <p>Referenced by <a class="el" href="classLevelMeter.html#a5608d438d55318d2c216de281970b327">LevelMeter::mouseDown()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af7c613bd73cb410f1c0743056bbda246"></a>
+<a class="anchor" id="ae73ff5a9b0125e42da8e74b8a5523fdc"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -170,9 +202,25 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual void LevelMeter::Listener::maxLevelClicked </td>
           <td>(</td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>channel</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classLevelMeter.html">LevelMeter</a> *&#160;</td>
+          <td class="paramname"><em>meter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">juce::ModifierKeys&#160;</td>
+          <td class="paramname"><em>mods</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -181,6 +229,10 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>This is called, when the user clicks a max level text. </p>
+<p>It can be used to reset the max number. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classLevelMeter.html#a47a73da347b1f2ace02c4d2ccb626882" title="Set the max level display back to -inf for a channel. ">clearMaxLevelDisplay</a>, <a class="el" href="classLevelMeter_1_1Listener.html#a9a7200bf8f5b70360f30e6fa5f2980da" title="This is called, when the user clicks a clip indicator. ">clipLightClicked</a> </dd></dl>
 
 <p>Referenced by <a class="el" href="classLevelMeter.html#a5608d438d55318d2c216de281970b327">LevelMeter::mouseDown()</a>.</p>
 
@@ -192,7 +244,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 16 2017 00:50:29 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 28 2017 00:46:59 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

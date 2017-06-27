@@ -6,6 +6,6 @@ var searchData=
   ['clearclipindicator',['clearClipIndicator',['../classLevelMeter.html#a409c0c524ca0fc3e15aa1401ae3384e5',1,'LevelMeter']]],
   ['clearmaxleveldisplay',['clearMaxLevelDisplay',['../classLevelMeter.html#a47a73da347b1f2ace02c4d2ccb626882',1,'LevelMeter']]],
   ['clearmaxnum',['clearMaxNum',['../classLevelMeterSource.html#a3ef3205074fde434bb9bbb4fdd78b2ed',1,'LevelMeterSource']]],
-  ['cliplightclicked',['clipLightClicked',['../classLevelMeter_1_1Listener.html#a94fcfeb05677782f5f70f87e7ab3fff8',1,'LevelMeter::Listener']]],
+  ['cliplightclicked',['clipLightClicked',['../classLevelMeter_1_1Listener.html#a9a7200bf8f5b70360f30e6fa5f2980da',1,'LevelMeter::Listener']]],
   ['colourids',['ColourIds',['../classLevelMeter.html#aebb71a7df2ebf267fa0326a95142cfa3',1,'LevelMeter']]]
 ];
