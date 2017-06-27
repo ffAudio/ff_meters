@@ -152,14 +152,14 @@ void LevelMeter::mouseDown (const juce::MouseEvent &event)
                                                  innerBounds,
                                                  source);
             if (hit >= 0) {
-                listeners.call (&LevelMeter::Listener::clipLightClicked, hit);
+                listeners.call (&LevelMeter::Listener::clipLightClicked, this, hit, event.mods);
             }
             hit = lnf->hitTestMaxNumber (event.getPosition(),
                                          meterType,
                                          innerBounds,
                                          source);
             if (hit >= 0) {
-                listeners.call (&LevelMeter::Listener::maxLevelClicked, hit);
+                listeners.call (&LevelMeter::Listener::maxLevelClicked, this, hit, event.mods);
             }
         }
     }

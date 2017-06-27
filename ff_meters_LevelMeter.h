@@ -204,23 +204,62 @@ public:
 
     void timerCallback () override;
 
+    /**
+     Set a LevelMeterSource to display. This separation is used, so the source can work in the processing and the 
+     GUI can display the values.
+     */
     void setMeterSource (LevelMeterSource* source);
 
+    /**
+     Set a
+     */
     void setSelectedChannel (const int c);
 
     void setRefreshRateHz (const int newRefreshRate);
 
+    /**
+     Unset the clip indicator flag for a channel. Use -1 to reset all clip indicators.
+     */
     void clearClipIndicator (const int channel=-1);
 
+    /**
+     Set the max level display back to -inf for a channel. Use -1 to reset all max levels.
+     */
     void clearMaxLevelDisplay (const int channel=-1);
 
     void mouseDown (const juce::MouseEvent& event) override;
 
+    /**
+     This Listener interface is meant to implement behaviour if either the clip indicator or the max level text
+     is clicked.
+
+     An example implementation could look like this (+alt means clear all, else clear the clicked number):
+     \code{.cpp}
+     void clipLightClicked (LevelMeter* clickedMeter, const int channel, ModifierKeys mods) override
+     {
+         clickedMeter->clearClipIndicator (mods.isAltDown() ? -1 : channel);
+     }
+     
+     void maxLevelClicked (LevelMeter* clickedMeter, const int channel, ModifierKeys mods) override
+     {
+         clickedMeter->clearMaxLevelDisplay (mods.isAltDown() ? -1 : channel);
+     }
+     \endcode
+     */
     class Listener {
     public:
         virtual ~Listener () {}
-        virtual void clipLightClicked (const int channel) = 0;
-        virtual void maxLevelClicked (const int channel)  = 0;
+        /**
+         This is called, when the user clicks a clip indicator. It can be used to reset the clip indicator.
+         To allow different behaviour, e.g. resetting only one indicator or even all meters spread over the UI.
+         \see clearClipIndicator, maxLevelClicked
+         */
+        virtual void clipLightClicked (LevelMeter* meter, const int channel, juce::ModifierKeys mods) = 0;
+        /**
+         This is called, when the user clicks a max level text. It can be used to reset the max number.
+         \see clearMaxLevelDisplay, clipLightClicked
+         */
+        virtual void maxLevelClicked (LevelMeter* meter, const int channel, juce::ModifierKeys mods)  = 0;
     };
 
     void addListener (Listener*);
