@@ -33,9 +33,7 @@
  ==============================================================================
 */
 
-#ifndef LEVELMETER_H_INCLUDED
-#define LEVELMETER_H_INCLUDED
-
+#pragma once
 
 //==============================================================================
 /*
@@ -47,33 +45,33 @@ class LevelMeter    : public juce::Component, private juce::Timer
 public:
 
     enum MeterFlags {
-        Default         = 0x0000,
-        Horizontal      = 0x0001,
-        Vintage         = 0x0002,
-        SingleChannel   = 0x0004,
-        HasBorder       = 0x0008,
-        Reduction       = 0x0010,
-        Minimal         = 0x0020
+        Default         = 0x0000, /**< Default is showing all channels in the LevelMeterSource without a border */
+        Horizontal      = 0x0001, /**< Displays the level bars horizontally */
+        Vintage         = 0x0002, /**< Switches to a special mode of old school meters (to come) */
+        SingleChannel   = 0x0004, /**< Display only one channel meter. \see setSelectedChannel */
+        HasBorder       = 0x0008, /**< Displays a rounded border around the meter. This is used with the default constructor */
+        Reduction       = 0x0010, /**< Add a reduction meter to be displayed within the meter bar. The value can be set in the LevelMeterSource, \see LevelMeterSource::setReductionLevel (currently unavailable) */
+        Minimal         = 0x0020  /**< For a stereo meter, this tries to save space by showing only one line tickmarks in the middle and no max numbers */
     };
 
     enum ColourIds {
-        lmTextColour = 0x2200001,
-        lmTextDeactiveColour,
-        lmTextClipColour,
-        lmTicksColour,
-        lmOutlineColour,
-        lmBackgroundColour,
-        lmBackgroundClipColour,
-        lmMeterForegroundColour,
-        lmMeterOutlineColour,
-        lmMeterBackgroundColour,
-        lmMeterMaxNormalColour,
-        lmMeterMaxWarnColour,
-        lmMeterMaxOverColour,
-        lmMeterGradientLowColour,
-        lmMeterGradientMidColour,
-        lmMeterGradientMaxColour,
-        lmMeterReductionColour
+        lmTextColour = 0x2200001,   /**< Colour for the numbers etc. */
+        lmTextDeactiveColour,       /**< Unused, will eventually be removed */
+        lmTextClipColour,           /**< Colour to print the max number if it has clipped */
+        lmTicksColour,              /**< Colour for the tick marks */
+        lmOutlineColour,            /**< Colour for the frame around all */
+        lmBackgroundColour,         /**< Background colour */
+        lmBackgroundClipColour,     /**< This is the colour of the clip indicator if it has clipped */
+        lmMeterForegroundColour,    /**< Unused, will eventually be removed */
+        lmMeterOutlineColour,       /**< Colour for the outlines of meter bars etc. */
+        lmMeterBackgroundColour,    /**< Background colour for the actual meter bar and the max number */
+        lmMeterMaxNormalColour,     /**< Text colour for the max number, if under warn threshold */
+        lmMeterMaxWarnColour,       /**< Text colour for the max number, if between warn threshold and clip threshold */
+        lmMeterMaxOverColour,       /**< Text colour for the max number, if above the clip threshold */
+        lmMeterGradientLowColour,   /**< Colour for the meter bar under the warn threshold */
+        lmMeterGradientMidColour,   /**< Colour for the meter bar in the warn area */
+        lmMeterGradientMaxColour,   /**< Colour for the meter bar at the clip threshold */
+        lmMeterReductionColour      /**< Colour for the reduction meter displayed within the meter */
     };
 
     class LookAndFeelMethods {
@@ -211,7 +209,7 @@ public:
     void setMeterSource (LevelMeterSource* source);
 
     /**
-     Set a
+     Set a specific channel to display. This is only useful, if MeterFlags::SingleChannel is set.
      */
     void setSelectedChannel (const int c);
 
@@ -288,5 +286,3 @@ private:
 
 inline LevelMeter::MeterFlags operator|(LevelMeter::MeterFlags a, LevelMeter::MeterFlags b)
 {return static_cast<LevelMeter::MeterFlags>(static_cast<int>(a) | static_cast<int>(b));}
-
-#endif  // LEVELMETER_H_INCLUDED
