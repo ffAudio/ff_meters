@@ -101,7 +101,7 @@ private:
             pushNextRMS (newRms);
         }
         void setRMSsize (const int numBlocks) {
-            rmsHistory.resize (numBlocks);
+            rmsHistory.resize (numBlocks, 0.0f);
             rmsPtr %= rmsHistory.size();
         }
     private:
@@ -111,7 +111,7 @@ private:
                 float oldRMS = rmsSum - rmsHistory [rmsPtr];
                 rmsSum = oldRMS + squaredRMS;
                 rmsHistory [rmsPtr] = squaredRMS;
-                rmsPtr = ++rmsPtr % rmsHistory.size();
+                rmsPtr = (rmsPtr + 1) % rmsHistory.size();
             }
             else {
                 rmsSum = squaredRMS;
