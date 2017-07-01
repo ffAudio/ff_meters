@@ -54,6 +54,12 @@ LevelMeter::~LevelMeter()
     stopTimer();
 }
 
+void LevelMeter::setMeterFlags (const MeterFlags type)
+{
+    meterType = type;
+}
+
+
 void LevelMeter::setMeterSource (LevelMeterSource* src)
 {
     source = src;

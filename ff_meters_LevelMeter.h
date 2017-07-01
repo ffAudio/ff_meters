@@ -204,6 +204,11 @@ public:
     LevelMeter (const MeterFlags type = HasBorder);
     ~LevelMeter ();
 
+    /**
+     Allows to change the meter's configuration by setting a combination of MeterFlags
+     */
+    void setMeterFlags (const MeterFlags type);
+
     void paint (juce::Graphics&) override;
 
     void resized () override;
