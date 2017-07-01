@@ -537,16 +537,19 @@ void drawTickMarks (juce::Graphics& g,
                                     bounds.getBottom() - 4);
         }
         else {
-            const float h = (bounds.getHeight() - 2.0) * 0.05;
-            g.setFont (h * 0.8f);
+            const float h = (bounds.getHeight() - 2.0) * 0.1;
             for (int i=0; i<11; ++i) {
-                const float y = bounds.getY() + i * h;
-                g.drawHorizontalLine (y + 1,
+                g.drawHorizontalLine (bounds.getY() + i * h + 1,
                                       bounds.getX() + 4,
                                       bounds.getRight());
-                if (i < 10) {
-                    g.drawFittedText (juce::String (i * 0.05 * infinity),
-                                      bounds.getX(), y + 4, bounds.getWidth(), h * 0.6,
+            }
+            if (h > 10 && bounds.getWidth() > 20) {
+                // din't print tiny numbers
+                g.setFont (h * 0.8f);
+                for (int i=0; i<10; ++i) {
+                    g.drawFittedText (juce::String (i * 0.1 * infinity),
+                                      bounds.getX(), bounds.getY() + i * h + 2, bounds.getWidth(),
+                                      h * 0.6,
                                       juce::Justification::centredTop, 1);
                 }
             }
