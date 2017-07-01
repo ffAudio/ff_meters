@@ -135,6 +135,15 @@ public:
         masterReference.clear();
     }
 
+    /**
+     Resize the meters data containers. Set the
+     \param numChannels to the number of channels. If you don't do this in prepareToPlay, 
+     it will be done when calling measureBlock, but a few bytes will be allocated 
+     on the audio thread, so be aware.
+     \param rmsWindow is the number of rms values to gather. Keep that aligned with 
+     the sampleRate and the blocksize to get reproducable results.
+     e.g. rmsWindow = msecs * 0.001f * sampleRate / blockSize;
+     */
     void resize (const int channels, const int rmsWindow) {
         levels.resize (channels, ChannelData (rmsWindow));
         for (ChannelData& l : levels) {
@@ -142,6 +151,9 @@ public:
         }
     }
 
+    /**
+     Call this method to measure a block af levels to be displayed in the meters
+     */
     template<typename FloatType>
     void measureBlock (const juce::AudioBuffer<FloatType>& buffer)
     {
@@ -161,17 +173,29 @@ public:
         }
     }
 
+    /**
+     With the reduction level you can add an extra bar do indicate, by what amount the level was reduced.
+     This will be printed on top of the bar with half the width.
+     */
     void setReductionLevel (const int channel, const float reduction)
     {
         if (juce::isPositiveAndBelow (channel, static_cast<int> (levels.size ())))
             levels [channel].reduction = reduction;
     }
 
+    /**
+     Set the timeout, how long the peak line will be displayed, before it resets to the 
+     current peak
+     */
     void setMaxHoldMS (const juce::int64 millis)
     {
         holdMSecs = millis;
     }
 
+    /**
+     Returns the reduction level. This value is not computed but can be set 
+     manually via \see setReductionLevel.
+     */
     float getReductionLevel (const int channel) const
     {
         if (juce::isPositiveAndBelow (channel, static_cast<int> (levels.size ())))
@@ -179,26 +203,44 @@ public:
         return -1.0f;
     }
 
+    /**
+     This is the max level as displayed by the little line above the RMS bar.
+     It is reset by \see setMaxHoldMS.
+     */
     float getMaxLevel (const int channel) const
     {
         return levels.at (channel).max;
     }
 
+    /**
+     This is the max level as displayed under the bar as number.
+     It will stay up until \see clearMaxNum was called.
+     */
     float getMaxOverallLevel (const int channel) const
     {
         return levels.at (channel).maxOverall;
     }
 
+    /**
+     This is the RMS level that the bar will indicate. It is
+     summed over rmsWindow number of blocks/measureBlock calls.
+     */
     float getRMSLevel (const int channel) const
     {
         return levels.at (channel).getAvgRMS();
     }
 
+    /**
+     Returns the status of the clip flag.
+     */
     bool getClipFlag (const int channel) const
     {
         return levels.at (channel).clip;
     }
 
+    /**
+     Reset the clip flag to reset the indicator in the meter
+     */
     void clearClipFlag (const int channel)
     {
         levels.at (channel).clip = false;
@@ -211,11 +253,17 @@ public:
         }
     }
 
+    /**
+     Reset the max number to minus infinity
+     */
     void clearMaxNum (const int channel)
     {
         levels.at (channel).maxOverall = -80.0f;
     }
 
+    /**
+     Reset all max numbers
+     */
     void clearAllMaxNums ()
     {
         for (ChannelData& l : levels) {
@@ -223,11 +271,18 @@ public:
         }
     }
 
+    /**
+     Get the number of channels to be displayed
+     */
     int getNumChannels () const
     {
         return static_cast<int> (levels.size());
     }
 
+    /**
+     The measure can be suspended, e.g. to save CPU when no meter is displayed.
+     In this case, the \see measureBlock will return immediately
+     */
     void setSuspended (const bool shouldBeSuspended)
     {
         suspended = shouldBeSuspended;
