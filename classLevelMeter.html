@@ -158,6 +158,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:adb366b2bbe68ad0d7c97ee043c1d4bbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28a42090bec996fdda8e804828b49b4c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter.html#a28a42090bec996fdda8e804828b49b4c">~LevelMeter</a> ()</td></tr>
 <tr class="separator:a28a42090bec996fdda8e804828b49b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb71a9f43a51772645c39142ebdd7e24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter.html#adb71a9f43a51772645c39142ebdd7e24">setMeterFlags</a> (const <a class="el" href="classLevelMeter.html#a641c956e603301a1aa4db79e364ca5ea">MeterFlags</a> type)</td></tr>
+<tr class="memdesc:adb71a9f43a51772645c39142ebdd7e24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows to change the meter's configuration by setting a combination of MeterFlags.  <a href="#adb71a9f43a51772645c39142ebdd7e24">More...</a><br/></td></tr>
+<tr class="separator:adb71a9f43a51772645c39142ebdd7e24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08c4b63bd626b6dd2b722e8f5e220562"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter.html#a08c4b63bd626b6dd2b722e8f5e220562">paint</a> (juce::Graphics &amp;) override</td></tr>
 <tr class="separator:a08c4b63bd626b6dd2b722e8f5e220562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a753d69debb3f6462dafb99e15eeed71f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeter.html#a753d69debb3f6462dafb99e15eeed71f">resized</a> () override</td></tr>
@@ -216,7 +219,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a641c956e603301a1aa4db79e364ca5eaaf49c4c0f8b87c8ec8b0b44d3cf3ceea1"></a>Reduction</em>&#160;</td><td class="fielddoc">
 <p>Add a reduction meter to be displayed within the meter bar. </p>
 <p>The value can be set in the <a class="el" href="classLevelMeterSource.html" title="To get a nice meter GUI create a LevelMeterSource in your audioProcessor or whatever instance process...">LevelMeterSource</a>, </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classLevelMeterSource.html#a4ff644f2bbb00d1cf0eed9266c0e68fb">LevelMeterSource::setReductionLevel</a> (currently unavailable) </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classLevelMeterSource.html#a4ff644f2bbb00d1cf0eed9266c0e68fb" title="With the reduction level you can add an extra bar do indicate, by what amount the level was reduced...">LevelMeterSource::setReductionLevel</a> (currently unavailable) </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a641c956e603301a1aa4db79e364ca5eaaac3f3bce7da827d3bfd8852b20908bff"></a>Minimal</em>&#160;</td><td class="fielddoc">
 <p>For a stereo meter, this tries to save space by showing only one line tickmarks in the middle and no max numbers. </p>
@@ -323,6 +326,24 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="adb71a9f43a51772645c39142ebdd7e24"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevelMeter::setMeterFlags </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classLevelMeter.html#a641c956e603301a1aa4db79e364ca5ea">MeterFlags</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Allows to change the meter's configuration by setting a combination of MeterFlags. </p>
+
+</div>
+</div>
 <a class="anchor" id="a08c4b63bd626b6dd2b722e8f5e220562"></a>
 <div class="memitem">
 <div class="memproto">
@@ -550,7 +571,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jun 28 2017 00:46:59 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 2 2017 11:13:28 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

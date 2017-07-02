@@ -1,6 +1,7 @@
 var searchData=
 [
   ['setmaxholdms',['setMaxHoldMS',['../classLevelMeterSource.html#a1b39eb144b3fe33bd814f06968dcfc1b',1,'LevelMeterSource']]],
+  ['setmeterflags',['setMeterFlags',['../classLevelMeter.html#adb71a9f43a51772645c39142ebdd7e24',1,'LevelMeter']]],
   ['setmetersource',['setMeterSource',['../classLevelMeter.html#a45e328fc620d044ed58b0fc29c377bcb',1,'LevelMeter']]],
   ['setreductionlevel',['setReductionLevel',['../classLevelMeterSource.html#a4ff644f2bbb00d1cf0eed9266c0e68fb',1,'LevelMeterSource']]],
   ['setrefreshratehz',['setRefreshRateHz',['../classLevelMeter.html#a41538026ef7469fe2ec9629edb05b6e6',1,'LevelMeter']]],

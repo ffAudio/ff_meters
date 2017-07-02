@@ -101,40 +101,54 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7ca5b5ce616a424c2b17242428646df8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeterSource.html#a7ca5b5ce616a424c2b17242428646df8">~LevelMeterSource</a> ()</td></tr>
 <tr class="separator:a7ca5b5ce616a424c2b17242428646df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6add4a04cfca7ade16f518282500c72"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeterSource.html#ac6add4a04cfca7ade16f518282500c72">resize</a> (const int channels, const int rmsWindow)</td></tr>
+<tr class="memdesc:ac6add4a04cfca7ade16f518282500c72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resize the meters data containers.  <a href="#ac6add4a04cfca7ade16f518282500c72">More...</a><br/></td></tr>
 <tr class="separator:ac6add4a04cfca7ade16f518282500c72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c6105a44bf02c03c39ef69063f89282"><td class="memTemplParams" colspan="2">template&lt;typename FloatType &gt; </td></tr>
 <tr class="memitem:a8c6105a44bf02c03c39ef69063f89282"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classLevelMeterSource.html#a8c6105a44bf02c03c39ef69063f89282">measureBlock</a> (const juce::AudioBuffer&lt; FloatType &gt; &amp;buffer)</td></tr>
+<tr class="memdesc:a8c6105a44bf02c03c39ef69063f89282"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call this method to measure a block af levels to be displayed in the meters.  <a href="#a8c6105a44bf02c03c39ef69063f89282">More...</a><br/></td></tr>
 <tr class="separator:a8c6105a44bf02c03c39ef69063f89282"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ff644f2bbb00d1cf0eed9266c0e68fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeterSource.html#a4ff644f2bbb00d1cf0eed9266c0e68fb">setReductionLevel</a> (const int channel, const float reduction)</td></tr>
+<tr class="memdesc:a4ff644f2bbb00d1cf0eed9266c0e68fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">With the reduction level you can add an extra bar do indicate, by what amount the level was reduced.  <a href="#a4ff644f2bbb00d1cf0eed9266c0e68fb">More...</a><br/></td></tr>
 <tr class="separator:a4ff644f2bbb00d1cf0eed9266c0e68fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b39eb144b3fe33bd814f06968dcfc1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeterSource.html#a1b39eb144b3fe33bd814f06968dcfc1b">setMaxHoldMS</a> (const juce::int64 millis)</td></tr>
+<tr class="memdesc:a1b39eb144b3fe33bd814f06968dcfc1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the timeout, how long the peak line will be displayed, before it resets to the current peak.  <a href="#a1b39eb144b3fe33bd814f06968dcfc1b">More...</a><br/></td></tr>
 <tr class="separator:a1b39eb144b3fe33bd814f06968dcfc1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1204275fc8278254935b0f00409d5b33"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeterSource.html#a1204275fc8278254935b0f00409d5b33">getReductionLevel</a> (const int channel) const </td></tr>
+<tr class="memdesc:a1204275fc8278254935b0f00409d5b33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the reduction level.  <a href="#a1204275fc8278254935b0f00409d5b33">More...</a><br/></td></tr>
 <tr class="separator:a1204275fc8278254935b0f00409d5b33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4cbacd6d53b8e71b679e05e2b7693a5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeterSource.html#af4cbacd6d53b8e71b679e05e2b7693a5">getMaxLevel</a> (const int channel) const </td></tr>
+<tr class="memdesc:af4cbacd6d53b8e71b679e05e2b7693a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the max level as displayed by the little line above the RMS bar.  <a href="#af4cbacd6d53b8e71b679e05e2b7693a5">More...</a><br/></td></tr>
 <tr class="separator:af4cbacd6d53b8e71b679e05e2b7693a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4e4d4704c5102783339c00afbc35174"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeterSource.html#aa4e4d4704c5102783339c00afbc35174">getMaxOverallLevel</a> (const int channel) const </td></tr>
+<tr class="memdesc:aa4e4d4704c5102783339c00afbc35174"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the max level as displayed under the bar as number.  <a href="#aa4e4d4704c5102783339c00afbc35174">More...</a><br/></td></tr>
 <tr class="separator:aa4e4d4704c5102783339c00afbc35174"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af81397c791f04357c9cc2e62a1ef4c85"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeterSource.html#af81397c791f04357c9cc2e62a1ef4c85">getRMSLevel</a> (const int channel) const </td></tr>
+<tr class="memdesc:af81397c791f04357c9cc2e62a1ef4c85"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the RMS level that the bar will indicate.  <a href="#af81397c791f04357c9cc2e62a1ef4c85">More...</a><br/></td></tr>
 <tr class="separator:af81397c791f04357c9cc2e62a1ef4c85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c5968b3b25b0637347b24cdbe68a4e8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeterSource.html#a7c5968b3b25b0637347b24cdbe68a4e8">getClipFlag</a> (const int channel) const </td></tr>
+<tr class="memdesc:a7c5968b3b25b0637347b24cdbe68a4e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the status of the clip flag.  <a href="#a7c5968b3b25b0637347b24cdbe68a4e8">More...</a><br/></td></tr>
 <tr class="separator:a7c5968b3b25b0637347b24cdbe68a4e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95a8455f7ce8c837fa1a483d8d07e823"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeterSource.html#a95a8455f7ce8c837fa1a483d8d07e823">clearClipFlag</a> (const int channel)</td></tr>
+<tr class="memdesc:a95a8455f7ce8c837fa1a483d8d07e823"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the clip flag to reset the indicator in the meter.  <a href="#a95a8455f7ce8c837fa1a483d8d07e823">More...</a><br/></td></tr>
 <tr class="separator:a95a8455f7ce8c837fa1a483d8d07e823"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeaa25d000feff24e963b6fc0b5742929"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeterSource.html#aeaa25d000feff24e963b6fc0b5742929">clearAllClipFlags</a> ()</td></tr>
 <tr class="separator:aeaa25d000feff24e963b6fc0b5742929"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ef3205074fde434bb9bbb4fdd78b2ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeterSource.html#a3ef3205074fde434bb9bbb4fdd78b2ed">clearMaxNum</a> (const int channel)</td></tr>
+<tr class="memdesc:a3ef3205074fde434bb9bbb4fdd78b2ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the max number to minus infinity.  <a href="#a3ef3205074fde434bb9bbb4fdd78b2ed">More...</a><br/></td></tr>
 <tr class="separator:a3ef3205074fde434bb9bbb4fdd78b2ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1771027f5dace366f8866a1a7f0c52a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeterSource.html#ab1771027f5dace366f8866a1a7f0c52a">clearAllMaxNums</a> ()</td></tr>
+<tr class="memdesc:ab1771027f5dace366f8866a1a7f0c52a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset all max numbers.  <a href="#ab1771027f5dace366f8866a1a7f0c52a">More...</a><br/></td></tr>
 <tr class="separator:ab1771027f5dace366f8866a1a7f0c52a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac46968f552029f0fdde76253070bb669"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeterSource.html#ac46968f552029f0fdde76253070bb669">getNumChannels</a> () const </td></tr>
+<tr class="memdesc:ac46968f552029f0fdde76253070bb669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of channels to be displayed.  <a href="#ac46968f552029f0fdde76253070bb669">More...</a><br/></td></tr>
 <tr class="separator:ac46968f552029f0fdde76253070bb669"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17d9d25c2e688ba44c73f41e7835892e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLevelMeterSource.html#a17d9d25c2e688ba44c73f41e7835892e">setSuspended</a> (const bool shouldBeSuspended)</td></tr>
+<tr class="memdesc:a17d9d25c2e688ba44c73f41e7835892e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The measure can be suspended, e.g.  <a href="#a17d9d25c2e688ba44c73f41e7835892e">More...</a><br/></td></tr>
 <tr class="separator:a17d9d25c2e688ba44c73f41e7835892e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>To get a nice meter GUI create a <a class="el" href="classLevelMeterSource.html" title="To get a nice meter GUI create a LevelMeterSource in your audioProcessor or whatever instance process...">LevelMeterSource</a> in your audioProcessor or whatever instance processes an AudioBuffer. </p>
-<p>Then call <a class="el" href="classLevelMeterSource.html#a8c6105a44bf02c03c39ef69063f89282">LevelMeterSource::measureBlock</a> (AudioBuffer&lt;float&gt;&amp; buf) to create the readings. </p>
+<p>Then call <a class="el" href="classLevelMeterSource.html#a8c6105a44bf02c03c39ef69063f89282" title="Call this method to measure a block af levels to be displayed in the meters. ">LevelMeterSource::measureBlock</a> (AudioBuffer&lt;float&gt;&amp; buf) to create the readings. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a518614823b8305887d715f475595b7bf"></a>
 <div class="memitem">
@@ -191,6 +205,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Resize the meters data containers. </p>
+<p>Set the </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numChannels</td><td>to the number of channels. If you don't do this in prepareToPlay, it will be done when calling measureBlock, but a few bytes will be allocated on the audio thread, so be aware. </td></tr>
+    <tr><td class="paramname">rmsWindow</td><td>is the number of rms values to gather. Keep that aligned with the sampleRate and the blocksize to get reproducable results. e.g. rmsWindow = msecs * 0.001f * sampleRate / blockSize; </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a8c6105a44bf02c03c39ef69063f89282"></a>
@@ -208,6 +232,8 @@ template&lt;typename FloatType &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Call this method to measure a block af levels to be displayed in the meters. </p>
 
 </div>
 </div>
@@ -235,6 +261,9 @@ template&lt;typename FloatType &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>With the reduction level you can add an extra bar do indicate, by what amount the level was reduced. </p>
+<p>This will be printed on top of the bar with half the width. </p>
+
 </div>
 </div>
 <a class="anchor" id="a1b39eb144b3fe33bd814f06968dcfc1b"></a>
@@ -251,6 +280,8 @@ template&lt;typename FloatType &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Set the timeout, how long the peak line will be displayed, before it resets to the current peak. </p>
+
 </div>
 </div>
 <a class="anchor" id="a1204275fc8278254935b0f00409d5b33"></a>
@@ -266,6 +297,10 @@ template&lt;typename FloatType &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the reduction level. </p>
+<p>This value is not computed but can be set manually via </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classLevelMeterSource.html#a4ff644f2bbb00d1cf0eed9266c0e68fb" title="With the reduction level you can add an extra bar do indicate, by what amount the level was reduced...">setReductionLevel</a>. </dd></dl>
 
 <p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae15136b20c1a21136db447a6a04f849b">drawMeterChannel()</a>.</p>
 
@@ -285,6 +320,10 @@ template&lt;typename FloatType &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>This is the max level as displayed by the little line above the RMS bar. </p>
+<p>It is reset by </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classLevelMeterSource.html#a1b39eb144b3fe33bd814f06968dcfc1b" title="Set the timeout, how long the peak line will be displayed, before it resets to the current peak...">setMaxHoldMS</a>. </dd></dl>
+
 <p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a5c3b99d6659fc0fbe17a4d7cf3970b68">drawMeterBars()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae15136b20c1a21136db447a6a04f849b">drawMeterChannel()</a>.</p>
 
 </div>
@@ -302,6 +341,10 @@ template&lt;typename FloatType &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>This is the max level as displayed under the bar as number. </p>
+<p>It will stay up until </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classLevelMeterSource.html#a3ef3205074fde434bb9bbb4fdd78b2ed" title="Reset the max number to minus infinity. ">clearMaxNum</a> was called. </dd></dl>
 
 <p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae15136b20c1a21136db447a6a04f849b">drawMeterChannel()</a>.</p>
 
@@ -321,6 +364,9 @@ template&lt;typename FloatType &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>This is the RMS level that the bar will indicate. </p>
+<p>It is summed over rmsWindow number of blocks/measureBlock calls. </p>
+
 <p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a5c3b99d6659fc0fbe17a4d7cf3970b68">drawMeterBars()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae15136b20c1a21136db447a6a04f849b">drawMeterChannel()</a>.</p>
 
 </div>
@@ -339,6 +385,8 @@ template&lt;typename FloatType &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the status of the clip flag. </p>
+
 <p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a5c3b99d6659fc0fbe17a4d7cf3970b68">drawMeterBars()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae15136b20c1a21136db447a6a04f849b">drawMeterChannel()</a>.</p>
 
 </div>
@@ -356,6 +404,8 @@ template&lt;typename FloatType &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Reset the clip flag to reset the indicator in the meter. </p>
 
 </div>
 </div>
@@ -388,6 +438,8 @@ template&lt;typename FloatType &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Reset the max number to minus infinity. </p>
+
 </div>
 </div>
 <a class="anchor" id="ab1771027f5dace366f8866a1a7f0c52a"></a>
@@ -403,6 +455,8 @@ template&lt;typename FloatType &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Reset all max numbers. </p>
+
 </div>
 </div>
 <a class="anchor" id="ac46968f552029f0fdde76253070bb669"></a>
@@ -417,6 +471,8 @@ template&lt;typename FloatType &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the number of channels to be displayed. </p>
 
 <p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a5c3b99d6659fc0fbe17a4d7cf3970b68">drawMeterBars()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a8937f4b40d9232baad5df43f1d69ecaa">hitTestClipIndicator()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a3bc86b3a1ecb83487cfe05663767e2c1">hitTestMaxNumber()</a>.</p>
 
@@ -436,6 +492,10 @@ template&lt;typename FloatType &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>The measure can be suspended, e.g. </p>
+<p>to save CPU when no meter is displayed. In this case, the </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classLevelMeterSource.html#a8c6105a44bf02c03c39ef69063f89282" title="Call this method to measure a block af levels to be displayed in the meters. ">measureBlock</a> will return immediately </dd></dl>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
@@ -444,7 +504,7 @@ template&lt;typename FloatType &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jun 28 2017 00:46:59 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 2 2017 11:13:28 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
