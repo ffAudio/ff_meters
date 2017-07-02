@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -93,50 +93,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Functions</h2></td></tr>
 <tr class="memitem:ad01416fa193b26634eaa8330e69b07cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ad01416fa193b26634eaa8330e69b07cb">setupDefaultMeterColours</a> () override</td></tr>
 <tr class="separator:ad01416fa193b26634eaa8330e69b07cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40f95f34352a5c7ec6fad3dfecbcb73f"><td class="memItemLeft" align="right" valign="top">virtual juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a40f95f34352a5c7ec6fad3dfecbcb73f">getMeterInnerBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType) const override</td></tr>
-<tr class="separator:a40f95f34352a5c7ec6fad3dfecbcb73f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9097eec61c15538b14a4ab84f91426d1"><td class="memItemLeft" align="right" valign="top">juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a9097eec61c15538b14a4ab84f91426d1">getMeterBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType, const int numChannels, const int channel) const override</td></tr>
-<tr class="separator:a9097eec61c15538b14a4ab84f91426d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a993cc280b33538cbe2d07fe17a27daab"><td class="memItemLeft" align="right" valign="top">juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a993cc280b33538cbe2d07fe17a27daab">getMeterBarBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType) const override</td></tr>
-<tr class="memdesc:a993cc280b33538cbe2d07fe17a27daab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override this callback to define the placement of the actual meter bar.  <a href="#a993cc280b33538cbe2d07fe17a27daab">More...</a><br/></td></tr>
-<tr class="separator:a993cc280b33538cbe2d07fe17a27daab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92444632022c76aedebc3326f1d1b6c4"><td class="memItemLeft" align="right" valign="top">juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a92444632022c76aedebc3326f1d1b6c4">getMeterTickmarksBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType) const override</td></tr>
-<tr class="memdesc:a92444632022c76aedebc3326f1d1b6c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override this callback to define the placement of the tickmarks.  <a href="#a92444632022c76aedebc3326f1d1b6c4">More...</a><br/></td></tr>
-<tr class="separator:a92444632022c76aedebc3326f1d1b6c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abdcd9b8f34dda9e6f4ee7c650be827fe"><td class="memItemLeft" align="right" valign="top">juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#abdcd9b8f34dda9e6f4ee7c650be827fe">getMeterClipIndicatorBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType) const override</td></tr>
-<tr class="memdesc:abdcd9b8f34dda9e6f4ee7c650be827fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override this callback to define the placement of the clip indicator light.  <a href="#abdcd9b8f34dda9e6f4ee7c650be827fe">More...</a><br/></td></tr>
-<tr class="separator:abdcd9b8f34dda9e6f4ee7c650be827fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee0dc06930238b16b592af92fc1e249a"><td class="memItemLeft" align="right" valign="top">juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aee0dc06930238b16b592af92fc1e249a">getMeterMaxNumberBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType) const override</td></tr>
-<tr class="memdesc:aee0dc06930238b16b592af92fc1e249a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override this callback to define the placement of the max level.  <a href="#aee0dc06930238b16b592af92fc1e249a">More...</a><br/></td></tr>
-<tr class="separator:aee0dc06930238b16b592af92fc1e249a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7d861cac7fed33d662f611e1fd25c1c"><td class="memItemLeft" align="right" valign="top">juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab7d861cac7fed33d662f611e1fd25c1c">drawBackground</a> (juce::Graphics &amp;g, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds) override</td></tr>
-<tr class="separator:ab7d861cac7fed33d662f611e1fd25c1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c3b99d6659fc0fbe17a4d7cf3970b68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a5c3b99d6659fc0fbe17a4d7cf3970b68">drawMeterBars</a> (juce::Graphics &amp;g, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds, const <a class="el" href="group__ff__meters.html#classLevelMeterSource">LevelMeterSource</a> *source, const int selectedChannel=-1) override</td></tr>
-<tr class="separator:a5c3b99d6659fc0fbe17a4d7cf3970b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0076bbc6961f78dbec6fd5d5e1ce747c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a0076bbc6961f78dbec6fd5d5e1ce747c">drawMeterBarsBackground</a> (juce::Graphics &amp;g, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds, const int numChannels) override</td></tr>
-<tr class="separator:a0076bbc6961f78dbec6fd5d5e1ce747c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae15136b20c1a21136db447a6a04f849b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae15136b20c1a21136db447a6a04f849b">drawMeterChannel</a> (juce::Graphics &amp;g, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds, const <a class="el" href="group__ff__meters.html#classLevelMeterSource">LevelMeterSource</a> *source, const int selectedChannel) override</td></tr>
-<tr class="separator:ae15136b20c1a21136db447a6a04f849b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bfe012498513d01d289f9265706b9bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a7bfe012498513d01d289f9265706b9bf">drawMeterChannelBackground</a> (juce::Graphics &amp;g, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds) override</td></tr>
-<tr class="separator:a7bfe012498513d01d289f9265706b9bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc5288e07c2df51e76e702ae214a0bbb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#afc5288e07c2df51e76e702ae214a0bbb">drawMeterBar</a> (juce::Graphics &amp;g, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds, const float rms, const float peak) override</td></tr>
-<tr class="separator:afc5288e07c2df51e76e702ae214a0bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23d7dfaebef98d84527fa0bc22bdd0e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a23d7dfaebef98d84527fa0bc22bdd0e4">drawMeterBarBackground</a> (juce::Graphics &amp;g, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds) override</td></tr>
-<tr class="separator:a23d7dfaebef98d84527fa0bc22bdd0e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19780cb52415436d11cae49800815dfb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a19780cb52415436d11cae49800815dfb">drawTickMarks</a> (juce::Graphics &amp;g, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds) override</td></tr>
-<tr class="separator:a19780cb52415436d11cae49800815dfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ca6f7515cb29805207a327d994c4ccf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a0ca6f7515cb29805207a327d994c4ccf">drawClipIndicator</a> (juce::Graphics &amp;g, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds, const bool hasClipped) override</td></tr>
-<tr class="separator:a0ca6f7515cb29805207a327d994c4ccf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33b29baff0287576d1f9c36e9953314a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a33b29baff0287576d1f9c36e9953314a">drawClipIndicatorBackground</a> (juce::Graphics &amp;g, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds) override</td></tr>
-<tr class="separator:a33b29baff0287576d1f9c36e9953314a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecc41f58832dd39b25e5bcd43388925e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aecc41f58832dd39b25e5bcd43388925e">drawMaxNumber</a> (juce::Graphics &amp;g, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds, const float maxGain) override</td></tr>
-<tr class="separator:aecc41f58832dd39b25e5bcd43388925e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fbd6e0c833c823c97856f68b9f70ab1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a9fbd6e0c833c823c97856f68b9f70ab1">drawMaxNumberBackground</a> (juce::Graphics &amp;g, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds) override</td></tr>
-<tr class="separator:a9fbd6e0c833c823c97856f68b9f70ab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8937f4b40d9232baad5df43f1d69ecaa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a8937f4b40d9232baad5df43f1d69ecaa">hitTestClipIndicator</a> (const juce::Point&lt; int &gt; position, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds, const <a class="el" href="group__ff__meters.html#classLevelMeterSource">LevelMeterSource</a> *source) const override</td></tr>
-<tr class="separator:a8937f4b40d9232baad5df43f1d69ecaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3bc86b3a1ecb83487cfe05663767e2c1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a3bc86b3a1ecb83487cfe05663767e2c1">hitTestMaxNumber</a> (const juce::Point&lt; int &gt; position, const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds, const <a class="el" href="group__ff__meters.html#classLevelMeterSource">LevelMeterSource</a> *source) const override</td></tr>
-<tr class="separator:a3bc86b3a1ecb83487cfe05663767e2c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87265116da67dbbc917b1d325093dd58"><td class="memItemLeft" align="right" valign="top">virtual juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a87265116da67dbbc917b1d325093dd58">getMeterInnerBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const FFAU::LevelMeter::MeterFlags meterType) const override</td></tr>
+<tr class="separator:a87265116da67dbbc917b1d325093dd58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab384d9f97568d00d95416eea7ecb6573"><td class="memItemLeft" align="right" valign="top">juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab384d9f97568d00d95416eea7ecb6573">getMeterBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const FFAU::LevelMeter::MeterFlags meterType, const int numChannels, const int channel) const override</td></tr>
+<tr class="separator:ab384d9f97568d00d95416eea7ecb6573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa89b81e2b98bae601c96236f4e920f72"><td class="memItemLeft" align="right" valign="top">juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa89b81e2b98bae601c96236f4e920f72">getMeterBarBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const FFAU::LevelMeter::MeterFlags meterType) const override</td></tr>
+<tr class="memdesc:aa89b81e2b98bae601c96236f4e920f72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override this callback to define the placement of the actual meter bar.  <a href="#aa89b81e2b98bae601c96236f4e920f72">More...</a><br/></td></tr>
+<tr class="separator:aa89b81e2b98bae601c96236f4e920f72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b98efaf09b61c9592755c2edda90fe5"><td class="memItemLeft" align="right" valign="top">juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a1b98efaf09b61c9592755c2edda90fe5">getMeterTickmarksBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const FFAU::LevelMeter::MeterFlags meterType) const override</td></tr>
+<tr class="memdesc:a1b98efaf09b61c9592755c2edda90fe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override this callback to define the placement of the tickmarks.  <a href="#a1b98efaf09b61c9592755c2edda90fe5">More...</a><br/></td></tr>
+<tr class="separator:a1b98efaf09b61c9592755c2edda90fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36e9a4e1d6bcd88c80e62a08975f546f"><td class="memItemLeft" align="right" valign="top">juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a36e9a4e1d6bcd88c80e62a08975f546f">getMeterClipIndicatorBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const FFAU::LevelMeter::MeterFlags meterType) const override</td></tr>
+<tr class="memdesc:a36e9a4e1d6bcd88c80e62a08975f546f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override this callback to define the placement of the clip indicator light.  <a href="#a36e9a4e1d6bcd88c80e62a08975f546f">More...</a><br/></td></tr>
+<tr class="separator:a36e9a4e1d6bcd88c80e62a08975f546f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2abf9dd5282e337ddd94dc1bb807f16"><td class="memItemLeft" align="right" valign="top">juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab2abf9dd5282e337ddd94dc1bb807f16">getMeterMaxNumberBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const FFAU::LevelMeter::MeterFlags meterType) const override</td></tr>
+<tr class="memdesc:ab2abf9dd5282e337ddd94dc1bb807f16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override this callback to define the placement of the max level.  <a href="#ab2abf9dd5282e337ddd94dc1bb807f16">More...</a><br/></td></tr>
+<tr class="separator:ab2abf9dd5282e337ddd94dc1bb807f16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6525baa88ba89fca8afa5403555ff5aa"><td class="memItemLeft" align="right" valign="top">juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a6525baa88ba89fca8afa5403555ff5aa">drawBackground</a> (juce::Graphics &amp;g, const FFAU::LevelMeter::MeterFlags meterType, const juce::Rectangle&lt; float &gt; bounds) override</td></tr>
+<tr class="separator:a6525baa88ba89fca8afa5403555ff5aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4361687c02e347010563857d282e1ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa4361687c02e347010563857d282e1ed">drawMeterBars</a> (juce::Graphics &amp;g, const FFAU::LevelMeter::MeterFlags meterType, const juce::Rectangle&lt; float &gt; bounds, const FFAU::LevelMeterSource *source, const int selectedChannel=-1) override</td></tr>
+<tr class="separator:aa4361687c02e347010563857d282e1ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62f937dac088d133badb0da09fa30573"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a62f937dac088d133badb0da09fa30573">drawMeterBarsBackground</a> (juce::Graphics &amp;g, const FFAU::LevelMeter::MeterFlags meterType, const juce::Rectangle&lt; float &gt; bounds, const int numChannels) override</td></tr>
+<tr class="separator:a62f937dac088d133badb0da09fa30573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11ad5eb24a24e779dda0ae73c1c81c99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a11ad5eb24a24e779dda0ae73c1c81c99">drawMeterChannel</a> (juce::Graphics &amp;g, const FFAU::LevelMeter::MeterFlags meterType, const juce::Rectangle&lt; float &gt; bounds, const FFAU::LevelMeterSource *source, const int selectedChannel) override</td></tr>
+<tr class="separator:a11ad5eb24a24e779dda0ae73c1c81c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9a71b6e05cce619a41890f6d5675575"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae9a71b6e05cce619a41890f6d5675575">drawMeterChannelBackground</a> (juce::Graphics &amp;g, const FFAU::LevelMeter::MeterFlags meterType, const juce::Rectangle&lt; float &gt; bounds) override</td></tr>
+<tr class="separator:ae9a71b6e05cce619a41890f6d5675575"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adec47aced405760a6ef92c98cd3004d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#adec47aced405760a6ef92c98cd3004d7">drawMeterBar</a> (juce::Graphics &amp;g, const FFAU::LevelMeter::MeterFlags meterType, const juce::Rectangle&lt; float &gt; bounds, const float rms, const float peak) override</td></tr>
+<tr class="separator:adec47aced405760a6ef92c98cd3004d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab00c0bdf7feff208e6170bd6ec0bcb71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab00c0bdf7feff208e6170bd6ec0bcb71">drawMeterBarBackground</a> (juce::Graphics &amp;g, const FFAU::LevelMeter::MeterFlags meterType, const juce::Rectangle&lt; float &gt; bounds) override</td></tr>
+<tr class="separator:ab00c0bdf7feff208e6170bd6ec0bcb71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a383d1c456e2006e926f66a37cc448cc6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a383d1c456e2006e926f66a37cc448cc6">drawTickMarks</a> (juce::Graphics &amp;g, const FFAU::LevelMeter::MeterFlags meterType, const juce::Rectangle&lt; float &gt; bounds) override</td></tr>
+<tr class="separator:a383d1c456e2006e926f66a37cc448cc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada8f03bd91a816f849a75780f2370393"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ada8f03bd91a816f849a75780f2370393">drawClipIndicator</a> (juce::Graphics &amp;g, const FFAU::LevelMeter::MeterFlags meterType, const juce::Rectangle&lt; float &gt; bounds, const bool hasClipped) override</td></tr>
+<tr class="separator:ada8f03bd91a816f849a75780f2370393"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46ef01e32ca7b563d017f4980971da98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a46ef01e32ca7b563d017f4980971da98">drawClipIndicatorBackground</a> (juce::Graphics &amp;g, const FFAU::LevelMeter::MeterFlags meterType, const juce::Rectangle&lt; float &gt; bounds) override</td></tr>
+<tr class="separator:a46ef01e32ca7b563d017f4980971da98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6f410b87f71e0af4f911af66a28e361"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab6f410b87f71e0af4f911af66a28e361">drawMaxNumber</a> (juce::Graphics &amp;g, const FFAU::LevelMeter::MeterFlags meterType, const juce::Rectangle&lt; float &gt; bounds, const float maxGain) override</td></tr>
+<tr class="separator:ab6f410b87f71e0af4f911af66a28e361"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fcd51fc0cedbe1b4020310393c49b2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a7fcd51fc0cedbe1b4020310393c49b2f">drawMaxNumberBackground</a> (juce::Graphics &amp;g, const FFAU::LevelMeter::MeterFlags meterType, const juce::Rectangle&lt; float &gt; bounds) override</td></tr>
+<tr class="separator:a7fcd51fc0cedbe1b4020310393c49b2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae58bc2b8644b1f8331c2061761058eac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae58bc2b8644b1f8331c2061761058eac">hitTestClipIndicator</a> (const juce::Point&lt; int &gt; position, const FFAU::LevelMeter::MeterFlags meterType, const juce::Rectangle&lt; float &gt; bounds, const FFAU::LevelMeterSource *source) const override</td></tr>
+<tr class="separator:ae58bc2b8644b1f8331c2061761058eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adad65222f2796a481de0f1b78c7aaf38"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#adad65222f2796a481de0f1b78c7aaf38">hitTestMaxNumber</a> (const juce::Point&lt; int &gt; position, const FFAU::LevelMeter::MeterFlags meterType, const juce::Rectangle&lt; float &gt; bounds, const FFAU::LevelMeterSource *source) const override</td></tr>
+<tr class="separator:adad65222f2796a481de0f1b78c7aaf38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="ad01416fa193b26634eaa8330e69b07cb"></a>
@@ -160,11 +160,9 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a1bcdde046897d6b285578ec054a2f39c">LevelMeter::lmBackgroundClipColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a4000cf003605445615d2baa9c3b8c400">LevelMeter::lmBackgroundColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a3f1c881cc999001056db57aaca329971">LevelMeter::lmMeterBackgroundColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3af168b816eed0fe9af7ee1055cb138063">LevelMeter::lmMeterForegroundColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a8449ea70b4c06ceea3f6081fea65349e">LevelMeter::lmMeterGradientLowColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a4b28025c19c745121ed211a6985eb51e">LevelMeter::lmMeterGradientMaxColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a7fafd2964f2604a80514355730a0b76e">LevelMeter::lmMeterGradientMidColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a6145b444a7cd81a4a663c8e3e941e497">LevelMeter::lmMeterMaxNormalColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a9e22b3753c68a51af174ac5c50685a49">LevelMeter::lmMeterMaxOverColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3ade75b89ff063d8106060affcecd71ba5">LevelMeter::lmMeterMaxWarnColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a0c81a1678fb6e95f64cfcfc180c60103">LevelMeter::lmMeterOutlineColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a887102edab3b8a559917bb89aea0544f">LevelMeter::lmMeterReductionColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a0a68b6e929cd16a1d2f4218a842b3807">LevelMeter::lmOutlineColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3adae8152b4487e4e3ad1db46d081923de">LevelMeter::lmTextClipColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a4701c51075a842e4ff9dc7b7e5119092">LevelMeter::lmTextColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3ab44acf19aab81a76cc9519f9e2400608">LevelMeter::lmTextDeactiveColour</a>, and <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3af0bf3fafa4f83c9a7c587526f193802c">LevelMeter::lmTicksColour</a>.</p>
-
 </div>
 </div>
-<a class="anchor" id="a40f95f34352a5c7ec6fad3dfecbcb73f"></a>
+<a class="anchor" id="a87265116da67dbbc917b1d325093dd58"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -180,7 +178,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>&#160;</td>
         </tr>
         <tr>
@@ -196,13 +194,11 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaae65c52c5898e4fc907873e6596b9994c">LevelMeter::HasBorder</a>.</p>
-
-<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a5c3b99d6659fc0fbe17a4d7cf3970b68">drawMeterBars()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a0076bbc6961f78dbec6fd5d5e1ce747c">drawMeterBarsBackground()</a>.</p>
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa4361687c02e347010563857d282e1ed">drawMeterBars()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a62f937dac088d133badb0da09fa30573">drawMeterBarsBackground()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9097eec61c15538b14a4ab84f91426d1"></a>
+<a class="anchor" id="ab384d9f97568d00d95416eea7ecb6573"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -218,7 +214,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>, </td>
         </tr>
         <tr>
@@ -246,13 +242,11 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaac2a8c51ced49ef6cb8d4f0bab7f7bd69">LevelMeter::Horizontal</a>, and <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaaae65e1653edaa1c87fa3ff0a7f769e7b">LevelMeter::SingleChannel</a>.</p>
-
-<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a5c3b99d6659fc0fbe17a4d7cf3970b68">drawMeterBars()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a0076bbc6961f78dbec6fd5d5e1ce747c">drawMeterBarsBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a8937f4b40d9232baad5df43f1d69ecaa">hitTestClipIndicator()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a3bc86b3a1ecb83487cfe05663767e2c1">hitTestMaxNumber()</a>.</p>
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa4361687c02e347010563857d282e1ed">drawMeterBars()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a62f937dac088d133badb0da09fa30573">drawMeterBarsBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae58bc2b8644b1f8331c2061761058eac">hitTestClipIndicator()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#adad65222f2796a481de0f1b78c7aaf38">hitTestMaxNumber()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a993cc280b33538cbe2d07fe17a27daab"></a>
+<a class="anchor" id="aa89b81e2b98bae601c96236f4e920f72"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -268,7 +262,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>&#160;</td>
         </tr>
         <tr>
@@ -286,13 +280,11 @@ Functions</h2></td></tr>
 
 <p>Override this callback to define the placement of the actual meter bar. </p>
 
-<p>References <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaac2a8c51ced49ef6cb8d4f0bab7f7bd69">LevelMeter::Horizontal</a>, <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaaac3f3bce7da827d3bfd8852b20908bff">LevelMeter::Minimal</a>, and <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaa5afd2c8505194d4d85e154f97bb5d92b">LevelMeter::Vintage</a>.</p>
-
-<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a5c3b99d6659fc0fbe17a4d7cf3970b68">drawMeterBars()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a0076bbc6961f78dbec6fd5d5e1ce747c">drawMeterBarsBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae15136b20c1a21136db447a6a04f849b">drawMeterChannel()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a7bfe012498513d01d289f9265706b9bf">drawMeterChannelBackground()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a92444632022c76aedebc3326f1d1b6c4">getMeterTickmarksBounds()</a>.</p>
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa4361687c02e347010563857d282e1ed">drawMeterBars()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a62f937dac088d133badb0da09fa30573">drawMeterBarsBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a11ad5eb24a24e779dda0ae73c1c81c99">drawMeterChannel()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae9a71b6e05cce619a41890f6d5675575">drawMeterChannelBackground()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a1b98efaf09b61c9592755c2edda90fe5">getMeterTickmarksBounds()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a92444632022c76aedebc3326f1d1b6c4"></a>
+<a class="anchor" id="a1b98efaf09b61c9592755c2edda90fe5"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -308,7 +300,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>&#160;</td>
         </tr>
         <tr>
@@ -327,13 +319,13 @@ Functions</h2></td></tr>
 <p>Override this callback to define the placement of the tickmarks. </p>
 <p>To disable this feature return an empty rectangle. </p>
 
-<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a993cc280b33538cbe2d07fe17a27daab">getMeterBarBounds()</a>, <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaac2a8c51ced49ef6cb8d4f0bab7f7bd69">LevelMeter::Horizontal</a>, <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaaac3f3bce7da827d3bfd8852b20908bff">LevelMeter::Minimal</a>, and <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaa5afd2c8505194d4d85e154f97bb5d92b">LevelMeter::Vintage</a>.</p>
+<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa89b81e2b98bae601c96236f4e920f72">getMeterBarBounds()</a>.</p>
 
-<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a5c3b99d6659fc0fbe17a4d7cf3970b68">drawMeterBars()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a0076bbc6961f78dbec6fd5d5e1ce747c">drawMeterBarsBackground()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a7bfe012498513d01d289f9265706b9bf">drawMeterChannelBackground()</a>.</p>
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa4361687c02e347010563857d282e1ed">drawMeterBars()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a62f937dac088d133badb0da09fa30573">drawMeterBarsBackground()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae9a71b6e05cce619a41890f6d5675575">drawMeterChannelBackground()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="abdcd9b8f34dda9e6f4ee7c650be827fe"></a>
+<a class="anchor" id="a36e9a4e1d6bcd88c80e62a08975f546f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -349,7 +341,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>&#160;</td>
         </tr>
         <tr>
@@ -368,13 +360,11 @@ Functions</h2></td></tr>
 <p>Override this callback to define the placement of the clip indicator light. </p>
 <p>To disable this feature return an empty rectangle. </p>
 
-<p>References <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaac2a8c51ced49ef6cb8d4f0bab7f7bd69">LevelMeter::Horizontal</a>, <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaaac3f3bce7da827d3bfd8852b20908bff">LevelMeter::Minimal</a>, and <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaa5afd2c8505194d4d85e154f97bb5d92b">LevelMeter::Vintage</a>.</p>
-
-<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a5c3b99d6659fc0fbe17a4d7cf3970b68">drawMeterBars()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a0076bbc6961f78dbec6fd5d5e1ce747c">drawMeterBarsBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae15136b20c1a21136db447a6a04f849b">drawMeterChannel()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a7bfe012498513d01d289f9265706b9bf">drawMeterChannelBackground()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a8937f4b40d9232baad5df43f1d69ecaa">hitTestClipIndicator()</a>.</p>
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa4361687c02e347010563857d282e1ed">drawMeterBars()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a62f937dac088d133badb0da09fa30573">drawMeterBarsBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a11ad5eb24a24e779dda0ae73c1c81c99">drawMeterChannel()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae9a71b6e05cce619a41890f6d5675575">drawMeterChannelBackground()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae58bc2b8644b1f8331c2061761058eac">hitTestClipIndicator()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aee0dc06930238b16b592af92fc1e249a"></a>
+<a class="anchor" id="ab2abf9dd5282e337ddd94dc1bb807f16"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -390,7 +380,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>&#160;</td>
         </tr>
         <tr>
@@ -409,13 +399,11 @@ Functions</h2></td></tr>
 <p>Override this callback to define the placement of the max level. </p>
 <p>To disable this feature return an empty rectangle. </p>
 
-<p>References <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaac2a8c51ced49ef6cb8d4f0bab7f7bd69">LevelMeter::Horizontal</a>, <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaaac3f3bce7da827d3bfd8852b20908bff">LevelMeter::Minimal</a>, and <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaa5afd2c8505194d4d85e154f97bb5d92b">LevelMeter::Vintage</a>.</p>
-
-<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae15136b20c1a21136db447a6a04f849b">drawMeterChannel()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a7bfe012498513d01d289f9265706b9bf">drawMeterChannelBackground()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a3bc86b3a1ecb83487cfe05663767e2c1">hitTestMaxNumber()</a>.</p>
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a11ad5eb24a24e779dda0ae73c1c81c99">drawMeterChannel()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae9a71b6e05cce619a41890f6d5675575">drawMeterChannelBackground()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#adad65222f2796a481de0f1b78c7aaf38">hitTestMaxNumber()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab7d861cac7fed33d662f611e1fd25c1c"></a>
+<a class="anchor" id="a6525baa88ba89fca8afa5403555ff5aa"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -431,7 +419,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>, </td>
         </tr>
         <tr>
@@ -453,11 +441,9 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaae65c52c5898e4fc907873e6596b9994c">LevelMeter::HasBorder</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a4000cf003605445615d2baa9c3b8c400">LevelMeter::lmBackgroundColour</a>, and <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a0a68b6e929cd16a1d2f4218a842b3807">LevelMeter::lmOutlineColour</a>.</p>
-
 </div>
 </div>
-<a class="anchor" id="a5c3b99d6659fc0fbe17a4d7cf3970b68"></a>
+<a class="anchor" id="aa4361687c02e347010563857d282e1ed"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -473,7 +459,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>, </td>
         </tr>
         <tr>
@@ -485,7 +471,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#classLevelMeterSource">LevelMeterSource</a> *&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeterSource *&#160;</td>
           <td class="paramname"><em>source</em>, </td>
         </tr>
         <tr>
@@ -507,11 +493,11 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a0ca6f7515cb29805207a327d994c4ccf">drawClipIndicator()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#afc5288e07c2df51e76e702ae214a0bbb">drawMeterBar()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae15136b20c1a21136db447a6a04f849b">drawMeterChannel()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a19780cb52415436d11cae49800815dfb">drawTickMarks()</a>, <a class="el" href="group__ff__meters.html#a7c5968b3b25b0637347b24cdbe68a4e8">LevelMeterSource::getClipFlag()</a>, <a class="el" href="group__ff__meters.html#af4cbacd6d53b8e71b679e05e2b7693a5">LevelMeterSource::getMaxLevel()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a993cc280b33538cbe2d07fe17a27daab">getMeterBarBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a9097eec61c15538b14a4ab84f91426d1">getMeterBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#abdcd9b8f34dda9e6f4ee7c650be827fe">getMeterClipIndicatorBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a40f95f34352a5c7ec6fad3dfecbcb73f">getMeterInnerBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a92444632022c76aedebc3326f1d1b6c4">getMeterTickmarksBounds()</a>, <a class="el" href="group__ff__meters.html#ac46968f552029f0fdde76253070bb669">LevelMeterSource::getNumChannels()</a>, <a class="el" href="group__ff__meters.html#af81397c791f04357c9cc2e62a1ef4c85">LevelMeterSource::getRMSLevel()</a>, <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaac2a8c51ced49ef6cb8d4f0bab7f7bd69">LevelMeter::Horizontal</a>, <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaaac3f3bce7da827d3bfd8852b20908bff">LevelMeter::Minimal</a>, and <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaaae65e1653edaa1c87fa3ff0a7f769e7b">LevelMeter::SingleChannel</a>.</p>
+<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ada8f03bd91a816f849a75780f2370393">drawClipIndicator()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#adec47aced405760a6ef92c98cd3004d7">drawMeterBar()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a11ad5eb24a24e779dda0ae73c1c81c99">drawMeterChannel()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a383d1c456e2006e926f66a37cc448cc6">drawTickMarks()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa89b81e2b98bae601c96236f4e920f72">getMeterBarBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab384d9f97568d00d95416eea7ecb6573">getMeterBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a36e9a4e1d6bcd88c80e62a08975f546f">getMeterClipIndicatorBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a87265116da67dbbc917b1d325093dd58">getMeterInnerBounds()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a1b98efaf09b61c9592755c2edda90fe5">getMeterTickmarksBounds()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0076bbc6961f78dbec6fd5d5e1ce747c"></a>
+<a class="anchor" id="a62f937dac088d133badb0da09fa30573"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -527,7 +513,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>, </td>
         </tr>
         <tr>
@@ -555,11 +541,11 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a33b29baff0287576d1f9c36e9953314a">drawClipIndicatorBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a23d7dfaebef98d84527fa0bc22bdd0e4">drawMeterBarBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a7bfe012498513d01d289f9265706b9bf">drawMeterChannelBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a19780cb52415436d11cae49800815dfb">drawTickMarks()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a993cc280b33538cbe2d07fe17a27daab">getMeterBarBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a9097eec61c15538b14a4ab84f91426d1">getMeterBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#abdcd9b8f34dda9e6f4ee7c650be827fe">getMeterClipIndicatorBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a40f95f34352a5c7ec6fad3dfecbcb73f">getMeterInnerBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a92444632022c76aedebc3326f1d1b6c4">getMeterTickmarksBounds()</a>, <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaac2a8c51ced49ef6cb8d4f0bab7f7bd69">LevelMeter::Horizontal</a>, <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaaac3f3bce7da827d3bfd8852b20908bff">LevelMeter::Minimal</a>, and <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaaae65e1653edaa1c87fa3ff0a7f769e7b">LevelMeter::SingleChannel</a>.</p>
+<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a46ef01e32ca7b563d017f4980971da98">drawClipIndicatorBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab00c0bdf7feff208e6170bd6ec0bcb71">drawMeterBarBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae9a71b6e05cce619a41890f6d5675575">drawMeterChannelBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a383d1c456e2006e926f66a37cc448cc6">drawTickMarks()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa89b81e2b98bae601c96236f4e920f72">getMeterBarBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab384d9f97568d00d95416eea7ecb6573">getMeterBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a36e9a4e1d6bcd88c80e62a08975f546f">getMeterClipIndicatorBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a87265116da67dbbc917b1d325093dd58">getMeterInnerBounds()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a1b98efaf09b61c9592755c2edda90fe5">getMeterTickmarksBounds()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae15136b20c1a21136db447a6a04f849b"></a>
+<a class="anchor" id="a11ad5eb24a24e779dda0ae73c1c81c99"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -575,7 +561,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>, </td>
         </tr>
         <tr>
@@ -587,7 +573,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#classLevelMeterSource">LevelMeterSource</a> *&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeterSource *&#160;</td>
           <td class="paramname"><em>source</em>, </td>
         </tr>
         <tr>
@@ -609,13 +595,13 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a0ca6f7515cb29805207a327d994c4ccf">drawClipIndicator()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aecc41f58832dd39b25e5bcd43388925e">drawMaxNumber()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#afc5288e07c2df51e76e702ae214a0bbb">drawMeterBar()</a>, <a class="el" href="group__ff__meters.html#a7c5968b3b25b0637347b24cdbe68a4e8">LevelMeterSource::getClipFlag()</a>, <a class="el" href="group__ff__meters.html#af4cbacd6d53b8e71b679e05e2b7693a5">LevelMeterSource::getMaxLevel()</a>, <a class="el" href="group__ff__meters.html#aa4e4d4704c5102783339c00afbc35174">LevelMeterSource::getMaxOverallLevel()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a993cc280b33538cbe2d07fe17a27daab">getMeterBarBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#abdcd9b8f34dda9e6f4ee7c650be827fe">getMeterClipIndicatorBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aee0dc06930238b16b592af92fc1e249a">getMeterMaxNumberBounds()</a>, <a class="el" href="group__ff__meters.html#a1204275fc8278254935b0f00409d5b33">LevelMeterSource::getReductionLevel()</a>, <a class="el" href="group__ff__meters.html#af81397c791f04357c9cc2e62a1ef4c85">LevelMeterSource::getRMSLevel()</a>, and <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaaf49c4c0f8b87c8ec8b0b44d3cf3ceea1">LevelMeter::Reduction</a>.</p>
+<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ada8f03bd91a816f849a75780f2370393">drawClipIndicator()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab6f410b87f71e0af4f911af66a28e361">drawMaxNumber()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#adec47aced405760a6ef92c98cd3004d7">drawMeterBar()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa89b81e2b98bae601c96236f4e920f72">getMeterBarBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a36e9a4e1d6bcd88c80e62a08975f546f">getMeterClipIndicatorBounds()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab2abf9dd5282e337ddd94dc1bb807f16">getMeterMaxNumberBounds()</a>.</p>
 
-<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a5c3b99d6659fc0fbe17a4d7cf3970b68">drawMeterBars()</a>.</p>
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa4361687c02e347010563857d282e1ed">drawMeterBars()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7bfe012498513d01d289f9265706b9bf"></a>
+<a class="anchor" id="ae9a71b6e05cce619a41890f6d5675575"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -631,7 +617,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>, </td>
         </tr>
         <tr>
@@ -653,13 +639,13 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a33b29baff0287576d1f9c36e9953314a">drawClipIndicatorBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a9fbd6e0c833c823c97856f68b9f70ab1">drawMaxNumberBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a23d7dfaebef98d84527fa0bc22bdd0e4">drawMeterBarBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a19780cb52415436d11cae49800815dfb">drawTickMarks()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a993cc280b33538cbe2d07fe17a27daab">getMeterBarBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#abdcd9b8f34dda9e6f4ee7c650be827fe">getMeterClipIndicatorBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aee0dc06930238b16b592af92fc1e249a">getMeterMaxNumberBounds()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a92444632022c76aedebc3326f1d1b6c4">getMeterTickmarksBounds()</a>.</p>
+<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a46ef01e32ca7b563d017f4980971da98">drawClipIndicatorBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a7fcd51fc0cedbe1b4020310393c49b2f">drawMaxNumberBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab00c0bdf7feff208e6170bd6ec0bcb71">drawMeterBarBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a383d1c456e2006e926f66a37cc448cc6">drawTickMarks()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa89b81e2b98bae601c96236f4e920f72">getMeterBarBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a36e9a4e1d6bcd88c80e62a08975f546f">getMeterClipIndicatorBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab2abf9dd5282e337ddd94dc1bb807f16">getMeterMaxNumberBounds()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a1b98efaf09b61c9592755c2edda90fe5">getMeterTickmarksBounds()</a>.</p>
 
-<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a0076bbc6961f78dbec6fd5d5e1ce747c">drawMeterBarsBackground()</a>.</p>
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a62f937dac088d133badb0da09fa30573">drawMeterBarsBackground()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="afc5288e07c2df51e76e702ae214a0bbb"></a>
+<a class="anchor" id="adec47aced405760a6ef92c98cd3004d7"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -675,7 +661,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>, </td>
         </tr>
         <tr>
@@ -709,13 +695,11 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaac2a8c51ced49ef6cb8d4f0bab7f7bd69">LevelMeter::Horizontal</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a8449ea70b4c06ceea3f6081fea65349e">LevelMeter::lmMeterGradientLowColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a4b28025c19c745121ed211a6985eb51e">LevelMeter::lmMeterGradientMaxColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a7fafd2964f2604a80514355730a0b76e">LevelMeter::lmMeterGradientMidColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a6145b444a7cd81a4a663c8e3e941e497">LevelMeter::lmMeterMaxNormalColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a9e22b3753c68a51af174ac5c50685a49">LevelMeter::lmMeterMaxOverColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3ade75b89ff063d8106060affcecd71ba5">LevelMeter::lmMeterMaxWarnColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a887102edab3b8a559917bb89aea0544f">LevelMeter::lmMeterReductionColour</a>, <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaaf49c4c0f8b87c8ec8b0b44d3cf3ceea1">LevelMeter::Reduction</a>, and <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaa5afd2c8505194d4d85e154f97bb5d92b">LevelMeter::Vintage</a>.</p>
-
-<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a5c3b99d6659fc0fbe17a4d7cf3970b68">drawMeterBars()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae15136b20c1a21136db447a6a04f849b">drawMeterChannel()</a>.</p>
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa4361687c02e347010563857d282e1ed">drawMeterBars()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a11ad5eb24a24e779dda0ae73c1c81c99">drawMeterChannel()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a23d7dfaebef98d84527fa0bc22bdd0e4"></a>
+<a class="anchor" id="ab00c0bdf7feff208e6170bd6ec0bcb71"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -731,7 +715,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>, </td>
         </tr>
         <tr>
@@ -753,13 +737,11 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a3f1c881cc999001056db57aaca329971">LevelMeter::lmMeterBackgroundColour</a>, and <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a0c81a1678fb6e95f64cfcfc180c60103">LevelMeter::lmMeterOutlineColour</a>.</p>
-
-<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a0076bbc6961f78dbec6fd5d5e1ce747c">drawMeterBarsBackground()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a7bfe012498513d01d289f9265706b9bf">drawMeterChannelBackground()</a>.</p>
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a62f937dac088d133badb0da09fa30573">drawMeterBarsBackground()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae9a71b6e05cce619a41890f6d5675575">drawMeterChannelBackground()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a19780cb52415436d11cae49800815dfb"></a>
+<a class="anchor" id="a383d1c456e2006e926f66a37cc448cc6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -775,7 +757,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>, </td>
         </tr>
         <tr>
@@ -797,13 +779,11 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaac2a8c51ced49ef6cb8d4f0bab7f7bd69">LevelMeter::Horizontal</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3af0bf3fafa4f83c9a7c587526f193802c">LevelMeter::lmTicksColour</a>, <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaaac3f3bce7da827d3bfd8852b20908bff">LevelMeter::Minimal</a>, <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaaf49c4c0f8b87c8ec8b0b44d3cf3ceea1">LevelMeter::Reduction</a>, and <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaa5afd2c8505194d4d85e154f97bb5d92b">LevelMeter::Vintage</a>.</p>
-
-<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a5c3b99d6659fc0fbe17a4d7cf3970b68">drawMeterBars()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a0076bbc6961f78dbec6fd5d5e1ce747c">drawMeterBarsBackground()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a7bfe012498513d01d289f9265706b9bf">drawMeterChannelBackground()</a>.</p>
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa4361687c02e347010563857d282e1ed">drawMeterBars()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a62f937dac088d133badb0da09fa30573">drawMeterBarsBackground()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae9a71b6e05cce619a41890f6d5675575">drawMeterChannelBackground()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0ca6f7515cb29805207a327d994c4ccf"></a>
+<a class="anchor" id="ada8f03bd91a816f849a75780f2370393"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -819,7 +799,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>, </td>
         </tr>
         <tr>
@@ -847,13 +827,11 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a1bcdde046897d6b285578ec054a2f39c">LevelMeter::lmBackgroundClipColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a3f1c881cc999001056db57aaca329971">LevelMeter::lmMeterBackgroundColour</a>, and <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a0c81a1678fb6e95f64cfcfc180c60103">LevelMeter::lmMeterOutlineColour</a>.</p>
-
-<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a5c3b99d6659fc0fbe17a4d7cf3970b68">drawMeterBars()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae15136b20c1a21136db447a6a04f849b">drawMeterChannel()</a>.</p>
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa4361687c02e347010563857d282e1ed">drawMeterBars()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a11ad5eb24a24e779dda0ae73c1c81c99">drawMeterChannel()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a33b29baff0287576d1f9c36e9953314a"></a>
+<a class="anchor" id="a46ef01e32ca7b563d017f4980971da98"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -869,7 +847,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>, </td>
         </tr>
         <tr>
@@ -891,13 +869,11 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a3f1c881cc999001056db57aaca329971">LevelMeter::lmMeterBackgroundColour</a>, and <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a0c81a1678fb6e95f64cfcfc180c60103">LevelMeter::lmMeterOutlineColour</a>.</p>
-
-<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a0076bbc6961f78dbec6fd5d5e1ce747c">drawMeterBarsBackground()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a7bfe012498513d01d289f9265706b9bf">drawMeterChannelBackground()</a>.</p>
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a62f937dac088d133badb0da09fa30573">drawMeterBarsBackground()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae9a71b6e05cce619a41890f6d5675575">drawMeterChannelBackground()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aecc41f58832dd39b25e5bcd43388925e"></a>
+<a class="anchor" id="ab6f410b87f71e0af4f911af66a28e361"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -913,7 +889,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>, </td>
         </tr>
         <tr>
@@ -941,13 +917,11 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a3f1c881cc999001056db57aaca329971">LevelMeter::lmMeterBackgroundColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a0c81a1678fb6e95f64cfcfc180c60103">LevelMeter::lmMeterOutlineColour</a>, <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3adae8152b4487e4e3ad1db46d081923de">LevelMeter::lmTextClipColour</a>, and <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a4701c51075a842e4ff9dc7b7e5119092">LevelMeter::lmTextColour</a>.</p>
-
-<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae15136b20c1a21136db447a6a04f849b">drawMeterChannel()</a>.</p>
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a11ad5eb24a24e779dda0ae73c1c81c99">drawMeterChannel()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9fbd6e0c833c823c97856f68b9f70ab1"></a>
+<a class="anchor" id="a7fcd51fc0cedbe1b4020310393c49b2f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -963,7 +937,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>, </td>
         </tr>
         <tr>
@@ -985,13 +959,11 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3a3f1c881cc999001056db57aaca329971">LevelMeter::lmMeterBackgroundColour</a>.</p>
-
-<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a7bfe012498513d01d289f9265706b9bf">drawMeterChannelBackground()</a>.</p>
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae9a71b6e05cce619a41890f6d5675575">drawMeterChannelBackground()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8937f4b40d9232baad5df43f1d69ecaa"></a>
+<a class="anchor" id="ae58bc2b8644b1f8331c2061761058eac"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1007,7 +979,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>, </td>
         </tr>
         <tr>
@@ -1019,7 +991,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#classLevelMeterSource">LevelMeterSource</a> *&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeterSource *&#160;</td>
           <td class="paramname"><em>source</em>&#160;</td>
         </tr>
         <tr>
@@ -1035,11 +1007,11 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a9097eec61c15538b14a4ab84f91426d1">getMeterBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#abdcd9b8f34dda9e6f4ee7c650be827fe">getMeterClipIndicatorBounds()</a>, and <a class="el" href="group__ff__meters.html#ac46968f552029f0fdde76253070bb669">LevelMeterSource::getNumChannels()</a>.</p>
+<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab384d9f97568d00d95416eea7ecb6573">getMeterBounds()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a36e9a4e1d6bcd88c80e62a08975f546f">getMeterClipIndicatorBounds()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a3bc86b3a1ecb83487cfe05663767e2c1"></a>
+<a class="anchor" id="adad65222f2796a481de0f1b78c7aaf38"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1055,7 +1027,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a641c956e603301a1aa4db79e364ca5ea">LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeter::MeterFlags&#160;</td>
           <td class="paramname"><em>meterType</em>, </td>
         </tr>
         <tr>
@@ -1067,7 +1039,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="group__ff__meters.html#classLevelMeterSource">LevelMeterSource</a> *&#160;</td>
+          <td class="paramtype">const FFAU::LevelMeterSource *&#160;</td>
           <td class="paramname"><em>source</em>&#160;</td>
         </tr>
         <tr>
@@ -1083,14 +1055,14 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a9097eec61c15538b14a4ab84f91426d1">getMeterBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aee0dc06930238b16b592af92fc1e249a">getMeterMaxNumberBounds()</a>, and <a class="el" href="group__ff__meters.html#ac46968f552029f0fdde76253070bb669">LevelMeterSource::getNumChannels()</a>.</p>
+<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab384d9f97568d00d95416eea7ecb6573">getMeterBounds()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab2abf9dd5282e337ddd94dc1bb807f16">getMeterMaxNumberBounds()</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 2 2017 22:29:43 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 3 2017 01:24:35 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
