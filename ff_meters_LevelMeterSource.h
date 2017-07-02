@@ -34,11 +34,12 @@
  ==============================================================================
  */
 
-#ifndef FF_METER_LEVEL_METER_SOURCE_H_INCLUDED
-#define FF_METER_LEVEL_METER_SOURCE_H_INCLUDED
-
+#pragma once
 #include <atomic>
 #include <vector>
+
+/** @addtogroup ff_meters */
+/*@{*/
 
 /**
  \class LevelMeterSource
@@ -300,5 +301,4 @@ private:
     bool suspended;
 };
 
-#endif /* FF_METER_LEVEL_METER_SOURCE_H_INCLUDED */
-
+/*@}*/

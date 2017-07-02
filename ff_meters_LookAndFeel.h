@@ -37,6 +37,8 @@
 
 class LevelMeterSource;
 
+/** @addtogroup ff_meters */
+/*@{*/
 
 /**
    \class LevelMeterLookAndFeel
@@ -71,3 +73,5 @@ public:
     #include "ff_meters_LookAndFeelMethods.h"
 
 };
+
+/*@}*/

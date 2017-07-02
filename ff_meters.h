@@ -40,11 +40,17 @@
  END_JUCE_MODULE_DECLARATION
 
  ==============================================================================
+ 
+ @defgroup ff_meters
+ 
+ This module provides a display component to show RMS, MAX and CLIP values.
+ There is a MeterInputSource, which can process any AudioBuffer, and provide
+ therefore the data for live display.
+ 
+ ==============================================================================
  */
 
-
-#ifndef FF_AUDIO_METERS_INCLUDED_H
-#define FF_AUDIO_METERS_INCLUDED_H
+#pragma once
 
 #ifndef USE_FF_AUDIO_METERS
 #define USE_FF_AUDIO_METERS 1
@@ -56,11 +62,5 @@
 #include <juce_audio_devices/juce_audio_devices.h>
 
 #include <ff_meters/ff_meters_LevelMeterSource.h>
-//#include <ff_meters/ff_meters_LookAndFeelVertical.h>
-//#include <ff_meters/ff_meters_LookAndFeelHorizontal.h>
-//#include <ff_meters/ff_meters_LookAndFeelVintage.h>
 #include <ff_meters/ff_meters_LevelMeter.h>
 #include <ff_meters/ff_meters_LookAndFeel.h>
-
-#endif /* FF_AUDIO_METERS_INCLUDED_H */
-

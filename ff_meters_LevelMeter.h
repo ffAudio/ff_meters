@@ -35,6 +35,9 @@
 
 #pragma once
 
+/** @addtogroup ff_meters */
+/*@{*/
+
 //==============================================================================
 /*
  \class LevelMeter
@@ -299,3 +302,5 @@ private:
 
 inline LevelMeter::MeterFlags operator|(LevelMeter::MeterFlags a, LevelMeter::MeterFlags b)
 {return static_cast<LevelMeter::MeterFlags>(static_cast<int>(a) | static_cast<int>(b));}
+
+/*@}*/
