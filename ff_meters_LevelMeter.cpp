@@ -38,7 +38,7 @@
 
 
 //==============================================================================
-LevelMeter::LevelMeter (const MeterFlags type)
+FFAU::LevelMeter::LevelMeter (const MeterFlags type)
   : source          (nullptr),
     selectedChannel (-1),
     meterType       (type),
@@ -49,34 +49,34 @@ LevelMeter::LevelMeter (const MeterFlags type)
     startTimerHz (refreshRate);
 }
 
-LevelMeter::~LevelMeter()
+FFAU::LevelMeter::~LevelMeter()
 {
     stopTimer();
 }
 
-void LevelMeter::setMeterFlags (const MeterFlags type)
+void FFAU::LevelMeter::setMeterFlags (const MeterFlags type)
 {
     meterType = type;
 }
 
 
-void LevelMeter::setMeterSource (LevelMeterSource* src)
+void FFAU::LevelMeter::setMeterSource (LevelMeterSource* src)
 {
     source = src;
 }
 
-void LevelMeter::setSelectedChannel (const int c)
+void FFAU::LevelMeter::setSelectedChannel (const int c)
 {
     selectedChannel = c;
 }
 
-void LevelMeter::setRefreshRateHz (const int newRefreshRate)
+void FFAU::LevelMeter::setRefreshRateHz (const int newRefreshRate)
 {
     refreshRate = newRefreshRate;
     startTimerHz (refreshRate);
 }
 
-void LevelMeter::paint (Graphics& g)
+void FFAU::LevelMeter::paint (Graphics& g)
 {
     Graphics::ScopedSaveState saved (g);
 
@@ -113,17 +113,17 @@ void LevelMeter::paint (Graphics& g)
     }
 }
 
-void LevelMeter::resized ()
+void FFAU::LevelMeter::resized ()
 {
     backgroundNeedsRepaint = true;
 }
 
-void LevelMeter::timerCallback ()
+void FFAU::LevelMeter::timerCallback ()
 {
     repaint();
 }
 
-void LevelMeter::clearClipIndicator (const int channel)
+void FFAU::LevelMeter::clearClipIndicator (const int channel)
 {
     if (source) {
         if (channel < 0) {
@@ -135,7 +135,7 @@ void LevelMeter::clearClipIndicator (const int channel)
     }
 }
 
-void LevelMeter::clearMaxLevelDisplay (const int channel)
+void FFAU::LevelMeter::clearMaxLevelDisplay (const int channel)
 {
     if (source) {
         if (channel < 0) {
@@ -147,7 +147,7 @@ void LevelMeter::clearMaxLevelDisplay (const int channel)
     }
 }
 
-void LevelMeter::mouseDown (const juce::MouseEvent &event)
+void FFAU::LevelMeter::mouseDown (const juce::MouseEvent &event)
 {
     if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&getLookAndFeel())) {
         const juce::Rectangle<float> innerBounds = lnf->getMeterInnerBounds (getLocalBounds().toFloat(),
@@ -171,12 +171,12 @@ void LevelMeter::mouseDown (const juce::MouseEvent &event)
     }
 }
 
-void LevelMeter::addListener (LevelMeter::Listener* listener)
+void FFAU::LevelMeter::addListener (LevelMeter::Listener* listener)
 {
     listeners.add (listener);
 }
 
-void LevelMeter::removeListener (LevelMeter::Listener* listener)
+void FFAU::LevelMeter::removeListener (LevelMeter::Listener* listener)
 {
     listeners.remove (listener);
 }

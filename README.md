@@ -27,26 +27,29 @@ Or you can use the LevelMeterLookAndFeel directly because it inherits from juce:
 for your convenience. You can set it as default LookAndFeel, if you used the default, 
 or set it only to the meters, if you don't want it to interfere.
 
+All classes are in the namespace FFAU to avoid collisions. You can either prefix each symbol, 
+or import the namespace.
+
     // In your Editor
     public:
         PluginEditor () {
-            lnf = new LevelMeterLookAndFeel();
+            lnf = new FFAU::LevelMeterLookAndFeel();
             // adjust the colours to how you like them
-            lnf->setColour (LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
+            lnf->setColour (FFAU::LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
     
-            meter = new LevelMeter (); // See LevelMeter::MeterFlags for options
+            meter = new FFAU::LevelMeter (); // See FFAU::LevelMeter::MeterFlags for options
             meter->setLookAndFeel (lnf);
             meter->setMeterSource (processor.getMeterSource());
             addAndMakeVisible (meter);
             // ...
         }
     private:
-        ScopedPointer<LevelMeter> meter;
-        ScopedPointer<LevelMeterLookAndFeel> lnf;
+        ScopedPointer<FFAU::LevelMeter> meter;
+        ScopedPointer<FFAU::LevelMeterLookAndFeel> lnf;
 
     // and in the processor:
     public:
-        LevelMeterSource* getMeterSource ()
+        FFAU::LevelMeterSource* getMeterSource ()
         {
             return &meterSource;
         }
@@ -58,7 +61,7 @@ or set it only to the meters, if you don't want it to interfere.
         }
 
     private:
-        LevelMeterSource meterSource;
+        FFAU::LevelMeterSource meterSource;
 
 
 

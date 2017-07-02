@@ -61,6 +61,11 @@
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_audio_devices/juce_audio_devices.h>
 
+namespace FFAU
+{
+
 #include <ff_meters/ff_meters_LevelMeterSource.h>
 #include <ff_meters/ff_meters_LevelMeter.h>
 #include <ff_meters/ff_meters_LookAndFeel.h>
+
+}

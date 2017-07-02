@@ -44,29 +44,29 @@
 
 void setupDefaultMeterColours () override
 {
-    setColour (LevelMeter::lmTextColour,             juce::Colours::lightgrey);
-    setColour (LevelMeter::lmTextClipColour,         juce::Colours::white);
-    setColour (LevelMeter::lmTextDeactiveColour,     juce::Colours::darkgrey);
-    setColour (LevelMeter::lmTicksColour,            juce::Colours::orange);
-    setColour (LevelMeter::lmOutlineColour,          juce::Colours::orange);
-    setColour (LevelMeter::lmBackgroundColour,       juce::Colour (0xff050a29));
-    setColour (LevelMeter::lmBackgroundClipColour,   juce::Colours::red);
-    setColour (LevelMeter::lmMeterForegroundColour,  juce::Colours::green);
-    setColour (LevelMeter::lmMeterOutlineColour,     juce::Colours::lightgrey);
-    setColour (LevelMeter::lmMeterBackgroundColour,  juce::Colours::darkgrey);
-    setColour (LevelMeter::lmMeterMaxNormalColour,   juce::Colours::lightgrey);
-    setColour (LevelMeter::lmMeterMaxWarnColour,     juce::Colours::orange);
-    setColour (LevelMeter::lmMeterMaxOverColour,     juce::Colours::darkred);
-    setColour (LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
-    setColour (LevelMeter::lmMeterGradientMidColour, juce::Colours::lightgoldenrodyellow);
-    setColour (LevelMeter::lmMeterGradientMaxColour, juce::Colours::red);
-    setColour (LevelMeter::lmMeterReductionColour,   juce::Colours::orange);
+    setColour (FFAU::LevelMeter::lmTextColour,             juce::Colours::lightgrey);
+    setColour (FFAU::LevelMeter::lmTextClipColour,         juce::Colours::white);
+    setColour (FFAU::LevelMeter::lmTextDeactiveColour,     juce::Colours::darkgrey);
+    setColour (FFAU::LevelMeter::lmTicksColour,            juce::Colours::orange);
+    setColour (FFAU::LevelMeter::lmOutlineColour,          juce::Colours::orange);
+    setColour (FFAU::LevelMeter::lmBackgroundColour,       juce::Colour (0xff050a29));
+    setColour (FFAU::LevelMeter::lmBackgroundClipColour,   juce::Colours::red);
+    setColour (FFAU::LevelMeter::lmMeterForegroundColour,  juce::Colours::green);
+    setColour (FFAU::LevelMeter::lmMeterOutlineColour,     juce::Colours::lightgrey);
+    setColour (FFAU::LevelMeter::lmMeterBackgroundColour,  juce::Colours::darkgrey);
+    setColour (FFAU::LevelMeter::lmMeterMaxNormalColour,   juce::Colours::lightgrey);
+    setColour (FFAU::LevelMeter::lmMeterMaxWarnColour,     juce::Colours::orange);
+    setColour (FFAU::LevelMeter::lmMeterMaxOverColour,     juce::Colours::darkred);
+    setColour (FFAU::LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
+    setColour (FFAU::LevelMeter::lmMeterGradientMidColour, juce::Colours::lightgoldenrodyellow);
+    setColour (FFAU::LevelMeter::lmMeterGradientMaxColour, juce::Colours::red);
+    setColour (FFAU::LevelMeter::lmMeterReductionColour,   juce::Colours::orange);
 }
 
 virtual juce::Rectangle<float> getMeterInnerBounds (const juce::Rectangle<float> bounds,
-                                                    const LevelMeter::MeterFlags meterType) const override
+                                                    const FFAU::LevelMeter::MeterFlags meterType) const override
 {
-    if (meterType & LevelMeter::HasBorder) {
+    if (meterType & FFAU::LevelMeter::HasBorder) {
         const float corner = std::min (bounds.getWidth(), bounds.getHeight()) * 0.01;
         return bounds.reduced (3 + corner);
     }
@@ -74,15 +74,15 @@ virtual juce::Rectangle<float> getMeterInnerBounds (const juce::Rectangle<float>
 }
 
 juce::Rectangle<float> getMeterBounds (const juce::Rectangle<float> bounds,
-                                       const LevelMeter::MeterFlags meterType,
+                                       const FFAU::LevelMeter::MeterFlags meterType,
                                        const int numChannels,
                                        const int channel) const override
 {
-    if (meterType & LevelMeter::SingleChannel) {
+    if (meterType & FFAU::LevelMeter::SingleChannel) {
         return bounds;
     }
     else {
-        if (meterType & LevelMeter::Horizontal) {
+        if (meterType & FFAU::LevelMeter::Horizontal) {
             const float h = bounds.getHeight() / numChannels;
             return bounds.withHeight (h).withY (bounds.getY() + channel * h);
         }
@@ -96,10 +96,10 @@ juce::Rectangle<float> getMeterBounds (const juce::Rectangle<float> bounds,
 
 /** Override this callback to define the placement of the actual meter bar. */
 juce::Rectangle<float> getMeterBarBounds (const juce::Rectangle<float> bounds,
-                                          const LevelMeter::MeterFlags meterType) const override
+                                          const FFAU::LevelMeter::MeterFlags meterType) const override
 {
-    if (meterType & LevelMeter::Minimal) {
-        if (meterType & LevelMeter::Horizontal) {
+    if (meterType & FFAU::LevelMeter::Minimal) {
+        if (meterType & FFAU::LevelMeter::Horizontal) {
             const float margin = bounds.getHeight() * 0.05;
             const float h      = bounds.getHeight() - 2.0 * margin;
             const float left   = bounds.getX() + margin;
@@ -117,11 +117,11 @@ juce::Rectangle<float> getMeterBarBounds (const juce::Rectangle<float> bounds,
                                           bounds.getWidth() - margin * 2.0, bottom - top);
         }
     }
-    else if (meterType & LevelMeter::Vintage) {
+    else if (meterType & FFAU::LevelMeter::Vintage) {
         return bounds;
     }
     else {
-        if (meterType & LevelMeter::Horizontal) {
+        if (meterType & FFAU::LevelMeter::Horizontal) {
             const float margin = bounds.getHeight() * 0.05;
             const float h      = bounds.getHeight() * 0.5 - 2.0 * margin;
             const float left   = 60.0 + 3.0 * margin;
@@ -145,20 +145,20 @@ juce::Rectangle<float> getMeterBarBounds (const juce::Rectangle<float> bounds,
 /** Override this callback to define the placement of the tickmarks.
  To disable this feature return an empty rectangle. */
 juce::Rectangle<float> getMeterTickmarksBounds (const juce::Rectangle<float> bounds,
-                                                const LevelMeter::MeterFlags meterType) const override
+                                                const FFAU::LevelMeter::MeterFlags meterType) const override
 {
-    if (meterType & LevelMeter::Minimal) {
-        if (meterType & LevelMeter::Horizontal) {
+    if (meterType & FFAU::LevelMeter::Minimal) {
+        if (meterType & FFAU::LevelMeter::Horizontal) {
             return getMeterBarBounds(bounds, meterType).reduced (0.0, 2.0);
         }
         else {
             return getMeterBarBounds(bounds, meterType).reduced (2.0, 0.0);
         }
     }
-    else if (meterType & LevelMeter::Vintage) {
+    else if (meterType & FFAU::LevelMeter::Vintage) {
         return bounds;
     } else {
-        if (meterType & LevelMeter::Horizontal) {
+        if (meterType & FFAU::LevelMeter::Horizontal) {
             const float margin = bounds.getHeight() * 0.05;
             const float h      = bounds.getHeight() * 0.5 - 2.0 * margin;
             const float left   = 60.0 + 3.0 * margin;
@@ -182,10 +182,10 @@ juce::Rectangle<float> getMeterTickmarksBounds (const juce::Rectangle<float> bou
 /** Override this callback to define the placement of the clip indicator light.
  To disable this feature return an empty rectangle. */
 juce::Rectangle<float> getMeterClipIndicatorBounds (const juce::Rectangle<float> bounds,
-                                                    const LevelMeter::MeterFlags meterType) const override
+                                                    const FFAU::LevelMeter::MeterFlags meterType) const override
 {
-    if (meterType & LevelMeter::Minimal) {
-        if (meterType & LevelMeter::Horizontal) {
+    if (meterType & FFAU::LevelMeter::Minimal) {
+        if (meterType & FFAU::LevelMeter::Horizontal) {
             const float margin = bounds.getHeight() * 0.05;
             const float h      = bounds.getHeight() - 2.0 * margin;
             return juce::Rectangle<float>(bounds.getRight() - (margin + h * 0.5),
@@ -202,11 +202,11 @@ juce::Rectangle<float> getMeterClipIndicatorBounds (const juce::Rectangle<float>
                                           w * 0.5);
         }
     }
-    else if (meterType & LevelMeter::Vintage) {
+    else if (meterType & FFAU::LevelMeter::Vintage) {
         return bounds;
     }
     else {
-        if (meterType & LevelMeter::Horizontal) {
+        if (meterType & FFAU::LevelMeter::Horizontal) {
             const float margin = bounds.getHeight() * 0.05;
             const float h      = bounds.getHeight() * 0.5 - 2.0 * margin;
             return juce::Rectangle<float>(bounds.getRight() - (margin + h * 0.5),
@@ -229,16 +229,16 @@ juce::Rectangle<float> getMeterClipIndicatorBounds (const juce::Rectangle<float>
 /** Override this callback to define the placement of the max level.
  To disable this feature return an empty rectangle. */
 juce::Rectangle<float> getMeterMaxNumberBounds (const juce::Rectangle<float> bounds,
-                                                const LevelMeter::MeterFlags meterType) const override
+                                                const FFAU::LevelMeter::MeterFlags meterType) const override
 {
-    if (meterType & LevelMeter::Minimal) {
+    if (meterType & FFAU::LevelMeter::Minimal) {
         return juce::Rectangle<float>();
     }
-    else if (meterType & LevelMeter::Vintage) {
+    else if (meterType & FFAU::LevelMeter::Vintage) {
         return bounds;
     }
     else {
-        if (meterType & LevelMeter::Horizontal) {
+        if (meterType & FFAU::LevelMeter::Horizontal) {
             const float margin = bounds.getHeight() * 0.05;
             return juce::Rectangle<float>(bounds.getX() + margin,
                                           bounds.getCentreY() + margin,
@@ -256,14 +256,14 @@ juce::Rectangle<float> getMeterMaxNumberBounds (const juce::Rectangle<float> bou
 }
 
 juce::Rectangle<float> drawBackground (juce::Graphics& g,
-                                       const LevelMeter::MeterFlags meterType,
+                                       const FFAU::LevelMeter::MeterFlags meterType,
                                        const juce::Rectangle<float> bounds) override
 {
-    g.setColour (findColour (LevelMeter::lmBackgroundColour));
-    if (meterType & LevelMeter::HasBorder) {
+    g.setColour (findColour (FFAU::LevelMeter::lmBackgroundColour));
+    if (meterType & FFAU::LevelMeter::HasBorder) {
         const float corner = std::min (bounds.getWidth(), bounds.getHeight()) * 0.01;
         g.fillRoundedRectangle (bounds, corner);
-        g.setColour (findColour (LevelMeter::lmOutlineColour));
+        g.setColour (findColour (FFAU::LevelMeter::lmOutlineColour));
         g.drawRoundedRectangle (bounds.reduced (3), corner, 2);
         return bounds.reduced (3 + corner);
     }
@@ -274,16 +274,16 @@ juce::Rectangle<float> drawBackground (juce::Graphics& g,
 }
 
 void drawMeterBars (juce::Graphics& g,
-                    const LevelMeter::MeterFlags meterType,
+                    const FFAU::LevelMeter::MeterFlags meterType,
                     const juce::Rectangle<float> bounds,
-                    const LevelMeterSource* source,
+                    const FFAU::LevelMeterSource* source,
                     const int selectedChannel=-1) override
 {
     const juce::Rectangle<float> innerBounds = getMeterInnerBounds (bounds, meterType);
     if (source) {
         const int numChannels = source->getNumChannels();
-        if (meterType & LevelMeter::Minimal) {
-            if (meterType & LevelMeter::Horizontal) {
+        if (meterType & FFAU::LevelMeter::Minimal) {
+            if (meterType & FFAU::LevelMeter::Horizontal) {
                 const float height = innerBounds.getHeight() / (2 * numChannels - 1);
                 juce::Rectangle<float> meter = innerBounds.withHeight (height);
                 for (int channel=0; channel < numChannels; ++channel) {
@@ -322,7 +322,7 @@ void drawMeterBars (juce::Graphics& g,
                 }
             }
         }
-        else if (meterType & LevelMeter::SingleChannel) {
+        else if (meterType & FFAU::LevelMeter::SingleChannel) {
             if (selectedChannel >= 0) {
                 drawMeterChannel (g, meterType, innerBounds, source, selectedChannel);
             }
@@ -339,13 +339,13 @@ void drawMeterBars (juce::Graphics& g,
 }
 
 void drawMeterBarsBackground (juce::Graphics& g,
-                              const LevelMeter::MeterFlags meterType,
+                              const FFAU::LevelMeter::MeterFlags meterType,
                               const juce::Rectangle<float> bounds,
                               const int numChannels) override
 {
     const juce::Rectangle<float> innerBounds = getMeterInnerBounds (bounds, meterType);
-    if (meterType & LevelMeter::Minimal) {
-        if (meterType & LevelMeter::Horizontal) {
+    if (meterType & FFAU::LevelMeter::Minimal) {
+        if (meterType & FFAU::LevelMeter::Horizontal) {
             const float height = innerBounds.getHeight() / (2 * numChannels - 1);
             juce::Rectangle<float> meter = innerBounds.withHeight (height);
             for (int channel=0; channel < numChannels; ++channel) {
@@ -380,7 +380,7 @@ void drawMeterBarsBackground (juce::Graphics& g,
             }
         }
     }
-    else if (meterType & LevelMeter::SingleChannel) {
+    else if (meterType & FFAU::LevelMeter::SingleChannel) {
         drawMeterChannelBackground (g, meterType, innerBounds);
     }
     else {
@@ -393,15 +393,15 @@ void drawMeterBarsBackground (juce::Graphics& g,
 
 
 void drawMeterChannel (juce::Graphics& g,
-                       const LevelMeter::MeterFlags meterType,
+                       const FFAU::LevelMeter::MeterFlags meterType,
                        const juce::Rectangle<float> bounds,
-                       const LevelMeterSource* source,
+                       const FFAU::LevelMeterSource* source,
                        const int selectedChannel) override
 {
     if (source) {
         juce::Rectangle<float> meter = getMeterBarBounds (bounds, meterType);
         if (! meter.isEmpty()) {
-            if (meterType & LevelMeter::Reduction) {
+            if (meterType & FFAU::LevelMeter::Reduction) {
                 drawMeterBar (g, meterType, meter,
                               source->getReductionLevel (selectedChannel),
                               0.0f);
@@ -419,7 +419,7 @@ void drawMeterChannel (juce::Graphics& g,
         }
         juce::Rectangle<float> maxes = getMeterMaxNumberBounds (bounds, meterType);
         if (! maxes.isEmpty()) {
-            if (meterType & LevelMeter::Reduction) {
+            if (meterType & FFAU::LevelMeter::Reduction) {
                 drawMaxNumber (g, meterType, maxes, source->getReductionLevel (selectedChannel));
             }
             else {
@@ -430,7 +430,7 @@ void drawMeterChannel (juce::Graphics& g,
 }
 
 void drawMeterChannelBackground (juce::Graphics& g,
-                                 const LevelMeter::MeterFlags meterType,
+                                 const FFAU::LevelMeter::MeterFlags meterType,
                                  const juce::Rectangle<float> bounds) override
 {
     juce::Rectangle<float> meter = getMeterBarBounds (bounds, meterType);
@@ -450,21 +450,21 @@ void drawMeterChannelBackground (juce::Graphics& g,
 }
 
 void drawMeterBar (juce::Graphics& g,
-                   const LevelMeter::MeterFlags meterType,
+                   const FFAU::LevelMeter::MeterFlags meterType,
                    const juce::Rectangle<float> bounds,
                    const float rms, const float peak) override
 {
-    const float infinity = meterType & LevelMeter::Reduction ? -30.0f :  -80.0f;
+    const float infinity = meterType & FFAU::LevelMeter::Reduction ? -30.0f :  -80.0f;
     const float rmsDb  = juce::Decibels::gainToDecibels (rms,  infinity);
     const float peakDb = juce::Decibels::gainToDecibels (peak, infinity);
 
-    if (meterType & LevelMeter::Vintage) {
+    if (meterType & FFAU::LevelMeter::Vintage) {
         // TODO
     }
-    else if (meterType & LevelMeter::Reduction) {
+    else if (meterType & FFAU::LevelMeter::Reduction) {
         const float limitDb = juce::Decibels::gainToDecibels (rms, infinity);
-        g.setColour (findColour (LevelMeter::lmMeterReductionColour));
-        if (meterType & LevelMeter::Horizontal) {
+        g.setColour (findColour (FFAU::LevelMeter::lmMeterReductionColour));
+        if (meterType & FFAU::LevelMeter::Horizontal) {
             g.fillRect (bounds.withLeft (bounds.getX() + limitDb * bounds.getWidth() / infinity));
         }
         else {
@@ -472,38 +472,38 @@ void drawMeterBar (juce::Graphics& g,
         }
     }
     else {
-        if (meterType & LevelMeter::Horizontal) {
-            juce::ColourGradient gradient (findColour (LevelMeter::lmMeterGradientLowColour),
+        if (meterType & FFAU::LevelMeter::Horizontal) {
+            juce::ColourGradient gradient (findColour (FFAU::LevelMeter::lmMeterGradientLowColour),
                                            bounds.getX(), bounds.getY(),
-                                           findColour (LevelMeter::lmMeterGradientMaxColour),
+                                           findColour (FFAU::LevelMeter::lmMeterGradientMaxColour),
                                            bounds.getRight(), bounds.getY(), false);
-            gradient.addColour (0.5, findColour (LevelMeter::lmMeterGradientLowColour));
-            gradient.addColour (0.75, findColour (LevelMeter::lmMeterGradientMidColour));
+            gradient.addColour (0.5, findColour (FFAU::LevelMeter::lmMeterGradientLowColour));
+            gradient.addColour (0.75, findColour (FFAU::LevelMeter::lmMeterGradientMidColour));
             g.setGradientFill (gradient);
             g.fillRect (bounds.withRight (bounds.getX() - rmsDb * bounds.getWidth() / infinity));
 
             if (peakDb > -49.0) {
-                g.setColour (findColour ((peakDb > -0.3f) ? LevelMeter::lmMeterMaxOverColour :
-                                         ((peakDb > -5.0) ? LevelMeter::lmMeterMaxWarnColour :
-                                          LevelMeter::lmMeterMaxNormalColour)));
+                g.setColour (findColour ((peakDb > -0.3f) ? FFAU::LevelMeter::lmMeterMaxOverColour :
+                                         ((peakDb > -5.0) ? FFAU::LevelMeter::lmMeterMaxWarnColour :
+                                          FFAU::LevelMeter::lmMeterMaxNormalColour)));
                 g.drawVerticalLine (bounds.getRight() - juce::jmax (peakDb * bounds.getWidth() / infinity, 0.0f),
                                     bounds.getY(), bounds.getBottom());
             }
         }
         else {
-            juce::ColourGradient gradient (findColour (LevelMeter::lmMeterGradientLowColour),
+            juce::ColourGradient gradient (findColour (FFAU::LevelMeter::lmMeterGradientLowColour),
                                            bounds.getX(), bounds.getBottom(),
-                                           findColour (LevelMeter::lmMeterGradientMaxColour),
+                                           findColour (FFAU::LevelMeter::lmMeterGradientMaxColour),
                                            bounds.getX(), bounds.getY(), false);
-            gradient.addColour (0.5, findColour (LevelMeter::lmMeterGradientLowColour));
-            gradient.addColour (0.75, findColour (LevelMeter::lmMeterGradientMidColour));
+            gradient.addColour (0.5, findColour (FFAU::LevelMeter::lmMeterGradientLowColour));
+            gradient.addColour (0.75, findColour (FFAU::LevelMeter::lmMeterGradientMidColour));
             g.setGradientFill (gradient);
             g.fillRect (bounds.withTop (bounds.getY() + rmsDb * bounds.getHeight() / infinity));
 
             if (peakDb > -49.0) {
-                g.setColour (findColour ((peakDb > -0.3f) ? LevelMeter::lmMeterMaxOverColour :
-                                         ((peakDb > -5.0) ? LevelMeter::lmMeterMaxWarnColour :
-                                          LevelMeter::lmMeterMaxNormalColour)));
+                g.setColour (findColour ((peakDb > -0.3f) ? FFAU::LevelMeter::lmMeterMaxOverColour :
+                                         ((peakDb > -5.0) ? FFAU::LevelMeter::lmMeterMaxWarnColour :
+                                          FFAU::LevelMeter::lmMeterMaxNormalColour)));
                 g.drawHorizontalLine (bounds.getY() + juce::jmax (peakDb * bounds.getHeight() / infinity, 0.0f),
                                       bounds.getX(), bounds.getRight());
             }
@@ -512,25 +512,25 @@ void drawMeterBar (juce::Graphics& g,
 }
 
 void drawMeterBarBackground (juce::Graphics& g,
-                             const LevelMeter::MeterFlags meterType,
+                             const FFAU::LevelMeter::MeterFlags meterType,
                              const juce::Rectangle<float> bounds) override
 {
-    g.setColour (findColour (LevelMeter::lmMeterBackgroundColour));
+    g.setColour (findColour (FFAU::LevelMeter::lmMeterBackgroundColour));
     g.fillRect  (bounds);
 
-    g.setColour (findColour (LevelMeter::lmMeterOutlineColour));
+    g.setColour (findColour (FFAU::LevelMeter::lmMeterOutlineColour));
     g.drawRect (bounds, 1.0);
 }
 
 void drawTickMarks (juce::Graphics& g,
-                    const LevelMeter::MeterFlags meterType,
+                    const FFAU::LevelMeter::MeterFlags meterType,
                     const juce::Rectangle<float> bounds) override
 {
-    const float infinity = meterType & LevelMeter::Reduction ? -30.0f :  -80.0f;
+    const float infinity = meterType & FFAU::LevelMeter::Reduction ? -30.0f :  -80.0f;
 
-    g.setColour (findColour (LevelMeter::lmTicksColour));
-    if (meterType & LevelMeter::Minimal) {
-        if (meterType & LevelMeter::Horizontal) {
+    g.setColour (findColour (FFAU::LevelMeter::lmTicksColour));
+    if (meterType & FFAU::LevelMeter::Minimal) {
+        if (meterType & FFAU::LevelMeter::Horizontal) {
             for (int i=0; i<11; ++i)
                 g.drawVerticalLine (bounds.getX() + i * 0.1f * bounds.getWidth(),
                                     bounds.getY() + 4,
@@ -555,11 +555,11 @@ void drawTickMarks (juce::Graphics& g,
             }
         }
     }
-    else if (meterType & LevelMeter::Vintage) {
+    else if (meterType & FFAU::LevelMeter::Vintage) {
         // TODO
     }
     else {
-        if (meterType & LevelMeter::Horizontal) {
+        if (meterType & FFAU::LevelMeter::Horizontal) {
             for (int i=0; i<11; ++i)
                 g.drawVerticalLine (bounds.getX() + i * 0.1f * bounds.getWidth(),
                                     bounds.getY() + 4,
@@ -591,55 +591,55 @@ void drawTickMarks (juce::Graphics& g,
 }
 
 void drawClipIndicator (juce::Graphics& g,
-                        const LevelMeter::MeterFlags meterType,
+                        const FFAU::LevelMeter::MeterFlags meterType,
                         const juce::Rectangle<float> bounds,
                         const bool hasClipped) override
 {
-    g.setColour (findColour (hasClipped ? LevelMeter::lmBackgroundClipColour : LevelMeter::lmMeterBackgroundColour));
+    g.setColour (findColour (hasClipped ? FFAU::LevelMeter::lmBackgroundClipColour : FFAU::LevelMeter::lmMeterBackgroundColour));
     g.fillRect (bounds);
-    g.setColour (findColour (LevelMeter::lmMeterOutlineColour));
+    g.setColour (findColour (FFAU::LevelMeter::lmMeterOutlineColour));
     g.drawRect (bounds, 1.0);
 }
 
 void drawClipIndicatorBackground (juce::Graphics& g,
-                                  const LevelMeter::MeterFlags meterType,
+                                  const FFAU::LevelMeter::MeterFlags meterType,
                                   const juce::Rectangle<float> bounds) override
 {
-    g.setColour (findColour (LevelMeter::lmMeterBackgroundColour));
+    g.setColour (findColour (FFAU::LevelMeter::lmMeterBackgroundColour));
     g.fillRect (bounds);
-    g.setColour (findColour (LevelMeter::lmMeterOutlineColour));
+    g.setColour (findColour (FFAU::LevelMeter::lmMeterOutlineColour));
     g.drawRect (bounds, 1.0);
 }
 
 void drawMaxNumber (juce::Graphics& g,
-                    const LevelMeter::MeterFlags meterType,
+                    const FFAU::LevelMeter::MeterFlags meterType,
                     const juce::Rectangle<float> bounds,
                     const float maxGain) override
 {
-    g.setColour (findColour (LevelMeter::lmMeterBackgroundColour));
+    g.setColour (findColour (FFAU::LevelMeter::lmMeterBackgroundColour));
     g.fillRect (bounds);
     const float maxDb = juce::Decibels::gainToDecibels (maxGain, -80.0f);
-    g.setColour (findColour (maxDb > 0.0 ? LevelMeter::lmTextClipColour : LevelMeter::lmTextColour));
+    g.setColour (findColour (maxDb > 0.0 ? FFAU::LevelMeter::lmTextClipColour : FFAU::LevelMeter::lmTextColour));
     g.setFont (bounds.getHeight() * 0.5f);
     g.drawFittedText (juce::String (maxDb, 1) + " dB",
                       bounds.reduced (2.0).toNearestInt(),
                       juce::Justification::centred, 1);
-    g.setColour (findColour (LevelMeter::lmMeterOutlineColour));
+    g.setColour (findColour (FFAU::LevelMeter::lmMeterOutlineColour));
     g.drawRect (bounds, 1.0);
 }
 
 void drawMaxNumberBackground (juce::Graphics& g,
-                              const LevelMeter::MeterFlags meterType,
+                              const FFAU::LevelMeter::MeterFlags meterType,
                               const juce::Rectangle<float> bounds) override
 {
-    g.setColour (findColour (LevelMeter::lmMeterBackgroundColour));
+    g.setColour (findColour (FFAU::LevelMeter::lmMeterBackgroundColour));
     g.fillRect (bounds);
 }
 
 int hitTestClipIndicator (const juce::Point<int> position,
-                          const LevelMeter::MeterFlags meterType,
+                          const FFAU::LevelMeter::MeterFlags meterType,
                           const juce::Rectangle<float> bounds,
-                          const LevelMeterSource* source) const override
+                          const FFAU::LevelMeterSource* source) const override
 {
     if (source) {
         const int numChannels = source->getNumChannels();
@@ -655,9 +655,9 @@ int hitTestClipIndicator (const juce::Point<int> position,
 }
 
 int hitTestMaxNumber (const juce::Point<int> position,
-                      const LevelMeter::MeterFlags meterType,
+                      const FFAU::LevelMeter::MeterFlags meterType,
                       const juce::Rectangle<float> bounds,
-                      const LevelMeterSource* source) const override
+                      const FFAU::LevelMeterSource* source) const override
 {
     if (source) {
         const int numChannels = source->getNumChannels();
