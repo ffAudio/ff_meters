@@ -14,7 +14,8 @@ var indexSectionsWithContent =
   4: "cm",
   5: "dhlmrsv",
   6: "u",
-  7: "l"
+  7: "f",
+  8: "l"
 };
 
 var indexSectionNames =
@@ -26,7 +27,8 @@ var indexSectionNames =
   4: "enums",
   5: "enumvalues",
   6: "defines",
-  7: "pages"
+  7: "groups",
+  8: "pages"
 };
 
 function convertToId(search)
