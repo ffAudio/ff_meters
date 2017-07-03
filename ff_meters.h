@@ -32,8 +32,8 @@
  vendor:        Foleys Finest Audio UG / Filmstro Ltd.
  version:       0.9.0
  name:          Meters with GUI and LookAndFeel
- description:   Audio helper classes of general purpose
- dependencies:  juce_audio_basics, juce_audio_formats, juce_audio_devices, juce_audio_processors
+ description:   Contains a metering Component, that can display live peak and RMS values 
+ dependencies:  juce_audio_basics, juce_gui_basics, juce_events
  website:       http://www.foleysfinest.com/
  license:       BSD V2 3-clause
 
@@ -57,9 +57,8 @@
 #endif
 
 #include <juce_audio_basics/juce_audio_basics.h>
-#include <juce_audio_formats/juce_audio_formats.h>
-#include <juce_audio_processors/juce_audio_processors.h>
-#include <juce_audio_devices/juce_audio_devices.h>
+#include <juce_gui_basics/juce_gui_basics.h>
+#include <juce_events/juce_events.h>
 
 namespace FFAU
 {

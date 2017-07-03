@@ -222,7 +222,7 @@ public:
      Set a LevelMeterSource to display. This separation is used, so the source can work in the processing and the 
      GUI can display the values.
      */
-    void setMeterSource (LevelMeterSource* source);
+    void setMeterSource (FFAU::LevelMeterSource* source);
 
     /**
      Set a specific channel to display. This is only useful, if MeterFlags::SingleChannel is set.
@@ -268,22 +268,22 @@ public:
          To allow different behaviour, e.g. resetting only one indicator or even all meters spread over the UI.
          \see clearClipIndicator, maxLevelClicked
          */
-        virtual void clipLightClicked (LevelMeter* meter, const int channel, juce::ModifierKeys mods) = 0;
+        virtual void clipLightClicked (FFAU::LevelMeter* meter, const int channel, juce::ModifierKeys mods) = 0;
         /**
          This is called, when the user clicks a max level text. It can be used to reset the max number.
          \see clearMaxLevelDisplay, clipLightClicked
          */
-        virtual void maxLevelClicked (LevelMeter* meter, const int channel, juce::ModifierKeys mods)  = 0;
+        virtual void maxLevelClicked (FFAU::LevelMeter* meter, const int channel, juce::ModifierKeys mods)  = 0;
     };
 
-    void addListener (Listener*);
+    void addListener (FFAU::LevelMeter::Listener*);
 
-    void removeListener (Listener*);
+    void removeListener (FFAU::LevelMeter::Listener*);
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LevelMeter)
     
-    juce::WeakReference<LevelMeterSource> source;
+    juce::WeakReference<FFAU::LevelMeterSource> source;
 
     int                                   selectedChannel;
 
@@ -297,7 +297,7 @@ private:
 
     bool                                  backgroundNeedsRepaint;
 
-    juce::ListenerList<LevelMeter::Listener> listeners;
+    juce::ListenerList<FFAU::LevelMeter::Listener> listeners;
 };
 
 inline LevelMeter::MeterFlags operator|(LevelMeter::MeterFlags a, LevelMeter::MeterFlags b)

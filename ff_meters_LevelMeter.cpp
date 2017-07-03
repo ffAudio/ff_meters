@@ -171,12 +171,12 @@ void FFAU::LevelMeter::mouseDown (const juce::MouseEvent &event)
     }
 }
 
-void FFAU::LevelMeter::addListener (LevelMeter::Listener* listener)
+void FFAU::LevelMeter::addListener (FFAU::LevelMeter::Listener* listener)
 {
     listeners.add (listener);
 }
 
-void FFAU::LevelMeter::removeListener (LevelMeter::Listener* listener)
+void FFAU::LevelMeter::removeListener (FFAU::LevelMeter::Listener* listener)
 {
     listeners.remove (listener);
 }
