@@ -128,13 +128,15 @@ public:
                                     const MeterFlags meterType,
                                     const juce::Rectangle<float> bounds,
                                     const LevelMeterSource* source,
+                                    const int fixedNumChannels=-1,
                                     const int selectedChannel=-1) = 0;
 
         /** This draws the static background of the whole level meter group with all channels */
         virtual void drawMeterBarsBackground (juce::Graphics&,
                                               const MeterFlags meterType,
                                               const juce::Rectangle<float> bounds,
-                                              const int numChannels) = 0;
+                                              const int numChannels,
+                                              const int fixedNumChannels=-1) = 0;
 
         /** This draws a group of informations representing one channel */
         virtual void drawMeterChannel (juce::Graphics&,
@@ -229,6 +231,12 @@ public:
      */
     void setSelectedChannel (const int c);
 
+    /**
+     If you don't know, how many channels will be in the processblock, you can set this number to avoid stretching
+     the width of the channels.
+     */
+    void setFixedNumChannels (const int numChannels);
+
     void setRefreshRateHz (const int newRefreshRate);
 
     /**
@@ -286,6 +294,8 @@ private:
     juce::WeakReference<FFAU::LevelMeterSource> source;
 
     int                                   selectedChannel;
+    
+    int                                   fixedNumChannels;
 
     MeterFlags                            meterType;
 

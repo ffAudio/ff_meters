@@ -277,6 +277,7 @@ void drawMeterBars (juce::Graphics& g,
                     const FFAU::LevelMeter::MeterFlags meterType,
                     const juce::Rectangle<float> bounds,
                     const FFAU::LevelMeterSource* source,
+                    const int fixedNumChannels=-1,
                     const int selectedChannel=-1) override
 {
     const juce::Rectangle<float> innerBounds = getMeterInnerBounds (bounds, meterType);
@@ -329,9 +330,10 @@ void drawMeterBars (juce::Graphics& g,
         }
         else {
             const int numChannels = source->getNumChannels();
+            const int numDrawnChannels = fixedNumChannels < 0 ? numChannels : fixedNumChannels;
             for (int channel=0; channel < numChannels; ++channel) {
                 drawMeterChannel (g, meterType,
-                                  getMeterBounds (innerBounds, meterType, numChannels, channel),
+                                  getMeterBounds (innerBounds, meterType, numDrawnChannels, channel),
                                   source, channel);
             }
         }
@@ -341,7 +343,8 @@ void drawMeterBars (juce::Graphics& g,
 void drawMeterBarsBackground (juce::Graphics& g,
                               const FFAU::LevelMeter::MeterFlags meterType,
                               const juce::Rectangle<float> bounds,
-                              const int numChannels) override
+                              const int numChannels,
+                              const int fixedNumChannels) override
 {
     const juce::Rectangle<float> innerBounds = getMeterInnerBounds (bounds, meterType);
     if (meterType & FFAU::LevelMeter::Minimal) {
@@ -386,7 +389,9 @@ void drawMeterBarsBackground (juce::Graphics& g,
     else {
         for (int channel=0; channel < numChannels; ++channel) {
             drawMeterChannelBackground (g, meterType,
-                                        getMeterBounds (innerBounds, meterType, numChannels, channel));
+                                        getMeterBounds (innerBounds, meterType,
+                                                        fixedNumChannels < 0 ? numChannels : fixedNumChannels,
+                                                        channel));
         }
     }
 }
