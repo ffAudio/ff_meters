@@ -107,10 +107,9 @@ private:
         }
     private:
         void pushNextRMS (const float newRMS) {
-            const float squaredRMS = std::min (newRMS * newRMS, 1.0f);
+            const double squaredRMS = std::min (newRMS * newRMS, 1.0f);
             if (rmsHistory.size() > 0) {
-                float oldRMS = rmsSum - rmsHistory [rmsPtr];
-                rmsSum = oldRMS + squaredRMS;
+                rmsSum = rmsSum + squaredRMS - rmsHistory [rmsPtr];
                 rmsHistory [rmsPtr] = squaredRMS;
                 rmsPtr = (rmsPtr + 1) % rmsHistory.size();
             }
@@ -120,8 +119,8 @@ private:
         }
 
         std::atomic<juce::int64> hold;
-        std::vector<float>       rmsHistory;
-        std::atomic<float>       rmsSum;
+        std::vector<double>      rmsHistory;
+        std::atomic<double>      rmsSum;
         int                      rmsPtr;
     };
 
