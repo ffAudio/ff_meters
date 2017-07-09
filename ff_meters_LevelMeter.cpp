@@ -118,6 +118,9 @@ void FFAU::LevelMeter::paint (Graphics& g)
         // LevelMeter::LookAndFeelMethods
         jassertfalse;
     }
+
+    if (source)
+        source->decayIfNeeded();
 }
 
 void FFAU::LevelMeter::resized ()

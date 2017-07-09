@@ -131,8 +131,9 @@ private:
 
 public:
     LevelMeterSource () :
-    holdMSecs   (500),
-    suspended   (false)
+    holdMSecs       (500),
+    lastMeasurement (0),
+    suspended       (false)
     {}
 
     ~LevelMeterSource ()
@@ -163,18 +164,33 @@ public:
     template<typename FloatType>
     void measureBlock (const juce::AudioBuffer<FloatType>& buffer)
     {
+        lastMeasurement = juce::Time::currentTimeMillis();
         if (! suspended) {
-            const juce::int64 time = juce::Time::currentTimeMillis();
             const int         numChannels = buffer.getNumChannels ();
             const int         numSamples  = buffer.getNumSamples ();
 
             levels.resize (numChannels);
 
             for (int channel=0; channel < numChannels; ++channel) {
-                levels [channel].setLevels (time,
+                levels [channel].setLevels (lastMeasurement,
                                             buffer.getMagnitude (channel, 0, numSamples),
                                             buffer.getRMSLevel  (channel, 0, numSamples),
                                             holdMSecs);
+            }
+        }
+    }
+
+    /**
+     This is called from the GUI. If processing was stalled, this will pump zeroes into the buffer,
+     until the readings return to zero.
+     */
+    void decayIfNeeded()
+    {
+        juce::int64 time = juce::Time::currentTimeMillis();
+        if (time - lastMeasurement > 100) {
+            lastMeasurement = time;
+            for (int channel=0; channel < levels.size(); ++channel) {
+                levels [channel].setLevels (lastMeasurement, 0.0, levels [channel].getAvgRMS() * 0.2, holdMSecs);
             }
         }
     }
@@ -302,6 +318,8 @@ private:
     std::vector<ChannelData> levels;
 
     juce::int64 holdMSecs;
+
+    std::atomic<juce::int64> lastMeasurement;
 
     bool suspended;
 };
