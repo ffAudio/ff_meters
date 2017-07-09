@@ -102,13 +102,18 @@ private:
             pushNextRMS (newRms);
         }
         void setRMSsize (const int numBlocks) {
-            rmsHistory.resize (numBlocks, 0.0f);
+            rmsHistory.assign (numBlocks, 0.0f);
+            rmsSum  = 0.0;
             rmsPtr %= rmsHistory.size();
         }
     private:
         void pushNextRMS (const float newRMS) {
             const double squaredRMS = std::min (newRMS * newRMS, 1.0f);
             if (rmsHistory.size() > 0) {
+//                double s=0.0;
+//                for (int i=0; i<rmsHistory.size(); ++i) s+= rmsHistory [i];
+//                if (s != rmsSum)
+//                    DBG ("RMS: " + juce::String(squaredRMS) + " sum: " + juce::String (rmsSum) + " actual sum: " + juce::String (s) + " difference: " + juce::String (rmsSum - s));
                 rmsSum = rmsSum + squaredRMS - rmsHistory [rmsPtr];
                 rmsHistory [rmsPtr] = squaredRMS;
                 rmsPtr = (rmsPtr + 1) % rmsHistory.size();
@@ -143,6 +148,7 @@ public:
      \param rmsWindow is the number of rms values to gather. Keep that aligned with 
      the sampleRate and the blocksize to get reproducable results.
      e.g. rmsWindow = msecs * 0.001f * sampleRate / blockSize;
+     \FIXME: don't call this when measureBlock is processing
      */
     void resize (const int channels, const int rmsWindow) {
         levels.resize (channels, ChannelData (rmsWindow));
