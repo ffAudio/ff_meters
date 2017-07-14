@@ -190,7 +190,11 @@ public:
         if (time - lastMeasurement > 100) {
             lastMeasurement = time;
             for (int channel=0; channel < levels.size(); ++channel) {
-                levels [channel].setLevels (lastMeasurement, 0.0, levels [channel].getAvgRMS() * 0.2, holdMSecs);
+                levels [channel].setLevels (lastMeasurement, 0.0, levels [channel].getAvgRMS() * 0.05, holdMSecs);
+                float r = levels [channel].reduction;
+                if (r >= 0 ) {
+                    levels [channel].reduction = std::max (r * 1.1f, 1.0f);
+                }
             }
         }
     }
