@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reduction',['Reduction',['../group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaaf49c4c0f8b87c8ec8b0b44d3cf3ceea1',1,'LevelMeter']]]
+  ['reduction',['Reduction',['../group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2adb85cb70c4e25d0e16a499880fed8d12',1,'FFAU::LevelMeter']]]
 ];

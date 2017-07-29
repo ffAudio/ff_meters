@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['singlechannel',['SingleChannel',['../group__ff__meters.html#a641c956e603301a1aa4db79e364ca5eaaae65e1653edaa1c87fa3ff0a7f769e7b',1,'LevelMeter']]]
+  ['singlechannel',['SingleChannel',['../group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a9299d9145d5cffc4b393635a85b2fd57',1,'FFAU::LevelMeter']]]
 ];

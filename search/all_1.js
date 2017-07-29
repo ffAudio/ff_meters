@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['clearallclipflags',['clearAllClipFlags',['../group__ff__meters.html#aeaa25d000feff24e963b6fc0b5742929',1,'LevelMeterSource']]],
-  ['clearallmaxnums',['clearAllMaxNums',['../group__ff__meters.html#ab1771027f5dace366f8866a1a7f0c52a',1,'LevelMeterSource']]],
-  ['clearclipflag',['clearClipFlag',['../group__ff__meters.html#a95a8455f7ce8c837fa1a483d8d07e823',1,'LevelMeterSource']]],
-  ['clearclipindicator',['clearClipIndicator',['../group__ff__meters.html#a409c0c524ca0fc3e15aa1401ae3384e5',1,'LevelMeter']]],
-  ['clearmaxleveldisplay',['clearMaxLevelDisplay',['../group__ff__meters.html#a47a73da347b1f2ace02c4d2ccb626882',1,'LevelMeter']]],
-  ['clearmaxnum',['clearMaxNum',['../group__ff__meters.html#a3ef3205074fde434bb9bbb4fdd78b2ed',1,'LevelMeterSource']]],
-  ['cliplightclicked',['clipLightClicked',['../classLevelMeter_1_1Listener.html#a2c7da06dd46dc317e54dbc2fa9cd9505',1,'LevelMeter::Listener']]],
-  ['colourids',['ColourIds',['../group__ff__meters.html#aebb71a7df2ebf267fa0326a95142cfa3',1,'LevelMeter']]]
+  ['clearallclipflags',['clearAllClipFlags',['../group__ff__meters.html#abe3025c5e5b8784cfe61c02b6983ef0d',1,'FFAU::LevelMeterSource']]],
+  ['clearallmaxnums',['clearAllMaxNums',['../group__ff__meters.html#a41cc23baf8644d2f6fb676318b92a72e',1,'FFAU::LevelMeterSource']]],
+  ['clearclipflag',['clearClipFlag',['../group__ff__meters.html#aa148c1757179140bae731bf8c0bc5f90',1,'FFAU::LevelMeterSource']]],
+  ['clearclipindicator',['clearClipIndicator',['../group__ff__meters.html#a699f7233e4e659e11adc3b6e3ec85005',1,'FFAU::LevelMeter']]],
+  ['clearmaxleveldisplay',['clearMaxLevelDisplay',['../group__ff__meters.html#ae0e8942a507e2b08bad9e01122615c0c',1,'FFAU::LevelMeter']]],
+  ['clearmaxnum',['clearMaxNum',['../group__ff__meters.html#af435f9903575cec7916d1bce40c28a5e',1,'FFAU::LevelMeterSource']]],
+  ['cliplightclicked',['clipLightClicked',['../classFFAU_1_1LevelMeter_1_1Listener.html#ae9ca2a2cd2da435c24822bf74b21ddcc',1,'FFAU::LevelMeter::Listener']]],
+  ['colourids',['ColourIds',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2ee',1,'FFAU::LevelMeter']]]
 ];

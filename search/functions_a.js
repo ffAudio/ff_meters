@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['setfixednumchannels',['setFixedNumChannels',['../group__ff__meters.html#aa0e66973f25db611b252f9ebbb7d1956',1,'LevelMeter']]],
-  ['setmaxholdms',['setMaxHoldMS',['../group__ff__meters.html#a1b39eb144b3fe33bd814f06968dcfc1b',1,'LevelMeterSource']]],
-  ['setmeterflags',['setMeterFlags',['../group__ff__meters.html#adb71a9f43a51772645c39142ebdd7e24',1,'LevelMeter']]],
-  ['setmetersource',['setMeterSource',['../group__ff__meters.html#aeccfea8860e5183c0cc8eee9ff939537',1,'LevelMeter']]],
-  ['setreductionlevel',['setReductionLevel',['../group__ff__meters.html#a4ff644f2bbb00d1cf0eed9266c0e68fb',1,'LevelMeterSource']]],
-  ['setrefreshratehz',['setRefreshRateHz',['../group__ff__meters.html#a41538026ef7469fe2ec9629edb05b6e6',1,'LevelMeter']]],
-  ['setselectedchannel',['setSelectedChannel',['../group__ff__meters.html#a993b09a8c28ad3cd5b65f58c27fcee78',1,'LevelMeter']]],
-  ['setsuspended',['setSuspended',['../group__ff__meters.html#a17d9d25c2e688ba44c73f41e7835892e',1,'LevelMeterSource']]],
-  ['setupdefaultmetercolours',['setupDefaultMeterColours',['../classLevelMeter_1_1LookAndFeelMethods.html#a9b8cfce94a3be16ae86fa2d28bbf2379',1,'LevelMeter::LookAndFeelMethods::setupDefaultMeterColours()'],['../group__ff__meters.html#ad6f5004d1d4f37894506c2cfd0e68440',1,'LevelMeterLookAndFeel::setupDefaultMeterColours()'],['../ff__meters__LookAndFeelMethods_8h.html#ad01416fa193b26634eaa8330e69b07cb',1,'setupDefaultMeterColours():&#160;ff_meters_LookAndFeelMethods.h']]]
+  ['setfixednumchannels',['setFixedNumChannels',['../group__ff__meters.html#a2614a9ca61a23686422cfe4556d5b2d1',1,'FFAU::LevelMeter']]],
+  ['setmaxholdms',['setMaxHoldMS',['../group__ff__meters.html#a6f472e3ea69a1413a8d2235bcd0e2705',1,'FFAU::LevelMeterSource']]],
+  ['setmeterflags',['setMeterFlags',['../group__ff__meters.html#ab70ef143725bbdb790f8e2b71c6cf4a0',1,'FFAU::LevelMeter']]],
+  ['setmetersource',['setMeterSource',['../group__ff__meters.html#a9fbcab3503c6b0eb3bef7e42b047e1d8',1,'FFAU::LevelMeter']]],
+  ['setreductionlevel',['setReductionLevel',['../group__ff__meters.html#a4613e4d588c68545c9dd4fc8cb8797c0',1,'FFAU::LevelMeterSource']]],
+  ['setrefreshratehz',['setRefreshRateHz',['../group__ff__meters.html#ae616b3c0d06d4d3b8f27f69e34135e48',1,'FFAU::LevelMeter']]],
+  ['setselectedchannel',['setSelectedChannel',['../group__ff__meters.html#a53026c4a9beaaa10f41f84a464562927',1,'FFAU::LevelMeter']]],
+  ['setsuspended',['setSuspended',['../group__ff__meters.html#a8b3e9e60354036a7e6e5857775027d0a',1,'FFAU::LevelMeterSource']]],
+  ['setupdefaultmetercolours',['setupDefaultMeterColours',['../classFFAU_1_1LevelMeter_1_1LookAndFeelMethods.html#ae44dfb51e1475d727a4770d12b7a0006',1,'FFAU::LevelMeter::LookAndFeelMethods::setupDefaultMeterColours()'],['../group__ff__meters.html#a4b625bf848d96e016f19127989687889',1,'FFAU::LevelMeterLookAndFeel::setupDefaultMeterColours()'],['../ff__meters__LookAndFeelMethods_8h.html#ad01416fa193b26634eaa8330e69b07cb',1,'setupDefaultMeterColours():&#160;ff_meters_LookAndFeelMethods.h']]]
 ];
