@@ -113,7 +113,7 @@ juce::Rectangle<float> getMeterBarBounds (const juce::Rectangle<float> bounds,
             const float margin = bounds.getWidth() * 0.05;
             const float top    = bounds.getY() + 2.0 * margin + bounds.getWidth() * 0.5;
             const float bottom = (meterType & FFAU::LevelMeter::MaxNumber) ?
-                                  bounds.getBottom() - (2.0f * margin + (bounds.getWidth() - margin * 2.0) * 0.6f)
+                                  bounds.getBottom() - (3.0f * margin + (bounds.getWidth() - margin * 2.0) * 0.6f)
                                   : bounds.getBottom() - margin;
             return juce::Rectangle<float>(bounds.getX() + margin, top,
                                           bounds.getWidth() - margin * 2.0, bottom - top);
@@ -490,6 +490,10 @@ void drawMeterBar (juce::Graphics& g,
     const float rmsDb  = juce::Decibels::gainToDecibels (rms,  infinity);
     const float peakDb = juce::Decibels::gainToDecibels (peak, infinity);
 
+    const juce::Rectangle<float> floored (ceilf (bounds.getX()) + 1.0f, ceilf (bounds.getY()) + 1.0f,
+                                          floorf (bounds.getRight()) - (ceilf (bounds.getX() + 2.0f)),
+                                          floorf (bounds.getBottom()) - (ceilf (bounds.getY()) + 2.0f));
+
     if (meterType & FFAU::LevelMeter::Vintage) {
         // TODO
     }
@@ -497,47 +501,47 @@ void drawMeterBar (juce::Graphics& g,
         const float limitDb = juce::Decibels::gainToDecibels (rms, infinity);
         g.setColour (findColour (FFAU::LevelMeter::lmMeterReductionColour));
         if (meterType & FFAU::LevelMeter::Horizontal) {
-            g.fillRect (bounds.withLeft (bounds.getX() + limitDb * bounds.getWidth() / infinity));
+            g.fillRect (floored.withLeft (floored.getX() + limitDb * floored.getWidth() / infinity));
         }
         else {
-            g.fillRect (bounds.withBottom (bounds.getY() + limitDb * bounds.getHeight() / infinity));
+            g.fillRect (floored.withBottom (floored.getY() + limitDb * floored.getHeight() / infinity));
         }
     }
     else {
         if (meterType & FFAU::LevelMeter::Horizontal) {
             juce::ColourGradient gradient (findColour (FFAU::LevelMeter::lmMeterGradientLowColour),
-                                           bounds.getX(), bounds.getY(),
+                                           floored.getX(), floored.getY(),
                                            findColour (FFAU::LevelMeter::lmMeterGradientMaxColour),
-                                           bounds.getRight(), bounds.getY(), false);
+                                           floored.getRight(), floored.getY(), false);
             gradient.addColour (0.5, findColour (FFAU::LevelMeter::lmMeterGradientLowColour));
             gradient.addColour (0.75, findColour (FFAU::LevelMeter::lmMeterGradientMidColour));
             g.setGradientFill (gradient);
-            g.fillRect (bounds.withRight (bounds.getX() - rmsDb * bounds.getWidth() / infinity));
+            g.fillRect (floored.withRight (floored.getX() - rmsDb * floored.getWidth() / infinity));
 
             if (peakDb > -49.0) {
                 g.setColour (findColour ((peakDb > -0.3f) ? FFAU::LevelMeter::lmMeterMaxOverColour :
                                          ((peakDb > -5.0) ? FFAU::LevelMeter::lmMeterMaxWarnColour :
                                           FFAU::LevelMeter::lmMeterMaxNormalColour)));
-                g.drawVerticalLine (bounds.getRight() - juce::jmax (peakDb * bounds.getWidth() / infinity, 0.0f),
-                                    bounds.getY(), bounds.getBottom());
+                g.drawVerticalLine (floored.getRight() - juce::jmax (peakDb * floored.getWidth() / infinity, 0.0f),
+                                    floored.getY(), floored.getBottom());
             }
         }
         else {
             juce::ColourGradient gradient (findColour (FFAU::LevelMeter::lmMeterGradientLowColour),
-                                           bounds.getX(), bounds.getBottom(),
+                                           floored.getX(), floored.getBottom(),
                                            findColour (FFAU::LevelMeter::lmMeterGradientMaxColour),
-                                           bounds.getX(), bounds.getY(), false);
+                                           floored.getX(), floored.getY(), false);
             gradient.addColour (0.5, findColour (FFAU::LevelMeter::lmMeterGradientLowColour));
             gradient.addColour (0.75, findColour (FFAU::LevelMeter::lmMeterGradientMidColour));
             g.setGradientFill (gradient);
-            g.fillRect (bounds.withTop (bounds.getY() + rmsDb * bounds.getHeight() / infinity));
+            g.fillRect (floored.withTop (floored.getY() + rmsDb * floored.getHeight() / infinity));
 
             if (peakDb > -49.0) {
                 g.setColour (findColour ((peakDb > -0.3f) ? FFAU::LevelMeter::lmMeterMaxOverColour :
                                          ((peakDb > -5.0) ? FFAU::LevelMeter::lmMeterMaxWarnColour :
                                           FFAU::LevelMeter::lmMeterMaxNormalColour)));
-                g.drawHorizontalLine (bounds.getY() + juce::jmax (peakDb * bounds.getHeight() / infinity, 0.0f),
-                                      bounds.getX(), bounds.getRight());
+                g.drawHorizontalLine (floored.getY() + juce::jmax (peakDb * floored.getHeight() / infinity, 0.0f),
+                                      floored.getX(), floored.getRight());
             }
         }
     }

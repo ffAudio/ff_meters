@@ -190,7 +190,7 @@ public:
         if (time - lastMeasurement > 100) {
             lastMeasurement = time;
             for (int channel=0; channel < levels.size(); ++channel) {
-                levels [channel].setLevels (lastMeasurement, 0.0, levels [channel].getAvgRMS() * 0.2, holdMSecs);
+                levels [channel].setLevels (lastMeasurement, 0.0f, 0.0f, holdMSecs);
             }
         }
     }
