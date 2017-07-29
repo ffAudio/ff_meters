@@ -35,6 +35,9 @@
 
 #pragma once
 
+namespace FFAU
+{
+
 class LevelMeterSource;
 
 /** @addtogroup ff_meters */
@@ -75,3 +78,5 @@ public:
 };
 
 /*@}*/
+
+} // end namespace FFAU

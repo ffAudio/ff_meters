@@ -60,11 +60,6 @@
 #include <juce_gui_basics/juce_gui_basics.h>
 #include <juce_events/juce_events.h>
 
-namespace FFAU
-{
-
 #include <ff_meters/ff_meters_LevelMeterSource.h>
 #include <ff_meters/ff_meters_LevelMeter.h>
 #include <ff_meters/ff_meters_LookAndFeel.h>
-
-}

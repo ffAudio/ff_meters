@@ -38,6 +38,9 @@
 #include <atomic>
 #include <vector>
 
+namespace FFAU
+{
+
 /** @addtogroup ff_meters */
 /*@{*/
 
@@ -325,3 +328,5 @@ private:
 };
 
 /*@}*/
+
+} // end namespace FFAU

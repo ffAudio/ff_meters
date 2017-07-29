@@ -35,6 +35,9 @@
 
 #pragma once
 
+namespace FFAU
+{
+
 /** @addtogroup ff_meters */
 /*@{*/
 
@@ -315,3 +318,5 @@ inline LevelMeter::MeterFlags operator|(LevelMeter::MeterFlags a, LevelMeter::Me
 {return static_cast<LevelMeter::MeterFlags>(static_cast<int>(a) | static_cast<int>(b));}
 
 /*@}*/
+
+} // end namespace FFAU
