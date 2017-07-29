@@ -113,7 +113,7 @@ juce::Rectangle<float> getMeterBarBounds (const juce::Rectangle<float> bounds,
             const float margin = bounds.getWidth() * 0.05;
             const float top    = bounds.getY() + 2.0 * margin + bounds.getWidth() * 0.5;
             const float bottom = (meterType & FFAU::LevelMeter::MaxNumber) ?
-                                  bounds.getBottom() - (3.0f * margin + (bounds.getWidth() - margin * 2.0) * 0.6f)
+                                  bounds.getBottom() - (3.0f * margin + (bounds.getWidth() - margin * 2.0))
                                   : bounds.getBottom() - margin;
             return juce::Rectangle<float>(bounds.getX() + margin, top,
                                           bounds.getWidth() - margin * 2.0, bottom - top);
@@ -338,7 +338,7 @@ void drawMeterBars (juce::Graphics& g,
                     juce::Rectangle<float> clip = getMeterClipIndicatorBounds (meter, meterType);
                     if (! clip.isEmpty())
                         drawClipIndicator (g, meterType, clip, source->getClipFlag (channel));
-                    juce::Rectangle<float> maxNum = getMeterMaxNumberBounds (meter, meterType);
+                    juce::Rectangle<float> maxNum = getMeterMaxNumberBounds (innerBounds.withWidth (innerBounds.getWidth() / numChannels).withX (innerBounds.getX() + channel * (innerBounds.getWidth() / numChannels)), meterType);
                     if (! maxNum.isEmpty())
                         drawMaxNumber(g, meterType, maxNum, source->getMaxOverallLevel (channel));
                     if (channel < numChannels-1) {
