@@ -112,7 +112,9 @@ juce::Rectangle<float> getMeterBarBounds (const juce::Rectangle<float> bounds,
         else {
             const float margin = bounds.getWidth() * 0.05;
             const float top    = bounds.getY() + 2.0 * margin + bounds.getWidth() * 0.5;
-            const float bottom = bounds.getBottom() - margin;
+            const float bottom = (meterType & FFAU::LevelMeter::MaxNumber) ?
+                                  bounds.getBottom() - (2.0f * margin + (bounds.getWidth() - margin * 2.0) * 0.6f)
+                                  : bounds.getBottom() - margin;
             return juce::Rectangle<float>(bounds.getX() + margin, top,
                                           bounds.getWidth() - margin * 2.0, bottom - top);
         }
@@ -232,7 +234,26 @@ juce::Rectangle<float> getMeterMaxNumberBounds (const juce::Rectangle<float> bou
                                                 const FFAU::LevelMeter::MeterFlags meterType) const override
 {
     if (meterType & FFAU::LevelMeter::Minimal) {
-        return juce::Rectangle<float>();
+        if (meterType & FFAU::LevelMeter::MaxNumber) {
+            if (meterType & FFAU::LevelMeter::Horizontal) {
+                const float margin = bounds.getHeight() * 0.05;
+                const float h      = bounds.getHeight() - 2.0 * margin;
+                return juce::Rectangle<float>(bounds.getRight() - (margin + h * 0.5),
+                                              bounds.getY() + margin,
+                                              h * 0.5, h);
+            }
+            else {
+                const float margin = bounds.getWidth() * 0.05;
+                const float w      = bounds.getWidth() - margin * 2.0;
+                const float h      = w * 0.6f;
+                return juce::Rectangle<float>(bounds.getX() + margin,
+                                              bounds.getBottom() - (margin + h),
+                                              w, h);
+            }
+        }
+        else {
+            return juce::Rectangle<float> ();
+        }
     }
     else if (meterType & FFAU::LevelMeter::Vintage) {
         return bounds;
@@ -295,6 +316,9 @@ void drawMeterBars (juce::Graphics& g,
                     juce::Rectangle<float> clip = getMeterClipIndicatorBounds (meter, meterType);
                     if (! clip.isEmpty())
                         drawClipIndicator (g, meterType, clip, source->getClipFlag (channel));
+                    juce::Rectangle<float> maxNum = getMeterMaxNumberBounds (meter, meterType);
+                    if (! maxNum.isEmpty())
+                        drawMaxNumber(g, meterType, maxNum, source->getMaxOverallLevel (channel));
                     if (channel < numChannels-1) {
                         meter.setY (height * (channel * 2 + 1));
                         juce::Rectangle<float> ticks = getMeterTickmarksBounds (meter, meterType);
@@ -314,6 +338,9 @@ void drawMeterBars (juce::Graphics& g,
                     juce::Rectangle<float> clip = getMeterClipIndicatorBounds (meter, meterType);
                     if (! clip.isEmpty())
                         drawClipIndicator (g, meterType, clip, source->getClipFlag (channel));
+                    juce::Rectangle<float> maxNum = getMeterMaxNumberBounds (meter, meterType);
+                    if (! maxNum.isEmpty())
+                        drawMaxNumber(g, meterType, maxNum, source->getMaxOverallLevel (channel));
                     if (channel < numChannels-1) {
                         meter.setX (width * (channel * 2 + 1));
                         juce::Rectangle<float> ticks = getMeterTickmarksBounds (meter, meterType);
@@ -549,8 +576,8 @@ void drawTickMarks (juce::Graphics& g,
                                       bounds.getRight());
             }
             if (h > 10 && bounds.getWidth() > 20) {
-                // din't print tiny numbers
-                g.setFont (h * 0.8f);
+                // don't print tiny numbers
+                g.setFont (h * 0.5f);
                 for (int i=0; i<10; ++i) {
                     g.drawFittedText (juce::String (i * 0.1 * infinity),
                                       bounds.getX(), bounds.getY() + i * h + 2, bounds.getWidth(),

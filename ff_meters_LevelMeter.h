@@ -57,7 +57,8 @@ public:
         SingleChannel   = 0x0004, /**< Display only one channel meter. \see setSelectedChannel */
         HasBorder       = 0x0008, /**< Displays a rounded border around the meter. This is used with the default constructor */
         Reduction       = 0x0010, /**< Add a reduction meter to be displayed within the meter bar. The value can be set in the LevelMeterSource, \see LevelMeterSource::setReductionLevel (currently unavailable) */
-        Minimal         = 0x0020  /**< For a stereo meter, this tries to save space by showing only one line tickmarks in the middle and no max numbers */
+        Minimal         = 0x0020, /**< For a stereo meter, this tries to save space by showing only one line tickmarks in the middle and no max numbers */
+        MaxNumber       = 0x0040  /**< To add level meter to Minimal, set this flag */
     };
 
     enum ColourIds {
