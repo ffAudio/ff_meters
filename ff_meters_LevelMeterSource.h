@@ -107,7 +107,12 @@ private:
         void setRMSsize (const int numBlocks) {
             rmsHistory.assign (numBlocks, 0.0f);
             rmsSum  = 0.0;
-            rmsPtr %= rmsHistory.size();
+            if (numBlocks > 1) {
+                rmsPtr %= rmsHistory.size();
+            }
+            else {
+                rmsPtr = 0;
+            }
         }
     private:
         void pushNextRMS (const float newRMS) {
