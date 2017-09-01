@@ -103,7 +103,7 @@ juce::Rectangle<float> getMeterBarBounds (const juce::Rectangle<float> bounds,
             const float margin = bounds.getHeight() * 0.05;
             const float h      = bounds.getHeight() - 2.0 * margin;
             const float left   = bounds.getX() + margin;
-            const float right  = bounds.getRight() - (4.0 * margin + h * 0.5);
+            const float right  = bounds.getRight() - (4.0 * margin + h);
             return juce::Rectangle<float>(bounds.getX() + margin,
                                           bounds.getY() + margin,
                                           right - left,
@@ -190,9 +190,9 @@ juce::Rectangle<float> getMeterClipIndicatorBounds (const juce::Rectangle<float>
         if (meterType & FFAU::LevelMeter::Horizontal) {
             const float margin = bounds.getHeight() * 0.05;
             const float h      = bounds.getHeight() - 2.0 * margin;
-            return juce::Rectangle<float>(bounds.getRight() - (margin + h * 0.5),
+            return juce::Rectangle<float>(bounds.getRight() - (margin + h),
                                           bounds.getY() + margin,
-                                          h * 0.5,
+                                          h,
                                           h);
         }
         else {
@@ -238,9 +238,9 @@ juce::Rectangle<float> getMeterMaxNumberBounds (const juce::Rectangle<float> bou
             if (meterType & FFAU::LevelMeter::Horizontal) {
                 const float margin = bounds.getHeight() * 0.05;
                 const float h      = bounds.getHeight() - 2.0 * margin;
-                return juce::Rectangle<float>(bounds.getRight() - (margin + h * 0.5),
+                return juce::Rectangle<float>(bounds.getRight() - (margin + h),
                                               bounds.getY() + margin,
-                                              h * 0.5, h);
+                                              h, h);
             }
             else {
                 const float margin = bounds.getWidth() * 0.05;
@@ -516,7 +516,7 @@ void drawMeterBar (juce::Graphics& g,
             gradient.addColour (0.5, findColour (FFAU::LevelMeter::lmMeterGradientLowColour));
             gradient.addColour (0.75, findColour (FFAU::LevelMeter::lmMeterGradientMidColour));
             g.setGradientFill (gradient);
-            g.fillRect (floored.withRight (floored.getX() - rmsDb * floored.getWidth() / infinity));
+            g.fillRect (floored.withRight (floored.getRight() - rmsDb * floored.getWidth() / infinity));
 
             if (peakDb > -49.0) {
                 g.setColour (findColour ((peakDb > -0.3f) ? FFAU::LevelMeter::lmMeterMaxOverColour :
