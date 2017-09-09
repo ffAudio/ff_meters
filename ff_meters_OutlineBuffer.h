@@ -58,8 +58,9 @@ namespace FFAU
         {
             std::vector<float>           minBuffer;
             std::vector<float>           maxBuffer;
-            std::atomic<int>             writePointer {0};
-            int                          fraction     = 0;
+            std::atomic<int>             writePointer     {0};
+            int                          fraction        = 0;
+            int                          samplesPerBlock = 128;
 
             JUCE_LEAK_DETECTOR (ChannelData)
         public:
@@ -84,6 +85,11 @@ namespace FFAU
                 return static_cast<int> (minBuffer.size());
             }
 
+            void setSamplesPerBlock (const int numSamples)
+            {
+                samplesPerBlock = numSamples;
+            }
+
             /**
              @param numBlocks is the number of values the buffer will store. Allow a little safety buffer, so you
              don't write into the part, where it is currently read
@@ -98,31 +104,30 @@ namespace FFAU
             void pushChannelData (const float* input, const int numSamples)
             {
                 // create peak values
-                int blockSize = 128;
                 int samples = 0;
                 juce::Range<float> minMax;
                 while (samples < numSamples) {
                     int leftover = numSamples - samples;
                     if (fraction > 0) {
-                        minMax = juce::FloatVectorOperations::findMinAndMax (input, blockSize - fraction);
+                        minMax = juce::FloatVectorOperations::findMinAndMax (input, samplesPerBlock - fraction);
                         maxBuffer [writePointer] = std::max (maxBuffer [writePointer], minMax.getEnd());
                         minBuffer [writePointer] = std::min (minBuffer [writePointer], minMax.getStart());
-                        samples += blockSize - fraction;
+                        samples += samplesPerBlock - fraction;
                         fraction = 0;
                         writePointer = (writePointer + 1) % maxBuffer.size();
                     }
-                    else if (leftover > blockSize) {
-                        minMax = juce::FloatVectorOperations::findMinAndMax (input + samples, blockSize);
+                    else if (leftover > samplesPerBlock) {
+                        minMax = juce::FloatVectorOperations::findMinAndMax (input + samples, samplesPerBlock);
                         maxBuffer [writePointer] = minMax.getEnd();
                         minBuffer [writePointer] = minMax.getStart();
-                        samples += blockSize;
+                        samples += samplesPerBlock;
                         writePointer = (writePointer + 1) % maxBuffer.size();
                     }
                     else {
                         minMax = juce::FloatVectorOperations::findMinAndMax (input + samples, leftover);
                         maxBuffer [writePointer] = minMax.getEnd();
                         minBuffer [writePointer] = minMax.getStart();
-                        samples += blockSize - fraction;
+                        samples += samplesPerBlock - fraction;
                         fraction = leftover;
                     }
                 }
@@ -164,6 +169,8 @@ namespace FFAU
         };
         
         std::vector<ChannelData> channelDatas;
+        int                      samplesPerBlock = 128;
+
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OutlineBuffer)
     public:
@@ -179,8 +186,20 @@ namespace FFAU
         void setSize (const int numChannels, const int numBlocks)
         {
             channelDatas.resize (numChannels);
-            for (auto& data : channelDatas)
+            for (auto& data : channelDatas) {
                 data.setSize (numBlocks);
+                data.setSamplesPerBlock (samplesPerBlock);
+            }
+        }
+
+        /**
+         @param numSamples sets the size of each analysed block
+         */
+        void setSamplesPerBlock (const int numSamples)
+        {
+            samplesPerBlock = numSamples;
+            for (auto& data : channelDatas)
+                data.setSamplesPerBlock (numSamples);
         }
 
         /**
