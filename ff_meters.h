@@ -63,3 +63,4 @@
 #include <ff_meters/ff_meters_LevelMeterSource.h>
 #include <ff_meters/ff_meters_LevelMeter.h>
 #include <ff_meters/ff_meters_LookAndFeel.h>
+#include <ff_meters/ff_meters_OutlineBuffer.h>
