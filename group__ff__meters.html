@@ -94,6 +94,9 @@ Classes</h2></td></tr>
 <tr class="memitem:classFFAU_1_1LevelMeterLookAndFeel"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#classFFAU_1_1LevelMeterLookAndFeel">FFAU::LevelMeterLookAndFeel</a></td></tr>
 <tr class="memdesc:classFFAU_1_1LevelMeterLookAndFeel"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience LookAndFeel which derives from LookAndFeel_V3 and <a class="el" href="classFFAU_1_1LevelMeter_1_1LookAndFeelMethods.html" title="These methods define a interface for the LookAndFeel class of juce. ">LevelMeter::LookAndFeelMethods</a>.  <a href="group__ff__meters.html#classFFAU_1_1LevelMeterLookAndFeel">More...</a><br/></td></tr>
 <tr class="separator:classFFAU_1_1LevelMeterLookAndFeel"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:classFFAU_1_1OutlineBuffer"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#classFFAU_1_1OutlineBuffer">FFAU::OutlineBuffer</a></td></tr>
+<tr class="memdesc:classFFAU_1_1OutlineBuffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class implements a circular buffer to store min and max values of anaudio signal.  <a href="group__ff__meters.html#classFFAU_1_1OutlineBuffer">More...</a><br/></td></tr>
+<tr class="separator:classFFAU_1_1OutlineBuffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -2157,6 +2160,221 @@ template&lt;typename FloatType &gt; </div>
 
 </div>
 </div>
+<a name="classFFAU_1_1OutlineBuffer" id="classFFAU_1_1OutlineBuffer"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">class FFAU::OutlineBuffer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>This class implements a circular buffer to store min and max values of anaudio signal. </p>
+<p>The block size can be specified. At any time the UI can request an outline of the last n blocks as Path to fill or stroke </p>
+</div><table class="memberdecls">
+<tr><td colspan="2"><h3>Public Member Functions</h3></td></tr>
+<tr class="memitem:a01a01e06df8846d593eef25a1c9652bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#a01a01e06df8846d593eef25a1c9652bb">OutlineBuffer</a> ()</td></tr>
+<tr class="separator:a01a01e06df8846d593eef25a1c9652bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4f810de688113a27b42325f6b7d5d3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#ab4f810de688113a27b42325f6b7d5d3c">setSize</a> (const int numChannels, const int numBlocks)</td></tr>
+<tr class="separator:ab4f810de688113a27b42325f6b7d5d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5658b9db0b9e8c2452363c6aff3483a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#a5658b9db0b9e8c2452363c6aff3483a4">setSamplesPerBlock</a> (const int numSamples)</td></tr>
+<tr class="separator:a5658b9db0b9e8c2452363c6aff3483a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a15fd10d4d527a9bd5de0489b2d1b0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#a4a15fd10d4d527a9bd5de0489b2d1b0f">pushBlock</a> (const juce::AudioBuffer&lt; float &gt; &amp;buffer, const int numSamples)</td></tr>
+<tr class="memdesc:a4a15fd10d4d527a9bd5de0489b2d1b0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push a block of audio samples into the outline buffer.  <a href="#a4a15fd10d4d527a9bd5de0489b2d1b0f">More...</a><br/></td></tr>
+<tr class="separator:a4a15fd10d4d527a9bd5de0489b2d1b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3399b998d25050af7ec301a08b448350"><td class="memItemLeft" align="right" valign="top">juce::Path&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#a3399b998d25050af7ec301a08b448350">getChannelOutline</a> (const juce::Rectangle&lt; float &gt; bounds, const int channel, const int numSamples) const </td></tr>
+<tr class="memdesc:a3399b998d25050af7ec301a08b448350"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the outline of a specific channel inside the bounds.  <a href="#a3399b998d25050af7ec301a08b448350">More...</a><br/></td></tr>
+<tr class="separator:a3399b998d25050af7ec301a08b448350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7204600f534d3456f9580b0fd4beaca"><td class="memItemLeft" align="right" valign="top">juce::Path&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#ac7204600f534d3456f9580b0fd4beaca">getChannelOutline</a> (const juce::Rectangle&lt; float &gt; bounds, const int numSamples) const </td></tr>
+<tr class="memdesc:ac7204600f534d3456f9580b0fd4beaca"><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns the outlines of each channel, splitting the bounds into equal sized rows.  <a href="#ac7204600f534d3456f9580b0fd4beaca">More...</a><br/></td></tr>
+<tr class="separator:ac7204600f534d3456f9580b0fd4beaca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h4 class="groupheader">Constructor &amp; Destructor Documentation</h4>
+<a class="anchor" id="a01a01e06df8846d593eef25a1c9652bb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FFAU::OutlineBuffer::OutlineBuffer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h4 class="groupheader">Member Function Documentation</h4>
+<a class="anchor" id="ab4f810de688113a27b42325f6b7d5d3c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FFAU::OutlineBuffer::setSize </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>numChannels</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>numBlocks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numChannels</td><td>is the number of channels the buffer will store </td></tr>
+    <tr><td class="paramname">numBlocks</td><td>is the number of values the buffer will store. Allow a little safety buffer, so you don't write into the part, where it is currently read </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a5658b9db0b9e8c2452363c6aff3483a4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FFAU::OutlineBuffer::setSamplesPerBlock </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>numSamples</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numSamples</td><td>sets the size of each analysed block </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4a15fd10d4d527a9bd5de0489b2d1b0f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FFAU::OutlineBuffer::pushBlock </td>
+          <td>(</td>
+          <td class="paramtype">const juce::AudioBuffer&lt; float &gt; &amp;&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>numSamples</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Push a block of audio samples into the outline buffer. </p>
+
+</div>
+</div>
+<a class="anchor" id="a3399b998d25050af7ec301a08b448350"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">juce::Path FFAU::OutlineBuffer::getChannelOutline </td>
+          <td>(</td>
+          <td class="paramtype">const juce::Rectangle&lt; float &gt;&#160;</td>
+          <td class="paramname"><em>bounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>numSamples</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the outline of a specific channel inside the bounds. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bounds</td><td>the rectangle to paint within. The result is not clipped, if samples are exceeding 1.0, it may paint outside </td></tr>
+    <tr><td class="paramname">channel</td><td>the index of the channel to paint </td></tr>
+    <tr><td class="paramname">numSamples</td><td>is the number of sample blocks </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a path with a single channel outline (min to max) </dd></dl>
+
+<p>Referenced by <a class="el" href="group__ff__meters.html#ac7204600f534d3456f9580b0fd4beaca">getChannelOutline()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac7204600f534d3456f9580b0fd4beaca"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">juce::Path FFAU::OutlineBuffer::getChannelOutline </td>
+          <td>(</td>
+          <td class="paramtype">const juce::Rectangle&lt; float &gt;&#160;</td>
+          <td class="paramname"><em>bounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>numSamples</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This returns the outlines of each channel, splitting the bounds into equal sized rows. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bounds</td><td>the rectangle to paint within. The result is not clipped, if samples are exceeding 1.0, it may paint outside </td></tr>
+    <tr><td class="paramname">numSamples</td><td>is the number of sample blocks </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a path with a single channel outline (min to max) </dd></dl>
+
+<p>References <a class="el" href="group__ff__meters.html#a3399b998d25050af7ec301a08b448350">getChannelOutline()</a>.</p>
+
+</div>
+</div>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="ga49fb2488fbb72f8471d570afac32b4b5"></a>
 <div class="memitem">
@@ -2187,7 +2405,7 @@ template&lt;typename FloatType &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 2 2017 01:00:14 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 10 2017 01:00:10 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

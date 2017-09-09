@@ -82,6 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><p>by Daniel Walz / Foleys Finest Audio UG (haftungsbeschraenkt) Published under the BSD License (3 clause)</p>
 <p>The ff_meters provide an easy to use Component to display a level reading for an AudioBuffer. It is to be used in the audio framework JUCE (www.juce.com).</p>
+<p>Find the API documentation here: <a href="https://ffaudio.github.io/ff_meters/">https://ffaudio.github.io/ff_meters/</a></p>
 <h1>Usage </h1>
 <p>To use it create a LevelMeterSource instance next to the AudioBuffer you want to display. To update the meter, call LevelMeterSource::measureBlock (buffer) in your processBlock or getNextAudioBuffer method.</p>
 <p>On the Component use LevelMeter::setMeterSource to link to the LevelMeterSource instance. The number of channels will be updated automatically.</p>
@@ -120,6 +121,26 @@ public:
 
 private:
     FFAU::LevelMeterSource meterSource;
+</pre><h1>OutlineBuffer </h1>
+<p>Another class is capable of reducing the samples going through into min and max blocks. This way you can see the outline of a signal running through. It can be used very similar: </p>
+<pre class="fragment">// in your processor
+private:
+FFAU::OutlineBuffer outline;
+
+// in prepareToPlay
+outline.setSize (getTotalNumInputChannels(), 1024);
+
+// in processBlock
+outline.pushBlock (buffer, buffer.getNumSamples());
+
+// and in the editor's component:
+const Rectangle&lt;float&gt; plotFrame (10.0, 320.0, 580, 80);
+g.setColour (Colours::lightgreen);
+g.fillRect (plotFrame);
+
+Path plot = processor.getChannelOutline (plotFrame, 1000);
+g.setColour (Colours::black);
+g.fillPath (plot);
 </pre><hr/>
 <p>We hope it is of any use, let us know of any problems or improvements you may come up with...</p>
 <p>Brighton, 2nd March 2017</p>
@@ -127,7 +148,7 @@ private:
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 2 2017 01:00:14 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 10 2017 01:00:10 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
