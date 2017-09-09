@@ -8,6 +8,9 @@ Published under the BSD License (3 clause)
 The ff_meters provide an easy to use Component to display a level reading for an
 AudioBuffer. It is to be used in the audio framework JUCE (www.juce.com).
 
+Find the API documentation here: https://ffaudio.github.io/ff_meters/
+
+
 Usage
 =====
 
@@ -62,6 +65,32 @@ or import the namespace.
 
     private:
         FFAU::LevelMeterSource meterSource;
+
+
+OutlineBuffer
+=============
+
+Another class is capable of reducing the samples going through into min and max blocks. This
+way you can see the outline of a signal running through. It can be used very similar:
+
+    // in your processor
+    private:
+    FFAU::OutlineBuffer outline;
+
+    // in prepareToPlay
+    outline.setSize (getTotalNumInputChannels(), 1024);
+
+    // in processBlock
+    outline.pushBlock (buffer, buffer.getNumSamples());
+
+    // and in the editor's component:
+    const Rectangle<float> plotFrame (10.0, 320.0, 580, 80);
+    g.setColour (Colours::lightgreen);
+    g.fillRect (plotFrame);
+
+    Path plot = processor.getChannelOutline (plotFrame, 1000);
+    g.setColour (Colours::black);
+    g.fillPath (plot);
 
 
 
