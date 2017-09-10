@@ -14,6 +14,9 @@ Find the API documentation here: https://ffaudio.github.io/ff_meters/
 Usage
 =====
 
+LevelMeter
+----------
+
 To use it create a LevelMeterSource instance next to the AudioBuffer you want to
 display. To update the meter, call LevelMeterSource::measureBlock (buffer) in your
 processBlock or getNextAudioBuffer method.
@@ -68,7 +71,7 @@ or import the namespace.
 
 
 OutlineBuffer
-=============
+-------------
 
 Another class is capable of reducing the samples going through into min and max blocks. This
 way you can see the outline of a signal running through. It can be used very similar:
