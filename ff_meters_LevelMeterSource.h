@@ -206,11 +206,24 @@ public:
     /**
      With the reduction level you can add an extra bar do indicate, by what amount the level was reduced.
      This will be printed on top of the bar with half the width.
+     @param channel the channel index, that was reduced
+     @param reduction the factor for the reduction applied to the channel, 1.0=no reduction, 0.0=block completely
      */
     void setReductionLevel (const int channel, const float reduction)
     {
         if (juce::isPositiveAndBelow (channel, static_cast<int> (levels.size ())))
             levels [channel].reduction = reduction;
+    }
+
+    /**
+     With the reduction level you can add an extra bar do indicate, by what amount the level was reduced.
+     This will be printed on top of the bar with half the width.
+     @param reduction the factor for the reduction applied to all channels, 1.0=no reduction, 0.0=block completely
+     */
+    void setReductionLevel (const float reduction)
+    {
+        for (auto& channel : levels)
+            channel.reduction = reduction;
     }
 
     /**
