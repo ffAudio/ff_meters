@@ -310,9 +310,17 @@ void drawMeterBars (juce::Graphics& g,
                 juce::Rectangle<float> meter = innerBounds.withHeight (height);
                 for (int channel=0; channel < numChannels; ++channel) {
                     meter.setY (height * channel * 2);
-                    drawMeterBar (g, meterType, getMeterBarBounds (meter, meterType),
-                                  source->getRMSLevel (channel),
-                                  source->getMaxLevel (channel));
+                    {
+                        juce::Rectangle<float> meterBarBounds = getMeterBarBounds (meter, meterType);
+                        drawMeterBar (g, meterType, meterBarBounds,
+                                      source->getRMSLevel (channel),
+                                      source->getMaxLevel (channel));
+                        const float reduction = source->getReductionLevel (channel);
+                        if (reduction < 1.0)
+                            drawMeterReduction (g, meterType,
+                                                meterBarBounds.withBottom (meterBarBounds.getCentreY()),
+                                                reduction);
+                    }
                     juce::Rectangle<float> clip = getMeterClipIndicatorBounds (meter, meterType);
                     if (! clip.isEmpty())
                         drawClipIndicator (g, meterType, clip, source->getClipFlag (channel));
@@ -332,9 +340,17 @@ void drawMeterBars (juce::Graphics& g,
                 juce::Rectangle<float> meter = innerBounds.withWidth(width);
                 for (int channel=0; channel < numChannels; ++channel) {
                     meter.setX (width * channel * 2);
-                    drawMeterBar (g, meterType, getMeterBarBounds (meter, meterType),
-                                  source->getRMSLevel (channel),
-                                  source->getMaxLevel (channel));
+                    {
+                        juce::Rectangle<float> meterBarBounds = getMeterBarBounds (meter, meterType);
+                        drawMeterBar (g, meterType, getMeterBarBounds (meter, meterType),
+                                      source->getRMSLevel (channel),
+                                      source->getMaxLevel (channel));
+                        const float reduction = source->getReductionLevel (channel);
+                        if (reduction < 1.0)
+                            drawMeterReduction (g, meterType,
+                                                meterBarBounds.withLeft (meterBarBounds.getCentreX()),
+                                                reduction);
+                    }
                     juce::Rectangle<float> clip = getMeterClipIndicatorBounds (meter, meterType);
                     if (! clip.isEmpty())
                         drawClipIndicator (g, meterType, clip, source->getClipFlag (channel));
@@ -442,6 +458,17 @@ void drawMeterChannel (juce::Graphics& g,
                 drawMeterBar (g, meterType, meter,
                               source->getRMSLevel (selectedChannel),
                               source->getMaxLevel (selectedChannel));
+                const float reduction = source->getReductionLevel (selectedChannel);
+                if (reduction < 1.0) {
+                    if (meterType & FFAU::LevelMeter::Horizontal)
+                        drawMeterReduction (g, meterType,
+                                            meter.withBottom (meter.getCentreY()),
+                                            reduction);
+                    else
+                        drawMeterReduction (g, meterType,
+                                            meter.withLeft (meter.getCentreX()),
+                                            reduction);
+                }
             }
         }
         if (source->getClipFlag (selectedChannel)) {
@@ -544,6 +571,27 @@ void drawMeterBar (juce::Graphics& g,
                                       floored.getX(), floored.getRight());
             }
         }
+    }
+}
+
+void drawMeterReduction (juce::Graphics& g,
+                         const FFAU::LevelMeter::MeterFlags meterType,
+                         const juce::Rectangle<float> bounds,
+                         const float reduction) override
+{
+    const float infinity = -30.0f;
+    
+    const juce::Rectangle<float> floored (ceilf (bounds.getX()) + 1.0f, ceilf (bounds.getY()) + 1.0f,
+                                          floorf (bounds.getRight()) - (ceilf (bounds.getX() + 2.0f)),
+                                          floorf (bounds.getBottom()) - (ceilf (bounds.getY()) + 2.0f));
+
+    const float limitDb = juce::Decibels::gainToDecibels (reduction, infinity);
+    g.setColour (findColour (FFAU::LevelMeter::lmMeterReductionColour));
+    if (meterType & FFAU::LevelMeter::Horizontal) {
+        g.fillRect (floored.withLeft (floored.getX() + limitDb * floored.getWidth() / infinity));
+    }
+    else {
+        g.fillRect (floored.withBottom (floored.getY() + limitDb * floored.getHeight() / infinity));
     }
 }
 

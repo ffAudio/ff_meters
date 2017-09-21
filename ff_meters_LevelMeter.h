@@ -59,7 +59,9 @@ public:
         Vintage         = 0x0002, /**< Switches to a special mode of old school meters (to come) */
         SingleChannel   = 0x0004, /**< Display only one channel meter. \see setSelectedChannel */
         HasBorder       = 0x0008, /**< Displays a rounded border around the meter. This is used with the default constructor */
-        Reduction       = 0x0010, /**< Add a reduction meter to be displayed within the meter bar. The value can be set in the LevelMeterSource, \see LevelMeterSource::setReductionLevel (currently unavailable) */
+        Reduction       = 0x0010, /**< This turns the bar into a reduction bar.
+                                   The additional reduction bar is automatically added, as soon a reduction value < 1.0 is set
+                                   in the LevelMeterSource. \see LevelMeterSource::setReductionLevel */
         Minimal         = 0x0020, /**< For a stereo meter, this tries to save space by showing only one line tickmarks in the middle and no max numbers */
         MaxNumber       = 0x0040  /**< To add level meter to Minimal, set this flag */
     };
@@ -159,6 +161,12 @@ public:
                                    const MeterFlags meterType,
                                    const juce::Rectangle<float> bounds,
                                    const float rms, const float peak) = 0;
+        
+        /** This callback draws an reduction from top. Only triggered, if a reduction < 1.0 is set in the LevelMeterSource */
+        virtual void drawMeterReduction (juce::Graphics& g,
+                                         const FFAU::LevelMeter::MeterFlags meterType,
+                                         const juce::Rectangle<float> bounds,
+                                         const float reduction) = 0;
 
         /** This draws the background for the actual level bar */
         virtual void drawMeterBarBackground (juce::Graphics&,

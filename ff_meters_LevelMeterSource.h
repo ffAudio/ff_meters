@@ -61,7 +61,7 @@ private:
         max (),
         maxOverall (),
         clip (false),
-        reduction (-1.0f),
+        reduction (1.0f),
         hold (0),
         rmsHistory (rmsWindow, 0.0),
         rmsSum (0.0),
@@ -199,6 +199,7 @@ public:
             lastMeasurement = time;
             for (int channel=0; channel < levels.size(); ++channel) {
                 levels [channel].setLevels (lastMeasurement, 0.0f, 0.0f, holdMSecs);
+                levels [channel].reduction = 1.0f;
             }
         }
     }
