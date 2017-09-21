@@ -231,9 +231,9 @@ Functions</h2></td></tr>
 <p>This is used with the default constructor </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a2aeb223a99ad2e6e0a7e1a170b788bd2adb85cb70c4e25d0e16a499880fed8d12"></a>Reduction</em>&#160;</td><td class="fielddoc">
-<p>Add a reduction meter to be displayed within the meter bar. </p>
-<p>The value can be set in the <a class="el" href="group__ff__meters.html#classFFAU_1_1LevelMeterSource" title="To get a nice meter GUI create a LevelMeterSource in your audioProcessor or whatever instance process...">LevelMeterSource</a>, </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="group__ff__meters.html#a4613e4d588c68545c9dd4fc8cb8797c0" title="With the reduction level you can add an extra bar do indicate, by what amount the level was reduced...">LevelMeterSource::setReductionLevel</a> (currently unavailable) </dd></dl>
+<p>This turns the bar into a reduction bar. </p>
+<p>The additional reduction bar is automatically added, as soon a reduction value &lt; 1.0 is set in the <a class="el" href="group__ff__meters.html#classFFAU_1_1LevelMeterSource" title="To get a nice meter GUI create a LevelMeterSource in your audioProcessor or whatever instance process...">LevelMeterSource</a>. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="group__ff__meters.html#a4613e4d588c68545c9dd4fc8cb8797c0" title="With the reduction level you can add an extra bar do indicate, by what amount the level was reduced...">LevelMeterSource::setReductionLevel</a> </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a2aeb223a99ad2e6e0a7e1a170b788bd2a5edc908ca130d40726978898d7c105af"></a>Minimal</em>&#160;</td><td class="fielddoc">
 <p>For a stereo meter, this tries to save space by showing only one line tickmarks in the middle and no max numbers. </p>
@@ -632,6 +632,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a4613e4d588c68545c9dd4fc8cb8797c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#a4613e4d588c68545c9dd4fc8cb8797c0">setReductionLevel</a> (const int channel, const float reduction)</td></tr>
 <tr class="memdesc:a4613e4d588c68545c9dd4fc8cb8797c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">With the reduction level you can add an extra bar do indicate, by what amount the level was reduced.  <a href="#a4613e4d588c68545c9dd4fc8cb8797c0">More...</a><br/></td></tr>
 <tr class="separator:a4613e4d588c68545c9dd4fc8cb8797c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a588a8c9fc380adcdb3324ba7397bb80c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#a588a8c9fc380adcdb3324ba7397bb80c">setReductionLevel</a> (const float reduction)</td></tr>
+<tr class="memdesc:a588a8c9fc380adcdb3324ba7397bb80c"><td class="mdescLeft">&#160;</td><td class="mdescRight">With the reduction level you can add an extra bar do indicate, by what amount the level was reduced.  <a href="#a588a8c9fc380adcdb3324ba7397bb80c">More...</a><br/></td></tr>
+<tr class="separator:a588a8c9fc380adcdb3324ba7397bb80c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f472e3ea69a1413a8d2235bcd0e2705"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#a6f472e3ea69a1413a8d2235bcd0e2705">setMaxHoldMS</a> (const juce::int64 millis)</td></tr>
 <tr class="memdesc:a6f472e3ea69a1413a8d2235bcd0e2705"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the timeout, how long the peak line will be displayed, before it resets to the current peak.  <a href="#a6f472e3ea69a1413a8d2235bcd0e2705">More...</a><br/></td></tr>
 <tr class="separator:a6f472e3ea69a1413a8d2235bcd0e2705"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -800,6 +803,38 @@ template&lt;typename FloatType &gt; </div>
 
 <p>With the reduction level you can add an extra bar do indicate, by what amount the level was reduced. </p>
 <p>This will be printed on top of the bar with half the width. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>the channel index, that was reduced </td></tr>
+    <tr><td class="paramname">reduction</td><td>the factor for the reduction applied to the channel, 1.0=no reduction, 0.0=block completely </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a588a8c9fc380adcdb3324ba7397bb80c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FFAU::LevelMeterSource::setReductionLevel </td>
+          <td>(</td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>reduction</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>With the reduction level you can add an extra bar do indicate, by what amount the level was reduced. </p>
+<p>This will be printed on top of the bar with half the width. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reduction</td><td>the factor for the reduction applied to all channels, 1.0=no reduction, 0.0=block completely </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -839,7 +874,7 @@ template&lt;typename FloatType &gt; </div>
 <p>This value is not computed but can be set manually via </p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="group__ff__meters.html#a4613e4d588c68545c9dd4fc8cb8797c0" title="With the reduction level you can add an extra bar do indicate, by what amount the level was reduced...">setReductionLevel</a>. </dd></dl>
 
-<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a11ad5eb24a24e779dda0ae73c1c81c99">drawMeterChannel()</a>.</p>
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a3e4d5298ec36cb0a33e5f61e3e4d5e6d">drawMeterBars()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a11ad5eb24a24e779dda0ae73c1c81c99">drawMeterChannel()</a>.</p>
 
 </div>
 </div>
@@ -1114,6 +1149,9 @@ template&lt;typename FloatType &gt; </div>
 <tr class="memitem:abe71231f27e4b42e3e5dbe644cd9c63b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#abe71231f27e4b42e3e5dbe644cd9c63b">drawMeterBar</a> (juce::Graphics &amp;g, const <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2">FFAU::LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds, const float rms, const float peak) override</td></tr>
 <tr class="memdesc:abe71231f27e4b42e3e5dbe644cd9c63b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This callback draws the actual level bar.  <a href="#abe71231f27e4b42e3e5dbe644cd9c63b">More...</a><br/></td></tr>
 <tr class="separator:abe71231f27e4b42e3e5dbe644cd9c63b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8e23bfc8d2cbb8ac12643e8ec1116d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#ac8e23bfc8d2cbb8ac12643e8ec1116d6">drawMeterReduction</a> (juce::Graphics &amp;g, const <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2">FFAU::LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds, const float reduction) override</td></tr>
+<tr class="memdesc:ac8e23bfc8d2cbb8ac12643e8ec1116d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This callback draws an reduction from top.  <a href="#ac8e23bfc8d2cbb8ac12643e8ec1116d6">More...</a><br/></td></tr>
+<tr class="separator:ac8e23bfc8d2cbb8ac12643e8ec1116d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a342ac23686aaa00f71d1da28a2cc7b3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#a342ac23686aaa00f71d1da28a2cc7b3d">drawMeterBarBackground</a> (juce::Graphics &amp;g, const <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2">FFAU::LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds) override</td></tr>
 <tr class="memdesc:a342ac23686aaa00f71d1da28a2cc7b3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This draws the background for the actual level bar.  <a href="#a342ac23686aaa00f71d1da28a2cc7b3d">More...</a><br/></td></tr>
 <tr class="separator:a342ac23686aaa00f71d1da28a2cc7b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1776,6 +1814,57 @@ template&lt;typename FloatType &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="ac8e23bfc8d2cbb8ac12643e8ec1116d6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FFAU::LevelMeterLookAndFeel::drawMeterReduction </td>
+          <td>(</td>
+          <td class="paramtype">juce::Graphics &amp;&#160;</td>
+          <td class="paramname"><em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2">FFAU::LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramname"><em>meterType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const juce::Rectangle&lt; float &gt;&#160;</td>
+          <td class="paramname"><em>bounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>reduction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This callback draws an reduction from top. </p>
+<p>Only triggered, if a reduction &lt; 1.0 is set in the <a class="el" href="group__ff__meters.html#classFFAU_1_1LevelMeterSource" title="To get a nice meter GUI create a LevelMeterSource in your audioProcessor or whatever instance process...">LevelMeterSource</a> </p>
+
+<p>Implements <a class="el" href="classFFAU_1_1LevelMeter_1_1LookAndFeelMethods.html#aa01fddf5a25118679c45fb6f1dbd7bc1">FFAU::LevelMeter::LookAndFeelMethods</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a342ac23686aaa00f71d1da28a2cc7b3d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -2405,7 +2494,7 @@ template&lt;typename FloatType &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 11 2017 01:00:10 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Sep 22 2017 01:00:12 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -150,6 +150,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a03e0b372b156a80ebad774d52d063f2e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFFAU_1_1LevelMeter_1_1LookAndFeelMethods.html#a03e0b372b156a80ebad774d52d063f2e">drawMeterBar</a> (juce::Graphics &amp;, const <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2">MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds, const float rms, const float peak)=0</td></tr>
 <tr class="memdesc:a03e0b372b156a80ebad774d52d063f2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This callback draws the actual level bar.  <a href="#a03e0b372b156a80ebad774d52d063f2e">More...</a><br/></td></tr>
 <tr class="separator:a03e0b372b156a80ebad774d52d063f2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa01fddf5a25118679c45fb6f1dbd7bc1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFFAU_1_1LevelMeter_1_1LookAndFeelMethods.html#aa01fddf5a25118679c45fb6f1dbd7bc1">drawMeterReduction</a> (juce::Graphics &amp;g, const <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2">FFAU::LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds, const float reduction)=0</td></tr>
+<tr class="memdesc:aa01fddf5a25118679c45fb6f1dbd7bc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This callback draws an reduction from top.  <a href="#aa01fddf5a25118679c45fb6f1dbd7bc1">More...</a><br/></td></tr>
+<tr class="separator:aa01fddf5a25118679c45fb6f1dbd7bc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b066616d8eab99a3a5c5daeccb121ee"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFFAU_1_1LevelMeter_1_1LookAndFeelMethods.html#a7b066616d8eab99a3a5c5daeccb121ee">drawMeterBarBackground</a> (juce::Graphics &amp;, const <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2">MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds)=0</td></tr>
 <tr class="memdesc:a7b066616d8eab99a3a5c5daeccb121ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">This draws the background for the actual level bar.  <a href="#a7b066616d8eab99a3a5c5daeccb121ee">More...</a><br/></td></tr>
 <tr class="separator:a7b066616d8eab99a3a5c5daeccb121ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -758,6 +761,57 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="aa01fddf5a25118679c45fb6f1dbd7bc1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void FFAU::LevelMeter::LookAndFeelMethods::drawMeterReduction </td>
+          <td>(</td>
+          <td class="paramtype">juce::Graphics &amp;&#160;</td>
+          <td class="paramname"><em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2">FFAU::LevelMeter::MeterFlags</a>&#160;</td>
+          <td class="paramname"><em>meterType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const juce::Rectangle&lt; float &gt;&#160;</td>
+          <td class="paramname"><em>bounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>reduction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This callback draws an reduction from top. </p>
+<p>Only triggered, if a reduction &lt; 1.0 is set in the <a class="el" href="group__ff__meters.html#classFFAU_1_1LevelMeterSource" title="To get a nice meter GUI create a LevelMeterSource in your audioProcessor or whatever instance process...">LevelMeterSource</a> </p>
+
+<p>Implemented in <a class="el" href="group__ff__meters.html#ac8e23bfc8d2cbb8ac12643e8ec1116d6">FFAU::LevelMeterLookAndFeel</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a7b066616d8eab99a3a5c5daeccb121ee"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1184,7 +1238,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Sep 11 2017 01:00:10 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Sep 22 2017 01:00:12 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

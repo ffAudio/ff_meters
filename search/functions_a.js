@@ -4,7 +4,7 @@ var searchData=
   ['setmaxholdms',['setMaxHoldMS',['../group__ff__meters.html#a6f472e3ea69a1413a8d2235bcd0e2705',1,'FFAU::LevelMeterSource']]],
   ['setmeterflags',['setMeterFlags',['../group__ff__meters.html#ab70ef143725bbdb790f8e2b71c6cf4a0',1,'FFAU::LevelMeter']]],
   ['setmetersource',['setMeterSource',['../group__ff__meters.html#a9fbcab3503c6b0eb3bef7e42b047e1d8',1,'FFAU::LevelMeter']]],
-  ['setreductionlevel',['setReductionLevel',['../group__ff__meters.html#a4613e4d588c68545c9dd4fc8cb8797c0',1,'FFAU::LevelMeterSource']]],
+  ['setreductionlevel',['setReductionLevel',['../group__ff__meters.html#a4613e4d588c68545c9dd4fc8cb8797c0',1,'FFAU::LevelMeterSource::setReductionLevel(const int channel, const float reduction)'],['../group__ff__meters.html#a588a8c9fc380adcdb3324ba7397bb80c',1,'FFAU::LevelMeterSource::setReductionLevel(const float reduction)']]],
   ['setrefreshratehz',['setRefreshRateHz',['../group__ff__meters.html#ae616b3c0d06d4d3b8f27f69e34135e48',1,'FFAU::LevelMeter']]],
   ['setsamplesperblock',['setSamplesPerBlock',['../group__ff__meters.html#a5658b9db0b9e8c2452363c6aff3483a4',1,'FFAU::OutlineBuffer']]],
   ['setselectedchannel',['setSelectedChannel',['../group__ff__meters.html#a53026c4a9beaaa10f41f84a464562927',1,'FFAU::LevelMeter']]],
