@@ -102,7 +102,7 @@ private:
             else if (time > hold) {
                 max = std::min (1.0f, newMax);
             }
-            pushNextRMS (newRms);
+            pushNextRMS (std::min (1.0f, newRms));
         }
         void setRMSsize (const int numBlocks) {
             rmsHistory.assign (numBlocks, 0.0f);
