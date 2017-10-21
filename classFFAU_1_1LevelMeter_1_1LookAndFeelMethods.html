@@ -73,7 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -117,6 +117,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae44dfb51e1475d727a4770d12b7a0006"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFFAU_1_1LevelMeter_1_1LookAndFeelMethods.html#ae44dfb51e1475d727a4770d12b7a0006">setupDefaultMeterColours</a> ()=0</td></tr>
 <tr class="memdesc:ae44dfb51e1475d727a4770d12b7a0006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define your default colours in this callback.  <a href="#ae44dfb51e1475d727a4770d12b7a0006">More...</a><br/></td></tr>
 <tr class="separator:ae44dfb51e1475d727a4770d12b7a0006"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a180776ba58ca5815273e30955a20f0d8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFFAU_1_1LevelMeter_1_1LookAndFeelMethods.html#a180776ba58ca5815273e30955a20f0d8">updateMeterGradients</a> ()=0</td></tr>
+<tr class="memdesc:a180776ba58ca5815273e30955a20f0d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call this to create the cached ColourGradients after changing colours of the meter gradients.  <a href="#a180776ba58ca5815273e30955a20f0d8">More...</a><br/></td></tr>
+<tr class="separator:a180776ba58ca5815273e30955a20f0d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabc52d73b9d45e53cd72baae40e8476f"><td class="memItemLeft" align="right" valign="top">virtual juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFFAU_1_1LevelMeter_1_1LookAndFeelMethods.html#aabc52d73b9d45e53cd72baae40e8476f">getMeterInnerBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2">MeterFlags</a> meterType) const =0</td></tr>
 <tr class="memdesc:aabc52d73b9d45e53cd72baae40e8476f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override this to change the inner rectangle in case you want to paint a border e.g.  <a href="#aabc52d73b9d45e53cd72baae40e8476f">More...</a><br/></td></tr>
 <tr class="separator:aabc52d73b9d45e53cd72baae40e8476f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -237,6 +240,33 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a180776ba58ca5815273e30955a20f0d8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void FFAU::LevelMeter::LookAndFeelMethods::updateMeterGradients </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Call this to create the cached ColourGradients after changing colours of the meter gradients. </p>
+
+<p>Implemented in <a class="el" href="group__ff__meters.html#a773d96a5bd2f0685c5bdeb9be075eb8d">FFAU::LevelMeterLookAndFeel</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aabc52d73b9d45e53cd72baae40e8476f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -271,7 +301,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Override this to change the inner rectangle in case you want to paint a border e.g. </p>
 
-<p>Implemented in <a class="el" href="group__ff__meters.html#aba453586fd1dd7e7c30a5e3b09d18adc">FFAU::LevelMeterLookAndFeel</a>.</p>
+<p>Implemented in <a class="el" href="group__ff__meters.html#a37bd0d5a5ef1cb2d7ec90ee683486bf9">FFAU::LevelMeterLookAndFeel</a>.</p>
 
 </div>
 </div>
@@ -1238,7 +1268,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 2 2017 01:00:13 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 22 2017 01:00:13 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

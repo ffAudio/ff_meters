@@ -11,12 +11,13 @@ var indexSectionsWithContent =
   1: "lo",
   2: "f",
   3: "flr",
-  4: "acdghlmoprst~",
-  5: "cm",
-  6: "dhlmrsv",
-  7: "u",
-  8: "f",
-  9: "l"
+  4: "acdghlmoprstuv~",
+  5: "hv",
+  6: "cm",
+  7: "dhlmrsv",
+  8: "u",
+  9: "f",
+  10: "l"
 };
 
 var indexSectionNames =
@@ -26,11 +27,12 @@ var indexSectionNames =
   2: "namespaces",
   3: "files",
   4: "functions",
-  5: "enums",
-  6: "enumvalues",
-  7: "defines",
-  8: "groups",
-  9: "pages"
+  5: "variables",
+  6: "enums",
+  7: "enumvalues",
+  8: "defines",
+  9: "groups",
+  10: "pages"
 };
 
 function convertToId(search)

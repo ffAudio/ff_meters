@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -83,7 +83,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">ff_meters_LookAndFeelMethods.h File Reference</div>  </div>
 </div><!--header-->
@@ -93,8 +94,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Functions</h2></td></tr>
 <tr class="memitem:ad01416fa193b26634eaa8330e69b07cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ad01416fa193b26634eaa8330e69b07cb">setupDefaultMeterColours</a> () override</td></tr>
 <tr class="separator:ad01416fa193b26634eaa8330e69b07cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87265116da67dbbc917b1d325093dd58"><td class="memItemLeft" align="right" valign="top">virtual juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a87265116da67dbbc917b1d325093dd58">getMeterInnerBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2">FFAU::LevelMeter::MeterFlags</a> meterType) const override</td></tr>
-<tr class="separator:a87265116da67dbbc917b1d325093dd58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef8f6f4f558543dafd5bcfc9587b6519"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aef8f6f4f558543dafd5bcfc9587b6519">updateMeterGradients</a> () override</td></tr>
+<tr class="separator:aef8f6f4f558543dafd5bcfc9587b6519"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0960f4031820ba9db0601c30304deeb"><td class="memItemLeft" align="right" valign="top">juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#af0960f4031820ba9db0601c30304deeb">getMeterInnerBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2">FFAU::LevelMeter::MeterFlags</a> meterType) const override</td></tr>
+<tr class="separator:af0960f4031820ba9db0601c30304deeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab384d9f97568d00d95416eea7ecb6573"><td class="memItemLeft" align="right" valign="top">juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab384d9f97568d00d95416eea7ecb6573">getMeterBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2">FFAU::LevelMeter::MeterFlags</a> meterType, const int numChannels, const int channel) const override</td></tr>
 <tr class="separator:ab384d9f97568d00d95416eea7ecb6573"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa89b81e2b98bae601c96236f4e920f72"><td class="memItemLeft" align="right" valign="top">juce::Rectangle&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa89b81e2b98bae601c96236f4e920f72">getMeterBarBounds</a> (const juce::Rectangle&lt; float &gt; bounds, const <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2">FFAU::LevelMeter::MeterFlags</a> meterType) const override</td></tr>
@@ -139,6 +142,13 @@ Functions</h2></td></tr>
 <tr class="separator:ae58bc2b8644b1f8331c2061761058eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adad65222f2796a481de0f1b78c7aaf38"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#adad65222f2796a481de0f1b78c7aaf38">hitTestMaxNumber</a> (const juce::Point&lt; int &gt; position, const <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2">FFAU::LevelMeter::MeterFlags</a> meterType, const juce::Rectangle&lt; float &gt; bounds, const <a class="el" href="group__ff__meters.html#classFFAU_1_1LevelMeterSource">FFAU::LevelMeterSource</a> *source) const override</td></tr>
 <tr class="separator:adad65222f2796a481de0f1b78c7aaf38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a85b0c607098d2ed45898e29e7c144e4c"><td class="memItemLeft" align="right" valign="top">juce::ColourGradient&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a85b0c607098d2ed45898e29e7c144e4c">horizontalGradient</a></td></tr>
+<tr class="separator:a85b0c607098d2ed45898e29e7c144e4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a528fdf544d8a715150765897ba7ea97f"><td class="memItemLeft" align="right" valign="top">juce::ColourGradient&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a528fdf544d8a715150765897ba7ea97f">verticalGradient</a></td></tr>
+<tr class="separator:a528fdf544d8a715150765897ba7ea97f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="ad01416fa193b26634eaa8330e69b07cb"></a>
@@ -166,7 +176,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a87265116da67dbbc917b1d325093dd58"></a>
+<a class="anchor" id="aef8f6f4f558543dafd5bcfc9587b6519"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -174,7 +184,32 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual juce::Rectangle&lt;float&gt; getMeterInnerBounds </td>
+          <td class="memname">void updateMeterGradients </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a85b0c607098d2ed45898e29e7c144e4c">horizontalGradient</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a528fdf544d8a715150765897ba7ea97f">verticalGradient</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af0960f4031820ba9db0601c30304deeb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">juce::Rectangle&lt;float&gt; getMeterInnerBounds </td>
           <td>(</td>
           <td class="paramtype">const juce::Rectangle&lt; float &gt;&#160;</td>
           <td class="paramname"><em>bounds</em>, </td>
@@ -193,7 +228,7 @@ Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -515,7 +550,7 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ada8f03bd91a816f849a75780f2370393">drawClipIndicator()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab6f410b87f71e0af4f911af66a28e361">drawMaxNumber()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#adec47aced405760a6ef92c98cd3004d7">drawMeterBar()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a11ad5eb24a24e779dda0ae73c1c81c99">drawMeterChannel()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa1d4c1ff8fde2a36635219948603a8de">drawMeterReduction()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a383d1c456e2006e926f66a37cc448cc6">drawTickMarks()</a>, <a class="el" href="group__ff__meters.html#a12c205d00f3e7a59ffa162e439a7f6fd">FFAU::LevelMeterSource::getClipFlag()</a>, <a class="el" href="group__ff__meters.html#a2fdfb0ada99c2f8e88799061abf4903d">FFAU::LevelMeterSource::getMaxLevel()</a>, <a class="el" href="group__ff__meters.html#a20ab5eb0672e69bae1ffb01aa0d50207">FFAU::LevelMeterSource::getMaxOverallLevel()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa89b81e2b98bae601c96236f4e920f72">getMeterBarBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab384d9f97568d00d95416eea7ecb6573">getMeterBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a36e9a4e1d6bcd88c80e62a08975f546f">getMeterClipIndicatorBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a87265116da67dbbc917b1d325093dd58">getMeterInnerBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab2abf9dd5282e337ddd94dc1bb807f16">getMeterMaxNumberBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a1b98efaf09b61c9592755c2edda90fe5">getMeterTickmarksBounds()</a>, <a class="el" href="group__ff__meters.html#a002cb86dddd435677bc5716628c31108">FFAU::LevelMeterSource::getNumChannels()</a>, <a class="el" href="group__ff__meters.html#a2841559914fcf972fef5dea876aa9651">FFAU::LevelMeterSource::getReductionLevel()</a>, <a class="el" href="group__ff__meters.html#a5a6fd77c85d12a59ef4fa807beb67c15">FFAU::LevelMeterSource::getRMSLevel()</a>, <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a1435bab9e11252c851d860a679c26d4d">FFAU::LevelMeter::Horizontal</a>, <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a5edc908ca130d40726978898d7c105af">FFAU::LevelMeter::Minimal</a>, and <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a9299d9145d5cffc4b393635a85b2fd57">FFAU::LevelMeter::SingleChannel</a>.</p>
+<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ada8f03bd91a816f849a75780f2370393">drawClipIndicator()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab6f410b87f71e0af4f911af66a28e361">drawMaxNumber()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#adec47aced405760a6ef92c98cd3004d7">drawMeterBar()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a11ad5eb24a24e779dda0ae73c1c81c99">drawMeterChannel()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa1d4c1ff8fde2a36635219948603a8de">drawMeterReduction()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a383d1c456e2006e926f66a37cc448cc6">drawTickMarks()</a>, <a class="el" href="group__ff__meters.html#a12c205d00f3e7a59ffa162e439a7f6fd">FFAU::LevelMeterSource::getClipFlag()</a>, <a class="el" href="group__ff__meters.html#a2fdfb0ada99c2f8e88799061abf4903d">FFAU::LevelMeterSource::getMaxLevel()</a>, <a class="el" href="group__ff__meters.html#a20ab5eb0672e69bae1ffb01aa0d50207">FFAU::LevelMeterSource::getMaxOverallLevel()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa89b81e2b98bae601c96236f4e920f72">getMeterBarBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab384d9f97568d00d95416eea7ecb6573">getMeterBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a36e9a4e1d6bcd88c80e62a08975f546f">getMeterClipIndicatorBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#af0960f4031820ba9db0601c30304deeb">getMeterInnerBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab2abf9dd5282e337ddd94dc1bb807f16">getMeterMaxNumberBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a1b98efaf09b61c9592755c2edda90fe5">getMeterTickmarksBounds()</a>, <a class="el" href="group__ff__meters.html#a002cb86dddd435677bc5716628c31108">FFAU::LevelMeterSource::getNumChannels()</a>, <a class="el" href="group__ff__meters.html#a2841559914fcf972fef5dea876aa9651">FFAU::LevelMeterSource::getReductionLevel()</a>, <a class="el" href="group__ff__meters.html#a5a6fd77c85d12a59ef4fa807beb67c15">FFAU::LevelMeterSource::getRMSLevel()</a>, <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a1435bab9e11252c851d860a679c26d4d">FFAU::LevelMeter::Horizontal</a>, <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a5edc908ca130d40726978898d7c105af">FFAU::LevelMeter::Minimal</a>, and <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a9299d9145d5cffc4b393635a85b2fd57">FFAU::LevelMeter::SingleChannel</a>.</p>
 
 </div>
 </div>
@@ -569,7 +604,7 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a46ef01e32ca7b563d017f4980971da98">drawClipIndicatorBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab00c0bdf7feff208e6170bd6ec0bcb71">drawMeterBarBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae9a71b6e05cce619a41890f6d5675575">drawMeterChannelBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a383d1c456e2006e926f66a37cc448cc6">drawTickMarks()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa89b81e2b98bae601c96236f4e920f72">getMeterBarBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab384d9f97568d00d95416eea7ecb6573">getMeterBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a36e9a4e1d6bcd88c80e62a08975f546f">getMeterClipIndicatorBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a87265116da67dbbc917b1d325093dd58">getMeterInnerBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a1b98efaf09b61c9592755c2edda90fe5">getMeterTickmarksBounds()</a>, <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a1435bab9e11252c851d860a679c26d4d">FFAU::LevelMeter::Horizontal</a>, <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a5edc908ca130d40726978898d7c105af">FFAU::LevelMeter::Minimal</a>, and <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a9299d9145d5cffc4b393635a85b2fd57">FFAU::LevelMeter::SingleChannel</a>.</p>
+<p>References <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a46ef01e32ca7b563d017f4980971da98">drawClipIndicatorBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab00c0bdf7feff208e6170bd6ec0bcb71">drawMeterBarBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ae9a71b6e05cce619a41890f6d5675575">drawMeterChannelBackground()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a383d1c456e2006e926f66a37cc448cc6">drawTickMarks()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aa89b81e2b98bae601c96236f4e920f72">getMeterBarBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ab384d9f97568d00d95416eea7ecb6573">getMeterBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a36e9a4e1d6bcd88c80e62a08975f546f">getMeterClipIndicatorBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#af0960f4031820ba9db0601c30304deeb">getMeterInnerBounds()</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a1b98efaf09b61c9592755c2edda90fe5">getMeterTickmarksBounds()</a>, <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a1435bab9e11252c851d860a679c26d4d">FFAU::LevelMeter::Horizontal</a>, <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a5edc908ca130d40726978898d7c105af">FFAU::LevelMeter::Minimal</a>, and <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a9299d9145d5cffc4b393635a85b2fd57">FFAU::LevelMeter::SingleChannel</a>.</p>
 
 </div>
 </div>
@@ -723,7 +758,7 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>References <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a1435bab9e11252c851d860a679c26d4d">FFAU::LevelMeter::Horizontal</a>, <a class="el" href="group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea10c5dda718a472758c2e8e10c4699c6d">FFAU::LevelMeter::lmMeterGradientLowColour</a>, <a class="el" href="group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eeacdcc34b368fbfdcc47f9044e3f8fc712">FFAU::LevelMeter::lmMeterGradientMaxColour</a>, <a class="el" href="group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eeaf0068406fc5225a23dddc81acf3b0eab">FFAU::LevelMeter::lmMeterGradientMidColour</a>, <a class="el" href="group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea9e26038d6825e216c43fa5c787c403b5">FFAU::LevelMeter::lmMeterMaxNormalColour</a>, <a class="el" href="group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea19cbc357cb1afbfa359bb539cda24376">FFAU::LevelMeter::lmMeterMaxOverColour</a>, <a class="el" href="group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea976cbd1b17e957f900303b0409b55fc1">FFAU::LevelMeter::lmMeterMaxWarnColour</a>, <a class="el" href="group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea2358188c1d4a5ad128253e8a528272ee">FFAU::LevelMeter::lmMeterReductionColour</a>, <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2adb85cb70c4e25d0e16a499880fed8d12">FFAU::LevelMeter::Reduction</a>, and <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2ad716bdac535f90288703b46cad75c1bf">FFAU::LevelMeter::Vintage</a>.</p>
+<p>References <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a1435bab9e11252c851d860a679c26d4d">FFAU::LevelMeter::Horizontal</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a85b0c607098d2ed45898e29e7c144e4c">horizontalGradient</a>, <a class="el" href="group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea10c5dda718a472758c2e8e10c4699c6d">FFAU::LevelMeter::lmMeterGradientLowColour</a>, <a class="el" href="group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eeacdcc34b368fbfdcc47f9044e3f8fc712">FFAU::LevelMeter::lmMeterGradientMaxColour</a>, <a class="el" href="group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eeaf0068406fc5225a23dddc81acf3b0eab">FFAU::LevelMeter::lmMeterGradientMidColour</a>, <a class="el" href="group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea9e26038d6825e216c43fa5c787c403b5">FFAU::LevelMeter::lmMeterMaxNormalColour</a>, <a class="el" href="group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea19cbc357cb1afbfa359bb539cda24376">FFAU::LevelMeter::lmMeterMaxOverColour</a>, <a class="el" href="group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea976cbd1b17e957f900303b0409b55fc1">FFAU::LevelMeter::lmMeterMaxWarnColour</a>, <a class="el" href="group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea2358188c1d4a5ad128253e8a528272ee">FFAU::LevelMeter::lmMeterReductionColour</a>, <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2adb85cb70c4e25d0e16a499880fed8d12">FFAU::LevelMeter::Reduction</a>, <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a528fdf544d8a715150765897ba7ea97f">verticalGradient</a>, and <a class="el" href="group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2ad716bdac535f90288703b46cad75c1bf">FFAU::LevelMeter::Vintage</a>.</p>
 
 <p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a3e4d5298ec36cb0a33e5f61e3e4d5e6d">drawMeterBars()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#a11ad5eb24a24e779dda0ae73c1c81c99">drawMeterChannel()</a>.</p>
 
@@ -1151,10 +1186,39 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a85b0c607098d2ed45898e29e7c144e4c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">juce::ColourGradient horizontalGradient</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#adec47aced405760a6ef92c98cd3004d7">drawMeterBar()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aef8f6f4f558543dafd5bcfc9587b6519">updateMeterGradients()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a528fdf544d8a715150765897ba7ea97f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">juce::ColourGradient verticalGradient</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Referenced by <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#adec47aced405760a6ef92c98cd3004d7">drawMeterBar()</a>, and <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#aef8f6f4f558543dafd5bcfc9587b6519">updateMeterGradients()</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 2 2017 01:00:13 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 22 2017 01:00:13 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
