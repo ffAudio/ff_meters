@@ -60,7 +60,6 @@ void FFAU::LevelMeter::setMeterFlags (const MeterFlags type)
     meterType = type;
 }
 
-
 void FFAU::LevelMeter::setMeterSource (LevelMeterSource* src)
 {
     source = src;
@@ -125,12 +124,32 @@ void FFAU::LevelMeter::paint (Graphics& g)
 
 void FFAU::LevelMeter::resized ()
 {
+    LookAndFeel& l = getLookAndFeel();
+    if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l)) {
+        lnf->updateMeterGradients();
+    }
+
+    backgroundNeedsRepaint = true;
+}
+void FFAU::LevelMeter::visibilityChanged ()
+{
     backgroundNeedsRepaint = true;
 }
 
 void FFAU::LevelMeter::timerCallback ()
 {
-    repaint();
+    LookAndFeel& l = getLookAndFeel();
+    if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l)) {
+        int numChannels = source ? source->getNumChannels() : 1;
+        for (int i=0; i < numChannels; ++i) {
+            auto channelBounds = lnf->getMeterBounds (getLocalBounds().toFloat(), meterType, numChannels, i);
+            repaint (lnf->getMeterBarBounds (channelBounds, meterType).toNearestInt());
+            repaint (lnf->getMeterMaxNumberBounds (channelBounds, meterType).toNearestInt());
+            repaint (lnf->getMeterClipIndicatorBounds (channelBounds, meterType).toNearestInt());
+        }
+    }
+    else
+        repaint();
 }
 
 void FFAU::LevelMeter::clearClipIndicator (const int channel)

@@ -63,8 +63,14 @@ void setupDefaultMeterColours () override
     setColour (FFAU::LevelMeter::lmMeterReductionColour,   juce::Colours::orange);
 }
 
-virtual juce::Rectangle<float> getMeterInnerBounds (const juce::Rectangle<float> bounds,
-                                                    const FFAU::LevelMeter::MeterFlags meterType) const override
+void updateMeterGradients () override
+{
+    horizontalGradient.clearColours();
+    verticalGradient.clearColours();
+}
+
+juce::Rectangle<float> getMeterInnerBounds (const juce::Rectangle<float> bounds,
+                                            const FFAU::LevelMeter::MeterFlags meterType) const override
 {
     if (meterType & FFAU::LevelMeter::HasBorder) {
         const float corner = std::min (bounds.getWidth(), bounds.getHeight()) * 0.01;
@@ -536,13 +542,15 @@ void drawMeterBar (juce::Graphics& g,
     }
     else {
         if (meterType & FFAU::LevelMeter::Horizontal) {
-            juce::ColourGradient gradient (findColour (FFAU::LevelMeter::lmMeterGradientLowColour),
-                                           floored.getX(), floored.getY(),
-                                           findColour (FFAU::LevelMeter::lmMeterGradientMaxColour),
-                                           floored.getRight(), floored.getY(), false);
-            gradient.addColour (0.5, findColour (FFAU::LevelMeter::lmMeterGradientLowColour));
-            gradient.addColour (0.75, findColour (FFAU::LevelMeter::lmMeterGradientMidColour));
-            g.setGradientFill (gradient);
+            if (horizontalGradient.getNumColours() < 2) {
+                horizontalGradient = juce::ColourGradient (findColour (FFAU::LevelMeter::lmMeterGradientLowColour),
+                                                           floored.getX(), floored.getY(),
+                                                           findColour (FFAU::LevelMeter::lmMeterGradientMaxColour),
+                                                           floored.getRight(), floored.getY(), false);
+                horizontalGradient.addColour (0.5, findColour (FFAU::LevelMeter::lmMeterGradientLowColour));
+                horizontalGradient.addColour (0.75, findColour (FFAU::LevelMeter::lmMeterGradientMidColour));
+            }
+            g.setGradientFill (horizontalGradient);
             g.fillRect (floored.withRight (floored.getRight() - rmsDb * floored.getWidth() / infinity));
 
             if (peakDb > -49.0) {
@@ -554,13 +562,16 @@ void drawMeterBar (juce::Graphics& g,
             }
         }
         else {
-            juce::ColourGradient gradient (findColour (FFAU::LevelMeter::lmMeterGradientLowColour),
-                                           floored.getX(), floored.getBottom(),
-                                           findColour (FFAU::LevelMeter::lmMeterGradientMaxColour),
-                                           floored.getX(), floored.getY(), false);
-            gradient.addColour (0.5, findColour (FFAU::LevelMeter::lmMeterGradientLowColour));
-            gradient.addColour (0.75, findColour (FFAU::LevelMeter::lmMeterGradientMidColour));
-            g.setGradientFill (gradient);
+            // vertical
+            if (verticalGradient.getNumColours() < 2) {
+                verticalGradient = juce::ColourGradient (findColour (FFAU::LevelMeter::lmMeterGradientLowColour),
+                                                         floored.getX(), floored.getBottom(),
+                                                         findColour (FFAU::LevelMeter::lmMeterGradientMaxColour),
+                                                         floored.getX(), floored.getY(), false);
+                verticalGradient.addColour (0.5, findColour (FFAU::LevelMeter::lmMeterGradientLowColour));
+                verticalGradient.addColour (0.75, findColour (FFAU::LevelMeter::lmMeterGradientMidColour));
+            }
+            g.setGradientFill (verticalGradient);
             g.fillRect (floored.withTop (floored.getY() + rmsDb * floored.getHeight() / infinity));
 
             if (peakDb > -49.0) {
@@ -755,3 +766,10 @@ int hitTestMaxNumber (const juce::Point<int> position,
     }
     return -1;
 }
+
+private:
+
+juce::ColourGradient horizontalGradient;
+juce::ColourGradient verticalGradient;
+
+

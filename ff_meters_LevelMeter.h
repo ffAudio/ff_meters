@@ -98,6 +98,9 @@ public:
         /** Define your default colours in this callback */
         virtual void setupDefaultMeterColours () = 0;
 
+        /** Call this to create the cached ColourGradients after changing colours of the meter gradients */
+        virtual void updateMeterGradients () = 0;
+
         /** Override this to change the inner rectangle in case you want to paint a border e.g. */
         virtual juce::Rectangle<float> getMeterInnerBounds (const juce::Rectangle<float> bounds,
                                                             const MeterFlags meterType) const = 0;
@@ -229,6 +232,8 @@ public:
     void paint (juce::Graphics&) override;
 
     void resized () override;
+
+    void visibilityChanged () override;
 
     void timerCallback () override;
 
