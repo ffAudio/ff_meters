@@ -130,6 +130,7 @@ namespace FFAU
                         samples += samplesPerBlock - fraction;
                         fraction = leftover;
                     }
+                    jassert (minMax.getStart() == minMax.getStart() && minMax.getEnd() == minMax.getEnd());
                 }
             }
 
