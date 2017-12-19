@@ -47,7 +47,7 @@ namespace FFAU
 /**
  \class LevelMeterSource
 
- To get a nice meter GUI create a LevelMeterSource in your audioProcessor
+ To get a meter GUI create a LevelMeterSource in your AudioProcessor
  or whatever instance processes an AudioBuffer.
  Then call LevelMeterSource::measureBlock (AudioBuffer<float>& buf) to 
  create the readings.
@@ -152,11 +152,11 @@ public:
     /**
      Resize the meters data containers. Set the
      \param numChannels to the number of channels. If you don't do this in prepareToPlay, 
-     it will be done when calling measureBlock, but a few bytes will be allocated 
-     on the audio thread, so be aware.
+            it will be done when calling measureBlock, but a few bytes will be allocated
+            on the audio thread, so be aware.
      \param rmsWindow is the number of rms values to gather. Keep that aligned with 
-     the sampleRate and the blocksize to get reproducable results.
-     e.g. rmsWindow = msecs * 0.001f * sampleRate / blockSize;
+            the sampleRate and the blocksize to get reproducable results.
+            e.g. `rmsWindow = msecs * 0.001f * sampleRate / blockSize;`
      \FIXME: don't call this when measureBlock is processing
      */
     void resize (const int channels, const int rmsWindow) {
@@ -219,7 +219,7 @@ public:
     /**
      With the reduction level you can add an extra bar do indicate, by what amount the level was reduced.
      This will be printed on top of the bar with half the width.
-     @param reduction the factor for the reduction applied to all channels, 1.0=no reduction, 0.0=block completely
+     @param reduction the factor for the reduction applied to all channels, 1.0=no reduction, 0.0=muted completely
      */
     void setReductionLevel (const float reduction)
     {
