@@ -2,6 +2,7 @@ var searchData=
 [
   ['getchanneloutline',['getChannelOutline',['../group__ff__meters.html#a3399b998d25050af7ec301a08b448350',1,'FFAU::OutlineBuffer::getChannelOutline(const juce::Rectangle&lt; float &gt; bounds, const int channel, const int numSamples) const '],['../group__ff__meters.html#ac7204600f534d3456f9580b0fd4beaca',1,'FFAU::OutlineBuffer::getChannelOutline(const juce::Rectangle&lt; float &gt; bounds, const int numSamples) const ']]],
   ['getclipflag',['getClipFlag',['../group__ff__meters.html#a12c205d00f3e7a59ffa162e439a7f6fd',1,'FFAU::LevelMeterSource']]],
+  ['getdirections',['getDirections',['../group__ff__meters.html#aa1b94566008ebc2bed38c958a39b7897',1,'FFAU::StereoFieldBuffer']]],
   ['getmaxlevel',['getMaxLevel',['../group__ff__meters.html#a2fdfb0ada99c2f8e88799061abf4903d',1,'FFAU::LevelMeterSource']]],
   ['getmaxoveralllevel',['getMaxOverallLevel',['../group__ff__meters.html#a20ab5eb0672e69bae1ffb01aa0d50207',1,'FFAU::LevelMeterSource']]],
   ['getmeterbarbounds',['getMeterBarBounds',['../classFFAU_1_1LevelMeter_1_1LookAndFeelMethods.html#a43d8a33e7b1c105d63a637810d5597a3',1,'FFAU::LevelMeter::LookAndFeelMethods::getMeterBarBounds()'],['../group__ff__meters.html#a90c68f7611a839e16239038f49f15bd3',1,'FFAU::LevelMeterLookAndFeel::getMeterBarBounds()'],['../ff__meters__LookAndFeelMethods_8h.html#aa89b81e2b98bae601c96236f4e920f72',1,'getMeterBarBounds():&#160;ff_meters_LookAndFeelMethods.h']]],
@@ -11,6 +12,7 @@ var searchData=
   ['getmetermaxnumberbounds',['getMeterMaxNumberBounds',['../classFFAU_1_1LevelMeter_1_1LookAndFeelMethods.html#a18ee89720710108e45373f29a87fa617',1,'FFAU::LevelMeter::LookAndFeelMethods::getMeterMaxNumberBounds()'],['../group__ff__meters.html#a340069118f4cef705f8f3065e518e011',1,'FFAU::LevelMeterLookAndFeel::getMeterMaxNumberBounds()'],['../ff__meters__LookAndFeelMethods_8h.html#ab2abf9dd5282e337ddd94dc1bb807f16',1,'getMeterMaxNumberBounds():&#160;ff_meters_LookAndFeelMethods.h']]],
   ['getmetertickmarksbounds',['getMeterTickmarksBounds',['../classFFAU_1_1LevelMeter_1_1LookAndFeelMethods.html#aeefdb46e143a5a004ffa2c2a3b087864',1,'FFAU::LevelMeter::LookAndFeelMethods::getMeterTickmarksBounds()'],['../group__ff__meters.html#a956bf9b0318a1ff41501cb5d21deb455',1,'FFAU::LevelMeterLookAndFeel::getMeterTickmarksBounds()'],['../ff__meters__LookAndFeelMethods_8h.html#a1b98efaf09b61c9592755c2edda90fe5',1,'getMeterTickmarksBounds():&#160;ff_meters_LookAndFeelMethods.h']]],
   ['getnumchannels',['getNumChannels',['../group__ff__meters.html#a002cb86dddd435677bc5716628c31108',1,'FFAU::LevelMeterSource']]],
+  ['getoscilloscope',['getOscilloscope',['../group__ff__meters.html#a9b7b64c2f0045c96d2c8c35241e57761',1,'FFAU::StereoFieldBuffer']]],
   ['getreductionlevel',['getReductionLevel',['../group__ff__meters.html#a2841559914fcf972fef5dea876aa9651',1,'FFAU::LevelMeterSource']]],
   ['getrmslevel',['getRMSLevel',['../group__ff__meters.html#a5a6fd77c85d12a59ef4fa807beb67c15',1,'FFAU::LevelMeterSource']]]
 ];

@@ -1,20 +1,4 @@
 var searchData=
 [
-  ['lmbackgroundclipcolour',['lmBackgroundClipColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea48f206513e70ca0d9dbb52d17a7558fa',1,'FFAU::LevelMeter']]],
-  ['lmbackgroundcolour',['lmBackgroundColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea2b07a6d6a876d65babfdc9e483182e85',1,'FFAU::LevelMeter']]],
-  ['lmmeterbackgroundcolour',['lmMeterBackgroundColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea16ea46f40cf16ea323ef8c7b67119983',1,'FFAU::LevelMeter']]],
-  ['lmmeterforegroundcolour',['lmMeterForegroundColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea7d1fc9297796362dc1c2310998e943fa',1,'FFAU::LevelMeter']]],
-  ['lmmetergradientlowcolour',['lmMeterGradientLowColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea10c5dda718a472758c2e8e10c4699c6d',1,'FFAU::LevelMeter']]],
-  ['lmmetergradientmaxcolour',['lmMeterGradientMaxColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eeacdcc34b368fbfdcc47f9044e3f8fc712',1,'FFAU::LevelMeter']]],
-  ['lmmetergradientmidcolour',['lmMeterGradientMidColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eeaf0068406fc5225a23dddc81acf3b0eab',1,'FFAU::LevelMeter']]],
-  ['lmmetermaxnormalcolour',['lmMeterMaxNormalColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea9e26038d6825e216c43fa5c787c403b5',1,'FFAU::LevelMeter']]],
-  ['lmmetermaxovercolour',['lmMeterMaxOverColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea19cbc357cb1afbfa359bb539cda24376',1,'FFAU::LevelMeter']]],
-  ['lmmetermaxwarncolour',['lmMeterMaxWarnColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea976cbd1b17e957f900303b0409b55fc1',1,'FFAU::LevelMeter']]],
-  ['lmmeteroutlinecolour',['lmMeterOutlineColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eeab659506d5e100f96a58147fb4dcc10ef',1,'FFAU::LevelMeter']]],
-  ['lmmeterreductioncolour',['lmMeterReductionColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea2358188c1d4a5ad128253e8a528272ee',1,'FFAU::LevelMeter']]],
-  ['lmoutlinecolour',['lmOutlineColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eeabb61149c364645979700afd8ca6a6c4e',1,'FFAU::LevelMeter']]],
-  ['lmtextclipcolour',['lmTextClipColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eeac28a8cc400534c5517a39bd1bd1cc6e1',1,'FFAU::LevelMeter']]],
-  ['lmtextcolour',['lmTextColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea55cdf327b5115699c6fc4242fd001b99',1,'FFAU::LevelMeter']]],
-  ['lmtextdeactivecolour',['lmTextDeactiveColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eeadc6116fc4dd9796fd3dfee1e35abe82b',1,'FFAU::LevelMeter']]],
-  ['lmtickscolour',['lmTicksColour',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2eea7361099b07a23dfbf9018d4e709a5316',1,'FFAU::LevelMeter']]]
+  ['default',['Default',['../group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2ac695399e3b04c8f9d9bb81a19a87ba89',1,'FFAU::LevelMeter']]]
 ];
