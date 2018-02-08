@@ -134,10 +134,9 @@ namespace FFAU
                 }
             }
 
-            juce::Path getChannelOutline (const juce::Rectangle<float> bounds, const int numSamples) const
+            void getChannelOutline (juce::Path& outline, const juce::Rectangle<float> bounds, const int numSamples) const
             {
                 const int bufferSize = static_cast<int> (maxBuffer.size());
-                juce::Path outline;
                 int latest = writePointer > 0 ? writePointer - 1 : bufferSize - 1;
                 int oldest = (latest >= numSamples) ? latest - numSamples : latest + bufferSize - numSamples;
                 
@@ -164,8 +163,6 @@ namespace FFAU
                     else
                         s = bufferSize - 1;
                 }
-
-                return outline;
             }
         };
         
@@ -217,37 +214,34 @@ namespace FFAU
 
         /**
          Returns the outline of a specific channel inside the bounds.
+         @param path is a Path to be populated
          @param bounds the rectangle to paint within. The result is not clipped, if samples are exceeding 1.0, it may paint outside
          @param channel the index of the channel to paint
          @param numSamples is the number of sample blocks
          @return a path with a single channel outline (min to max)
          */
-        juce::Path getChannelOutline (const juce::Rectangle<float> bounds, const int channel, const int numSamples) const
+        void getChannelOutline (juce::Path& path, const juce::Rectangle<float> bounds, const int channel, const int numSamples) const
         {
             if (channel < channelDatas.size())
-                return channelDatas [channel].getChannelOutline (bounds, numSamples);
-            juce::Path p;
-            return p;
+                return channelDatas [channel].getChannelOutline (path, bounds, numSamples);
         }
 
         /**
          This returns the outlines of each channel, splitting the bounds into equal sized rows
+         @param path is a Path to be populated
          @param bounds the rectangle to paint within. The result is not clipped, if samples are exceeding 1.0, it may paint outside
          @param numSamples is the number of sample blocks
          @return a path with a single channel outline (min to max)
          */
-        juce::Path getChannelOutline (const juce::Rectangle<float> bounds, const int numSamples) const
+        void getChannelOutline (juce::Path& path, const juce::Rectangle<float> bounds, const int numSamples) const
         {
-            juce::Path              p;
             juce::Rectangle<float>  b (bounds);
             const int   numChannels = static_cast<int> (channelDatas.size());
             const float h           = bounds.getHeight() / numChannels;
             
             for (int i=0; i < numChannels; ++i) {
-                p.addPath (getChannelOutline (b.removeFromTop (h) , i, numSamples));
+                getChannelOutline (path, b.removeFromTop (h) , i, numSamples);
             }
-
-            return p;
         }
 
         
