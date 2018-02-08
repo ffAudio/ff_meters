@@ -62,18 +62,23 @@ class LevelMeterSource;
        };
    \endcode
 */
-class LevelMeterLookAndFeel : public juce::LookAndFeel_V3, public LevelMeter::LookAndFeelMethods
+class LevelMeterLookAndFeel : public juce::LookAndFeel_V3, public LevelMeter::LookAndFeelMethods, public StereoFieldComponent::LookAndFeelMethods
 {
 public:
     LevelMeterLookAndFeel ()
     {
         setupDefaultMeterColours();
+
+        setupDefaultStereoFieldColours();
     }
 
     virtual ~LevelMeterLookAndFeel() {}
 
     // do this include inside the class to get the default implementation instead of copying it there
     #include "ff_meters_LookAndFeelMethods.h"
+
+    // and the same to get the default sound field implementation instead of copying it there
+    #include "ff_meters_SoundFieldLookAndFeelMethods.h"
 
 };
 

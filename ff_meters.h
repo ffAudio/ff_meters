@@ -62,5 +62,7 @@
 
 #include <ff_meters/ff_meters_LevelMeterSource.h>
 #include <ff_meters/ff_meters_LevelMeter.h>
-#include <ff_meters/ff_meters_LookAndFeel.h>
 #include <ff_meters/ff_meters_OutlineBuffer.h>
+#include <ff_meters/ff_meters_StereoFieldBuffer.h>
+#include <ff_meters/ff_meters_StereoFieldComponent.h>
+#include <ff_meters/ff_meters_LookAndFeel.h>
