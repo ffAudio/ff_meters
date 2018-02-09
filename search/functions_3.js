@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['getchanneloutline',['getChannelOutline',['../group__ff__meters.html#a3399b998d25050af7ec301a08b448350',1,'FFAU::OutlineBuffer::getChannelOutline(const juce::Rectangle&lt; float &gt; bounds, const int channel, const int numSamples) const '],['../group__ff__meters.html#ac7204600f534d3456f9580b0fd4beaca',1,'FFAU::OutlineBuffer::getChannelOutline(const juce::Rectangle&lt; float &gt; bounds, const int numSamples) const ']]],
+  ['getchanneloutline',['getChannelOutline',['../group__ff__meters.html#af6c2b3a30ccff03cfba158d66c6cc736',1,'FFAU::OutlineBuffer::getChannelOutline(juce::Path &amp;path, const juce::Rectangle&lt; float &gt; bounds, const int channel, const int numSamples) const '],['../group__ff__meters.html#a47c511c9dc1ba7c4d96b2dd5b166fc31',1,'FFAU::OutlineBuffer::getChannelOutline(juce::Path &amp;path, const juce::Rectangle&lt; float &gt; bounds, const int numSamples) const ']]],
   ['getclipflag',['getClipFlag',['../group__ff__meters.html#a12c205d00f3e7a59ffa162e439a7f6fd',1,'FFAU::LevelMeterSource']]],
   ['getdirections',['getDirections',['../group__ff__meters.html#aa1b94566008ebc2bed38c958a39b7897',1,'FFAU::StereoFieldBuffer']]],
   ['getmaxlevel',['getMaxLevel',['../group__ff__meters.html#a2fdfb0ada99c2f8e88799061abf4903d',1,'FFAU::LevelMeterSource']]],
