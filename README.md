@@ -91,10 +91,12 @@ way you can see the outline of a signal running through. It can be used very sim
     g.setColour (Colours::lightgreen);
     g.fillRect (plotFrame);
 
-    Path plot = processor.getChannelOutline (plotFrame, 1000);
-    g.setColour (Colours::black);
+    Path plot;
+    processor.getChannelOutline (plot, plotFrame, 1000);
+    g.setColour (Colours::grey);
     g.fillPath (plot);
-
+    g.setColour (Colours::black);
+    g.strokePath (plot, PathStrokeType (1.0f));
 
 
 ********************************************************************************
