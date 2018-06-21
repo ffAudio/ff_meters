@@ -139,9 +139,12 @@ const Rectangle&lt;float&gt; plotFrame (10.0, 320.0, 580, 80);
 g.setColour (Colours::lightgreen);
 g.fillRect (plotFrame);
 
-Path plot = processor.getChannelOutline (plotFrame, 1000);
-g.setColour (Colours::black);
+Path plot;
+processor.getChannelOutline (plot, plotFrame, 1000);
+g.setColour (Colours::grey);
 g.fillPath (plot);
+g.setColour (Colours::black);
+g.strokePath (plot, PathStrokeType (1.0f));
 </pre><hr/>
 <p>We hope it is of any use, let us know of any problems or improvements you may come up with...</p>
 <p>Brighton, 2nd March 2017</p>
@@ -149,7 +152,7 @@ g.fillPath (plot);
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 9 2018 01:00:10 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 22 2018 01:00:20 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
