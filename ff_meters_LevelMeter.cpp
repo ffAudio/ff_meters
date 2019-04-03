@@ -39,14 +39,22 @@
 
 //==============================================================================
 FFAU::LevelMeter::LevelMeter (const MeterFlags type)
-  : source          (nullptr),
-    selectedChannel (-1),
-    fixedNumChannels(-1),
-    meterType       (type),
-    refreshRate     (30),
-    useBackgroundImage (false),
-    backgroundNeedsRepaint (true)
+  : meterType       (type)
 {
+    onMaxLevelClicked = [](FFAU::LevelMeter& meter, int channel, juce::ModifierKeys mods)
+    {
+        // default clear all indicators. Overwrite this lambda to change the behaviour
+        meter.clearMaxLevelDisplay();
+        meter.clearClipIndicator();
+    };
+
+    onClipLightClicked = [](FFAU::LevelMeter& meter, int channel, juce::ModifierKeys mods)
+    {
+        // default clear all indicators. Overwrite this lambda to change the behaviour
+        meter.clearMaxLevelDisplay();
+        meter.clearClipIndicator();
+    };
+
     startTimerHz (refreshRate);
 }
 
@@ -131,6 +139,7 @@ void FFAU::LevelMeter::resized ()
 
     backgroundNeedsRepaint = true;
 }
+
 void FFAU::LevelMeter::visibilityChanged ()
 {
     backgroundNeedsRepaint = true;
@@ -182,19 +191,26 @@ void FFAU::LevelMeter::mouseDown (const juce::MouseEvent &event)
         const juce::Rectangle<float> innerBounds = lnf->getMeterInnerBounds (getLocalBounds().toFloat(),
                                                                              meterType);
         if (event.mods.isLeftButtonDown() && source) {
-            int hit = lnf->hitTestClipIndicator (event.getPosition(),
-                                                 meterType,
-                                                 innerBounds,
-                                                 source);
-            if (hit >= 0) {
-                listeners.call (&LevelMeter::Listener::clipLightClicked, this, hit, event.mods);
+            auto channel = lnf->hitTestClipIndicator (event.getPosition(),
+                                                      meterType,
+                                                      innerBounds,
+                                                      source);
+            if (channel >= 0)
+            {
+                listeners.call (&LevelMeter::Listener::clipLightClicked, this, channel, event.mods);
+                if (onClipLightClicked)
+                    onClipLightClicked (*this, channel, event.mods);
             }
-            hit = lnf->hitTestMaxNumber (event.getPosition(),
+
+            channel = lnf->hitTestMaxNumber (event.getPosition(),
                                          meterType,
                                          innerBounds,
                                          source);
-            if (hit >= 0) {
-                listeners.call (&LevelMeter::Listener::maxLevelClicked, this, hit, event.mods);
+            if (channel >= 0)
+            {
+                listeners.call (&LevelMeter::Listener::maxLevelClicked, this, channel, event.mods);
+                if (onMaxLevelClicked)
+                    onMaxLevelClicked (*this, channel, event.mods);
             }
         }
     }
