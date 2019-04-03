@@ -266,9 +266,27 @@ public:
      */
     void clearMaxLevelDisplay (const int channel=-1);
 
+    /**
+     This lambda is called when the user clicks on a clip light. It is initially set to clear all clip lights
+     and max level numbers.
+     */
+    std::function<void(FFAU::LevelMeter& meter, int channel, juce::ModifierKeys mods)> onClipLightClicked;
+
+    /**
+     This lambda is called when the user clicks on a max level display. It is initially set to clear all clip lights
+     and max level numbers.
+     */
+    std::function<void(FFAU::LevelMeter& meter, int channel, juce::ModifierKeys mods)> onMaxLevelClicked;
+
+    /**
+     \internal
+    */
     void mouseDown (const juce::MouseEvent& event) override;
 
     /**
+     DEPRECATED: Instead of using the Listener, use the new lambdas:
+     \see onMaxLevelClicked, onClipLightClicked
+
      This Listener interface is meant to implement behaviour if either the clip indicator or the max level text
      is clicked.
 
@@ -310,19 +328,13 @@ private:
     
     juce::WeakReference<FFAU::LevelMeterSource> source;
 
-    int                                   selectedChannel;
-    
-    int                                   fixedNumChannels;
-
-    MeterFlags                            meterType;
-
-    int                                   refreshRate;
-
-    bool                                  useBackgroundImage;
-
+    int                                   selectedChannel  = -1;
+    int                                   fixedNumChannels = -1;
+    MeterFlags                            meterType = HasBorder;
+    int                                   refreshRate = 30;
+    bool                                  useBackgroundImage = false;
     juce::Image                           backgroundImage;
-
-    bool                                  backgroundNeedsRepaint;
+    bool                                  backgroundNeedsRepaint = true;
 
     juce::ListenerList<FFAU::LevelMeter::Listener> listeners;
 };
