@@ -49,7 +49,7 @@ namespace FFAU
 
  To get a meter GUI create a LevelMeterSource in your AudioProcessor
  or whatever instance processes an AudioBuffer.
- Then call LevelMeterSource::measureBlock (AudioBuffer<float>& buf) to 
+ Then call LevelMeterSource::measureBlock (AudioBuffer<float>& buf) to
  create the readings.
  */
 class LevelMeterSource
@@ -151,10 +151,10 @@ public:
 
     /**
      Resize the meters data containers. Set the
-     \param numChannels to the number of channels. If you don't do this in prepareToPlay, 
+     \param numChannels to the number of channels. If you don't do this in prepareToPlay,
             it will be done when calling measureBlock, but a few bytes will be allocated
             on the audio thread, so be aware.
-     \param rmsWindow is the number of rms values to gather. Keep that aligned with 
+     \param rmsWindow is the number of rms values to gather. Keep that aligned with
             the sampleRate and the blocksize to get reproducable results.
             e.g. `rmsWindow = msecs * 0.001f * sampleRate / blockSize;`
      \FIXME: don't call this when measureBlock is processing
@@ -197,7 +197,7 @@ public:
         juce::int64 time = juce::Time::currentTimeMillis();
         if (time - lastMeasurement > 100) {
             lastMeasurement = time;
-            for (int channel=0; channel < levels.size(); ++channel) {
+            for (size_t channel=0; channel < levels.size(); ++channel) {
                 levels [channel].setLevels (lastMeasurement, 0.0f, 0.0f, holdMSecs);
                 levels [channel].reduction = 1.0f;
             }
@@ -228,7 +228,7 @@ public:
     }
 
     /**
-     Set the timeout, how long the peak line will be displayed, before it resets to the 
+     Set the timeout, how long the peak line will be displayed, before it resets to the
      current peak
      */
     void setMaxHoldMS (const juce::int64 millis)
@@ -237,7 +237,7 @@ public:
     }
 
     /**
-     Returns the reduction level. This value is not computed but can be set 
+     Returns the reduction level. This value is not computed but can be set
      manually via \see setReductionLevel.
      */
     float getReductionLevel (const int channel) const

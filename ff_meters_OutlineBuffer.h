@@ -2,7 +2,7 @@
  ==============================================================================
  Copyright (c) 2017 Filmstro Ltd. / Foleys Finest Audio UG - Daniel Walz
  All rights reserved.
- 
+
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
  1. Redistributions of source code must retain the above copyright notice, this
@@ -13,7 +13,7 @@
  3. Neither the name of the copyright holder nor the names of its contributors
     may be used to endorse or promote products derived from this software without
     specific prior written permission.
- 
+
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
@@ -24,13 +24,13 @@
  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  OF THE POSSIBILITY OF SUCH DAMAGE.
- 
+
  ==============================================================================
- 
+
  ff_meters_OutlineBuffer.h
  Created: 9 Sep 2017 16:49:54pm
  Author:  Daniel Walz
- 
+
  ==============================================================================
  */
 
@@ -40,20 +40,20 @@
 
 namespace FFAU
 {
-    
+
     /** @addtogroup ff_meters */
     /*@{*/
-    
+
     /**
      \class OutlineBuffer
-     
-     This class implements a circular buffer to store min and max values 
-     of anaudio signal. The block size can be specified. At any time the 
+
+     This class implements a circular buffer to store min and max values
+     of anaudio signal. The block size can be specified. At any time the
      UI can request an outline of the last n blocks as Path to fill or stroke
      */
     class OutlineBuffer
     {
-        
+
         class ChannelData
         {
             std::vector<float>           minBuffer;
@@ -100,7 +100,7 @@ namespace FFAU
                 maxBuffer.resize (numBlocks, 0.0f);
                 writePointer = writePointer % numBlocks;
             }
-            
+
             void pushChannelData (const float* input, const int numSamples)
             {
                 // create peak values
@@ -139,13 +139,13 @@ namespace FFAU
                 const int bufferSize = static_cast<int> (maxBuffer.size());
                 int latest = writePointer > 0 ? writePointer - 1 : bufferSize - 1;
                 int oldest = (latest >= numSamples) ? latest - numSamples : latest + bufferSize - numSamples;
-                
+
                 const float dx = bounds.getWidth() / numSamples;
                 const float dy = bounds.getHeight() * 0.35f;
                 const float my = bounds.getCentreY();
-                float x  = bounds.getX();
-                int   s  = oldest;
-                
+                float  x  = bounds.getX();
+                size_t s  = oldest;
+
                 outline.startNewSubPath (x, my);
                 for (int i=0; i<numSamples; ++i) {
                     outline.lineTo (x, my + minBuffer [s] * dy);
@@ -165,11 +165,11 @@ namespace FFAU
                 }
             }
         };
-        
+
         std::vector<ChannelData> channelDatas;
         int                      samplesPerBlock = 128;
 
-        
+
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OutlineBuffer)
     public:
         OutlineBuffer ()
@@ -206,7 +206,7 @@ namespace FFAU
         void pushBlock (const juce::AudioBuffer<float>& buffer, const int numSamples)
         {
             for (int i=0; i < buffer.getNumChannels(); ++i) {
-                if (i < channelDatas.size()) {
+                if (i < int (channelDatas.size())) {
                     channelDatas [i].pushChannelData (buffer.getReadPointer (i), numSamples);
                 }
             }
@@ -222,7 +222,7 @@ namespace FFAU
          */
         void getChannelOutline (juce::Path& path, const juce::Rectangle<float> bounds, const int channel, const int numSamples) const
         {
-            if (channel < channelDatas.size())
+            if (channel < int (channelDatas.size()))
                 return channelDatas [channel].getChannelOutline (path, bounds, numSamples);
         }
 
@@ -238,13 +238,13 @@ namespace FFAU
             juce::Rectangle<float>  b (bounds);
             const int   numChannels = static_cast<int> (channelDatas.size());
             const float h           = bounds.getHeight() / numChannels;
-            
+
             for (int i=0; i < numChannels; ++i) {
                 getChannelOutline (path, b.removeFromTop (h) , i, numSamples);
             }
         }
 
-        
+
     };
     /*@}*/
 }
