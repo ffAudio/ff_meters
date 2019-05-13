@@ -78,6 +78,20 @@ private:
         rmsSum    (0.0),
         rmsPtr    (0)
         {}
+
+        ChannelData& operator=(const ChannelData& other)
+        {
+            max.store         (other.max.load());
+            maxOverall.store  (other.maxOverall.load());
+            clip.store        (other.clip.load());
+            reduction.store   (other.reduction.load());
+            hold.store        (other.hold.load());
+            rmsHistory.resize (other.rmsHistory.size(), 0.0);
+            rmsSum = 0.0;
+            rmsPtr = 0;
+            return (*this);
+        }
+
         std::atomic<float>       max;
         std::atomic<float>       maxOverall;
         std::atomic<bool>        clip;
