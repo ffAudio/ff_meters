@@ -209,6 +209,17 @@ Functions</h2></td></tr>
 <tr class="separator:ad9eb6b8c77243a7fc2d7f7cbdb93857a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2018000a7c511bd974a065f740c2b1a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#a2018000a7c511bd974a065f740c2b1a7">removeListener</a> (<a class="el" href="classFFAU_1_1LevelMeter_1_1Listener.html">FFAU::LevelMeter::Listener</a> *)</td></tr>
 <tr class="separator:a2018000a7c511bd974a065f740c2b1a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><h3>Public Attributes</h3></td></tr>
+<tr class="memitem:a051ea8854d1b06767d39f1bacda12d34"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(<a class="el" href="group__ff__meters.html#classFFAU_1_1LevelMeter">FFAU::LevelMeter</a> <br class="typebreak"/>
+&amp;meter, int channel, <br class="typebreak"/>
+juce::ModifierKeys mods)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#a051ea8854d1b06767d39f1bacda12d34">onClipLightClicked</a></td></tr>
+<tr class="memdesc:a051ea8854d1b06767d39f1bacda12d34"><td class="mdescLeft">&#160;</td><td class="mdescRight">This lambda is called when the user clicks on a clip light.  <a href="#a051ea8854d1b06767d39f1bacda12d34">More...</a><br/></td></tr>
+<tr class="separator:a051ea8854d1b06767d39f1bacda12d34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe37130eff923db251ec71b07ab5bf61"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(<a class="el" href="group__ff__meters.html#classFFAU_1_1LevelMeter">FFAU::LevelMeter</a> <br class="typebreak"/>
+&amp;meter, int channel, <br class="typebreak"/>
+juce::ModifierKeys mods)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ff__meters.html#afe37130eff923db251ec71b07ab5bf61">onMaxLevelClicked</a></td></tr>
+<tr class="memdesc:afe37130eff923db251ec71b07ab5bf61"><td class="mdescLeft">&#160;</td><td class="mdescRight">This lambda is called when the user clicks on a max level display.  <a href="#afe37130eff923db251ec71b07ab5bf61">More...</a><br/></td></tr>
+<tr class="separator:afe37130eff923db251ec71b07ab5bf61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h4 class="groupheader">Member Enumeration Documentation</h4>
 <a class="anchor" id="a2aeb223a99ad2e6e0a7e1a170b788bd2"></a>
@@ -332,6 +343,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>References <a class="el" href="group__ff__meters.html#a699f7233e4e659e11adc3b6e3ec85005">clearClipIndicator()</a>, <a class="el" href="group__ff__meters.html#ae0e8942a507e2b08bad9e01122615c0c">clearMaxLevelDisplay()</a>, <a class="el" href="group__ff__meters.html#a051ea8854d1b06767d39f1bacda12d34">onClipLightClicked</a>, and <a class="el" href="group__ff__meters.html#afe37130eff923db251ec71b07ab5bf61">onMaxLevelClicked</a>.</p>
 
 </div>
 </div>
@@ -551,6 +564,8 @@ Functions</h2></td></tr>
 <p>Unset the clip indicator flag for a channel. </p>
 <p>Use -1 to reset all clip indicators. </p>
 
+<p>Referenced by <a class="el" href="group__ff__meters.html#a50c71528cf2cdecb2bdc848cc21247a8">LevelMeter()</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="ae0e8942a507e2b08bad9e01122615c0c"></a>
@@ -569,6 +584,8 @@ Functions</h2></td></tr>
 
 <p>Set the max level display back to -inf for a channel. </p>
 <p>Use -1 to reset all max levels. </p>
+
+<p>Referenced by <a class="el" href="group__ff__meters.html#a50c71528cf2cdecb2bdc848cc21247a8">LevelMeter()</a>.</p>
 
 </div>
 </div>
@@ -627,6 +644,41 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<h4 class="groupheader">Member Data Documentation</h4>
+<a class="anchor" id="a051ea8854d1b06767d39f1bacda12d34"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;void(<a class="el" href="group__ff__meters.html#classFFAU_1_1LevelMeter">FFAU::LevelMeter</a>&amp; meter, int channel, juce::ModifierKeys mods)&gt; FFAU::LevelMeter::onClipLightClicked</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This lambda is called when the user clicks on a clip light. </p>
+<p>It is initially set to clear all clip lights and max level numbers. </p>
+
+<p>Referenced by <a class="el" href="group__ff__meters.html#a50c71528cf2cdecb2bdc848cc21247a8">LevelMeter()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afe37130eff923db251ec71b07ab5bf61"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;void(<a class="el" href="group__ff__meters.html#classFFAU_1_1LevelMeter">FFAU::LevelMeter</a>&amp; meter, int channel, juce::ModifierKeys mods)&gt; FFAU::LevelMeter::onMaxLevelClicked</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This lambda is called when the user clicks on a max level display. </p>
+<p>It is initially set to clear all clip lights and max level numbers. </p>
+
+<p>Referenced by <a class="el" href="group__ff__meters.html#a50c71528cf2cdecb2bdc848cc21247a8">LevelMeter()</a>.</p>
 
 </div>
 </div>
@@ -2919,7 +2971,7 @@ template&lt;typename FloatType&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 14 2019 01:00:17 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 22 2019 01:00:14 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
