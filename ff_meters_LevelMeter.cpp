@@ -89,20 +89,23 @@ void FFAU::LevelMeter::setRefreshRateHz (const int newRefreshRate)
     startTimerHz (refreshRate);
 }
 
-void FFAU::LevelMeter::paint (Graphics& g)
+void FFAU::LevelMeter::paint (juce::Graphics& g)
 {
-    Graphics::ScopedSaveState saved (g);
+    juce::Graphics::ScopedSaveState saved (g);
 
-    LookAndFeel& l = getLookAndFeel();
-    if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l)) {
+    juce::LookAndFeel& l = getLookAndFeel();
+    if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l))
+    {
         const juce::Rectangle<float> bounds = getLocalBounds().toFloat();
         int numChannels = source ? source->getNumChannels() : 1;
-        if (useBackgroundImage) {
+        if (useBackgroundImage)
+        {
             // This seems to only speed up, if you use complex drawings on the background. For
             // "normal" vector graphics the image approach seems actually slower
-            if (backgroundNeedsRepaint) {
-                backgroundImage = Image (Image::ARGB, getWidth(), getHeight(), true);
-                Graphics backGraphics (backgroundImage);
+            if (backgroundNeedsRepaint)
+            {
+                backgroundImage = juce::Image (juce::Image::ARGB, getWidth(), getHeight(), true);
+                juce::Graphics backGraphics (backgroundImage);
                 lnf->drawBackground (backGraphics, meterType, bounds);
                 lnf->drawMeterBarsBackground (backGraphics, meterType, bounds, numChannels, fixedNumChannels);
                 backgroundNeedsRepaint = false;
@@ -110,7 +113,8 @@ void FFAU::LevelMeter::paint (Graphics& g)
             g.drawImageAt (backgroundImage, 0, 0);
             lnf->drawMeterBars (g, meterType, bounds, source, fixedNumChannels, selectedChannel);
         }
-        else {
+        else
+        {
             lnf->drawBackground (g, meterType, bounds);
             lnf->drawMeterBarsBackground (g, meterType, bounds, numChannels, fixedNumChannels);
             lnf->drawMeterBars (g, meterType, bounds, source, fixedNumChannels, selectedChannel);
@@ -127,13 +131,16 @@ void FFAU::LevelMeter::paint (Graphics& g)
     }
 
     if (source)
+    {
         source->decayIfNeeded();
+    }
 }
 
 void FFAU::LevelMeter::resized ()
 {
-    LookAndFeel& l = getLookAndFeel();
-    if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l)) {
+    juce::LookAndFeel& l = getLookAndFeel();
+    if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l))
+    {
         lnf->updateMeterGradients();
     }
 
@@ -151,10 +158,12 @@ void FFAU::LevelMeter::timerCallback ()
     {
         source->resetNewDataFlag();
 
-        LookAndFeel& l = getLookAndFeel();
-        if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l)) {
+        juce::LookAndFeel& l = getLookAndFeel();
+        if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l))
+        {
             int numChannels = source ? source->getNumChannels() : 1;
-            for (int i=0; i < numChannels; ++i) {
+            for (int i=0; i < numChannels; ++i)
+            {
                 auto channelBounds = lnf->getMeterBounds (getLocalBounds().toFloat(), meterType, numChannels, i);
                 repaint (lnf->getMeterBarBounds (channelBounds, meterType).toNearestInt());
                 repaint (lnf->getMeterMaxNumberBounds (channelBounds, meterType).toNearestInt());
@@ -162,7 +171,9 @@ void FFAU::LevelMeter::timerCallback ()
             }
         }
         else
+        {
             repaint();
+        }
     }
 }
 
