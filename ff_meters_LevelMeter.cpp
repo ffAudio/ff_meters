@@ -147,18 +147,23 @@ void FFAU::LevelMeter::visibilityChanged ()
 
 void FFAU::LevelMeter::timerCallback ()
 {
-    LookAndFeel& l = getLookAndFeel();
-    if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l)) {
-        int numChannels = source ? source->getNumChannels() : 1;
-        for (int i=0; i < numChannels; ++i) {
-            auto channelBounds = lnf->getMeterBounds (getLocalBounds().toFloat(), meterType, numChannels, i);
-            repaint (lnf->getMeterBarBounds (channelBounds, meterType).toNearestInt());
-            repaint (lnf->getMeterMaxNumberBounds (channelBounds, meterType).toNearestInt());
-            repaint (lnf->getMeterClipIndicatorBounds (channelBounds, meterType).toNearestInt());
+    if (source && source->checkNewDataFlag())
+    {
+        source->resetNewDataFlag();
+
+        LookAndFeel& l = getLookAndFeel();
+        if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l)) {
+            int numChannels = source ? source->getNumChannels() : 1;
+            for (int i=0; i < numChannels; ++i) {
+                auto channelBounds = lnf->getMeterBounds (getLocalBounds().toFloat(), meterType, numChannels, i);
+                repaint (lnf->getMeterBarBounds (channelBounds, meterType).toNearestInt());
+                repaint (lnf->getMeterMaxNumberBounds (channelBounds, meterType).toNearestInt());
+                repaint (lnf->getMeterClipIndicatorBounds (channelBounds, meterType).toNearestInt());
+            }
         }
+        else
+            repaint();
     }
-    else
-        repaint();
 }
 
 void FFAU::LevelMeter::clearClipIndicator (const int channel)

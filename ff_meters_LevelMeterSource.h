@@ -200,6 +200,8 @@ public:
                                             holdMSecs);
             }
         }
+
+        newDataFlag = true;
     }
 
     /**
@@ -215,6 +217,8 @@ public:
                 levels [channel].setLevels (lastMeasurement, 0.0f, 0.0f, holdMSecs);
                 levels [channel].reduction = 1.0f;
             }
+
+            newDataFlag = true;
         }
     }
 
@@ -346,6 +350,16 @@ public:
         suspended = shouldBeSuspended;
     }
 
+    bool checkNewDataFlag() const
+    {
+        return newDataFlag;
+    }
+
+    void resetNewDataFlag()
+    {
+        newDataFlag = false;
+    }
+
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LevelMeterSource)
     juce::WeakReference<LevelMeterSource>::Master masterReference;
@@ -356,6 +370,8 @@ private:
     juce::int64 holdMSecs;
 
     std::atomic<juce::int64> lastMeasurement;
+
+    bool newDataFlag = true;
 
     bool suspended;
 };
