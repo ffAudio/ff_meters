@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['checknewdataflag',['checkNewDataFlag',['../group__ff__meters.html#a61acf8f4c9a8d3aa10b8857a3fb75bef',1,'FFAU::LevelMeterSource']]],
   ['clearallclipflags',['clearAllClipFlags',['../group__ff__meters.html#abe3025c5e5b8784cfe61c02b6983ef0d',1,'FFAU::LevelMeterSource']]],
   ['clearallmaxnums',['clearAllMaxNums',['../group__ff__meters.html#a41cc23baf8644d2f6fb676318b92a72e',1,'FFAU::LevelMeterSource']]],
   ['clearclipflag',['clearClipFlag',['../group__ff__meters.html#aa148c1757179140bae731bf8c0bc5f90',1,'FFAU::LevelMeterSource']]],
