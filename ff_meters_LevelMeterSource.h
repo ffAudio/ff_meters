@@ -55,7 +55,8 @@ namespace FFAU
 class LevelMeterSource
 {
 private:
-    class ChannelData {
+    class ChannelData
+    {
     public:
         ChannelData (const int rmsWindow = 8) :
         max (),
@@ -97,12 +98,14 @@ private:
         std::atomic<bool>        clip;
         std::atomic<float>       reduction;
 
-        float getAvgRMS () const {
+        float getAvgRMS () const
+        {
             if (rmsHistory.size() > 0) {
                 return sqrtf (rmsSum / rmsHistory.size());
             }
             return sqrtf (rmsSum);
         }
+
         void setLevels (const juce::int64 time, const float newMax, const float newRms, const juce::int64 holdMSecs)
         {
             if (newMax > 1.0 || newRms > 1.0) {
@@ -118,7 +121,9 @@ private:
             }
             pushNextRMS (std::min (1.0f, newRms));
         }
-        void setRMSsize (const int numBlocks) {
+
+        void setRMSsize (const int numBlocks)
+        {
             rmsHistory.assign (numBlocks, 0.0f);
             rmsSum  = 0.0;
             if (numBlocks > 1) {
@@ -129,13 +134,11 @@ private:
             }
         }
     private:
-        void pushNextRMS (const float newRMS) {
+        void pushNextRMS (const float newRMS)
+        {
             const double squaredRMS = std::min (newRMS * newRMS, 1.0f);
-            if (rmsHistory.size() > 0) {
-//                double s=0.0;
-//                for (int i=0; i<rmsHistory.size(); ++i) s+= rmsHistory [i];
-//                if (s != rmsSum)
-//                    DBG ("RMS: " + juce::String(squaredRMS) + " sum: " + juce::String (rmsSum) + " actual sum: " + juce::String (s) + " difference: " + juce::String (rmsSum - s));
+            if (rmsHistory.size() > 0)
+            {
                 rmsSum = rmsSum + squaredRMS - rmsHistory [rmsPtr];
                 rmsHistory [rmsPtr] = squaredRMS;
                 rmsPtr = (rmsPtr + 1) % rmsHistory.size();
@@ -173,11 +176,14 @@ public:
             e.g. `rmsWindow = msecs * 0.001f * sampleRate / blockSize;`
      \FIXME: don't call this when measureBlock is processing
      */
-    void resize (const int channels, const int rmsWindow) {
+    void resize (const int channels, const int rmsWindow)
+    {
         levels.resize (channels, ChannelData (rmsWindow));
         for (ChannelData& l : levels) {
             l.setRMSsize (rmsWindow);
         }
+
+        newDataFlag = true;
     }
 
     /**

@@ -53,7 +53,8 @@ class LevelMeter    : public juce::Component, private juce::Timer
 {
 public:
 
-    enum MeterFlags {
+    enum MeterFlags
+    {
         Default         = 0x0000, /**< Default is showing all channels in the LevelMeterSource without a border */
         Horizontal      = 0x0001, /**< Displays the level bars horizontally */
         Vintage         = 0x0002, /**< Switches to a special mode of old school meters (to come) */
@@ -66,7 +67,8 @@ public:
         MaxNumber       = 0x0040  /**< To add level meter to Minimal, set this flag */
     };
 
-    enum ColourIds {
+    enum ColourIds
+    {
         lmTextColour = 0x2200001,   /**< Colour for the numbers etc. */
         lmTextDeactiveColour,       /**< Unused, will eventually be removed */
         lmTextClipColour,           /**< Colour to print the max number if it has clipped */
@@ -303,9 +305,10 @@ public:
      }
      \endcode
      */
-    class Listener {
+    class Listener
+    {
     public:
-        virtual ~Listener () {}
+        virtual ~Listener() = default;
         /**
          This is called, when the user clicks a clip indicator. It can be used to reset the clip indicator.
          To allow different behaviour, e.g. resetting only one indicator or even all meters spread over the UI.

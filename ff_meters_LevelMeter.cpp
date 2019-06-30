@@ -71,6 +71,7 @@ void FFAU::LevelMeter::setMeterFlags (const MeterFlags type)
 void FFAU::LevelMeter::setMeterSource (LevelMeterSource* src)
 {
     source = src;
+    repaint();
 }
 
 void FFAU::LevelMeter::setSelectedChannel (const int c)
@@ -154,9 +155,10 @@ void FFAU::LevelMeter::visibilityChanged ()
 
 void FFAU::LevelMeter::timerCallback ()
 {
-    if (source && source->checkNewDataFlag())
+    if ((source && source->checkNewDataFlag()) || backgroundNeedsRepaint)
     {
-        source->resetNewDataFlag();
+        if (source)
+            source->resetNewDataFlag();
 
         juce::LookAndFeel& l = getLookAndFeel();
         if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l))
@@ -165,9 +167,10 @@ void FFAU::LevelMeter::timerCallback ()
             for (int i=0; i < numChannels; ++i)
             {
                 auto channelBounds = lnf->getMeterBounds (getLocalBounds().toFloat(), meterType, numChannels, i);
-                repaint (lnf->getMeterBarBounds (channelBounds, meterType).toNearestInt());
-                repaint (lnf->getMeterMaxNumberBounds (channelBounds, meterType).toNearestInt());
-                repaint (lnf->getMeterClipIndicatorBounds (channelBounds, meterType).toNearestInt());
+                auto dirty = lnf->getMeterBarBounds (channelBounds, meterType).toNearestInt();
+                dirty = dirty.getUnion (lnf->getMeterMaxNumberBounds (channelBounds, meterType).toNearestInt());
+                dirty = dirty.getUnion (lnf->getMeterClipIndicatorBounds (channelBounds, meterType).toNearestInt());
+                repaint (dirty);
             }
         }
         else
@@ -179,34 +182,37 @@ void FFAU::LevelMeter::timerCallback ()
 
 void FFAU::LevelMeter::clearClipIndicator (const int channel)
 {
-    if (source) {
-        if (channel < 0) {
-            source->clearAllClipFlags();
-        }
-        else {
-            source->clearClipFlag (channel);
-        }
-    }
+    if (source == nullptr)
+        return;
+
+    if (channel < 0)
+        source->clearAllClipFlags();
+    else
+        source->clearClipFlag (channel);
 }
 
 void FFAU::LevelMeter::clearMaxLevelDisplay (const int channel)
 {
-    if (source) {
-        if (channel < 0) {
-            source->clearAllMaxNums();
-        }
-        else {
-            source->clearMaxNum (channel);
-        }
-    }
+    if (source == nullptr)
+        return;
+
+    if (channel < 0)
+        source->clearAllMaxNums();
+    else
+        source->clearMaxNum (channel);
 }
 
 void FFAU::LevelMeter::mouseDown (const juce::MouseEvent &event)
 {
-    if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&getLookAndFeel())) {
+    if (source == nullptr)
+        return;
+
+    if (auto* lnf = dynamic_cast<LookAndFeelMethods*> (&getLookAndFeel()))
+    {
         const juce::Rectangle<float> innerBounds = lnf->getMeterInnerBounds (getLocalBounds().toFloat(),
                                                                              meterType);
-        if (event.mods.isLeftButtonDown() && source) {
+        if (event.mods.isLeftButtonDown())
+        {
             auto channel = lnf->hitTestClipIndicator (event.getPosition(),
                                                       meterType,
                                                       innerBounds,

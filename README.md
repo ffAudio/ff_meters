@@ -38,14 +38,15 @@ or import the namespace.
 
     // In your Editor
     public:
-        PluginEditor () {
+        PluginEditor()
+        {
             lnf = new FFAU::LevelMeterLookAndFeel();
-            // adjust the colours to how you like them
+            // adjust the colours to how you like them, e.g.
             lnf->setColour (FFAU::LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
     
-            meter = new FFAU::LevelMeter (); // See FFAU::LevelMeter::MeterFlags for options
+            meter = new FFAU::LevelMeter(); // See FFAU::LevelMeter::MeterFlags for options
             meter->setLookAndFeel (lnf);
-            meter->setMeterSource (processor.getMeterSource());
+            meter->setMeterSource (&processor.getMeterSource());
             addAndMakeVisible (meter);
             // ...
         }
@@ -55,9 +56,9 @@ or import the namespace.
 
     // and in the processor:
     public:
-        FFAU::LevelMeterSource* getMeterSource ()
+        FFAU::LevelMeterSource& getMeterSource()
         {
-            return &meterSource;
+            return meterSource;
         }
 
         void processBlock (AudioSampleBuffer& buffer, MidiBuffer&) override
