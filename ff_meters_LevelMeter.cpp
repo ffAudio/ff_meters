@@ -160,23 +160,7 @@ void FFAU::LevelMeter::timerCallback ()
         if (source)
             source->resetNewDataFlag();
 
-        juce::LookAndFeel& l = getLookAndFeel();
-        if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l))
-        {
-            int numChannels = source ? source->getNumChannels() : 1;
-            for (int i=0; i < numChannels; ++i)
-            {
-                auto channelBounds = lnf->getMeterBounds (getLocalBounds().toFloat(), meterType, numChannels, i);
-                auto dirty = lnf->getMeterBarBounds (channelBounds, meterType).toNearestInt();
-                dirty = dirty.getUnion (lnf->getMeterMaxNumberBounds (channelBounds, meterType).toNearestInt());
-                dirty = dirty.getUnion (lnf->getMeterClipIndicatorBounds (channelBounds, meterType).toNearestInt());
-                repaint (dirty);
-            }
-        }
-        else
-        {
-            repaint();
-        }
+        repaint();
     }
 }
 
