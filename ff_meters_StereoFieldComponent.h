@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- Copyright (c) 2018 Foleys Finest Audio UG - Daniel Walz
+ Copyright (c) 2018 Foleys Finest Audio Ltd. - Daniel Walz
  All rights reserved.
  
  Redistribution and use in source and binary forms, with or without modification,
@@ -37,7 +37,7 @@
 #pragma once
 
 
-namespace FFAU
+namespace foleys
 {
     
     /** @addtogroup ff_meters */

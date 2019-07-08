@@ -2,13 +2,13 @@
 ff_meters
 =========
 
-by Daniel Walz / Foleys Finest Audio UG (haftungsbeschraenkt)
+by Daniel Walz / Foleys Finest Audio Ltd. (haftungsbeschraenkt)
 Published under the BSD License (3 clause)
 
 The ff_meters provide an easy to use Component to display a level reading for an
 AudioBuffer. It is to be used in the audio framework JUCE (www.juce.com).
 
-Find the API documentation here: https://ffaudio.github.io/ff_meters/
+Find the API documentation here: https://foleysfinest.com/ff_meters/
 
 
 Usage
@@ -40,23 +40,17 @@ or import the namespace.
     public:
         PluginEditor()
         {
-            lnf = new FFAU::LevelMeterLookAndFeel();
-            // adjust the colours to how you like them, e.g.
-            lnf->setColour (FFAU::LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
-    
-            meter = new FFAU::LevelMeter(); // See FFAU::LevelMeter::MeterFlags for options
-            meter->setLookAndFeel (lnf);
+            meter = std::make_unique<foleys::LevelMeter>(std::make_unique<foleys::VerticalMultiChannelMeter>());
             meter->setMeterSource (&processor.getMeterSource());
             addAndMakeVisible (meter);
             // ...
         }
     private:
-        ScopedPointer<FFAU::LevelMeter> meter;
-        ScopedPointer<FFAU::LevelMeterLookAndFeel> lnf;
+        std::unique_ptr<FFAU::LevelMeter> meter;
 
     // and in the processor:
     public:
-        FFAU::LevelMeterSource& getMeterSource()
+        foleys::LevelMeterSource& getMeterSource()
         {
             return meterSource;
         }
@@ -68,7 +62,7 @@ or import the namespace.
         }
 
     private:
-        FFAU::LevelMeterSource meterSource;
+        foleys::LevelMeterSource meterSource;
 
 
 OutlineBuffer
@@ -79,7 +73,7 @@ way you can see the outline of a signal running through. It can be used very sim
 
     // in your processor
     private:
-    FFAU::OutlineBuffer outline;
+    foleys::OutlineBuffer outline;
 
     // in prepareToPlay
     outline.setSize (getTotalNumInputChannels(), 1024);

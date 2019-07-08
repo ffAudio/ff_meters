@@ -1,5 +1,5 @@
   ==============================================================================
-  Copyright (c) 2017, Foleys Finest Audio UG - Daniel Walz
+  Copyright (c) 2017 - 2019, Foleys Finest Audio Ltd. - Daniel Walz
   All rights reserved.
 
   Redistribution and use in source and binary forms, with or without modification,

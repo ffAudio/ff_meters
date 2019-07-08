@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- Copyright (c) 2017 - 2019 Filmstro Ltd. / Foleys Finest Audio UG - Daniel Walz
+ Copyright (c) 2017 - 2019 Foleys Finest Audio Ltd. - Daniel Walz
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without modification,
@@ -60,9 +60,9 @@
 #include <juce_gui_basics/juce_gui_basics.h>
 #include <juce_events/juce_events.h>
 
-#include <ff_meters/ff_meters_LevelMeterSource.h>
-#include <ff_meters/ff_meters_LevelMeter.h>
-#include <ff_meters/ff_meters_OutlineBuffer.h>
-#include <ff_meters/ff_meters_StereoFieldBuffer.h>
-#include <ff_meters/ff_meters_StereoFieldComponent.h>
-#include <ff_meters/ff_meters_LookAndFeel.h>
+#include "ff_meters/ff_meters_LevelMeterSource.h"
+#include "ff_meters/ff_meters_LevelMeter.h"
+#include "ff_meters/ff_meters_OutlineBuffer.h"
+#include "ff_meters/ff_meters_StereoFieldBuffer.h"
+#include "ff_meters/ff_meters_StereoFieldComponent.h"
+#include "ff_meters/ff_meters_LookAndFeel.h"

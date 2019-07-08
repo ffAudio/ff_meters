@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- Copyright (c) 2017 Filmstro Ltd. / Foleys Finest Audio UG - Daniel Walz
+ Copyright (c) 2017 - 2019 Foleys Finest Audio Ltd. - Daniel Walz
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without modification,
@@ -37,18 +37,21 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 
-//==============================================================================
-FFAU::LevelMeter::LevelMeter (const MeterFlags type)
-  : meterType       (type)
+namespace foleys
 {
-    onMaxLevelClicked = [](FFAU::LevelMeter& meter, int channel, juce::ModifierKeys mods)
+
+//==============================================================================
+LevelMeter::LevelMeter (std::unique_ptr<LevelMeter::LookAndFeelMethods> lookAndFeel)
+  : lookAndFeelMethods (std::move (lookAndFeel))
+{
+    onMaxLevelClicked = [](LevelMeter& meter, int channel, juce::ModifierKeys mods)
     {
         // default clear all indicators. Overwrite this lambda to change the behaviour
         meter.clearMaxLevelDisplay();
         meter.clearClipIndicator();
     };
 
-    onClipLightClicked = [](FFAU::LevelMeter& meter, int channel, juce::ModifierKeys mods)
+    onClipLightClicked = [](LevelMeter& meter, int channel, juce::ModifierKeys mods)
     {
         // default clear all indicators. Overwrite this lambda to change the behaviour
         meter.clearMaxLevelDisplay();
@@ -58,104 +61,45 @@ FFAU::LevelMeter::LevelMeter (const MeterFlags type)
     startTimerHz (refreshRate);
 }
 
-FFAU::LevelMeter::~LevelMeter()
+LevelMeter::~LevelMeter()
 {
     stopTimer();
 }
 
-void FFAU::LevelMeter::setMeterFlags (const MeterFlags type)
-{
-    meterType = type;
-}
-
-void FFAU::LevelMeter::setMeterSource (LevelMeterSource* src)
+void LevelMeter::setMeterSource (LevelMeterSource* src)
 {
     source = src;
     repaint();
 }
 
-void FFAU::LevelMeter::setSelectedChannel (const int c)
+void LevelMeter::setSelectedChannel (const int c)
 {
     selectedChannel = c;
 }
 
-void FFAU::LevelMeter::setFixedNumChannels (const int numChannels)
+void LevelMeter::setFixedNumChannels (const int numChannels)
 {
-    fixedNumChannels = numChannels;
+    selectedNumChannels = numChannels;
 }
 
-void FFAU::LevelMeter::setRefreshRateHz (const int newRefreshRate)
+void LevelMeter::setRefreshRateHz (const int newRefreshRate)
 {
     refreshRate = newRefreshRate;
     startTimerHz (refreshRate);
 }
 
-void FFAU::LevelMeter::paint (juce::Graphics& g)
+void LevelMeter::paint (juce::Graphics& g)
 {
     juce::Graphics::ScopedSaveState saved (g);
-
-    juce::LookAndFeel& l = getLookAndFeel();
-    if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l))
-    {
-        const juce::Rectangle<float> bounds = getLocalBounds().toFloat();
-        int numChannels = source ? source->getNumChannels() : 1;
-        if (useBackgroundImage)
-        {
-            // This seems to only speed up, if you use complex drawings on the background. For
-            // "normal" vector graphics the image approach seems actually slower
-            if (backgroundNeedsRepaint)
-            {
-                backgroundImage = juce::Image (juce::Image::ARGB, getWidth(), getHeight(), true);
-                juce::Graphics backGraphics (backgroundImage);
-                lnf->drawBackground (backGraphics, meterType, bounds);
-                lnf->drawMeterBarsBackground (backGraphics, meterType, bounds, numChannels, fixedNumChannels);
-                backgroundNeedsRepaint = false;
-            }
-            g.drawImageAt (backgroundImage, 0, 0);
-            lnf->drawMeterBars (g, meterType, bounds, source, fixedNumChannels, selectedChannel);
-        }
-        else
-        {
-            lnf->drawBackground (g, meterType, bounds);
-            lnf->drawMeterBarsBackground (g, meterType, bounds, numChannels, fixedNumChannels);
-            lnf->drawMeterBars (g, meterType, bounds, source, fixedNumChannels, selectedChannel);
-        }
-    }
-    else {
-        // This LookAndFeel is missing the LevelMeter::LookAndFeelMethods.
-        // If you work with the default LookAndFeel, set an instance of
-        // LevelMeterLookAndFeel as LookAndFeel of this component.
-        //
-        // If you write a LookAndFeel from scratch, inherit also
-        // LevelMeter::LookAndFeelMethods
-        jassertfalse;
-    }
+    lookAndFeelMethods->drawMeter (g, *this, getLocalBounds().toFloat());
 
     if (source)
-    {
         source->decayIfNeeded();
-    }
 }
 
-void FFAU::LevelMeter::resized ()
+void LevelMeter::timerCallback ()
 {
-    juce::LookAndFeel& l = getLookAndFeel();
-    if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l))
-    {
-        lnf->updateMeterGradients();
-    }
-
-    backgroundNeedsRepaint = true;
-}
-
-void FFAU::LevelMeter::visibilityChanged ()
-{
-    backgroundNeedsRepaint = true;
-}
-
-void FFAU::LevelMeter::timerCallback ()
-{
-    if ((source && source->checkNewDataFlag()) || backgroundNeedsRepaint)
+    if (source && source->checkNewDataFlag())
     {
         if (source)
             source->resetNewDataFlag();
@@ -164,7 +108,7 @@ void FFAU::LevelMeter::timerCallback ()
     }
 }
 
-void FFAU::LevelMeter::clearClipIndicator (const int channel)
+void LevelMeter::clearClipIndicator (const int channel)
 {
     if (source == nullptr)
         return;
@@ -175,7 +119,7 @@ void FFAU::LevelMeter::clearClipIndicator (const int channel)
         source->clearClipFlag (channel);
 }
 
-void FFAU::LevelMeter::clearMaxLevelDisplay (const int channel)
+void LevelMeter::clearMaxLevelDisplay (const int channel)
 {
     if (source == nullptr)
         return;
@@ -186,50 +130,90 @@ void FFAU::LevelMeter::clearMaxLevelDisplay (const int channel)
         source->clearMaxNum (channel);
 }
 
-void FFAU::LevelMeter::mouseDown (const juce::MouseEvent &event)
+void LevelMeter::mouseDown (const juce::MouseEvent &event)
 {
     if (source == nullptr)
         return;
 
-    if (auto* lnf = dynamic_cast<LookAndFeelMethods*> (&getLookAndFeel()))
+    if (event.mods.isLeftButtonDown())
     {
-        const juce::Rectangle<float> innerBounds = lnf->getMeterInnerBounds (getLocalBounds().toFloat(),
-                                                                             meterType);
-        if (event.mods.isLeftButtonDown())
+        auto channel = lookAndFeelMethods->hitTestClipIndicator (*this,
+                                                                 event.position,
+                                                                 getLocalBounds().toFloat());
+        if (channel >= 0)
         {
-            auto channel = lnf->hitTestClipIndicator (event.getPosition(),
-                                                      meterType,
-                                                      innerBounds,
-                                                      source);
-            if (channel >= 0)
-            {
-                listeners.call (&LevelMeter::Listener::clipLightClicked, this, channel, event.mods);
-                if (onClipLightClicked)
-                    onClipLightClicked (*this, channel, event.mods);
-            }
-
-            channel = lnf->hitTestMaxNumber (event.getPosition(),
-                                         meterType,
-                                         innerBounds,
-                                         source);
-            if (channel >= 0)
-            {
-                listeners.call (&LevelMeter::Listener::maxLevelClicked, this, channel, event.mods);
-                if (onMaxLevelClicked)
-                    onMaxLevelClicked (*this, channel, event.mods);
-            }
+            listeners.call (&LevelMeter::Listener::clipLightClicked, this, channel, event.mods);
+            if (onClipLightClicked)
+                onClipLightClicked (*this, channel, event.mods);
+        }
+        
+        channel = lookAndFeelMethods->hitTestMaxNumber (*this,
+                                                        event.position,
+                                                        getLocalBounds().toFloat());
+        if (channel >= 0)
+        {
+            listeners.call (&LevelMeter::Listener::maxLevelClicked, this, channel, event.mods);
+            if (onMaxLevelClicked)
+                onMaxLevelClicked (*this, channel, event.mods);
         }
     }
 }
 
-void FFAU::LevelMeter::addListener (FFAU::LevelMeter::Listener* listener)
+void LevelMeter::addListener (LevelMeter::Listener* listener)
 {
     listeners.add (listener);
 }
 
-void FFAU::LevelMeter::removeListener (FFAU::LevelMeter::Listener* listener)
+void LevelMeter::removeListener (LevelMeter::Listener* listener)
 {
     listeners.remove (listener);
 }
 
+LevelMeterSource* LevelMeter::getMeterSource()
+{
+    return source;
+}
 
+const LevelMeterSource* LevelMeter::getMeterSource() const
+{
+    return source;
+}
+
+int LevelMeter::getFirstChannel() const
+{
+    return std::max (0, selectedChannel);
+}
+
+int LevelMeter::getNumChannels() const
+{
+    if (selectedNumChannels > 0)
+        return selectedNumChannels;
+
+    if (source != nullptr)
+        return source->getNumChannels();
+
+    return 0;
+}
+
+void LevelMeter::LookAndFeelMethods::setupDefaultMeterColours()
+{
+    colourMap [LevelMeter::BackgroundColour] = juce::Colour (0xff333333);
+    colourMap [LevelMeter::TextColour] = juce::Colours::lightgrey;
+    colourMap [LevelMeter::TextClipColour] = juce::Colours::red;
+    colourMap [LevelMeter::TicksColour] = juce::Colours::silver;
+    colourMap [LevelMeter::OutlineColour] = juce::Colours::silver;
+    colourMap [LevelMeter::ClipOffColour] = juce::Colours::darkgrey;
+    colourMap [LevelMeter::ClipClippedColour] = juce::Colours::red;
+    colourMap [LevelMeter::MeterMaxNormalColour] = juce::Colours::silver;
+    colourMap [LevelMeter::MeterMaxWarnColour] = juce::Colours::orange;
+    colourMap [LevelMeter::MeterMaxOverColour] = juce::Colours::red;
+    colourMap [LevelMeter::MeterBackgroundColour] = juce::Colours::darkgrey;
+    colourMap [LevelMeter::MeterGradientLowColour] = juce::Colours::green;
+    colourMap [LevelMeter::MeterGradientMidColour] = juce::Colours::lightgoldenrodyellow;
+    colourMap [LevelMeter::MeterGradientMaxColour] = juce::Colours::red;
+
+    colourMap [LevelMeter::MeterReductionColour] = juce::Colours::orange;
+}
+
+
+} // namespace foleys

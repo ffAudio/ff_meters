@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- Copyright (c) 2017 Filmstro Ltd. / Foleys Finest Audio UG - Daniel Walz
+ Copyright (c) 2017 - 2019 Foleys Finest Audio Ltd. - Daniel Walz
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without modification,
@@ -35,7 +35,7 @@
 
 #pragma once
 
-namespace FFAU
+namespace foleys
 {
 
 /** @addtogroup ff_meters */
@@ -69,23 +69,26 @@ public:
 
     enum ColourIds
     {
-        lmTextColour = 0x2200001,   /**< Colour for the numbers etc. */
-        lmTextDeactiveColour,       /**< Unused, will eventually be removed */
-        lmTextClipColour,           /**< Colour to print the max number if it has clipped */
-        lmTicksColour,              /**< Colour for the tick marks */
-        lmOutlineColour,            /**< Colour for the frame around all */
-        lmBackgroundColour,         /**< Background colour */
-        lmBackgroundClipColour,     /**< This is the colour of the clip indicator if it has clipped */
-        lmMeterForegroundColour,    /**< Unused, will eventually be removed */
-        lmMeterOutlineColour,       /**< Colour for the outlines of meter bars etc. */
-        lmMeterBackgroundColour,    /**< Background colour for the actual meter bar and the max number */
-        lmMeterMaxNormalColour,     /**< Text colour for the max number, if under warn threshold */
-        lmMeterMaxWarnColour,       /**< Text colour for the max number, if between warn threshold and clip threshold */
-        lmMeterMaxOverColour,       /**< Text colour for the max number, if above the clip threshold */
-        lmMeterGradientLowColour,   /**< Colour for the meter bar under the warn threshold */
-        lmMeterGradientMidColour,   /**< Colour for the meter bar in the warn area */
-        lmMeterGradientMaxColour,   /**< Colour for the meter bar at the clip threshold */
-        lmMeterReductionColour      /**< Colour for the reduction meter displayed within the meter */
+        BackgroundColour = 0x2200001, /**< Background colour */
+        TextColour,                   /**< Colour for the numbers etc. */
+        TextClipColour,               /**< Colour to print the max number if it has clipped */
+        TicksColour,                  /**< Colour for the tick marks */
+        OutlineColour,                /**< Colour for the frame around all */
+        ClipOffColour,
+        ClipClippedColour,
+        MeterBackgroundColour,
+        MeterGradientLowColour,       /**< Colour for the meter bar under the warn threshold */
+        MeterGradientMidColour,       /**< Colour for the meter bar in the warn area */
+        MeterGradientMaxColour,       /**< Colour for the meter bar at the clip threshold */
+        MeterMaxNormalColour,         /**< Text colour for the max number, if under warn threshold */
+        MeterMaxWarnColour,           /**< Text colour for the max number, if between warn threshold and clip threshold */
+        MeterMaxOverColour,           /**< Text colour for the max number, if above the clip threshold */
+
+//        BackgroundClipColour,     /**< This is the colour of the clip indicator if it has clipped */
+//        MeterForegroundColour,    /**< Unused, will eventually be removed */
+//        MeterOutlineColour,       /**< Colour for the outlines of meter bars etc. */
+//        MeterBackgroundColour,    /**< Background colour for the actual meter bar and the max number */
+        MeterReductionColour      /**< Colour for the reduction meter displayed within the meter */
     };
 
     /**
@@ -93,149 +96,48 @@ public:
      The LevelMeter needs a LookAndFeel, that implements these methods.
      There is a default implementation to be included in your custom LookAndFeel class, \see LookAndFeelMethods.h
      */
-    class LookAndFeelMethods {
+    class LookAndFeelMethods
+    {
     public:
-        virtual ~LookAndFeelMethods() {}
+        LookAndFeelMethods()
+        {
+            setupDefaultMeterColours();
+        }
 
-        /** Define your default colours in this callback */
-        virtual void setupDefaultMeterColours () = 0;
+        virtual ~LookAndFeelMethods() = default;
 
-        /** Call this to create the cached ColourGradients after changing colours of the meter gradients */
-        virtual void updateMeterGradients () = 0;
-
-        /** Override this to change the inner rectangle in case you want to paint a border e.g. */
-        virtual juce::Rectangle<float> getMeterInnerBounds (const juce::Rectangle<float> bounds,
-                                                            const MeterFlags meterType) const = 0;
-
-        /** Override this callback to define the placement of a meter channel. */
-        virtual juce::Rectangle<float> getMeterBounds (const juce::Rectangle<float> bounds,
-                                                       const MeterFlags meterType,
-                                                       const int numChannels,
-                                                       const int channel) const = 0;
-
-        /** Override this callback to define the placement of the actual meter bar. */
-        virtual juce::Rectangle<float> getMeterBarBounds (const juce::Rectangle<float> bounds,
-                                                          const MeterFlags meterType) const = 0;
-
-        /** Override this callback to define the placement of the tickmarks.
-         To disable this feature return an empty rectangle. */
-        virtual juce::Rectangle<float> getMeterTickmarksBounds (const juce::Rectangle<float> bounds,
-                                                                const MeterFlags meterType) const = 0;
-
-        /** Override this callback to define the placement of the clip indicator light.
-         To disable this feature return an empty rectangle. */
-        virtual juce::Rectangle<float> getMeterClipIndicatorBounds (const juce::Rectangle<float> bounds,
-                                                                    const MeterFlags meterType) const = 0;
-
-
-        /** Override this to draw background and if wanted a frame. If the frame takes space away, 
-         it should return the reduced bounds */
-        virtual juce::Rectangle<float> drawBackground (juce::Graphics&,
-                                                       const MeterFlags meterType,
-                                                       const juce::Rectangle<float> bounds) = 0;
-
-        /** This is called to draw the actual numbers and bars on top of the static background */
-        virtual void drawMeterBars (juce::Graphics&,
-                                    const MeterFlags meterType,
-                                    const juce::Rectangle<float> bounds,
-                                    const LevelMeterSource* source,
-                                    const int fixedNumChannels=-1,
-                                    const int selectedChannel=-1) = 0;
-
-        /** This draws the static background of the whole level meter group with all channels */
-        virtual void drawMeterBarsBackground (juce::Graphics&,
-                                              const MeterFlags meterType,
-                                              const juce::Rectangle<float> bounds,
-                                              const int numChannels,
-                                              const int fixedNumChannels=-1) = 0;
-
-        /** This draws a group of informations representing one channel */
-        virtual void drawMeterChannel (juce::Graphics&,
-                                       const MeterFlags meterType,
-                                       const juce::Rectangle<float> bounds,
-                                       const LevelMeterSource* source,
-                                       const int selectedChannel) = 0;
-
-        /** This draws the static backgrounds representing one channel */
-        virtual void drawMeterChannelBackground (juce::Graphics&,
-                                                 const MeterFlags meterType,
-                                                 const juce::Rectangle<float> bounds) = 0;
-
-        /** This callback draws the actual level bar. The background has an extra callback */
-        virtual void drawMeterBar (juce::Graphics&,
-                                   const MeterFlags meterType,
-                                   const juce::Rectangle<float> bounds,
-                                   const float rms, const float peak) = 0;
-        
-        /** This callback draws an reduction from top. Only triggered, if a reduction < 1.0 is set in the LevelMeterSource */
-        virtual void drawMeterReduction (juce::Graphics& g,
-                                         const FFAU::LevelMeter::MeterFlags meterType,
-                                         const juce::Rectangle<float> bounds,
-                                         const float reduction) = 0;
-
-        /** This draws the background for the actual level bar */
-        virtual void drawMeterBarBackground (juce::Graphics&,
-                                             const MeterFlags meterType,
-                                             const juce::Rectangle<float> bounds) = 0;
-
-        /** This draws the tickmarks for the level scale. It is painted on the static background */
-        virtual void drawTickMarks (juce::Graphics&,
-                                    const MeterFlags meterType,
-                                    const juce::Rectangle<float> bounds) = 0;
-
-        /** This callback draws the clip indicator. The background has an extra callback */
-        virtual void drawClipIndicator (juce::Graphics&,
-                                        const MeterFlags meterType,
-                                        const juce::Rectangle<float> bounds,
-                                        const bool hasClipped) = 0;
-
-        /** This draws the background for the clip indicator LED */
-        virtual void drawClipIndicatorBackground (juce::Graphics&,
-                                                  const MeterFlags meterType,
-                                                  const juce::Rectangle<float> bounds) = 0;
-
-        /** Override this callback to define the placement of the max level.
-         To disable this feature return an empty rectangle. */
-        virtual juce::Rectangle<float> getMeterMaxNumberBounds (const juce::Rectangle<float> bounds,
-                                                                const MeterFlags meterType) const = 0;
-
-        /** This callback draws the number of maximum level. The background has an extra callback */
-        virtual void drawMaxNumber (juce::Graphics&,
-                                    const MeterFlags meterType,
-                                    const juce::Rectangle<float> bounds,
-                                    const float maxGain) = 0;
-
-        /** This draws the background for the maximum level display */
-        virtual void drawMaxNumberBackground (juce::Graphics&,
-                                              const MeterFlags meterType,
-                                              const juce::Rectangle<float> bounds) = 0;
+        virtual void drawMeter (juce::Graphics& g,
+                                const LevelMeter& meter,
+                                juce::Rectangle<float> bounds) = 0;
 
         /** This is called by the frontend to check, if the clip indicator was clicked (e.g. for reset) */
-        virtual int hitTestClipIndicator (const juce::Point<int> position,
-                                          const MeterFlags meterType,
-                                          const juce::Rectangle<float> bounds,
-                                          const LevelMeterSource* source) const = 0;
+        virtual int hitTestClipIndicator (const LevelMeter& meter,
+                                          const juce::Point<float> position,
+                                          const juce::Rectangle<float> bounds) const = 0;
 
         /** This is called by the frontend to check, if the maximum level number was clicked (e.g. for reset) */
-        virtual int hitTestMaxNumber (const juce::Point<int> position,
-                                      const MeterFlags meterType,
-                                      const juce::Rectangle<float> bounds,
-                                      const LevelMeterSource* source) const = 0;
+        virtual int hitTestMaxNumber (const LevelMeter& meter,
+                                      const juce::Point<float> position,
+                                      const juce::Rectangle<float> bounds) const = 0;
+
+        virtual void setupDefaultMeterColours();
+
+    protected:
+        std::map<ColourIds, juce::Colour> colourMap;
+
+    private:
+        JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LookAndFeelMethods)
     };
 
-    LevelMeter (const MeterFlags type = HasBorder);
+    /**
+     To create a LevelMeter supply a LookAndFeel. This will define the behaviour,
+     e.g. horizontal, vertical etc. A few defaults are provided, you can create your own
+     by inheriting from FFAU::LevelMeter::LookAndFeelMethods.
+     */
+    LevelMeter (std::unique_ptr<LevelMeter::LookAndFeelMethods> lookAndFeel);
     ~LevelMeter ();
 
-    /**
-     Allows to change the meter's configuration by setting a combination of MeterFlags
-     */
-    void setMeterFlags (const MeterFlags type);
-
     void paint (juce::Graphics&) override;
-
-    void resized () override;
-
-    void visibilityChanged () override;
 
     void timerCallback () override;
 
@@ -243,7 +145,7 @@ public:
      Set a LevelMeterSource to display. This separation is used, so the source can work in the processing and the 
      GUI can display the values.
      */
-    void setMeterSource (FFAU::LevelMeterSource* source);
+    void setMeterSource (LevelMeterSource* source);
 
     /**
      Set a specific channel to display. This is only useful, if MeterFlags::SingleChannel is set.
@@ -255,6 +157,13 @@ public:
      the width of the channels.
      */
     void setFixedNumChannels (const int numChannels);
+
+    /** This returns the offset of the first channel to display */
+    int getFirstChannel() const;
+
+    /** Returns the number of channels to display. This can be different from the number in LevelMeterSource */
+    int getNumChannels() const;
+
 
     void setRefreshRateHz (const int newRefreshRate);
 
@@ -272,13 +181,13 @@ public:
      This lambda is called when the user clicks on a clip light. It is initially set to clear all clip lights
      and max level numbers.
      */
-    std::function<void(FFAU::LevelMeter& meter, int channel, juce::ModifierKeys mods)> onClipLightClicked;
+    std::function<void(LevelMeter& meter, int channel, juce::ModifierKeys mods)> onClipLightClicked;
 
     /**
      This lambda is called when the user clicks on a max level display. It is initially set to clear all clip lights
      and max level numbers.
      */
-    std::function<void(FFAU::LevelMeter& meter, int channel, juce::ModifierKeys mods)> onMaxLevelClicked;
+    std::function<void(LevelMeter& meter, int channel, juce::ModifierKeys mods)> onMaxLevelClicked;
 
     /**
      \internal
@@ -314,32 +223,41 @@ public:
          To allow different behaviour, e.g. resetting only one indicator or even all meters spread over the UI.
          \see clearClipIndicator, maxLevelClicked
          */
-        virtual void clipLightClicked (FFAU::LevelMeter* meter, const int channel, juce::ModifierKeys mods) = 0;
+        virtual void clipLightClicked (LevelMeter* meter, const int channel, juce::ModifierKeys mods) = 0;
         /**
          This is called, when the user clicks a max level text. It can be used to reset the max number.
          \see clearMaxLevelDisplay, clipLightClicked
          */
-        virtual void maxLevelClicked (FFAU::LevelMeter* meter, const int channel, juce::ModifierKeys mods)  = 0;
+        virtual void maxLevelClicked (LevelMeter* meter, const int channel, juce::ModifierKeys mods)  = 0;
     };
 
-    void addListener (FFAU::LevelMeter::Listener*);
+    void addListener (LevelMeter::Listener*);
 
-    void removeListener (FFAU::LevelMeter::Listener*);
+    void removeListener (LevelMeter::Listener*);
+
+    /**
+     Returns the LevelMeterSource this meter component is connected to.
+     */
+    LevelMeterSource* getMeterSource();
+    const LevelMeterSource* getMeterSource() const;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LevelMeter)
     
-    juce::WeakReference<FFAU::LevelMeterSource> source;
+    juce::WeakReference<LevelMeterSource> source;
+
+    /** This is just the part necessary for the LevelMeter, it doesn't have to be a complete juce::LookAndFeel. */
+    std::unique_ptr<LevelMeter::LookAndFeelMethods> lookAndFeelMethods;
+
+    /** If the juce::LookAndFeel contains the FFAU::LevelMeter::LookAndFeelMethods, this will point to the juce::LookAndFeel */
+    LookAndFeelMethods& currentLookAndFeelMethods = *lookAndFeelMethods.get();
 
     int                                   selectedChannel  = -1;
-    int                                   fixedNumChannels = -1;
+    int                                   selectedNumChannels = -1;
     MeterFlags                            meterType = HasBorder;
     int                                   refreshRate = 30;
-    bool                                  useBackgroundImage = false;
-    juce::Image                           backgroundImage;
-    bool                                  backgroundNeedsRepaint = true;
 
-    juce::ListenerList<FFAU::LevelMeter::Listener> listeners;
+    juce::ListenerList<LevelMeter::Listener> listeners;
 };
 
 inline LevelMeter::MeterFlags operator|(LevelMeter::MeterFlags a, LevelMeter::MeterFlags b)
@@ -347,4 +265,4 @@ inline LevelMeter::MeterFlags operator|(LevelMeter::MeterFlags a, LevelMeter::Me
 
 /*@}*/
 
-} // end namespace FFAU
+} // end namespace foleys
