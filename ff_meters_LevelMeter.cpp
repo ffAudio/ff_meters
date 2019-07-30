@@ -156,6 +156,8 @@ void LevelMeter::mouseDown (const juce::MouseEvent &event)
             if (onMaxLevelClicked)
                 onMaxLevelClicked (*this, channel, event.mods);
         }
+
+        repaint();
     }
 }
 
