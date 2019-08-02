@@ -58,7 +58,7 @@ namespace foleys
         {
             std::vector<float>           minBuffer;
             std::vector<float>           maxBuffer;
-            std::atomic<int>             writePointer     {0};
+            std::atomic<size_t>          writePointer     {0};
             int                          fraction        = 0;
             int                          samplesPerBlock = 128;
 
@@ -96,9 +96,10 @@ namespace foleys
              */
             void setSize (const int numBlocks)
             {
-                minBuffer.resize (numBlocks, 0.0f);
-                maxBuffer.resize (numBlocks, 0.0f);
-                writePointer = writePointer % numBlocks;
+                const auto num = size_t (numBlocks);
+                minBuffer.resize (num, 0.0f);
+                maxBuffer.resize (num, 0.0f);
+                writePointer = writePointer % num;
             }
 
             void pushChannelData (const float* input, const int numSamples)
@@ -136,9 +137,10 @@ namespace foleys
 
             void getChannelOutline (juce::Path& outline, const juce::Rectangle<float> bounds, const int numSamples) const
             {
-                const int bufferSize = static_cast<int> (maxBuffer.size());
-                int latest = writePointer > 0 ? writePointer - 1 : bufferSize - 1;
-                int oldest = (latest >= numSamples) ? latest - numSamples : latest + bufferSize - numSamples;
+                const auto numSamples_t = size_t (numSamples);
+                const auto bufferSize = maxBuffer.size();
+                const auto latest = writePointer > 0 ? writePointer - 1 : bufferSize - 1;
+                const auto oldest = (latest >= numSamples_t) ? latest - numSamples_t : latest + bufferSize - numSamples_t;
 
                 const float dx = bounds.getWidth() / numSamples;
                 const float dy = bounds.getHeight() * 0.35f;
@@ -183,7 +185,7 @@ namespace foleys
          */
         void setSize (const int numChannels, const int numBlocks)
         {
-            channelDatas.resize (numChannels);
+            channelDatas.resize (size_t (numChannels));
             for (auto& data : channelDatas) {
                 data.setSize (numBlocks);
                 data.setSamplesPerBlock (samplesPerBlock);
@@ -205,9 +207,11 @@ namespace foleys
          */
         void pushBlock (const juce::AudioBuffer<float>& buffer, const int numSamples)
         {
-            for (int i=0; i < buffer.getNumChannels(); ++i) {
-                if (i < int (channelDatas.size())) {
-                    channelDatas [i].pushChannelData (buffer.getReadPointer (i), numSamples);
+            for (int i=0; i < buffer.getNumChannels(); ++i)
+            {
+                if (juce::isPositiveAndBelow (i, channelDatas.size()))
+                {
+                    channelDatas [size_t (i)].pushChannelData (buffer.getReadPointer (i), numSamples);
                 }
             }
         }
@@ -222,8 +226,8 @@ namespace foleys
          */
         void getChannelOutline (juce::Path& path, const juce::Rectangle<float> bounds, const int channel, const int numSamples) const
         {
-            if (channel < int (channelDatas.size()))
-                return channelDatas [channel].getChannelOutline (path, bounds, numSamples);
+            if (juce::isPositiveAndBelow (channel, channelDatas.size()))
+                return channelDatas [size_t (channel)].getChannelOutline (path, bounds, numSamples);
         }
 
         /**

@@ -86,24 +86,26 @@ public:
             g.setColour (colourMap [LevelMeter::TicksColour]);
             const auto ticks = juce::Rectangle<float> (bar.getRight() + 1, bar.getY(),
                                                        max.getRight() - (bar.getRight() + 1), bar.getHeight());
-            const float h = (ticks.getHeight() - 2.0) * 0.05;
+            const auto h = (ticks.getHeight() - 2.0f) * 0.05f;
             g.setFont (h * 0.8f);
             for (int i=0; i<21; ++i) {
                 const float y = ticks.getY() + i * h;
                 if (i % 2 == 0)
                 {
-                    g.drawHorizontalLine (y + 1,
+                    g.drawHorizontalLine (juce::roundToInt (y + 1),
                                           ticks.getX() + 4,
                                           ticks.getRight());
-                    if (i < 20) {
-                        g.drawFittedText (juce::String (i * 0.05 * -80.0f),
-                                          ticks.getX(), y + 4, ticks.getWidth(), h * 0.6,
+                    if (i < 20)
+                    {
+                        auto box = ticks.withY (y + 4).withHeight (h * 0.6f);
+                        g.drawFittedText (juce::String (i * 0.05f * -80.0f),
+                                          box.getSmallestIntegerContainer(),
                                           juce::Justification::topRight, 1);
                     }
                 }
                 else
                 {
-                    g.drawHorizontalLine (y + 2,
+                    g.drawHorizontalLine (juce::roundToInt (y + 2),
                                           ticks.getX() + 4,
                                           ticks.getCentreX());
                 }
@@ -122,8 +124,9 @@ public:
 
             g.setColour (currentMax > -0.3f ? colourMap [LevelMeter::MeterMaxOverColour]
                                             : colourMap [LevelMeter::MeterMaxNormalColour]);
-            g.drawHorizontalLine (juce::jmap (std::min (currentMax, 0.0f),
-                                              -80.0f, 0.0f, bar.getBottom(), bar.getY()), bar.getX(), bar.getRight());
+            g.drawHorizontalLine (juce::roundToInt (juce::jmap (std::min (currentMax, 0.0f),
+                                                                -80.0f, 0.0f, bar.getBottom(), bar.getY())),
+                                  bar.getX(), bar.getRight());
 
         }
     }
@@ -166,27 +169,27 @@ private:
 
     juce::Rectangle<float> getClipIndicatorBounds(juce::Rectangle<float> bounds) const
     {
-        const float margin = bounds.getWidth() * 0.05;
-        const float w      = bounds.getWidth() * 0.35;
+        const auto margin = bounds.getWidth() * 0.05f;
+        const auto w      = bounds.getWidth() * 0.35f;
         return juce::Rectangle<float>(bounds.getX() + margin,
                                       bounds.getY() + margin,
                                       w,
-                                      w * 0.5);
+                                      w * 0.5f);
     }
 
     juce::Rectangle<float> getMeterMaxNumberBounds (const juce::Rectangle<float> bounds) const
     {
-        const float margin = bounds.getWidth() * 0.05;
+        const auto margin = bounds.getWidth() * 0.05f;
         return juce::Rectangle<float>(bounds.getX() + margin,
                                       bounds.getBottom() - (margin + 25),
                                       bounds.getWidth() - 2 * margin,
-                                      25.0);
+                                      25.0f);
     }
 
     juce::Rectangle<float> getMeterBarBounds(juce::Rectangle<float> bounds) const
     {
-        const float margin = bounds.getWidth() * 0.05;
-        const float w      = bounds.getWidth() * 0.35;
+        const auto margin = bounds.getWidth() * 0.05f;
+        const auto w      = bounds.getWidth() * 0.35f;
         return {
             bounds.getX() + margin,
             bounds.getY() + 2.0f * margin + w * 0.5f,

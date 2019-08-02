@@ -58,26 +58,17 @@ private:
     class ChannelData
     {
     public:
-        ChannelData (const int rmsWindow = 8) :
-        max (),
-        maxOverall (),
-        clip (false),
-        reduction (1.0f),
-        hold (0),
-        rmsHistory (rmsWindow, 0.0),
-        rmsSum (0.0),
-        rmsPtr (0)
+        ChannelData (const size_t rmsWindow = 8)
+          : rmsHistory (rmsWindow, 0.0f)
         {}
 
-        ChannelData (const ChannelData& other) :
-        max       (other.max.load() ),
-        maxOverall(other.maxOverall.load() ),
-        clip      (other.clip.load() ),
-        reduction (other.reduction.load()),
-        hold      (other.hold.load()),
-        rmsHistory (8, 0.0),
-        rmsSum    (0.0),
-        rmsPtr    (0)
+        ChannelData (const ChannelData& other)
+          : max       (other.max.load() ),
+            maxOverall(other.maxOverall.load() ),
+            clip      (other.clip.load() ),
+            reduction (other.reduction.load()),
+            hold      (other.hold.load()),
+            rmsHistory (8, 0.0)
         {}
 
         ChannelData& operator=(const ChannelData& other)
@@ -87,16 +78,16 @@ private:
             clip.store        (other.clip.load());
             reduction.store   (other.reduction.load());
             hold.store        (other.hold.load());
-            rmsHistory.resize (other.rmsHistory.size(), 0.0);
-            rmsSum = 0.0;
+            rmsHistory.resize (other.rmsHistory.size(), 0.0f);
+            rmsSum = 0.0f;
             rmsPtr = 0;
             return (*this);
         }
 
         std::atomic<float>       max;
         std::atomic<float>       maxOverall;
-        std::atomic<bool>        clip;
-        std::atomic<float>       reduction;
+        std::atomic<bool>        clip       { false };
+        std::atomic<float>       reduction  { 1.0f };
 
         float getAvgRMS () const
         {
@@ -106,7 +97,7 @@ private:
             return sqrtf (rmsSum);
         }
 
-        void setLevels (const juce::int64 time, const float newMax, const float newRms, const juce::int64 holdMSecs)
+        void setLevels (const juce::int64 time, const float newMax, const float newRms, const juce::int64 holdMSecsToUse)
         {
             if (newMax > 1.0 || newRms > 1.0) {
                 clip = true;
@@ -114,7 +105,7 @@ private:
             maxOverall = fmaxf (maxOverall, newMax);
             if (newMax >= max) {
                 max = std::min (1.0f, newMax);
-                hold = time + holdMSecs;
+                hold = time + holdMSecsToUse;
             }
             else if (time > hold) {
                 max = std::min (1.0f, newMax);
@@ -122,7 +113,7 @@ private:
             pushNextRMS (std::min (1.0f, newRms));
         }
 
-        void setRMSsize (const int numBlocks)
+        void setRMSsize (const size_t numBlocks)
         {
             rmsHistory.assign (numBlocks, 0.0f);
             rmsSum  = 0.0;
@@ -136,12 +127,13 @@ private:
     private:
         void pushNextRMS (const float newRMS)
         {
-            const double squaredRMS = std::min (newRMS * newRMS, 1.0f);
+            const auto squaredRMS = std::min (newRMS * newRMS, 1.0f);
             if (rmsHistory.size() > 0)
             {
                 rmsSum = rmsSum + squaredRMS - rmsHistory [rmsPtr];
-                rmsHistory [rmsPtr] = squaredRMS;
-                rmsPtr = (rmsPtr + 1) % rmsHistory.size();
+                rmsHistory [rmsPtr++] = squaredRMS;
+                if (rmsPtr >= rmsHistory.size())
+                    rmsPtr -= rmsHistory.size();
             }
             else {
                 rmsSum = squaredRMS;
@@ -149,9 +141,9 @@ private:
         }
 
         std::atomic<juce::int64> hold;
-        std::vector<double>      rmsHistory;
-        std::atomic<double>      rmsSum;
-        int                      rmsPtr;
+        std::vector<float>       rmsHistory;
+        std::atomic<float>       rmsSum;
+        size_t                   rmsPtr = 0;
     };
 
 public:
@@ -178,9 +170,9 @@ public:
      */
     void resize (const int channels, const int rmsWindow)
     {
-        levels.resize (channels, ChannelData (rmsWindow));
+        levels.resize (size_t (channels), ChannelData (size_t (rmsWindow)));
         for (ChannelData& l : levels) {
-            l.setRMSsize (rmsWindow);
+            l.setRMSsize (size_t (rmsWindow));
         }
 
         newDataFlag = true;
@@ -197,13 +189,13 @@ public:
             const int         numChannels = buffer.getNumChannels ();
             const int         numSamples  = buffer.getNumSamples ();
 
-            levels.resize (numChannels);
+            levels.resize (size_t (numChannels));
 
             for (int channel=0; channel < numChannels; ++channel) {
-                levels [channel].setLevels (lastMeasurement,
-                                            buffer.getMagnitude (channel, 0, numSamples),
-                                            buffer.getRMSLevel  (channel, 0, numSamples),
-                                            holdMSecs);
+                levels [size_t (channel)].setLevels (lastMeasurement,
+                                                     buffer.getMagnitude (channel, 0, numSamples),
+                                                     buffer.getRMSLevel  (channel, 0, numSamples),
+                                                     holdMSecs);
             }
         }
 
@@ -237,7 +229,7 @@ public:
     void setReductionLevel (const int channel, const float reduction)
     {
         if (juce::isPositiveAndBelow (channel, static_cast<int> (levels.size ())))
-            levels [channel].reduction = reduction;
+            levels [size_t (channel)].reduction = reduction;
     }
 
     /**
@@ -267,7 +259,7 @@ public:
     float getReductionLevel (const int channel) const
     {
         if (juce::isPositiveAndBelow (channel, static_cast<int> (levels.size ())))
-            return levels [channel].reduction;
+            return levels [size_t (channel)].reduction;
         return -1.0f;
     }
 
@@ -277,7 +269,7 @@ public:
      */
     float getMaxLevel (const int channel) const
     {
-        return levels.at (channel).max;
+        return levels [size_t (channel)].max;
     }
 
     /**
@@ -286,7 +278,7 @@ public:
      */
     float getMaxOverallLevel (const int channel) const
     {
-        return levels.at (channel).maxOverall;
+        return levels [size_t (channel)].maxOverall;
     }
 
     /**
@@ -295,7 +287,22 @@ public:
      */
     float getRMSLevel (const int channel) const
     {
-        return levels.at (channel).getAvgRMS();
+        return levels [size_t (channel)].getAvgRMS();
+    }
+
+    /**
+     This is the average RMS level over all channels.
+     */
+    float getAverageRMSLevel() const
+    {
+        if (levels.empty())
+            return 0.0f;
+
+        auto sum = 0.0f;
+        for (auto& channel : levels)
+            sum += channel.getAvgRMS();
+
+        return sum / levels.size();
     }
 
     /**
@@ -303,7 +310,7 @@ public:
      */
     bool getClipFlag (const int channel) const
     {
-        return levels.at (channel).clip;
+        return levels [size_t (channel)].clip;
     }
 
     /**
@@ -311,7 +318,7 @@ public:
      */
     void clearClipFlag (const int channel)
     {
-        levels.at (channel).clip = false;
+        levels [size_t (channel)].clip = false;
     }
 
     void clearAllClipFlags ()
@@ -326,7 +333,7 @@ public:
      */
     void clearMaxNum (const int channel)
     {
-        levels.at (channel).maxOverall = -80.0f;
+        levels [size_t (channel)].maxOverall = - 100.0f;
     }
 
     /**

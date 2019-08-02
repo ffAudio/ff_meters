@@ -47,6 +47,8 @@ LevelMeter::LevelMeter (std::unique_ptr<LevelMeter::LookAndFeelMethods> lookAndF
     onMaxLevelClicked = [](LevelMeter& meter, int channel, juce::ModifierKeys mods)
     {
         // default clear all indicators. Overwrite this lambda to change the behaviour
+        juce::ignoreUnused (channel);
+        juce::ignoreUnused (mods);
         meter.clearMaxLevelDisplay();
         meter.clearClipIndicator();
     };
@@ -54,6 +56,8 @@ LevelMeter::LevelMeter (std::unique_ptr<LevelMeter::LookAndFeelMethods> lookAndF
     onClipLightClicked = [](LevelMeter& meter, int channel, juce::ModifierKeys mods)
     {
         // default clear all indicators. Overwrite this lambda to change the behaviour
+        juce::ignoreUnused (channel);
+        juce::ignoreUnused (mods);
         meter.clearMaxLevelDisplay();
         meter.clearClipIndicator();
     };
