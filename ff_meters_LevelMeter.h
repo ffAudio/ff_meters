@@ -120,6 +120,8 @@ public:
                                       const juce::Point<float> position,
                                       const juce::Rectangle<float> bounds) const = 0;
 
+        void setMeterColour (LevelMeter::ColourIds id, juce::Colour c);
+
         virtual void setupDefaultMeterColours();
 
     protected:
@@ -142,7 +144,7 @@ public:
     void timerCallback () override;
 
     /**
-     Set a LevelMeterSource to display. This separation is used, so the source can work in the processing and the 
+     Set a LevelMeterSource to display. This separation is used, so the source can work in the processing and the
      GUI can display the values.
      */
     void setMeterSource (LevelMeterSource* source);
@@ -164,6 +166,7 @@ public:
     /** Returns the number of channels to display. This can be different from the number in LevelMeterSource */
     int getNumChannels() const;
 
+    void setMeterColour (LevelMeter::ColourIds id, juce::Colour c);
 
     void setRefreshRateHz (const int newRefreshRate);
 
@@ -207,7 +210,7 @@ public:
      {
          clickedMeter->clearClipIndicator (mods.isAltDown() ? -1 : channel);
      }
-     
+
      void maxLevelClicked (LevelMeter* clickedMeter, const int channel, ModifierKeys mods) override
      {
          clickedMeter->clearMaxLevelDisplay (mods.isAltDown() ? -1 : channel);
@@ -243,7 +246,7 @@ public:
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LevelMeter)
-    
+
     juce::WeakReference<LevelMeterSource> source;
 
     /** This is just the part necessary for the LevelMeter, it doesn't have to be a complete juce::LookAndFeel. */
@@ -254,7 +257,6 @@ private:
 
     int                                   selectedChannel  = -1;
     int                                   selectedNumChannels = -1;
-    MeterFlags                            meterType = HasBorder;
     int                                   refreshRate = 30;
 
     juce::ListenerList<LevelMeter::Listener> listeners;

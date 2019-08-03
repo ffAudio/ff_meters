@@ -24,7 +24,7 @@
  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  OF THE POSSIBILITY OF SUCH DAMAGE.
- 
+
  ==============================================================================
 
     \file ff_meters_LookAndFeelMethods.h
@@ -591,7 +591,7 @@ void drawMeterReduction (juce::Graphics& g,
                          const float reduction) override
 {
     const float infinity = -30.0f;
-    
+
     const juce::Rectangle<float> floored (ceilf (bounds.getX()) + 1.0f, ceilf (bounds.getY()) + 1.0f,
                                           floorf (bounds.getRight()) - (ceilf (bounds.getX() + 2.0f)),
                                           floorf (bounds.getBottom()) - (ceilf (bounds.getY()) + 2.0f));
@@ -771,5 +771,3 @@ private:
 
 juce::ColourGradient horizontalGradient;
 juce::ColourGradient verticalGradient;
-
-

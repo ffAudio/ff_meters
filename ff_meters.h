@@ -32,7 +32,7 @@
  vendor:        Foleys Finest Audio UG / Filmstro Ltd.
  version:       0.9.0
  name:          Meters with GUI and LookAndFeel
- description:   Contains a metering Component, that can display live peak and RMS values 
+ description:   Contains a metering Component, that can display live peak and RMS values
  dependencies:  juce_audio_basics, juce_gui_basics, juce_events
  website:       http://www.foleysfinest.com/
  license:       BSD V2 3-clause
@@ -40,13 +40,13 @@
  END_JUCE_MODULE_DECLARATION
 
  ==============================================================================
- 
+
  @defgroup ff_meters
- 
+
  This module provides a display component to show RMS, MAX and CLIP values.
  There is a MeterInputSource, which can process any AudioBuffer, and provide
  therefore the data for live display.
- 
+
  ==============================================================================
  */
 

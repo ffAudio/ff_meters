@@ -101,6 +101,11 @@ void LevelMeter::paint (juce::Graphics& g)
         source->decayIfNeeded();
 }
 
+void LevelMeter::setMeterColour (LevelMeter::ColourIds id, juce::Colour c)
+{
+    lookAndFeelMethods->setMeterColour (id, c);
+}
+
 void LevelMeter::timerCallback ()
 {
     if (source && source->checkNewDataFlag())
@@ -150,7 +155,7 @@ void LevelMeter::mouseDown (const juce::MouseEvent &event)
             if (onClipLightClicked)
                 onClipLightClicked (*this, channel, event.mods);
         }
-        
+
         channel = lookAndFeelMethods->hitTestMaxNumber (*this,
                                                         event.position,
                                                         getLocalBounds().toFloat());
@@ -199,6 +204,11 @@ int LevelMeter::getNumChannels() const
         return source->getNumChannels();
 
     return 0;
+}
+
+void LevelMeter::LookAndFeelMethods::setMeterColour (LevelMeter::ColourIds id, juce::Colour c)
+{
+    colourMap [id] = c;
 }
 
 void LevelMeter::LookAndFeelMethods::setupDefaultMeterColours()

@@ -2,7 +2,7 @@
  ==============================================================================
  Copyright (c) 2018 Foleys Finest Audio Ltd. - Daniel Walz
  All rights reserved.
- 
+
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
  1. Redistributions of source code must retain the above copyright notice, this
@@ -13,7 +13,7 @@
  3. Neither the name of the copyright holder nor the names of its contributors
     may be used to endorse or promote products derived from this software without
     specific prior written permission.
- 
+
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
@@ -24,13 +24,13 @@
  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  OF THE POSSIBILITY OF SUCH DAMAGE.
- 
+
  ==============================================================================
- 
+
  ff_meters_StereoFieldComponent.h
  Created: 2 Jan 2018 00:16:54pm
  Author:  Daniel Walz
- 
+
  ==============================================================================
  */
 
@@ -39,13 +39,13 @@
 
 namespace foleys
 {
-    
+
     /** @addtogroup ff_meters */
     /*@{*/
-    
+
     /**
      \class StereoFieldComponent
-     
+
      This class implements a circular buffer to buffer audio samples.
      At any time the GUI can ask for a stereo field visualisation of
      two neightbouring channels.

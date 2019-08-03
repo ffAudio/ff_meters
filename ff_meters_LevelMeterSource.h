@@ -84,8 +84,8 @@ private:
             return (*this);
         }
 
-        std::atomic<float>       max;
-        std::atomic<float>       maxOverall;
+        std::atomic<float>       max        { 0.0f };
+        std::atomic<float>       maxOverall { 0.0f };
         std::atomic<bool>        clip       { false };
         std::atomic<float>       reduction  { 1.0f };
 
