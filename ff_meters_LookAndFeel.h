@@ -261,9 +261,18 @@ public:
     {
         const auto numChannels = meter.getNumChannels();
 
-        for (int index = 0; index < meter.getNumChannels(); ++index)
-            if (getClipIndicatorBounds (getChannelArea (bounds, numChannels, index)).contains (position))
-                return index - meter.getFirstChannel();
+        const auto clips = bounds.withHeight (12).reduced (2, 0);
+        const auto w = clips.getWidth() / (numChannels + 1);
+
+        if (w <= 0)
+            return -1;
+
+        if (clips.contains (position))
+        {
+            const auto index = juce::roundToInt( (position.getX() - clips.getX()) / w);
+            if (juce::isPositiveAndBelow (index, numChannels))
+                return index;
+        }
 
         return -1;
     }

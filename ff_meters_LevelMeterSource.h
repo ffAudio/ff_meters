@@ -342,7 +342,7 @@ public:
     void clearAllMaxNums ()
     {
         for (ChannelData& l : levels) {
-            l.maxOverall = -80.0f;
+            l.maxOverall = -100.0f;
         }
     }
 
@@ -365,12 +365,12 @@ public:
 
     bool checkNewDataFlag() const
     {
-        return newDataFlag;
+        return newDataFlag.load();
     }
 
     void resetNewDataFlag()
     {
-        newDataFlag = false;
+        newDataFlag.store (false);
     }
 
 private:
@@ -382,9 +382,9 @@ private:
 
     juce::int64 holdMSecs;
 
-    std::atomic<juce::int64> lastMeasurement;
+    std::atomic<juce::int64> lastMeasurement { 0 };
 
-    bool newDataFlag = true;
+    std::atomic<bool> newDataFlag { true };
 
     bool suspended;
 };

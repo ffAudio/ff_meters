@@ -96,9 +96,6 @@ void LevelMeter::paint (juce::Graphics& g)
 {
     juce::Graphics::ScopedSaveState saved (g);
     lookAndFeelMethods->drawMeter (g, *this, getLocalBounds().toFloat());
-
-    if (source)
-        source->decayIfNeeded();
 }
 
 void LevelMeter::setMeterColour (LevelMeter::ColourIds id, juce::Colour c)
@@ -108,12 +105,15 @@ void LevelMeter::setMeterColour (LevelMeter::ColourIds id, juce::Colour c)
 
 void LevelMeter::timerCallback ()
 {
-    if (source && source->checkNewDataFlag())
+    if (source)
     {
-        if (source)
-            source->resetNewDataFlag();
+        source->decayIfNeeded();
 
-        repaint();
+        if (source->checkNewDataFlag())
+        {
+            source->resetNewDataFlag();
+            repaint();
+        }
     }
 }
 
