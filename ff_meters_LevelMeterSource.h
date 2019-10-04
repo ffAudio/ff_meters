@@ -277,7 +277,10 @@ public:
      */
     float getMaxLevel (const int channel) const
     {
-        return levels.at (channel).max;
+		if (channel < levels.size())
+			return levels.at(channel).max;
+		else
+			return 0.0f;
     }
 
     /**
@@ -286,7 +289,10 @@ public:
      */
     float getMaxOverallLevel (const int channel) const
     {
-        return levels.at (channel).maxOverall;
+		if (channel < levels.size())
+			return levels.at(channel).maxOverall;
+		else
+			return 0.0f;
     }
 
     /**
@@ -295,7 +301,10 @@ public:
      */
     float getRMSLevel (const int channel) const
     {
-        return levels.at (channel).getAvgRMS();
+		if (channel < levels.size())
+			return levels.at(channel).getAvgRMS();
+		else
+			return 1.0f;
     }
 
     /**
@@ -303,7 +312,12 @@ public:
      */
     bool getClipFlag (const int channel) const
     {
-        return levels.at (channel).clip;
+		if (channel < levels.size()) {
+			return levels.at(channel).clip;
+		}
+		else {
+			return false;
+		}
     }
 
     /**
