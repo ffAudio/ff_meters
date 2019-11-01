@@ -92,7 +92,11 @@ private:
         float getAvgRMS () const
         {
             if (rmsHistory.size() > 0) {
-                return sqrtf (rmsSum / rmsHistory.size());
+                auto sum = rmsHistory [0];
+                for (int i=1; i < rmsHistory.size(); ++i)
+                    sum += rmsHistory [i];
+
+                return std::sqrtf (sum / rmsHistory.size());
             }
             return sqrtf (rmsSum);
         }
@@ -116,7 +120,7 @@ private:
         void setRMSsize (const size_t numBlocks)
         {
             rmsHistory.assign (numBlocks, 0.0f);
-            rmsSum  = 0.0;
+            rmsSum  = 0.0f;
             if (numBlocks > 1) {
                 rmsPtr %= rmsHistory.size();
             }
@@ -142,7 +146,7 @@ private:
 
         std::atomic<juce::int64> hold;
         std::vector<float>       rmsHistory;
-        std::atomic<float>       rmsSum;
+        std::atomic<float>       rmsSum { 0 };
         size_t                   rmsPtr = 0;
     };
 

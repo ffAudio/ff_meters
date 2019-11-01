@@ -56,10 +56,10 @@ public:
 
         for (int index = 0; index < numChannels; ++index)
         {
-            const auto area  = getChannelArea (bounds, numChannels, index);
-            const auto clip  = getClipIndicatorBounds (area);
-            const auto max   = getMeterMaxNumberBounds (area);
-            const auto bar   = getMeterBarBounds (area);
+            auto area  = getChannelArea (bounds, numChannels, index);
+            auto clip  = getClipIndicatorBounds (area);
+            auto max   = getMeterMaxNumberBounds (area);
+            auto bar   = getMeterBarBounds (area);
 
             g.setColour (colourMap [LevelMeter::MeterBackgroundColour]);
             g.fillRect (max);
@@ -82,6 +82,10 @@ public:
                                     : colourMap [LevelMeter::TextColour]);
             g.drawFittedText (juce::String (overallMax, 1) + " dB",
                               max.toNearestInt().reduced (1), juce::Justification::centred, 1);
+
+            if (! clip.isEmpty()) clip.reduce (1.0f, 1.0f);
+            if (! bar.isEmpty()) bar.reduce (1.0f, 1.0f);
+            if (! max.isEmpty()) max.reduce (1.0f, 1.0f);
 
             g.setColour (colourMap [LevelMeter::TicksColour]);
             const auto ticks = juce::Rectangle<float> (bar.getRight() + 1, bar.getY(),
