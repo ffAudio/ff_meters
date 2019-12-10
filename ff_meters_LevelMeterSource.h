@@ -37,6 +37,7 @@
 #pragma once
 #include <atomic>
 #include <vector>
+#include <numeric>
 
 namespace FFAU
 {
@@ -100,23 +101,25 @@ private:
 
         float getAvgRMS () const
         {
-            if (rmsHistory.size() > 0) {
-                return sqrtf (rmsSum / rmsHistory.size());
-            }
-            return sqrtf (rmsSum);
+            if (rmsHistory.size() > 0)
+                return std::sqrt (std::accumulate (rmsHistory.begin(), rmsHistory.end(), 0.0) / rmsHistory.size());
+
+            return std::sqrt (rmsSum);
         }
 
         void setLevels (const juce::int64 time, const float newMax, const float newRms, const juce::int64 holdMSecs)
         {
-            if (newMax > 1.0 || newRms > 1.0) {
+            if (newMax > 1.0 || newRms > 1.0)
                 clip = true;
-            }
+
             maxOverall = fmaxf (maxOverall, newMax);
-            if (newMax >= max) {
+            if (newMax >= max)
+            {
                 max = std::min (1.0f, newMax);
                 hold = time + holdMSecs;
             }
-            else if (time > hold) {
+            else if (time > hold)
+            {
                 max = std::min (1.0f, newMax);
             }
             pushNextRMS (std::min (1.0f, newRms));
@@ -126,12 +129,10 @@ private:
         {
             rmsHistory.assign (numBlocks, 0.0f);
             rmsSum  = 0.0;
-            if (numBlocks > 1) {
+            if (numBlocks > 1)
                 rmsPtr %= rmsHistory.size();
-            }
-            else {
+            else
                 rmsPtr = 0;
-            }
         }
     private:
         void pushNextRMS (const float newRMS)
@@ -139,11 +140,11 @@ private:
             const double squaredRMS = std::min (newRMS * newRMS, 1.0f);
             if (rmsHistory.size() > 0)
             {
-                rmsSum = rmsSum + squaredRMS - rmsHistory [rmsPtr];
                 rmsHistory [rmsPtr] = squaredRMS;
                 rmsPtr = (rmsPtr + 1) % rmsHistory.size();
             }
-            else {
+            else
+            {
                 rmsSum = squaredRMS;
             }
         }
@@ -193,13 +194,17 @@ public:
     void measureBlock (const juce::AudioBuffer<FloatType>& buffer)
     {
         lastMeasurement = juce::Time::currentTimeMillis();
-        if (! suspended) {
+        if (! suspended)
+        {
             const int         numChannels = buffer.getNumChannels ();
             const int         numSamples  = buffer.getNumSamples ();
 
+#if FF_AUDIO_ALLOW_ALLOCATIONS_IN_MEASURE_BLOCK
+#warning The use of levels.resize() is not realtime safe. Please call resize from the message thread and set this config setting to 0 via Projucer.
             levels.resize (numChannels);
+#endif
 
-            for (int channel=0; channel < numChannels; ++channel) {
+            for (int channel=0; channel < std::min (numChannels, int (levels.size())); ++channel) {
                 levels [channel].setLevels (lastMeasurement,
                                             buffer.getMagnitude (channel, 0, numSamples),
                                             buffer.getRMSLevel  (channel, 0, numSamples),
@@ -217,15 +222,17 @@ public:
     void decayIfNeeded()
     {
         juce::int64 time = juce::Time::currentTimeMillis();
-        if (time - lastMeasurement > 100) {
-            lastMeasurement = time;
-            for (size_t channel=0; channel < levels.size(); ++channel) {
-                levels [channel].setLevels (lastMeasurement, 0.0f, 0.0f, holdMSecs);
-                levels [channel].reduction = 1.0f;
-            }
+        if (time - lastMeasurement < 100)
+            return;
 
-            newDataFlag = true;
+        lastMeasurement = time;
+        for (size_t channel=0; channel < levels.size(); ++channel)
+        {
+            levels [channel].setLevels (lastMeasurement, 0.0f, 0.0f, holdMSecs);
+            levels [channel].reduction = 1.0f;
         }
+
+        newDataFlag = true;
     }
 
     /**
@@ -268,6 +275,7 @@ public:
     {
         if (juce::isPositiveAndBelow (channel, static_cast<int> (levels.size ())))
             return levels [channel].reduction;
+
         return -1.0f;
     }
 
