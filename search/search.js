@@ -15,7 +15,7 @@ var indexSectionsWithContent =
   5: "hov",
   6: "cm",
   7: "bcdghlmorsv",
-  8: "u",
+  8: "fu",
   9: "f",
   10: "l"
 };
