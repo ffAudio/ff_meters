@@ -106,23 +106,23 @@ juce::Rectangle<float> getMeterBarBounds (const juce::Rectangle<float> bounds,
 {
     if (meterType & FFAU::LevelMeter::Minimal) {
         if (meterType & FFAU::LevelMeter::Horizontal) {
-            const float margin = bounds.getHeight() * 0.05;
-            const float h      = bounds.getHeight() - 2.0 * margin;
+            const float margin = bounds.getHeight() * 0.05f;
+            const float h      = bounds.getHeight() - 2.0f * margin;
             const float left   = bounds.getX() + margin;
-            const float right  = bounds.getRight() - (4.0 * margin + h);
+            const float right  = bounds.getRight() - (4.0f * margin + h);
             return juce::Rectangle<float>(bounds.getX() + margin,
                                           bounds.getY() + margin,
                                           right - left,
                                           h);
         }
         else {
-            const float margin = bounds.getWidth() * 0.05;
-            const float top    = bounds.getY() + 2.0 * margin + bounds.getWidth() * 0.5;
+            const float margin = bounds.getWidth() * 0.05f;
+            const float top    = bounds.getY() + 2.0f * margin + bounds.getWidth() * 0.5f;
             const float bottom = (meterType & FFAU::LevelMeter::MaxNumber) ?
-                                  bounds.getBottom() - (3.0f * margin + (bounds.getWidth() - margin * 2.0))
+                                  bounds.getBottom() - (3.0f * margin + (bounds.getWidth() - margin * 2.0f))
                                   : bounds.getBottom() - margin;
             return juce::Rectangle<float>(bounds.getX() + margin, top,
-                                          bounds.getWidth() - margin * 2.0, bottom - top);
+                                          bounds.getWidth() - margin * 2.0f, bottom - top);
         }
     }
     else if (meterType & FFAU::LevelMeter::Vintage) {
@@ -130,20 +130,20 @@ juce::Rectangle<float> getMeterBarBounds (const juce::Rectangle<float> bounds,
     }
     else {
         if (meterType & FFAU::LevelMeter::Horizontal) {
-            const float margin = bounds.getHeight() * 0.05;
-            const float h      = bounds.getHeight() * 0.5 - 2.0 * margin;
-            const float left   = 60.0 + 3.0 * margin;
-            const float right  = bounds.getRight() - (4.0 * margin + h * 0.5);
+            const float margin = bounds.getHeight() * 0.05f;
+            const float h      = bounds.getHeight() * 0.5f - 2.0f * margin;
+            const float left   = 60.0f + 3.0f * margin;
+            const float right  = bounds.getRight() - (4.0f * margin + h * 0.5f);
             return juce::Rectangle<float>(bounds.getX() + left,
                                           bounds.getY() + margin,
                                           right - left,
                                           h);
         }
         else {
-            const float margin = bounds.getWidth() * 0.05;
-            const float w      = bounds.getWidth() * 0.45;
-            const float top    = bounds.getY() + 2.0 * margin + w * 0.5;
-            const float bottom = bounds.getBottom() - (2.0 * margin + 25.0);
+            const float margin = bounds.getWidth() * 0.05f;
+            const float w      = bounds.getWidth() * 0.45f;
+            const float top    = bounds.getY() + 2.0f * margin + w * 0.5f;
+            const float bottom = bounds.getBottom() - (2.0f * margin + 25.0f);
             return juce::Rectangle<float>(bounds.getX() + margin, top, w, bottom - top);
         }
     }
@@ -167,20 +167,20 @@ juce::Rectangle<float> getMeterTickmarksBounds (const juce::Rectangle<float> bou
         return bounds;
     } else {
         if (meterType & FFAU::LevelMeter::Horizontal) {
-            const float margin = bounds.getHeight() * 0.05;
-            const float h      = bounds.getHeight() * 0.5 - 2.0 * margin;
-            const float left   = 60.0 + 3.0 * margin;
-            const float right  = bounds.getRight() - (4.0 * margin + h * 0.5);
+            const float margin = bounds.getHeight() * 0.05f;
+            const float h      = bounds.getHeight() * 0.5f - 2.0f * margin;
+            const float left   = 60.0f + 3.0f * margin;
+            const float right  = bounds.getRight() - (4.0f * margin + h * 0.5f);
             return juce::Rectangle<float>(bounds.getX() + left,
                                           bounds.getCentreY() + margin,
                                           right - left,
                                           h);
         }
         else {
-            const float margin = bounds.getWidth() * 0.05;
-            const float w      = bounds.getWidth() * 0.45;
-            const float top    = bounds.getY() + 2.0 * margin + w * 0.5 + 2.0;
-            const float bottom = bounds.getBottom() - (2.0 * margin + 25.0 + 2.0);
+            const float margin = bounds.getWidth() * 0.05f;
+            const float w      = bounds.getWidth() * 0.45f;
+            const float top    = bounds.getY() + 2.0f * margin + w * 0.5f + 2.0f;
+            const float bottom = bounds.getBottom() - (2.0f * margin + 25.0f + 2.0f);
             return juce::Rectangle<float>(bounds.getCentreX(), top, w, bottom - top);
         }
     }
@@ -194,20 +194,20 @@ juce::Rectangle<float> getMeterClipIndicatorBounds (const juce::Rectangle<float>
 {
     if (meterType & FFAU::LevelMeter::Minimal) {
         if (meterType & FFAU::LevelMeter::Horizontal) {
-            const float margin = bounds.getHeight() * 0.05;
-            const float h      = bounds.getHeight() - 2.0 * margin;
+            const float margin = bounds.getHeight() * 0.05f;
+            const float h      = bounds.getHeight() - 2.0f * margin;
             return juce::Rectangle<float>(bounds.getRight() - (margin + h),
                                           bounds.getY() + margin,
                                           h,
                                           h);
         }
         else {
-            const float margin = bounds.getWidth() * 0.05;
-            const float w      = bounds.getWidth() - margin * 2.0;
+            const float margin = bounds.getWidth() * 0.05f;
+            const float w      = bounds.getWidth() - margin * 2.0f;
             return juce::Rectangle<float>(bounds.getX() + margin,
                                           bounds.getY() + margin,
                                           w,
-                                          w * 0.5);
+                                          w * 0.5f);
         }
     }
     else if (meterType & FFAU::LevelMeter::Vintage) {
@@ -215,20 +215,20 @@ juce::Rectangle<float> getMeterClipIndicatorBounds (const juce::Rectangle<float>
     }
     else {
         if (meterType & FFAU::LevelMeter::Horizontal) {
-            const float margin = bounds.getHeight() * 0.05;
-            const float h      = bounds.getHeight() * 0.5 - 2.0 * margin;
-            return juce::Rectangle<float>(bounds.getRight() - (margin + h * 0.5),
+            const float margin = bounds.getHeight() * 0.05f;
+            const float h      = bounds.getHeight() * 0.5f - 2.0f * margin;
+            return juce::Rectangle<float>(bounds.getRight() - (margin + h * 0.5f),
                                           bounds.getY() + margin,
-                                          h * 0.5,
+                                          h * 0.5f,
                                           h);
         }
         else {
-            const float margin = bounds.getWidth() * 0.05;
-            const float w      = bounds.getWidth() * 0.45;
+            const float margin = bounds.getWidth() * 0.05f;
+            const float w      = bounds.getWidth() * 0.45f;
             return juce::Rectangle<float>(bounds.getX() + margin,
                                           bounds.getY() + margin,
                                           w,
-                                          w * 0.5);
+                                          w * 0.5f);
         }
     }
     return juce::Rectangle<float> ();
@@ -242,15 +242,15 @@ juce::Rectangle<float> getMeterMaxNumberBounds (const juce::Rectangle<float> bou
     if (meterType & FFAU::LevelMeter::Minimal) {
         if (meterType & FFAU::LevelMeter::MaxNumber) {
             if (meterType & FFAU::LevelMeter::Horizontal) {
-                const float margin = bounds.getHeight() * 0.05;
-                const float h      = bounds.getHeight() - 2.0 * margin;
+                const float margin = bounds.getHeight() * 0.05f;
+                const float h      = bounds.getHeight() - 2.0f * margin;
                 return juce::Rectangle<float>(bounds.getRight() - (margin + h),
                                               bounds.getY() + margin,
                                               h, h);
             }
             else {
-                const float margin = bounds.getWidth() * 0.05;
-                const float w      = bounds.getWidth() - margin * 2.0;
+                const float margin = bounds.getWidth() * 0.05f;
+                const float w      = bounds.getWidth() - margin * 2.0f;
                 const float h      = w * 0.6f;
                 return juce::Rectangle<float>(bounds.getX() + margin,
                                               bounds.getBottom() - (margin + h),
@@ -266,14 +266,14 @@ juce::Rectangle<float> getMeterMaxNumberBounds (const juce::Rectangle<float> bou
     }
     else {
         if (meterType & FFAU::LevelMeter::Horizontal) {
-            const float margin = bounds.getHeight() * 0.05;
+            const float margin = bounds.getHeight() * 0.05f;
             return juce::Rectangle<float>(bounds.getX() + margin,
                                           bounds.getCentreY() + margin,
                                           60,
-                                          bounds.getHeight() * 0.5 - margin * 2.0);
+                                          bounds.getHeight() * 0.5f - margin * 2.0f);
         }
         else {
-            const float margin = bounds.getWidth() * 0.05;
+            const float margin = bounds.getWidth() * 0.05f;
             return juce::Rectangle<float>(bounds.getX() + margin,
                                           bounds.getBottom() - (margin + 25),
                                           bounds.getWidth() - 2 * margin,
@@ -288,7 +288,7 @@ juce::Rectangle<float> drawBackground (juce::Graphics& g,
 {
     g.setColour (findColour (FFAU::LevelMeter::lmBackgroundColour));
     if (meterType & FFAU::LevelMeter::HasBorder) {
-        const float corner = std::min (bounds.getWidth(), bounds.getHeight()) * 0.01;
+        const float corner = std::min (bounds.getWidth(), bounds.getHeight()) * 0.01f;
         g.fillRoundedRectangle (bounds, corner);
         g.setColour (findColour (FFAU::LevelMeter::lmOutlineColour));
         g.drawRoundedRectangle (bounds.reduced (3), corner, 2);
@@ -556,8 +556,9 @@ void drawMeterBar (juce::Graphics& g,
                 g.setColour (findColour ((peakDb > -0.3f) ? FFAU::LevelMeter::lmMeterMaxOverColour :
                                          ((peakDb > -5.0) ? FFAU::LevelMeter::lmMeterMaxWarnColour :
                                           FFAU::LevelMeter::lmMeterMaxNormalColour)));
-                g.drawVerticalLine (floored.getRight() - juce::jmax (peakDb * floored.getWidth() / infinity, 0.0f),
-                                    floored.getY(), floored.getBottom());
+                g.drawVerticalLine (juce::roundToInt(floored.getRight() - juce::jmax (peakDb * floored.getWidth() / infinity, 0.0f)),
+                                    floored.getY(),
+                                    floored.getBottom());
             }
         }
         else {
@@ -577,8 +578,9 @@ void drawMeterBar (juce::Graphics& g,
                 g.setColour (findColour ((peakDb > -0.3f) ? FFAU::LevelMeter::lmMeterMaxOverColour :
                                          ((peakDb > -5.0) ? FFAU::LevelMeter::lmMeterMaxWarnColour :
                                           FFAU::LevelMeter::lmMeterMaxNormalColour)));
-                g.drawHorizontalLine (floored.getY() + juce::jmax (peakDb * floored.getHeight() / infinity, 0.0f),
-                                      floored.getX(), floored.getRight());
+                g.drawHorizontalLine (juce::roundToInt(floored.getY() + juce::jmax (peakDb * floored.getHeight() / infinity, 0.0f)),
+                                      floored.getX(),
+                                      floored.getRight());
             }
         }
     }
@@ -626,14 +628,14 @@ void drawTickMarks (juce::Graphics& g,
     if (meterType & FFAU::LevelMeter::Minimal) {
         if (meterType & FFAU::LevelMeter::Horizontal) {
             for (int i=0; i<11; ++i)
-                g.drawVerticalLine (bounds.getX() + i * 0.1f * bounds.getWidth(),
+                g.drawVerticalLine (juce::roundToInt(bounds.getX() + i * 0.1f * bounds.getWidth()),
                                     bounds.getY() + 4,
                                     bounds.getBottom() - 4);
         }
         else {
-            const float h = (bounds.getHeight() - 2.0) * 0.1;
+            const float h = (bounds.getHeight() - 2.0f) * 0.1f;
             for (int i=0; i<11; ++i) {
-                g.drawHorizontalLine (bounds.getY() + i * h + 1,
+                g.drawHorizontalLine (juce::roundToInt(bounds.getY() + i * h + 1),
                                       bounds.getX() + 4,
                                       bounds.getRight());
             }
@@ -642,8 +644,10 @@ void drawTickMarks (juce::Graphics& g,
                 g.setFont (h * 0.5f);
                 for (int i=0; i<10; ++i) {
                     g.drawFittedText (juce::String (i * 0.1 * infinity),
-                                      bounds.getX(), bounds.getY() + i * h + 2, bounds.getWidth(),
-                                      h * 0.6,
+                                      juce::roundToInt(bounds.getX()),
+                                      juce::roundToInt(bounds.getY() + (float) i * h + 2.0f),
+                                      juce::roundToInt(bounds.getWidth()),
+                                      juce::roundToInt((float) h * 0.6f),
                                       juce::Justification::centredTop, 1);
                 }
             }
@@ -655,29 +659,32 @@ void drawTickMarks (juce::Graphics& g,
     else {
         if (meterType & FFAU::LevelMeter::Horizontal) {
             for (int i=0; i<11; ++i)
-                g.drawVerticalLine (bounds.getX() + i * 0.1f * bounds.getWidth(),
+                g.drawVerticalLine (juce::roundToInt(bounds.getX() + i * 0.1f * bounds.getWidth()),
                                     bounds.getY() + 4,
                                     bounds.getBottom() - 4);
         }
         else {
-            const float h = (bounds.getHeight() - 2.0) * 0.05;
+            const float h = (bounds.getHeight() - 2.0f) * 0.05f;
             g.setFont (h * 0.8f);
             for (int i=0; i<21; ++i) {
                 const float y = bounds.getY() + i * h;
                 if (i % 2 == 0) {
-                    g.drawHorizontalLine (y + 1,
+                    g.drawHorizontalLine (juce::roundToInt(y + 1),
                                           bounds.getX() + 4,
                                           bounds.getRight());
                     if (i < 20) {
-                        g.drawFittedText (juce::String (i * 0.05 * infinity),
-                                          bounds.getX(), y + 4, bounds.getWidth(), h * 0.6,
+                        g.drawFittedText (juce::String (i * 0.05f * infinity),
+                                          juce::roundToInt(bounds.getX()),
+                                          juce::roundToInt(y + 4),
+                                          juce::roundToInt(bounds.getWidth()),
+                                          juce::roundToInt(h * 0.6f),
                                           juce::Justification::topRight, 1);
                     }
                 }
                 else {
-                    g.drawHorizontalLine (y + 2,
-                                          bounds.getX() + 4,
-                                          bounds.getCentreX());
+                  g.drawHorizontalLine (juce::roundToInt(y + 2),
+                                        bounds.getX() + 4,
+                                        bounds.getCentreX());
                 }
             }
         }
