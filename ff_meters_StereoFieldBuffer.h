@@ -77,8 +77,8 @@ namespace FFAU
 
         inline juce::Point<FloatType> computePosition (const juce::Rectangle<FloatType>& b, const FloatType left, const FloatType right) const
         {
-            return juce::Point<FloatType> (b.getCentreX() + 0.5 * b.getWidth() * (right - left),
-                                           b.getCentreY() + 0.5 * b.getHeight() * (left + right));
+            return juce::Point<FloatType> (b.getCentreX() + 0.5f * b.getWidth() * (right - left),
+                                           b.getCentreY() + 0.5f * b.getHeight() * (left + right));
         }
 
     public:

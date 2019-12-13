@@ -73,7 +73,7 @@ juce::Rectangle<float> getMeterInnerBounds (const juce::Rectangle<float> bounds,
                                             const FFAU::LevelMeter::MeterFlags meterType) const override
 {
     if (meterType & FFAU::LevelMeter::HasBorder) {
-        const float corner = std::min (bounds.getWidth(), bounds.getHeight()) * 0.01;
+        const float corner = std::min (bounds.getWidth(), bounds.getHeight()) * 0.01f;
         return bounds.reduced (3 + corner);
     }
     return bounds;
@@ -378,7 +378,6 @@ void drawMeterBars (juce::Graphics& g,
             }
         }
         else {
-            const int numChannels = source->getNumChannels();
             const int numDrawnChannels = fixedNumChannels < 0 ? numChannels : fixedNumChannels;
             for (int channel=0; channel < numChannels; ++channel) {
                 drawMeterChannel (g, meterType,
@@ -607,7 +606,7 @@ void drawMeterReduction (juce::Graphics& g,
 }
 
 void drawMeterBarBackground (juce::Graphics& g,
-                             const FFAU::LevelMeter::MeterFlags meterType,
+                             [[maybe_unused]] const FFAU::LevelMeter::MeterFlags meterType,
                              const juce::Rectangle<float> bounds) override
 {
     g.setColour (findColour (FFAU::LevelMeter::lmMeterBackgroundColour));
@@ -686,7 +685,7 @@ void drawTickMarks (juce::Graphics& g,
 }
 
 void drawClipIndicator (juce::Graphics& g,
-                        const FFAU::LevelMeter::MeterFlags meterType,
+                        [[maybe_unused]] const FFAU::LevelMeter::MeterFlags meterType,
                         const juce::Rectangle<float> bounds,
                         const bool hasClipped) override
 {
@@ -697,7 +696,7 @@ void drawClipIndicator (juce::Graphics& g,
 }
 
 void drawClipIndicatorBackground (juce::Graphics& g,
-                                  const FFAU::LevelMeter::MeterFlags meterType,
+                                  [[maybe_unused]] const FFAU::LevelMeter::MeterFlags meterType,
                                   const juce::Rectangle<float> bounds) override
 {
     g.setColour (findColour (FFAU::LevelMeter::lmMeterBackgroundColour));
@@ -707,7 +706,7 @@ void drawClipIndicatorBackground (juce::Graphics& g,
 }
 
 void drawMaxNumber (juce::Graphics& g,
-                    const FFAU::LevelMeter::MeterFlags meterType,
+                    [[maybe_unused]] const FFAU::LevelMeter::MeterFlags meterType,
                     const juce::Rectangle<float> bounds,
                     const float maxGain) override
 {
@@ -724,7 +723,7 @@ void drawMaxNumber (juce::Graphics& g,
 }
 
 void drawMaxNumberBackground (juce::Graphics& g,
-                              const FFAU::LevelMeter::MeterFlags meterType,
+                              [[maybe_unused]] const FFAU::LevelMeter::MeterFlags meterType,
                               const juce::Rectangle<float> bounds) override
 {
     g.setColour (findColour (FFAU::LevelMeter::lmMeterBackgroundColour));

@@ -72,7 +72,7 @@ public:
         setupDefaultStereoFieldColours();
     }
 
-    virtual ~LevelMeterLookAndFeel() {}
+    virtual ~LevelMeterLookAndFeel() override {}
 
     // do this include inside the class to get the default implementation instead of copying it there
     #include "ff_meters_LookAndFeelMethods.h"
