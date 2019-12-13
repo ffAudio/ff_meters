@@ -65,7 +65,7 @@ private:
         clip (false),
         reduction (1.0f),
         hold (0),
-        rmsHistory (rmsWindow, 0.0),
+        rmsHistory ((size_t) rmsWindow, 0.0),
         rmsSum (0.0),
         rmsPtr (0)
         {}
@@ -104,7 +104,7 @@ private:
             if (rmsHistory.size() > 0)
                 return std::sqrt (std::accumulate (rmsHistory.begin(), rmsHistory.end(), 0.0f) / rmsHistory.size());
 
-            return std::sqrt (rmsSum);
+            return (float) std::sqrt (rmsSum);
         }
 
         void setLevels (const juce::int64 time, const float newMax, const float newRms, const juce::int64 _holdMSecs)
@@ -127,7 +127,7 @@ private:
 
         void setRMSsize (const int numBlocks)
         {
-            rmsHistory.assign (numBlocks, 0.0f);
+            rmsHistory.assign ((size_t) numBlocks, 0.0f);
             rmsSum  = 0.0;
             if (numBlocks > 1)
                 rmsPtr %= rmsHistory.size();
@@ -140,8 +140,8 @@ private:
             const double squaredRMS = std::min (newRMS * newRMS, 1.0f);
             if (rmsHistory.size() > 0)
             {
-                rmsHistory [rmsPtr] = squaredRMS;
-                rmsPtr = (rmsPtr + 1) % rmsHistory.size();
+                rmsHistory [(size_t) rmsPtr] = squaredRMS;
+                rmsPtr = (rmsPtr + 1) % (int) rmsHistory.size();
             }
             else
             {
@@ -179,7 +179,7 @@ public:
      */
     void resize (const int channels, const int rmsWindow)
     {
-        levels.resize (channels, ChannelData (rmsWindow));
+        levels.resize ((size_t) channels, ChannelData (rmsWindow));
         for (ChannelData& l : levels) {
             l.setRMSsize (rmsWindow);
         }
@@ -201,11 +201,11 @@ public:
 
 #if FF_AUDIO_ALLOW_ALLOCATIONS_IN_MEASURE_BLOCK
 #warning The use of levels.resize() is not realtime safe. Please call resize from the message thread and set this config setting to 0 via Projucer.
-            levels.resize (numChannels);
+            levels.resize ((size_t) numChannels);
 #endif
 
             for (int channel=0; channel < std::min (numChannels, int (levels.size())); ++channel) {
-                levels [channel].setLevels (lastMeasurement,
+                levels [(size_t) channel].setLevels (lastMeasurement,
                                             buffer.getMagnitude (channel, 0, numSamples),
                                             buffer.getRMSLevel  (channel, 0, numSamples),
                                             holdMSecs);
@@ -244,7 +244,7 @@ public:
     void setReductionLevel (const int channel, const float reduction)
     {
         if (juce::isPositiveAndBelow (channel, static_cast<int> (levels.size ())))
-            levels [channel].reduction = reduction;
+            levels [(size_t) channel].reduction = reduction;
     }
 
     /**
@@ -274,7 +274,7 @@ public:
     float getReductionLevel (const int channel) const
     {
         if (juce::isPositiveAndBelow (channel, static_cast<int> (levels.size ())))
-            return levels [channel].reduction;
+            return levels [(size_t) channel].reduction;
 
         return -1.0f;
     }
@@ -285,7 +285,7 @@ public:
      */
     float getMaxLevel (const int channel) const
     {
-        return levels.at (channel).max;
+        return levels.at ((size_t) channel).max;
     }
 
     /**
@@ -294,7 +294,7 @@ public:
      */
     float getMaxOverallLevel (const int channel) const
     {
-        return levels.at (channel).maxOverall;
+        return levels.at ((size_t) channel).maxOverall;
     }
 
     /**
@@ -303,7 +303,7 @@ public:
      */
     float getRMSLevel (const int channel) const
     {
-        return levels.at (channel).getAvgRMS();
+        return levels.at ((size_t) channel).getAvgRMS();
     }
 
     /**
@@ -311,7 +311,7 @@ public:
      */
     bool getClipFlag (const int channel) const
     {
-        return levels.at (channel).clip;
+        return levels.at ((size_t) channel).clip;
     }
 
     /**
@@ -319,7 +319,7 @@ public:
      */
     void clearClipFlag (const int channel)
     {
-        levels.at (channel).clip = false;
+        levels.at ((size_t) channel).clip = false;
     }
 
     void clearAllClipFlags ()
@@ -334,7 +334,7 @@ public:
      */
     void clearMaxNum (const int channel)
     {
-        levels.at (channel).maxOverall = -80.0f;
+        levels.at ((size_t) channel).maxOverall = -80.0f;
     }
 
     /**
