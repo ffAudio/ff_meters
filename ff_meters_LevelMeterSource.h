@@ -107,7 +107,7 @@ private:
             return (float) std::sqrt (rmsSum);
         }
 
-        void setLevels (const juce::int64 time, const float newMax, const float newRms, const juce::int64 _holdMSecs)
+        void setLevels (const juce::int64 time, const float newMax, const float newRms, const juce::int64 newHoldMSecs)
         {
             if (newMax > 1.0 || newRms > 1.0)
                 clip = true;
@@ -116,7 +116,7 @@ private:
             if (newMax >= max)
             {
                 max = std::min (1.0f, newMax);
-                hold = time + _holdMSecs;
+                hold = time + newHoldMSecs;
             }
             else if (time > hold)
             {
