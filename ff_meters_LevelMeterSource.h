@@ -102,12 +102,12 @@ private:
         float getAvgRMS () const
         {
             if (rmsHistory.size() > 0)
-                return std::sqrt (std::accumulate (rmsHistory.begin(), rmsHistory.end(), 0.0) / rmsHistory.size());
+                return std::sqrt (std::accumulate (rmsHistory.begin(), rmsHistory.end(), 0.0f) / rmsHistory.size());
 
             return std::sqrt (rmsSum);
         }
 
-        void setLevels (const juce::int64 time, const float newMax, const float newRms, const juce::int64 holdMSecs)
+        void setLevels (const juce::int64 time, const float newMax, const float newRms, const juce::int64 _holdMSecs)
         {
             if (newMax > 1.0 || newRms > 1.0)
                 clip = true;
@@ -116,7 +116,7 @@ private:
             if (newMax >= max)
             {
                 max = std::min (1.0f, newMax);
-                hold = time + holdMSecs;
+                hold = time + _holdMSecs;
             }
             else if (time > hold)
             {

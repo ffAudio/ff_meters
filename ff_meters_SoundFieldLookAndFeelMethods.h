@@ -58,7 +58,7 @@ void drawGonioBackground (juce::Graphics& g, const juce::Rectangle<float> bounds
     g.fillAll (colour);
     colour = findColour (StereoFieldComponent::borderColour);
     g.setColour (colour);
-    g.drawRoundedRectangle (bounds.reduced (margin * 0.5), margin * 0.5, border);
+    g.drawRoundedRectangle (bounds.reduced (margin * 0.5f), margin * 0.5f, border);
 
     colour = findColour (StereoFieldComponent::outlineColour);
     g.setColour (colour);
@@ -83,7 +83,7 @@ void drawGonioMeter (juce::Graphics& g,
 
 void drawStereoFieldBackground (juce::Graphics& g, const juce::Rectangle<float> bounds, float margin, float border) override
 {
-    g.drawRoundedRectangle (bounds.reduced (margin * 0.5), margin * 0.5, border);
+    g.drawRoundedRectangle (bounds.reduced (margin * 0.5f), margin * 0.5f, border);
     auto graph = bounds.reduced (margin);
     juce::Path background;
     background.addRectangle (graph);
@@ -104,10 +104,11 @@ void drawStereoFieldBackground (juce::Graphics& g, const juce::Rectangle<float> 
 
 }
 
-void drawStereoField (juce::Graphics& g,
-                      const juce::Rectangle<float> bounds,
-                      const StereoFieldBuffer<float>&,
-                      const int leftIdx = 0, const int rightIdx = 1) override
+void drawStereoField ([[maybe_unused]] juce::Graphics& g,
+                      [[maybe_unused]] const juce::Rectangle<float> bounds,
+                      [[maybe_unused]] const StereoFieldBuffer<float>&,
+                      [[maybe_unused]] const int leftIdx = 0,
+                      [[maybe_unused]] const int rightIdx = 1) override
 {
 
 }
