@@ -51,7 +51,7 @@ class LevelMeterSource;
    If you write your own LookAndFeel, you can include ff_meters_LookAndFeelMethods.h inside your LookAndFeel:
 
    \code{.cpp}
-       class MyLookAndFeel : public LookAndFeel_V4, LevelMeter::LookAndFeelMethods
+       class MyLookAndFeel : public LookAndFeel_V4, public LevelMeter::LookAndFeelMethods
        {
            public:
  
