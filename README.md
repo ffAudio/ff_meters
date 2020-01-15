@@ -29,6 +29,20 @@ and inlining the default implementation from LevelMeterLookAndFeel in
 ff_meters_LookAndFeelMethods.h into a public section of your class declaration. To
 setup the default colour scheme, call setupDefaultMeterColours() in your constructor.
 
+    // In your Editor
+    
+    class MyLookAndFeel : public LookAndFeel_V4, public LevelMeter::LookAndFeelMethods
+       {
+           public:
+               MyLookAndFeel();
+               
+               #include "ff_meters_LookAndFeelMethods.h"
+
+               // ...
+
+       };
+
+
 Or you can use the LevelMeterLookAndFeel directly because it inherits from juce::LookAndFeel_V3 
 for your convenience. You can set it as default LookAndFeel, if you used the default, 
 or set it only to the meters, if you don't want it to interfere.
@@ -40,19 +54,19 @@ or import the namespace.
     public:
         PluginEditor()
         {
-            lnf = new FFAU::LevelMeterLookAndFeel();
+            lnf = std::make_unique<FFAU::LevelMeterLookAndFeel>();
             // adjust the colours to how you like them, e.g.
             lnf->setColour (FFAU::LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
     
-            meter = new FFAU::LevelMeter(); // See FFAU::LevelMeter::MeterFlags for options
-            meter->setLookAndFeel (lnf);
+            meter = std::make_unique<FFAU::LevelMeter>(); // See FFAU::LevelMeter::MeterFlags for options
+            meter->setLookAndFeel (lnf.get());
             meter->setMeterSource (&processor.getMeterSource());
-            addAndMakeVisible (meter);
+            addAndMakeVisible (meter.get());
             // ...
         }
     private:
-        ScopedPointer<FFAU::LevelMeter> meter;
-        ScopedPointer<FFAU::LevelMeterLookAndFeel> lnf;
+        std::unique_ptr<FFAU::LevelMeter> meter;
+        std::unique_ptr<FFAU::LevelMeterLookAndFeel> lnf;
 
     // and in the processor:
     public:
@@ -69,8 +83,7 @@ or import the namespace.
 
     private:
         FFAU::LevelMeterSource meterSource;
-
-
+        
 OutlineBuffer
 -------------
 
