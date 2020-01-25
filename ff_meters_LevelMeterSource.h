@@ -37,6 +37,7 @@
 #pragma once
 #include <atomic>
 #include <vector>
+#include <numeric>
 
 namespace foleys
 {
@@ -91,13 +92,9 @@ private:
 
         float getAvgRMS () const
         {
-            if (rmsHistory.size() > 0) {
-                auto sum = rmsHistory [0];
-                for (int i=1; i < rmsHistory.size(); ++i)
-                    sum += rmsHistory [i];
+            if (rmsHistory.size() > 0)
+                return std::sqrtf (std::accumulate (rmsHistory.begin(), rmsHistory.end(), 0.0f) / rmsHistory.size());
 
-                return std::sqrtf (sum / rmsHistory.size());
-            }
             return sqrtf (rmsSum);
         }
 
