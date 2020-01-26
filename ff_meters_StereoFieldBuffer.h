@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- Copyright (c) 2018 Foleys Finest Audio UG - Daniel Walz
+ Copyright (c) 2018-2020 Foleys Finest Audio Ltd. - Daniel Walz
  All rights reserved.
  
  Redistribution and use in source and binary forms, with or without modification,
@@ -40,7 +40,7 @@
 #include <algorithm>
 #include <vector>
 
-namespace FFAU
+namespace foleys
 {
     
     /** @addtogroup ff_meters */
@@ -77,8 +77,8 @@ namespace FFAU
 
         inline juce::Point<FloatType> computePosition (const juce::Rectangle<FloatType>& b, const FloatType left, const FloatType right) const
         {
-            return juce::Point<FloatType> (b.getCentreX() + 0.5 * b.getWidth() * (right - left),
-                                           b.getCentreY() + 0.5 * b.getHeight() * (left + right));
+            return juce::Point<FloatType> (b.getCentreX() + FloatType (0.5) * b.getWidth() * (right - left),
+                                           b.getCentreY() + FloatType (0.5) * b.getHeight() * (left + right));
         }
 
     public:

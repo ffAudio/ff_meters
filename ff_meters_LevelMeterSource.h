@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- Copyright (c) 2017 Filmstro Ltd. / Foleys Finest Audio UG - Daniel Walz
+ Copyright (c) 2017 Filmstro Ltd. / 2017-2020 Foleys Finest Audio Ltd. - Daniel Walz
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without modification,
@@ -37,8 +37,9 @@
 #pragma once
 #include <atomic>
 #include <vector>
+#include <numeric>
 
-namespace FFAU
+namespace foleys
 {
 
 /** @addtogroup ff_meters */
@@ -58,7 +59,7 @@ private:
     class ChannelData
     {
     public:
-        ChannelData (const int rmsWindow = 8) :
+        ChannelData (const size_t rmsWindow = 8) :
         max (),
         maxOverall (),
         clip (false),
@@ -100,10 +101,10 @@ private:
 
         float getAvgRMS () const
         {
-            if (rmsHistory.size() > 0) {
-                return sqrtf (rmsSum / rmsHistory.size());
-            }
-            return sqrtf (rmsSum);
+            if (rmsHistory.size() > 0)
+                return std::sqrtf (std::accumulate (rmsHistory.begin(), rmsHistory.end(), 0.0f) / rmsHistory.size());
+
+            return float (std::sqrt (rmsSum));
         }
 
         void setLevels (const juce::int64 time, const float newMax, const float newRms, const juce::int64 holdMSecs)
@@ -122,9 +123,9 @@ private:
             pushNextRMS (std::min (1.0f, newRms));
         }
 
-        void setRMSsize (const int numBlocks)
+        void setRMSsize (const size_t numBlocks)
         {
-            rmsHistory.assign (numBlocks, 0.0f);
+            rmsHistory.assign (numBlocks, 0.0);
             rmsSum  = 0.0;
             if (numBlocks > 1) {
                 rmsPtr %= rmsHistory.size();
@@ -151,7 +152,7 @@ private:
         std::atomic<juce::int64> hold;
         std::vector<double>      rmsHistory;
         std::atomic<double>      rmsSum;
-        int                      rmsPtr;
+        size_t                   rmsPtr;
     };
 
 public:
@@ -178,10 +179,9 @@ public:
      */
     void resize (const int channels, const int rmsWindow)
     {
-        levels.resize (channels, ChannelData (rmsWindow));
-        for (ChannelData& l : levels) {
-            l.setRMSsize (rmsWindow);
-        }
+        levels.resize (size_t (channels), ChannelData (size_t (rmsWindow)));
+        for (ChannelData& l : levels)
+            l.setRMSsize (size_t (rmsWindow));
 
         newDataFlag = true;
     }
@@ -197,13 +197,13 @@ public:
             const int         numChannels = buffer.getNumChannels ();
             const int         numSamples  = buffer.getNumSamples ();
 
-            levels.resize (numChannels);
+            levels.resize (size_t (numChannels));
 
             for (int channel=0; channel < numChannels; ++channel) {
-                levels [channel].setLevels (lastMeasurement,
-                                            buffer.getMagnitude (channel, 0, numSamples),
-                                            buffer.getRMSLevel  (channel, 0, numSamples),
-                                            holdMSecs);
+                levels [size_t (channel)].setLevels (lastMeasurement,
+                                                     buffer.getMagnitude (channel, 0, numSamples),
+                                                     buffer.getRMSLevel  (channel, 0, numSamples),
+                                                     holdMSecs);
             }
         }
 
@@ -237,7 +237,7 @@ public:
     void setReductionLevel (const int channel, const float reduction)
     {
         if (juce::isPositiveAndBelow (channel, static_cast<int> (levels.size ())))
-            levels [channel].reduction = reduction;
+            levels [size_t (channel)].reduction = reduction;
     }
 
     /**
@@ -267,7 +267,7 @@ public:
     float getReductionLevel (const int channel) const
     {
         if (juce::isPositiveAndBelow (channel, static_cast<int> (levels.size ())))
-            return levels [channel].reduction;
+            return levels [size_t (channel)].reduction;
         return -1.0f;
     }
 
@@ -277,7 +277,7 @@ public:
      */
     float getMaxLevel (const int channel) const
     {
-        return levels.at (channel).max;
+        return levels.at (size_t (channel)).max;
     }
 
     /**
@@ -286,7 +286,7 @@ public:
      */
     float getMaxOverallLevel (const int channel) const
     {
-        return levels.at (channel).maxOverall;
+        return levels.at (size_t (channel)).maxOverall;
     }
 
     /**
@@ -295,7 +295,7 @@ public:
      */
     float getRMSLevel (const int channel) const
     {
-        return levels.at (channel).getAvgRMS();
+        return levels.at (size_t (channel)).getAvgRMS();
     }
 
     /**
@@ -303,7 +303,7 @@ public:
      */
     bool getClipFlag (const int channel) const
     {
-        return levels.at (channel).clip;
+        return levels.at (size_t (channel)).clip;
     }
 
     /**
@@ -311,7 +311,7 @@ public:
      */
     void clearClipFlag (const int channel)
     {
-        levels.at (channel).clip = false;
+        levels.at (size_t (channel)).clip = false;
     }
 
     void clearAllClipFlags ()
@@ -326,7 +326,7 @@ public:
      */
     void clearMaxNum (const int channel)
     {
-        levels.at (channel).maxOverall = -80.0f;
+        levels.at (size_t (channel)).maxOverall = -80.0f;
     }
 
     /**
@@ -384,4 +384,4 @@ private:
 
 /*@}*/
 
-} // end namespace FFAU
+} // end namespace foleys

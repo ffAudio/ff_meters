@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- Copyright (c) 2017 Filmstro Ltd. / Foleys Finest Audio UG - Daniel Walz
+ Copyright (c) 2017 Filmstro Ltd. / 2017-2020 Foleys Finest Audio Ltd. - Daniel Walz
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without modification,
@@ -38,7 +38,7 @@
 #include <atomic>
 #include <vector>
 
-namespace FFAU
+namespace foleys
 {
 
     /** @addtogroup ff_meters */
@@ -58,7 +58,7 @@ namespace FFAU
         {
             std::vector<float>           minBuffer;
             std::vector<float>           maxBuffer;
-            std::atomic<int>             writePointer     {0};
+            std::atomic<size_t>          writePointer     {0};
             int                          fraction        = 0;
             int                          samplesPerBlock = 128;
 
@@ -96,9 +96,9 @@ namespace FFAU
              */
             void setSize (const int numBlocks)
             {
-                minBuffer.resize (numBlocks, 0.0f);
-                maxBuffer.resize (numBlocks, 0.0f);
-                writePointer = writePointer % numBlocks;
+                minBuffer.resize (size_t (numBlocks), 0.0f);
+                maxBuffer.resize (size_t (numBlocks), 0.0f);
+                writePointer = writePointer % size_t (numBlocks);
             }
 
             void pushChannelData (const float* input, const int numSamples)
@@ -106,9 +106,11 @@ namespace FFAU
                 // create peak values
                 int samples = 0;
                 juce::Range<float> minMax;
-                while (samples < numSamples) {
-                    int leftover = numSamples - samples;
-                    if (fraction > 0) {
+                while (samples < numSamples)
+                {
+                    auto leftover = numSamples - samples;
+                    if (fraction > 0)
+                    {
                         minMax = juce::FloatVectorOperations::findMinAndMax (input, samplesPerBlock - fraction);
                         maxBuffer [writePointer] = std::max (maxBuffer [writePointer], minMax.getEnd());
                         minBuffer [writePointer] = std::min (minBuffer [writePointer], minMax.getStart());
@@ -116,14 +118,16 @@ namespace FFAU
                         fraction = 0;
                         writePointer = (writePointer + 1) % maxBuffer.size();
                     }
-                    else if (leftover > samplesPerBlock) {
+                    else if (leftover > samplesPerBlock)
+                    {
                         minMax = juce::FloatVectorOperations::findMinAndMax (input + samples, samplesPerBlock);
                         maxBuffer [writePointer] = minMax.getEnd();
                         minBuffer [writePointer] = minMax.getStart();
                         samples += samplesPerBlock;
                         writePointer = (writePointer + 1) % maxBuffer.size();
                     }
-                    else {
+                    else
+                    {
                         minMax = juce::FloatVectorOperations::findMinAndMax (input + samples, leftover);
                         maxBuffer [writePointer] = minMax.getEnd();
                         minBuffer [writePointer] = minMax.getStart();
@@ -134,20 +138,21 @@ namespace FFAU
                 }
             }
 
-            void getChannelOutline (juce::Path& outline, const juce::Rectangle<float> bounds, const int numSamples) const
+            void getChannelOutline (juce::Path& outline, const juce::Rectangle<float> bounds, const int numSamplesToPlot) const
             {
-                const int bufferSize = static_cast<int> (maxBuffer.size());
-                int latest = writePointer > 0 ? writePointer - 1 : bufferSize - 1;
-                int oldest = (latest >= numSamples) ? latest - numSamples : latest + bufferSize - numSamples;
+                auto numSamples = size_t (numSamplesToPlot);
+                auto latest = writePointer > 0 ? writePointer - 1 : maxBuffer.size() - 1;
+                auto oldest = (latest >= numSamples) ? latest - numSamples : latest + maxBuffer.size() - numSamples;
 
-                const float dx = bounds.getWidth() / numSamples;
-                const float dy = bounds.getHeight() * 0.35f;
-                const float my = bounds.getCentreY();
-                float  x  = bounds.getX();
-                size_t s  = oldest;
+                const auto dx = bounds.getWidth() / numSamples;
+                const auto dy = bounds.getHeight() * 0.35f;
+                const auto my = bounds.getCentreY();
+                auto  x  = bounds.getX();
+                auto  s  = oldest;
 
                 outline.startNewSubPath (x, my);
-                for (int i=0; i<numSamples; ++i) {
+                for (size_t i=0; i < numSamples; ++i)
+                {
                     outline.lineTo (x, my + minBuffer [s] * dy);
                     x += dx;
                     if (s < minBuffer.size() - 1)
@@ -155,13 +160,15 @@ namespace FFAU
                     else
                         s = 0;
                 }
-                for (int i=0; i<numSamples; ++i) {
+
+                for (size_t i=0; i < numSamples; ++i)
+                {
                     outline.lineTo (x, my + maxBuffer [s] * dy);
                     x -= dx;
                     if (s > 1)
                         s -= 1;
                     else
-                        s = bufferSize - 1;
+                        s = maxBuffer.size() - 1;
                 }
             }
         };
@@ -183,7 +190,7 @@ namespace FFAU
          */
         void setSize (const int numChannels, const int numBlocks)
         {
-            channelDatas.resize (numChannels);
+            channelDatas.resize (size_t (numChannels));
             for (auto& data : channelDatas) {
                 data.setSize (numBlocks);
                 data.setSamplesPerBlock (samplesPerBlock);
@@ -207,7 +214,7 @@ namespace FFAU
         {
             for (int i=0; i < buffer.getNumChannels(); ++i) {
                 if (i < int (channelDatas.size())) {
-                    channelDatas [i].pushChannelData (buffer.getReadPointer (i), numSamples);
+                    channelDatas [size_t (i)].pushChannelData (buffer.getReadPointer (i), numSamples);
                 }
             }
         }
@@ -223,7 +230,7 @@ namespace FFAU
         void getChannelOutline (juce::Path& path, const juce::Rectangle<float> bounds, const int channel, const int numSamples) const
         {
             if (channel < int (channelDatas.size()))
-                return channelDatas [channel].getChannelOutline (path, bounds, numSamples);
+                return channelDatas [size_t (channel)].getChannelOutline (path, bounds, numSamples);
         }
 
         /**

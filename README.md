@@ -2,7 +2,7 @@
 ff_meters
 =========
 
-by Daniel Walz / Foleys Finest Audio UG (haftungsbeschraenkt)
+by Daniel Walz / Foleys Finest Audio Ltd.
 Published under the BSD License (3 clause)
 
 The ff_meters provide an easy to use Component to display a level reading for an
@@ -33,30 +33,34 @@ Or you can use the LevelMeterLookAndFeel directly because it inherits from juce:
 for your convenience. You can set it as default LookAndFeel, if you used the default, 
 or set it only to the meters, if you don't want it to interfere.
 
-All classes are in the namespace FFAU to avoid collisions. You can either prefix each symbol, 
+All classes are in the namespace `foleys` to avoid collisions. You can either prefix each symbol, 
 or import the namespace.
+N.B. for backward compatibility, `FFAU` is an alias for `foleys`.
 
     // In your Editor
     public:
         PluginEditor()
         {
-            lnf = new FFAU::LevelMeterLookAndFeel();
             // adjust the colours to how you like them, e.g.
-            lnf->setColour (FFAU::LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
+            lnf.setColour (foleys::LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
     
-            meter = new FFAU::LevelMeter(); // See FFAU::LevelMeter::MeterFlags for options
-            meter->setLookAndFeel (lnf);
-            meter->setMeterSource (&processor.getMeterSource());
+            meter.setLookAndFeel (&lnf);
+            meter.setMeterSource (&processor.getMeterSource());
             addAndMakeVisible (meter);
             // ...
         }
+        ~PluginEditor()
+        {
+            meter.setLookAndFeel (nullptr);
+        }
+
     private:
-        ScopedPointer<FFAU::LevelMeter> meter;
-        ScopedPointer<FFAU::LevelMeterLookAndFeel> lnf;
+        foleys::LevelMeterLookAndFeel lnf;
+        foleys::LevelMeter meter { foleys::LevelMeter::Minimal }; // See foleys::LevelMeter::MeterFlags for options
 
     // and in the processor:
     public:
-        FFAU::LevelMeterSource& getMeterSource()
+        foleys::LevelMeterSource& getMeterSource()
         {
             return meterSource;
         }
@@ -68,7 +72,7 @@ or import the namespace.
         }
 
     private:
-        FFAU::LevelMeterSource meterSource;
+        foleys::LevelMeterSource meterSource;
 
 
 OutlineBuffer
@@ -79,7 +83,7 @@ way you can see the outline of a signal running through. It can be used very sim
 
     // in your processor
     private:
-    FFAU::OutlineBuffer outline;
+    foleys::OutlineBuffer outline;
 
     // in prepareToPlay
     outline.setSize (getTotalNumInputChannels(), 1024);
@@ -88,7 +92,7 @@ way you can see the outline of a signal running through. It can be used very sim
     outline.pushBlock (buffer, buffer.getNumSamples());
 
     // and in the editor's component:
-    const Rectangle<float> plotFrame (10.0, 320.0, 580, 80);
+    const Rectangle<float> plotFrame (10.0f, 320.0f, 580f, 80f);
     g.setColour (Colours::lightgreen);
     g.fillRect (plotFrame);
 

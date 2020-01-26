@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- Copyright (c) 2017 Filmstro Ltd. / Foleys Finest Audio UG - Daniel Walz
+ Copyright (c) 2017 Filmstro Ltd. / 2017-2020 Foleys Finest Audio Ltd. - Daniel Walz
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without modification,
@@ -35,7 +35,7 @@
 
 #pragma once
 
-namespace FFAU
+namespace foleys
 {
 
 /** @addtogroup ff_meters */
@@ -169,7 +169,7 @@ public:
         
         /** This callback draws an reduction from top. Only triggered, if a reduction < 1.0 is set in the LevelMeterSource */
         virtual void drawMeterReduction (juce::Graphics& g,
-                                         const FFAU::LevelMeter::MeterFlags meterType,
+                                         const foleys::LevelMeter::MeterFlags meterType,
                                          const juce::Rectangle<float> bounds,
                                          const float reduction) = 0;
 
@@ -243,7 +243,7 @@ public:
      Set a LevelMeterSource to display. This separation is used, so the source can work in the processing and the 
      GUI can display the values.
      */
-    void setMeterSource (FFAU::LevelMeterSource* source);
+    void setMeterSource (foleys::LevelMeterSource* source);
 
     /**
      Set a specific channel to display. This is only useful, if MeterFlags::SingleChannel is set.
@@ -272,13 +272,13 @@ public:
      This lambda is called when the user clicks on a clip light. It is initially set to clear all clip lights
      and max level numbers.
      */
-    std::function<void(FFAU::LevelMeter& meter, int channel, juce::ModifierKeys mods)> onClipLightClicked;
+    std::function<void(foleys::LevelMeter& meter, int channel, juce::ModifierKeys mods)> onClipLightClicked;
 
     /**
      This lambda is called when the user clicks on a max level display. It is initially set to clear all clip lights
      and max level numbers.
      */
-    std::function<void(FFAU::LevelMeter& meter, int channel, juce::ModifierKeys mods)> onMaxLevelClicked;
+    std::function<void(foleys::LevelMeter& meter, int channel, juce::ModifierKeys mods)> onMaxLevelClicked;
 
     /**
      \internal
@@ -314,22 +314,22 @@ public:
          To allow different behaviour, e.g. resetting only one indicator or even all meters spread over the UI.
          \see clearClipIndicator, maxLevelClicked
          */
-        virtual void clipLightClicked (FFAU::LevelMeter* meter, const int channel, juce::ModifierKeys mods) = 0;
+        virtual void clipLightClicked (foleys::LevelMeter* meter, const int channel, juce::ModifierKeys mods) = 0;
         /**
          This is called, when the user clicks a max level text. It can be used to reset the max number.
          \see clearMaxLevelDisplay, clipLightClicked
          */
-        virtual void maxLevelClicked (FFAU::LevelMeter* meter, const int channel, juce::ModifierKeys mods)  = 0;
+        virtual void maxLevelClicked (foleys::LevelMeter* meter, const int channel, juce::ModifierKeys mods)  = 0;
     };
 
-    void addListener (FFAU::LevelMeter::Listener*);
+    void addListener (foleys::LevelMeter::Listener*);
 
-    void removeListener (FFAU::LevelMeter::Listener*);
+    void removeListener (foleys::LevelMeter::Listener*);
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LevelMeter)
     
-    juce::WeakReference<FFAU::LevelMeterSource> source;
+    juce::WeakReference<foleys::LevelMeterSource> source;
 
     int                                   selectedChannel  = -1;
     int                                   fixedNumChannels = -1;
@@ -339,7 +339,7 @@ private:
     juce::Image                           backgroundImage;
     bool                                  backgroundNeedsRepaint = true;
 
-    juce::ListenerList<FFAU::LevelMeter::Listener> listeners;
+    juce::ListenerList<foleys::LevelMeter::Listener> listeners;
 };
 
 inline LevelMeter::MeterFlags operator|(LevelMeter::MeterFlags a, LevelMeter::MeterFlags b)
@@ -347,4 +347,4 @@ inline LevelMeter::MeterFlags operator|(LevelMeter::MeterFlags a, LevelMeter::Me
 
 /*@}*/
 
-} // end namespace FFAU
+} // end namespace foleys

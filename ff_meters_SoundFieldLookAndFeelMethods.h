@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- Copyright (c) 2018 Foleys Finest Audio UG - Daniel Walz
+ Copyright (c) 2018-2020 Foleys Finest Audio Ltd. - Daniel Walz
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without modification,
@@ -58,7 +58,7 @@ void drawGonioBackground (juce::Graphics& g, const juce::Rectangle<float> bounds
     g.fillAll (colour);
     colour = findColour (StereoFieldComponent::borderColour);
     g.setColour (colour);
-    g.drawRoundedRectangle (bounds.reduced (margin * 0.5), margin * 0.5, border);
+    g.drawRoundedRectangle (bounds.reduced (margin * 0.5f), margin * 0.5f, border);
 
     colour = findColour (StereoFieldComponent::outlineColour);
     g.setColour (colour);
@@ -83,7 +83,7 @@ void drawGonioMeter (juce::Graphics& g,
 
 void drawStereoFieldBackground (juce::Graphics& g, const juce::Rectangle<float> bounds, float margin, float border) override
 {
-    g.drawRoundedRectangle (bounds.reduced (margin * 0.5), margin * 0.5, border);
+    g.drawRoundedRectangle (bounds.reduced (margin * 0.5f), margin * 0.5f, border);
     auto graph = bounds.reduced (margin);
     juce::Path background;
     background.addRectangle (graph);
@@ -109,6 +109,8 @@ void drawStereoField (juce::Graphics& g,
                       const StereoFieldBuffer<float>&,
                       const int leftIdx = 0, const int rightIdx = 1) override
 {
-
+    juce::ignoreUnused (g);
+    juce::ignoreUnused (bounds);
+    juce::ignoreUnused (leftIdx, rightIdx);
 }
 

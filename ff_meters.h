@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- Copyright (c) 2017 - 2019 Filmstro Ltd. / Foleys Finest Audio UG - Daniel Walz
+ Copyright (c) 2017-2020 Foleys Finest Audio Ltd. - Daniel Walz
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without modification,
@@ -66,3 +66,6 @@
 #include <ff_meters/ff_meters_StereoFieldBuffer.h>
 #include <ff_meters/ff_meters_StereoFieldComponent.h>
 #include <ff_meters/ff_meters_LookAndFeel.h>
+
+// stay backwards compatible
+namespace FFAU=foleys;
