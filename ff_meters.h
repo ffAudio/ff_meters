@@ -56,6 +56,15 @@
 #define USE_FF_AUDIO_METERS 1
 #endif
 
+/** Config: FF_AUDIO_ALLOW_ALLOCATIONS_IN_MEASURE_BLOCK
+             If this flag is set, the measureBlock will conveniently adapt the number of ChannelData.
+             However this is not realtime safe and should be avoided. Instead call resize() in your prepareToPlay.
+             This setting was default behaviour, that's why it is on by default, but will trigger a warning.
+ */
+#ifndef FF_AUDIO_ALLOW_ALLOCATIONS_IN_MEASURE_BLOCK
+#define FF_AUDIO_ALLOW_ALLOCATIONS_IN_MEASURE_BLOCK 1
+#endif
+
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_gui_basics/juce_gui_basics.h>
 #include <juce_events/juce_events.h>

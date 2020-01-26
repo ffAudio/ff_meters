@@ -112,8 +112,8 @@ namespace foleys
                     if (fraction > 0)
                     {
                         minMax = juce::FloatVectorOperations::findMinAndMax (input, samplesPerBlock - fraction);
-                        maxBuffer [writePointer] = std::max (maxBuffer [writePointer], minMax.getEnd());
-                        minBuffer [writePointer] = std::min (minBuffer [writePointer], minMax.getStart());
+                        maxBuffer [(size_t) writePointer] = std::max (maxBuffer [(size_t) writePointer], minMax.getEnd());
+                        minBuffer [(size_t) writePointer] = std::min (minBuffer [(size_t) writePointer], minMax.getStart());
                         samples += samplesPerBlock - fraction;
                         fraction = 0;
                         writePointer = (writePointer + 1) % maxBuffer.size();
@@ -121,16 +121,16 @@ namespace foleys
                     else if (leftover > samplesPerBlock)
                     {
                         minMax = juce::FloatVectorOperations::findMinAndMax (input + samples, samplesPerBlock);
-                        maxBuffer [writePointer] = minMax.getEnd();
-                        minBuffer [writePointer] = minMax.getStart();
+                        maxBuffer [(size_t) writePointer] = minMax.getEnd();
+                        minBuffer [(size_t) writePointer] = minMax.getStart();
                         samples += samplesPerBlock;
                         writePointer = (writePointer + 1) % maxBuffer.size();
                     }
                     else
                     {
                         minMax = juce::FloatVectorOperations::findMinAndMax (input + samples, leftover);
-                        maxBuffer [writePointer] = minMax.getEnd();
-                        minBuffer [writePointer] = minMax.getStart();
+                        maxBuffer [(size_t) writePointer] = minMax.getEnd();
+                        minBuffer [(size_t) writePointer] = minMax.getStart();
                         samples += samplesPerBlock - fraction;
                         fraction = leftover;
                     }

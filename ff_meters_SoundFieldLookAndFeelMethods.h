@@ -104,10 +104,11 @@ void drawStereoFieldBackground (juce::Graphics& g, const juce::Rectangle<float> 
 
 }
 
-void drawStereoField (juce::Graphics& g,
-                      const juce::Rectangle<float> bounds,
-                      const StereoFieldBuffer<float>&,
-                      const int leftIdx = 0, const int rightIdx = 1) override
+void drawStereoField ([[maybe_unused]] juce::Graphics& g,
+                      [[maybe_unused]] const juce::Rectangle<float> bounds,
+                      [[maybe_unused]] const StereoFieldBuffer<float>&,
+                      [[maybe_unused]] const int leftIdx = 0,
+                      [[maybe_unused]] const int rightIdx = 1) override
 {
     juce::ignoreUnused (g);
     juce::ignoreUnused (bounds);

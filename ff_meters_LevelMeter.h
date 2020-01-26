@@ -224,7 +224,7 @@ public:
     };
 
     LevelMeter (const MeterFlags type = HasBorder);
-    ~LevelMeter ();
+    ~LevelMeter () override;
 
     /**
      Allows to change the meter's configuration by setting a combination of MeterFlags

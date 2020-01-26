@@ -281,14 +281,16 @@ juce::Rectangle<float> getMeterMaxNumberBounds (const juce::Rectangle<float> bou
         return bounds;
     }
     else {
-        if (meterType & foleys::LevelMeter::Horizontal) {
+        if (meterType & foleys::LevelMeter::Horizontal)
+        {
             const auto margin = bounds.getHeight() * 0.05f;
             return juce::Rectangle<float>(bounds.getX() + margin,
                                           bounds.getCentreY() + margin,
                                           60,
                                           bounds.getHeight() * 0.5f - margin * 2.0f);
         }
-        else {
+        else
+        {
             const auto margin = bounds.getWidth() * 0.05f;
             return juce::Rectangle<float>(bounds.getX() + margin,
                                           bounds.getBottom() - (margin + 25),
@@ -608,15 +610,15 @@ void drawMeterBar (juce::Graphics& g,
                                                          floored.getX(), floored.getBottom(),
                                                          findColour (foleys::LevelMeter::lmMeterGradientMaxColour),
                                                          floored.getX(), floored.getY(), false);
-                verticalGradient.addColour (0.5, findColour (foleys::LevelMeter::lmMeterGradientLowColour));
-                verticalGradient.addColour (0.75, findColour (foleys::LevelMeter::lmMeterGradientMidColour));
+                verticalGradient.addColour (0.5f, findColour (foleys::LevelMeter::lmMeterGradientLowColour));
+                verticalGradient.addColour (0.75f, findColour (foleys::LevelMeter::lmMeterGradientMidColour));
             }
             g.setGradientFill (verticalGradient);
             g.fillRect (floored.withTop (floored.getY() + rmsDb * floored.getHeight() / infinity));
 
-            if (peakDb > -49.0) {
+            if (peakDb > -49.0f) {
                 g.setColour (findColour ((peakDb > -0.3f) ? foleys::LevelMeter::lmMeterMaxOverColour :
-                                         ((peakDb > -5.0) ? foleys::LevelMeter::lmMeterMaxWarnColour :
+                                         ((peakDb > -5.0f) ? foleys::LevelMeter::lmMeterMaxWarnColour :
                                           foleys::LevelMeter::lmMeterMaxNormalColour)));
                 g.drawHorizontalLine (juce::roundToInt (floored.getY() + juce::jmax (peakDb * floored.getHeight() / infinity, 0.0f)),
                                       floored.getX(), floored.getRight());
@@ -749,6 +751,7 @@ void drawClipIndicator (juce::Graphics& g,
                         const bool hasClipped) override
 {
     juce::ignoreUnused (meterType);
+
     g.setColour (findColour (hasClipped ? foleys::LevelMeter::lmBackgroundClipColour : foleys::LevelMeter::lmMeterBackgroundColour));
     g.fillRect (bounds);
     g.setColour (findColour (foleys::LevelMeter::lmMeterOutlineColour));
@@ -760,6 +763,7 @@ void drawClipIndicatorBackground (juce::Graphics& g,
                                   const juce::Rectangle<float> bounds) override
 {
     juce::ignoreUnused (meterType);
+
     g.setColour (findColour (foleys::LevelMeter::lmMeterBackgroundColour));
     g.fillRect (bounds);
     g.setColour (findColour (foleys::LevelMeter::lmMeterOutlineColour));
@@ -772,6 +776,7 @@ void drawMaxNumber (juce::Graphics& g,
                     const float maxGain) override
 {
     juce::ignoreUnused (meterType);
+
     g.setColour (findColour (foleys::LevelMeter::lmMeterBackgroundColour));
     g.fillRect (bounds);
     const float maxDb = juce::Decibels::gainToDecibels (maxGain, -80.0f);
@@ -789,6 +794,7 @@ void drawMaxNumberBackground (juce::Graphics& g,
                               const juce::Rectangle<float> bounds) override
 {
     juce::ignoreUnused (meterType);
+
     g.setColour (findColour (foleys::LevelMeter::lmMeterBackgroundColour));
     g.fillRect (bounds);
 }
