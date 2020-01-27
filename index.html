@@ -80,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">ff_meters Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>by Daniel Walz / Foleys Finest Audio UG (haftungsbeschraenkt) Published under the BSD License (3 clause)</p>
+<div class="textblock"><p>by Daniel Walz / Foleys Finest Audio Ltd. Published under the BSD License (3 clause)</p>
 <p>The ff_meters provide an easy to use Component to display a level reading for an AudioBuffer. It is to be used in the audio framework JUCE (www.juce.com).</p>
 <p>Find the API documentation here: <a href="https://ffaudio.github.io/ff_meters/">https://ffaudio.github.io/ff_meters/</a></p>
 <h1>Usage </h1>
@@ -89,28 +89,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>On the Component use LevelMeter::setMeterSource to link to the LevelMeterSource instance. The number of channels will be updated automatically.</p>
 <p>You can pull the drawing into your LookAndFeel by inheriting LevelMeter::LookAndFeelMethods and inlining the default implementation from LevelMeterLookAndFeel in <a class="el" href="ff__meters__LookAndFeelMethods_8h.html">ff_meters_LookAndFeelMethods.h</a> into a public section of your class declaration. To setup the default colour scheme, call <a class="el" href="ff__meters__LookAndFeelMethods_8h.html#ad01416fa193b26634eaa8330e69b07cb">setupDefaultMeterColours()</a> in your constructor.</p>
 <p>Or you can use the LevelMeterLookAndFeel directly because it inherits from juce::LookAndFeel_V3 for your convenience. You can set it as default LookAndFeel, if you used the default, or set it only to the meters, if you don't want it to interfere.</p>
-<p>All classes are in the namespace <a class="el" href="namespaceFFAU.html">FFAU</a> to avoid collisions. You can either prefix each symbol, or import the namespace. </p>
+<p>All classes are in the namespace <code>foleys</code> to avoid collisions. You can either prefix each symbol, or import the namespace. N.B. for backward compatibility, <code>FFAU</code> is an alias for <code>foleys</code>. </p>
 <pre class="fragment">// In your Editor
 public:
     PluginEditor()
     {
-        lnf = new FFAU::LevelMeterLookAndFeel();
         // adjust the colours to how you like them, e.g.
-        lnf-&gt;setColour (FFAU::LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
+        lnf.setColour (foleys::LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
 
-        meter = new FFAU::LevelMeter(); // See FFAU::LevelMeter::MeterFlags for options
-        meter-&gt;setLookAndFeel (lnf);
-        meter-&gt;setMeterSource (&amp;processor.getMeterSource());
+        meter.setLookAndFeel (&amp;lnf);
+        meter.setMeterSource (&amp;processor.getMeterSource());
         addAndMakeVisible (meter);
         // ...
     }
+    ~PluginEditor()
+    {
+        meter.setLookAndFeel (nullptr);
+    }
+
 private:
-    ScopedPointer&lt;FFAU::LevelMeter&gt; meter;
-    ScopedPointer&lt;FFAU::LevelMeterLookAndFeel&gt; lnf;
+    foleys::LevelMeterLookAndFeel lnf;
+    foleys::LevelMeter meter { foleys::LevelMeter::Minimal }; // See foleys::LevelMeter::MeterFlags for options
 
 // and in the processor:
 public:
-    FFAU::LevelMeterSource&amp; getMeterSource()
+    foleys::LevelMeterSource&amp; getMeterSource()
     {
         return meterSource;
     }
@@ -122,12 +125,12 @@ public:
     }
 
 private:
-    FFAU::LevelMeterSource meterSource;
+    foleys::LevelMeterSource meterSource;
 </pre><h2>OutlineBuffer </h2>
 <p>Another class is capable of reducing the samples going through into min and max blocks. This way you can see the outline of a signal running through. It can be used very similar: </p>
 <pre class="fragment">// in your processor
 private:
-FFAU::OutlineBuffer outline;
+foleys::OutlineBuffer outline;
 
 // in prepareToPlay
 outline.setSize (getTotalNumInputChannels(), 1024);
@@ -136,7 +139,7 @@ outline.setSize (getTotalNumInputChannels(), 1024);
 outline.pushBlock (buffer, buffer.getNumSamples());
 
 // and in the editor's component:
-const Rectangle&lt;float&gt; plotFrame (10.0, 320.0, 580, 80);
+const Rectangle&lt;float&gt; plotFrame (10.0f, 320.0f, 580f, 80f);
 g.setColour (Colours::lightgreen);
 g.fillRect (plotFrame);
 
@@ -153,7 +156,7 @@ g.strokePath (plot, PathStrokeType (1.0f));
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 14 2019 01:00:07 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 27 2020 01:00:08 for ff_meters by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['meterflags',['MeterFlags',['../group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2',1,'FFAU::LevelMeter']]]
+  ['meterflags',['MeterFlags',['../group__ff__meters.html#ac7eb592554bafb3eef75e4207489c3c8',1,'foleys::LevelMeter']]]
 ];

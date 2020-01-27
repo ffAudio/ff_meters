@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['default',['Default',['../group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2ac695399e3b04c8f9d9bb81a19a87ba89',1,'FFAU::LevelMeter']]]
+  ['default',['Default',['../group__ff__meters.html#ac7eb592554bafb3eef75e4207489c3c8a4772ac0ee36c0250b9a1490e056f2f99',1,'foleys::LevelMeter']]]
 ];

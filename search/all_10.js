@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['_7elevelmeter',['~LevelMeter',['../group__ff__meters.html#a773eee72ee4e13583516e5565f10f686',1,'FFAU::LevelMeter']]],
-  ['_7elevelmeterlookandfeel',['~LevelMeterLookAndFeel',['../group__ff__meters.html#ab881b235bc6751e92770803165c20537',1,'FFAU::LevelMeterLookAndFeel']]],
-  ['_7elevelmetersource',['~LevelMeterSource',['../group__ff__meters.html#ad30133cfb0c8575d85c86266f529a631',1,'FFAU::LevelMeterSource']]],
-  ['_7elistener',['~Listener',['../classFFAU_1_1LevelMeter_1_1Listener.html#a74e2e3c453731714f4b407c2f90860e6',1,'FFAU::LevelMeter::Listener']]],
-  ['_7elookandfeelmethods',['~LookAndFeelMethods',['../classFFAU_1_1LevelMeter_1_1LookAndFeelMethods.html#a9810cfe0a67940e0587fce6825124643',1,'FFAU::LevelMeter::LookAndFeelMethods::~LookAndFeelMethods()'],['../classFFAU_1_1StereoFieldComponent_1_1LookAndFeelMethods.html#ae99e44d7b5d401844383c08c73fd5800',1,'FFAU::StereoFieldComponent::LookAndFeelMethods::~LookAndFeelMethods()']]]
+  ['_7elevelmeter',['~LevelMeter',['../group__ff__meters.html#a68f5067d525f1b3c845d3c465e7f45bd',1,'foleys::LevelMeter']]],
+  ['_7elevelmeterlookandfeel',['~LevelMeterLookAndFeel',['../group__ff__meters.html#a6144ee97aa6df288c8abf04b8f711269',1,'foleys::LevelMeterLookAndFeel']]],
+  ['_7elevelmetersource',['~LevelMeterSource',['../group__ff__meters.html#a6626fdf6040fc55366323f7d1510848a',1,'foleys::LevelMeterSource']]],
+  ['_7elistener',['~Listener',['../classfoleys_1_1LevelMeter_1_1Listener.html#a7935c44e47a697b5d42cba596c44b3a8',1,'foleys::LevelMeter::Listener']]],
+  ['_7elookandfeelmethods',['~LookAndFeelMethods',['../classfoleys_1_1LevelMeter_1_1LookAndFeelMethods.html#a09c636e0dafa86554f158dd7fe2531ea',1,'foleys::LevelMeter::LookAndFeelMethods::~LookAndFeelMethods()'],['../classfoleys_1_1StereoFieldComponent_1_1LookAndFeelMethods.html#af5a570b16432a20eba2aad798789079b',1,'foleys::StereoFieldComponent::LookAndFeelMethods::~LookAndFeelMethods()']]]
 ];

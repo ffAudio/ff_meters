@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['singlechannel',['SingleChannel',['../group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a9299d9145d5cffc4b393635a85b2fd57',1,'FFAU::LevelMeter']]],
-  ['stereofield',['StereoField',['../group__ff__meters.html#ad6dbb180c399597ed19a4610e8b66701ac18cbc349728a2e46d5e841dd35879a2',1,'FFAU::StereoFieldComponent']]]
+  ['singlechannel',['SingleChannel',['../group__ff__meters.html#ac7eb592554bafb3eef75e4207489c3c8a3a68fd8ebea17f1e0bf3a25d7017f200',1,'foleys::LevelMeter']]],
+  ['stereofield',['StereoField',['../group__ff__meters.html#a9ab742a88890cc89e133aa1b3309a93aaa5e6442366d4df9f77c50bd6e5ceca4c',1,'foleys::StereoFieldComponent']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ffau',['FFAU',['../namespaceFFAU.html',1,'']]]
+  ['foleys',['foleys',['../namespacefoleys.html',1,'']]]
 ];

@@ -12,5 +12,5 @@ var searchData=
   ['ff_5fmeters_5fsoundfieldlookandfeelmethods_2eh',['ff_meters_SoundFieldLookAndFeelMethods.h',['../ff__meters__SoundFieldLookAndFeelMethods_8h.html',1,'']]],
   ['ff_5fmeters_5fstereofieldbuffer_2eh',['ff_meters_StereoFieldBuffer.h',['../ff__meters__StereoFieldBuffer_8h.html',1,'']]],
   ['ff_5fmeters_5fstereofieldcomponent_2eh',['ff_meters_StereoFieldComponent.h',['../ff__meters__StereoFieldComponent_8h.html',1,'']]],
-  ['ffau',['FFAU',['../namespaceFFAU.html',1,'']]]
+  ['foleys',['foleys',['../namespacefoleys.html',1,'']]]
 ];

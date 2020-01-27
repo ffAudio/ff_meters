@@ -1,13 +1,13 @@
 var searchData=
 [
-  ['checknewdataflag',['checkNewDataFlag',['../group__ff__meters.html#a61acf8f4c9a8d3aa10b8857a3fb75bef',1,'FFAU::LevelMeterSource']]],
-  ['clearallclipflags',['clearAllClipFlags',['../group__ff__meters.html#abe3025c5e5b8784cfe61c02b6983ef0d',1,'FFAU::LevelMeterSource']]],
-  ['clearallmaxnums',['clearAllMaxNums',['../group__ff__meters.html#a41cc23baf8644d2f6fb676318b92a72e',1,'FFAU::LevelMeterSource']]],
-  ['clearclipflag',['clearClipFlag',['../group__ff__meters.html#aa148c1757179140bae731bf8c0bc5f90',1,'FFAU::LevelMeterSource']]],
-  ['clearclipindicator',['clearClipIndicator',['../group__ff__meters.html#a699f7233e4e659e11adc3b6e3ec85005',1,'FFAU::LevelMeter']]],
-  ['clearmaxleveldisplay',['clearMaxLevelDisplay',['../group__ff__meters.html#ae0e8942a507e2b08bad9e01122615c0c',1,'FFAU::LevelMeter']]],
-  ['clearmaxnum',['clearMaxNum',['../group__ff__meters.html#af435f9903575cec7916d1bce40c28a5e',1,'FFAU::LevelMeterSource']]],
-  ['cliplightclicked',['clipLightClicked',['../classFFAU_1_1LevelMeter_1_1Listener.html#ae9ca2a2cd2da435c24822bf74b21ddcc',1,'FFAU::LevelMeter::Listener']]],
-  ['colourids',['ColourIds',['../group__ff__meters.html#a3deb8c5c7baae2ee82e8dbd9c73ef2ee',1,'FFAU::LevelMeter::ColourIds()'],['../group__ff__meters.html#ae9cff6cc2b2580923f2dd123c423db98',1,'FFAU::StereoFieldComponent::ColourIds()']]],
-  ['currentvaluescolour',['currentValuesColour',['../group__ff__meters.html#ae9cff6cc2b2580923f2dd123c423db98ad317ca3a5572a1394473676256d82f97',1,'FFAU::StereoFieldComponent']]]
+  ['checknewdataflag',['checkNewDataFlag',['../group__ff__meters.html#ad892a805b178a15f5561a0d2e7918840',1,'foleys::LevelMeterSource']]],
+  ['clearallclipflags',['clearAllClipFlags',['../group__ff__meters.html#ab9b53244d2309d431a32ad62bf38a8c4',1,'foleys::LevelMeterSource']]],
+  ['clearallmaxnums',['clearAllMaxNums',['../group__ff__meters.html#ae7144a97de7acd49c7de59a16c9a623a',1,'foleys::LevelMeterSource']]],
+  ['clearclipflag',['clearClipFlag',['../group__ff__meters.html#ab0ae2bc7378f671c8b62c78f40851068',1,'foleys::LevelMeterSource']]],
+  ['clearclipindicator',['clearClipIndicator',['../group__ff__meters.html#aef749f38c32e94e312c3691fa1577ffd',1,'foleys::LevelMeter']]],
+  ['clearmaxleveldisplay',['clearMaxLevelDisplay',['../group__ff__meters.html#a7628ea976bf211bfe8a9e706f6155c5f',1,'foleys::LevelMeter']]],
+  ['clearmaxnum',['clearMaxNum',['../group__ff__meters.html#aa9ab8b199175177ff9e622d457203abd',1,'foleys::LevelMeterSource']]],
+  ['cliplightclicked',['clipLightClicked',['../classfoleys_1_1LevelMeter_1_1Listener.html#a891f191fe49aa6d48ef73969aa99bba2',1,'foleys::LevelMeter::Listener']]],
+  ['colourids',['ColourIds',['../group__ff__meters.html#a65c1e025215a9df835bd3d77748ba559',1,'foleys::LevelMeter::ColourIds()'],['../group__ff__meters.html#aa590407e655492c50ded6459a1569a42',1,'foleys::StereoFieldComponent::ColourIds()']]],
+  ['currentvaluescolour',['currentValuesColour',['../group__ff__meters.html#aa590407e655492c50ded6459a1569a42aa5486a2c485b9ccddf2f8ffd7d573510',1,'foleys::StereoFieldComponent']]]
 ];

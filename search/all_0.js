@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['addlistener',['addListener',['../group__ff__meters.html#ad9eb6b8c77243a7fc2d7f7cbdb93857a',1,'FFAU::LevelMeter']]]
+  ['addlistener',['addListener',['../group__ff__meters.html#a2fa97cd96b679b0eb9d800a35f69f930',1,'foleys::LevelMeter']]]
 ];

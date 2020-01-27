@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['backgroundcolour',['backgroundColour',['../group__ff__meters.html#ae9cff6cc2b2580923f2dd123c423db98a0d9b48161200a72b53dd18d1afda8398',1,'FFAU::StereoFieldComponent']]],
-  ['bordercolour',['borderColour',['../group__ff__meters.html#ae9cff6cc2b2580923f2dd123c423db98ab031d6bb2162942ac85e4ba2daf85d4f',1,'FFAU::StereoFieldComponent']]]
+  ['backgroundcolour',['backgroundColour',['../group__ff__meters.html#aa590407e655492c50ded6459a1569a42a50ba97a483a1a8de9043a08def23a789',1,'foleys::StereoFieldComponent']]],
+  ['bordercolour',['borderColour',['../group__ff__meters.html#aa590407e655492c50ded6459a1569a42a54be9f99b5005a69bf3b15b57f10b4c2',1,'foleys::StereoFieldComponent']]]
 ];

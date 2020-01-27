@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['maxnumber',['MaxNumber',['../group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a04440e33c5d03b8285b0f9492fd42397',1,'FFAU::LevelMeter']]],
-  ['maxvaluescolour',['maxValuesColour',['../group__ff__meters.html#ae9cff6cc2b2580923f2dd123c423db98acfc4d8ef732ad68995a2428520b602bb',1,'FFAU::StereoFieldComponent']]],
-  ['minimal',['Minimal',['../group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a5edc908ca130d40726978898d7c105af',1,'FFAU::LevelMeter']]]
+  ['maxnumber',['MaxNumber',['../group__ff__meters.html#ac7eb592554bafb3eef75e4207489c3c8aaee8c0226e0e085c2f3d296dad1b76af',1,'foleys::LevelMeter']]],
+  ['maxvaluescolour',['maxValuesColour',['../group__ff__meters.html#aa590407e655492c50ded6459a1569a42a78809e12eafee00d7f8a2b26a337ae9f',1,'foleys::StereoFieldComponent']]],
+  ['minimal',['Minimal',['../group__ff__meters.html#ac7eb592554bafb3eef75e4207489c3c8ac19dacf1c1467b5288904f2efe072bc1',1,'foleys::LevelMeter']]]
 ];

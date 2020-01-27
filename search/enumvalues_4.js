@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['hasborder',['HasBorder',['../group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2adf97c49d0b6415a1695df4deecd63606',1,'FFAU::LevelMeter']]],
-  ['horizontal',['Horizontal',['../group__ff__meters.html#a2aeb223a99ad2e6e0a7e1a170b788bd2a1435bab9e11252c851d860a679c26d4d',1,'FFAU::LevelMeter']]]
+  ['hasborder',['HasBorder',['../group__ff__meters.html#ac7eb592554bafb3eef75e4207489c3c8ab8842ca909aa2cdd6cdeca8cf089f504',1,'foleys::LevelMeter']]],
+  ['horizontal',['Horizontal',['../group__ff__meters.html#ac7eb592554bafb3eef75e4207489c3c8ab76bae70d43f34711d3402a54351a69e',1,'foleys::LevelMeter']]]
 ];
