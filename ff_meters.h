@@ -36,6 +36,7 @@
  dependencies:  juce_audio_basics, juce_gui_basics, juce_events
  website:       http://www.foleysfinest.com/
  license:       BSD V2 3-clause
+ linuxLibs:     m
 
  END_JUCE_MODULE_DECLARATION
 
