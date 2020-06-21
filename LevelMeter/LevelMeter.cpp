@@ -27,18 +27,17 @@
 
  ==============================================================================
 
-    ff_meters_LevelMeter.cpp
+    LevelMeter.cpp
     Created: 5 Apr 2016 9:49:54am
     Author:  Daniel Walz
 
  ==============================================================================
 */
 
-#include "../JuceLibraryCode/JuceHeader.h"
+namespace foleys
+{
 
-
-//==============================================================================
-foleys::LevelMeter::LevelMeter (const MeterFlags type)
+LevelMeter::LevelMeter (const MeterFlags type)
   : meterType       (type)
 {
     onMaxLevelClicked = [](FFAU::LevelMeter& meter, [[maybe_unused]] int channel, [[maybe_unused]] juce::ModifierKeys mods)
@@ -58,39 +57,39 @@ foleys::LevelMeter::LevelMeter (const MeterFlags type)
     startTimerHz (refreshRate);
 }
 
-foleys::LevelMeter::~LevelMeter()
+LevelMeter::~LevelMeter()
 {
     stopTimer();
 }
 
-void foleys::LevelMeter::setMeterFlags (const MeterFlags type)
+void LevelMeter::setMeterFlags (const MeterFlags type)
 {
     meterType = type;
 }
 
-void foleys::LevelMeter::setMeterSource (LevelMeterSource* src)
+void LevelMeter::setMeterSource (LevelMeterSource* src)
 {
     source = src;
     repaint();
 }
 
-void foleys::LevelMeter::setSelectedChannel (const int c)
+void LevelMeter::setSelectedChannel (const int c)
 {
     selectedChannel = c;
 }
 
-void foleys::LevelMeter::setFixedNumChannels (const int numChannels)
+void LevelMeter::setFixedNumChannels (const int numChannels)
 {
     fixedNumChannels = numChannels;
 }
 
-void foleys::LevelMeter::setRefreshRateHz (const int newRefreshRate)
+void LevelMeter::setRefreshRateHz (const int newRefreshRate)
 {
     refreshRate = newRefreshRate;
     startTimerHz (refreshRate);
 }
 
-void foleys::LevelMeter::paint (juce::Graphics& g)
+void LevelMeter::paint (juce::Graphics& g)
 {
     juce::Graphics::ScopedSaveState saved (g);
 
@@ -137,7 +136,7 @@ void foleys::LevelMeter::paint (juce::Graphics& g)
     }
 }
 
-void foleys::LevelMeter::resized ()
+void LevelMeter::resized ()
 {
     juce::LookAndFeel& l = getLookAndFeel();
     if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l))
@@ -148,12 +147,12 @@ void foleys::LevelMeter::resized ()
     backgroundNeedsRepaint = true;
 }
 
-void foleys::LevelMeter::visibilityChanged ()
+void LevelMeter::visibilityChanged ()
 {
     backgroundNeedsRepaint = true;
 }
 
-void foleys::LevelMeter::timerCallback ()
+void LevelMeter::timerCallback ()
 {
     if ((source && source->checkNewDataFlag()) || backgroundNeedsRepaint)
     {
@@ -164,7 +163,7 @@ void foleys::LevelMeter::timerCallback ()
     }
 }
 
-void foleys::LevelMeter::clearClipIndicator (const int channel)
+void LevelMeter::clearClipIndicator (const int channel)
 {
     if (source == nullptr)
         return;
@@ -175,7 +174,7 @@ void foleys::LevelMeter::clearClipIndicator (const int channel)
         source->clearClipFlag (channel);
 }
 
-void foleys::LevelMeter::clearMaxLevelDisplay (const int channel)
+void LevelMeter::clearMaxLevelDisplay (const int channel)
 {
     if (source == nullptr)
         return;
@@ -186,7 +185,7 @@ void foleys::LevelMeter::clearMaxLevelDisplay (const int channel)
         source->clearMaxNum (channel);
 }
 
-void foleys::LevelMeter::mouseDown (const juce::MouseEvent &event)
+void LevelMeter::mouseDown (const juce::MouseEvent &event)
 {
     if (source == nullptr)
         return;
@@ -222,14 +221,14 @@ void foleys::LevelMeter::mouseDown (const juce::MouseEvent &event)
     }
 }
 
-void foleys::LevelMeter::addListener (foleys::LevelMeter::Listener* listener)
+void LevelMeter::addListener (LevelMeter::Listener* listener)
 {
     listeners.add (listener);
 }
 
-void foleys::LevelMeter::removeListener (foleys::LevelMeter::Listener* listener)
+void LevelMeter::removeListener (LevelMeter::Listener* listener)
 {
     listeners.remove (listener);
 }
 
-
+} // namespace foleys

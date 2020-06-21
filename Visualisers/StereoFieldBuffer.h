@@ -27,7 +27,7 @@
  
  ==============================================================================
  
- ff_meters_StereoFieldBuffer.h
+ StereoFieldBuffer.h
  Created: 29 Dec 2017 16:49:54pm
  Author:  Daniel Walz
  

@@ -27,7 +27,7 @@
  
  ==============================================================================
 
-    \file ff_meters_LookAndFeel.h
+    \file LevelMeterLookAndFeel.h
     Author:  Daniel Walz
 
  ==============================================================================
@@ -75,10 +75,10 @@ public:
     virtual ~LevelMeterLookAndFeel() override {}
 
     // do this include inside the class to get the default implementation instead of copying it there
-    #include "ff_meters_LookAndFeelMethods.h"
+    #include "LevelMeterLookAndFeelMethods.h"
 
     // and the same to get the default sound field implementation instead of copying it there
-    #include "ff_meters_SoundFieldLookAndFeelMethods.h"
+    #include "SoundFieldLookAndFeelMethods.h"
 
 };
 

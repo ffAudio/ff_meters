@@ -27,7 +27,7 @@
  
  ==============================================================================
  
- ff_meters_StereoFieldComponent.h
+ StereoFieldComponent.h
  Created: 2 Jan 2018 00:16:54pm
  Author:  Daniel Walz
  

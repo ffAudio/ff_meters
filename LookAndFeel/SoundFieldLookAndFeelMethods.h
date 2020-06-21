@@ -27,7 +27,7 @@
  
  ==============================================================================
 
-    \file ff_meters_SoundFieldLookAndFeelMethods.h
+    \file SoundFieldLookAndFeelMethods.h
     Author:  Daniel Walz
 
     To use the default implementation of your SoundField in your LookAndFeel,
