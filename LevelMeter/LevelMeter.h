@@ -41,6 +41,8 @@ namespace foleys
 /** @addtogroup ff_meters */
 /*@{*/
 
+class LevelMeterLookAndFeel;
+
 //==============================================================================
 /*
  \class LevelMeter
@@ -285,6 +287,8 @@ public:
     */
     void mouseDown (const juce::MouseEvent& event) override;
 
+    void lookAndFeelChanged() override;
+
     /**
      DEPRECATED: Instead of using the Listener, use the new lambdas:
      \see onMaxLevelClicked, onClipLightClicked
@@ -338,6 +342,9 @@ private:
     bool                                  useBackgroundImage = false;
     juce::Image                           backgroundImage;
     bool                                  backgroundNeedsRepaint = true;
+
+    std::unique_ptr<LevelMeterLookAndFeel> fallbackLookAndFeel;
+    LevelMeter::LookAndFeelMethods*        lmLookAndFeel = nullptr;
 
     juce::ListenerList<foleys::LevelMeter::Listener> listeners;
 };

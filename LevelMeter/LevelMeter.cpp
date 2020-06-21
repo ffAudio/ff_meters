@@ -40,6 +40,8 @@ namespace foleys
 LevelMeter::LevelMeter (MeterFlags type)
   : meterType       (type)
 {
+    lookAndFeelChanged();
+
     onMaxLevelClicked = [](FFAU::LevelMeter& meter, [[maybe_unused]] int channel, [[maybe_unused]] juce::ModifierKeys mods)
     {
         // default clear all indicators. Overwrite this lambda to change the behaviour
@@ -93,41 +95,28 @@ void LevelMeter::paint (juce::Graphics& g)
 {
     juce::Graphics::ScopedSaveState saved (g);
 
-    juce::LookAndFeel& l = getLookAndFeel();
-    if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l))
+    const juce::Rectangle<float> bounds = getLocalBounds().toFloat();
+    int numChannels = source ? source->getNumChannels() : 1;
+    if (useBackgroundImage)
     {
-        const juce::Rectangle<float> bounds = getLocalBounds().toFloat();
-        int numChannels = source ? source->getNumChannels() : 1;
-        if (useBackgroundImage)
+        // This seems to only speed up, if you use complex drawings on the background. For
+        // "normal" vector graphics the image approach seems actually slower
+        if (backgroundNeedsRepaint)
         {
-            // This seems to only speed up, if you use complex drawings on the background. For
-            // "normal" vector graphics the image approach seems actually slower
-            if (backgroundNeedsRepaint)
-            {
-                backgroundImage = juce::Image (juce::Image::ARGB, getWidth(), getHeight(), true);
-                juce::Graphics backGraphics (backgroundImage);
-                lnf->drawBackground (backGraphics, meterType, bounds);
-                lnf->drawMeterBarsBackground (backGraphics, meterType, bounds, numChannels, fixedNumChannels);
-                backgroundNeedsRepaint = false;
-            }
-            g.drawImageAt (backgroundImage, 0, 0);
-            lnf->drawMeterBars (g, meterType, bounds, source, fixedNumChannels, selectedChannel);
+            backgroundImage = juce::Image (juce::Image::ARGB, getWidth(), getHeight(), true);
+            juce::Graphics backGraphics (backgroundImage);
+            lmLookAndFeel->drawBackground (backGraphics, meterType, bounds);
+            lmLookAndFeel->drawMeterBarsBackground (backGraphics, meterType, bounds, numChannels, fixedNumChannels);
+            backgroundNeedsRepaint = false;
         }
-        else
-        {
-            lnf->drawBackground (g, meterType, bounds);
-            lnf->drawMeterBarsBackground (g, meterType, bounds, numChannels, fixedNumChannels);
-            lnf->drawMeterBars (g, meterType, bounds, source, fixedNumChannels, selectedChannel);
-        }
+        g.drawImageAt (backgroundImage, 0, 0);
+        lmLookAndFeel->drawMeterBars (g, meterType, bounds, source, fixedNumChannels, selectedChannel);
     }
-    else {
-        // This LookAndFeel is missing the LevelMeter::LookAndFeelMethods.
-        // If you work with the default LookAndFeel, set an instance of
-        // LevelMeterLookAndFeel as LookAndFeel of this component.
-        //
-        // If you write a LookAndFeel from scratch, inherit also
-        // LevelMeter::LookAndFeelMethods
-        jassertfalse;
+    else
+    {
+        lmLookAndFeel->drawBackground (g, meterType, bounds);
+        lmLookAndFeel->drawMeterBarsBackground (g, meterType, bounds, numChannels, fixedNumChannels);
+        lmLookAndFeel->drawMeterBars (g, meterType, bounds, source, fixedNumChannels, selectedChannel);
     }
 
     if (source)
@@ -138,12 +127,7 @@ void LevelMeter::paint (juce::Graphics& g)
 
 void LevelMeter::resized ()
 {
-    juce::LookAndFeel& l = getLookAndFeel();
-    if (LookAndFeelMethods* lnf = dynamic_cast<LookAndFeelMethods*> (&l))
-    {
-        lnf->updateMeterGradients();
-    }
-
+    lmLookAndFeel->updateMeterGradients();
     backgroundNeedsRepaint = true;
 }
 
@@ -190,33 +174,30 @@ void LevelMeter::mouseDown (const juce::MouseEvent &event)
     if (source == nullptr)
         return;
 
-    if (auto* lnf = dynamic_cast<LookAndFeelMethods*> (&getLookAndFeel()))
+    const juce::Rectangle<float> innerBounds = lmLookAndFeel->getMeterInnerBounds (getLocalBounds().toFloat(),
+                                                                                   meterType);
+    if (event.mods.isLeftButtonDown())
     {
-        const juce::Rectangle<float> innerBounds = lnf->getMeterInnerBounds (getLocalBounds().toFloat(),
-                                                                             meterType);
-        if (event.mods.isLeftButtonDown())
+        auto channel = lmLookAndFeel->hitTestClipIndicator (event.getPosition(),
+                                                            meterType,
+                                                            innerBounds,
+                                                            source);
+        if (channel >= 0)
         {
-            auto channel = lnf->hitTestClipIndicator (event.getPosition(),
-                                                      meterType,
-                                                      innerBounds,
-                                                      source);
-            if (channel >= 0)
-            {
-                listeners.call (&LevelMeter::Listener::clipLightClicked, this, channel, event.mods);
-                if (onClipLightClicked)
-                    onClipLightClicked (*this, channel, event.mods);
-            }
+            listeners.call (&LevelMeter::Listener::clipLightClicked, this, channel, event.mods);
+            if (onClipLightClicked)
+                onClipLightClicked (*this, channel, event.mods);
+        }
 
-            channel = lnf->hitTestMaxNumber (event.getPosition(),
-                                         meterType,
-                                         innerBounds,
-                                         source);
-            if (channel >= 0)
-            {
-                listeners.call (&LevelMeter::Listener::maxLevelClicked, this, channel, event.mods);
-                if (onMaxLevelClicked)
-                    onMaxLevelClicked (*this, channel, event.mods);
-            }
+        channel = lmLookAndFeel->hitTestMaxNumber (event.getPosition(),
+                                                   meterType,
+                                                   innerBounds,
+                                                   source);
+        if (channel >= 0)
+        {
+            listeners.call (&LevelMeter::Listener::maxLevelClicked, this, channel, event.mods);
+            if (onMaxLevelClicked)
+                onMaxLevelClicked (*this, channel, event.mods);
         }
     }
 }
@@ -229,6 +210,21 @@ void LevelMeter::addListener (LevelMeter::Listener* listener)
 void LevelMeter::removeListener (LevelMeter::Listener* listener)
 {
     listeners.remove (listener);
+}
+
+void LevelMeter::lookAndFeelChanged()
+{
+    if (auto* lnf = dynamic_cast<LookAndFeelMethods*> (&getLookAndFeel()))
+    {
+        lmLookAndFeel = lnf;
+    }
+    else
+    {
+        if (fallbackLookAndFeel.get() == nullptr)
+            fallbackLookAndFeel = std::make_unique<LevelMeterLookAndFeel>();
+
+        lmLookAndFeel = fallbackLookAndFeel.get();
+    }
 }
 
 } // namespace foleys
