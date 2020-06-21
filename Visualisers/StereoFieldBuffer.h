@@ -36,10 +36,6 @@
 
 #pragma once
 
-#include <atomic>
-#include <algorithm>
-#include <vector>
-
 namespace foleys
 {
     

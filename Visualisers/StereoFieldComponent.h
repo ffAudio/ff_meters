@@ -76,19 +76,19 @@ namespace foleys
 
             virtual void setupDefaultStereoFieldColours () = 0;
 
-            virtual void drawGonioBackground (juce::Graphics& g, const juce::Rectangle<float> bounds, float margin, float border) = 0;
+            virtual void drawGonioBackground (juce::Graphics& g, juce::Rectangle<float> bounds, float margin, float border) = 0;
 
             virtual void drawGonioMeter (juce::Graphics& g,
-                                         const juce::Rectangle<float> bounds,
+                                         juce::Rectangle<float> bounds,
                                          const StereoFieldBuffer<float>& stereoBuffer,
-                                         const int leftIdx, const int rightIdx) = 0;
+                                         int leftIdx, int rightIdx) = 0;
 
-            virtual void drawStereoFieldBackground (juce::Graphics& g, const juce::Rectangle<float> bounds, float margin, float border) = 0;
+            virtual void drawStereoFieldBackground (juce::Graphics& g, juce::Rectangle<float> bounds, float margin, float border) = 0;
 
             virtual void drawStereoField (juce::Graphics& g,
-                                          const juce::Rectangle<float> bounds,
+                                          juce::Rectangle<float> bounds,
                                           const StereoFieldBuffer<float>&,
-                                          const int leftIdx = 0, const int rightIdx = 1) = 0;
+                                          int leftIdx = 0, int rightIdx = 1) = 0;
         };
 
         StereoFieldComponent (StereoFieldBuffer<float>& stereo)

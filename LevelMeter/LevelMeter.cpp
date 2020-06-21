@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- Copyright (c) 2017 Filmstro Ltd. / 2017-2020 Foleys Finest Audio Ltd. - Daniel Walz
+ Copyright (c) 2017 - 2020 Foleys Finest Audio Ltd. - Daniel Walz
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without modification,
@@ -37,7 +37,7 @@
 namespace foleys
 {
 
-LevelMeter::LevelMeter (const MeterFlags type)
+LevelMeter::LevelMeter (MeterFlags type)
   : meterType       (type)
 {
     onMaxLevelClicked = [](FFAU::LevelMeter& meter, [[maybe_unused]] int channel, [[maybe_unused]] juce::ModifierKeys mods)
@@ -62,7 +62,7 @@ LevelMeter::~LevelMeter()
     stopTimer();
 }
 
-void LevelMeter::setMeterFlags (const MeterFlags type)
+void LevelMeter::setMeterFlags (MeterFlags type)
 {
     meterType = type;
 }
@@ -73,17 +73,17 @@ void LevelMeter::setMeterSource (LevelMeterSource* src)
     repaint();
 }
 
-void LevelMeter::setSelectedChannel (const int c)
+void LevelMeter::setSelectedChannel (int c)
 {
     selectedChannel = c;
 }
 
-void LevelMeter::setFixedNumChannels (const int numChannels)
+void LevelMeter::setFixedNumChannels (int numChannels)
 {
     fixedNumChannels = numChannels;
 }
 
-void LevelMeter::setRefreshRateHz (const int newRefreshRate)
+void LevelMeter::setRefreshRateHz (int newRefreshRate)
 {
     refreshRate = newRefreshRate;
     startTimerHz (refreshRate);
@@ -163,7 +163,7 @@ void LevelMeter::timerCallback ()
     }
 }
 
-void LevelMeter::clearClipIndicator (const int channel)
+void LevelMeter::clearClipIndicator (int channel)
 {
     if (source == nullptr)
         return;
@@ -174,7 +174,7 @@ void LevelMeter::clearClipIndicator (const int channel)
         source->clearClipFlag (channel);
 }
 
-void LevelMeter::clearMaxLevelDisplay (const int channel)
+void LevelMeter::clearMaxLevelDisplay (int channel)
 {
     if (source == nullptr)
         return;

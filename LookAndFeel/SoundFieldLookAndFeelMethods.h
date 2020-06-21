@@ -52,7 +52,7 @@ void setupDefaultStereoFieldColours () override
     setColour (StereoFieldComponent::maxValuesColour,     juce::Colours::darkgrey);
 }
 
-void drawGonioBackground (juce::Graphics& g, const juce::Rectangle<float> bounds, float margin, float border) override
+void drawGonioBackground (juce::Graphics& g, juce::Rectangle<float> bounds, float margin, float border) override
 {
     auto colour = findColour (StereoFieldComponent::backgroundColour);
     g.fillAll (colour);
@@ -68,9 +68,9 @@ void drawGonioBackground (juce::Graphics& g, const juce::Rectangle<float> bounds
 }
 
 void drawGonioMeter (juce::Graphics& g,
-                     const juce::Rectangle<float> bounds,
+                     juce::Rectangle<float> bounds,
                      const StereoFieldBuffer<float>& stereoBuffer,
-                     const int leftIdx, const int rightIdx) override
+                     int leftIdx, int rightIdx) override
 {
     auto colour = findColour (StereoFieldComponent::gonioColour);
     g.setColour (colour);
@@ -81,7 +81,7 @@ void drawGonioMeter (juce::Graphics& g,
     g.strokePath (osciloscope, juce::PathStrokeType (1.0));
 }
 
-void drawStereoFieldBackground (juce::Graphics& g, const juce::Rectangle<float> bounds, float margin, float border) override
+void drawStereoFieldBackground (juce::Graphics& g, juce::Rectangle<float> bounds, float margin, float border) override
 {
     g.drawRoundedRectangle (bounds.reduced (margin * 0.5f), margin * 0.5f, border);
     auto graph = bounds.reduced (margin);
@@ -105,10 +105,10 @@ void drawStereoFieldBackground (juce::Graphics& g, const juce::Rectangle<float> 
 }
 
 void drawStereoField ([[maybe_unused]] juce::Graphics& g,
-                      [[maybe_unused]] const juce::Rectangle<float> bounds,
+                      [[maybe_unused]] juce::Rectangle<float> bounds,
                       [[maybe_unused]] const StereoFieldBuffer<float>&,
-                      [[maybe_unused]] const int leftIdx = 0,
-                      [[maybe_unused]] const int rightIdx = 1) override
+                      [[maybe_unused]] int leftIdx = 0,
+                      [[maybe_unused]] int rightIdx = 1) override
 {
     juce::ignoreUnused (g);
     juce::ignoreUnused (bounds);

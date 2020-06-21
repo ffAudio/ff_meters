@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- Copyright (c) 2017 Filmstro Ltd. / 2017-2020 Foleys Finest Audio Ltd. - Daniel Walz
+ Copyright (c) 2017 - 2020 Foleys Finest Audio Ltd. - Daniel Walz
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without modification,
@@ -69,8 +69,8 @@ void updateMeterGradients () override
     verticalGradient.clearColours();
 }
 
-juce::Rectangle<float> getMeterInnerBounds (const juce::Rectangle<float> bounds,
-                                            const foleys::LevelMeter::MeterFlags meterType) const override
+juce::Rectangle<float> getMeterInnerBounds (juce::Rectangle<float> bounds,
+                                            foleys::LevelMeter::MeterFlags meterType) const override
 {
     if (meterType & foleys::LevelMeter::HasBorder)
     {
@@ -81,10 +81,10 @@ juce::Rectangle<float> getMeterInnerBounds (const juce::Rectangle<float> bounds,
     return bounds;
 }
 
-juce::Rectangle<float> getMeterBounds (const juce::Rectangle<float> bounds,
-                                       const foleys::LevelMeter::MeterFlags meterType,
-                                       const int numChannels,
-                                       const int channel) const override
+juce::Rectangle<float> getMeterBounds (juce::Rectangle<float> bounds,
+                                       foleys::LevelMeter::MeterFlags meterType,
+                                       int numChannels,
+                                       int channel) const override
 {
     if (meterType & foleys::LevelMeter::SingleChannel) {
         return bounds;
@@ -103,8 +103,8 @@ juce::Rectangle<float> getMeterBounds (const juce::Rectangle<float> bounds,
 }
 
 /** Override this callback to define the placement of the actual meter bar. */
-juce::Rectangle<float> getMeterBarBounds (const juce::Rectangle<float> bounds,
-                                          const foleys::LevelMeter::MeterFlags meterType) const override
+juce::Rectangle<float> getMeterBarBounds (juce::Rectangle<float> bounds,
+                                          foleys::LevelMeter::MeterFlags meterType) const override
 {
     if (meterType & foleys::LevelMeter::Minimal)
     {
@@ -153,8 +153,8 @@ juce::Rectangle<float> getMeterBarBounds (const juce::Rectangle<float> bounds,
 
 /** Override this callback to define the placement of the tickmarks.
  To disable this feature return an empty rectangle. */
-juce::Rectangle<float> getMeterTickmarksBounds (const juce::Rectangle<float> bounds,
-                                                const foleys::LevelMeter::MeterFlags meterType) const override
+juce::Rectangle<float> getMeterTickmarksBounds (juce::Rectangle<float> bounds,
+                                                foleys::LevelMeter::MeterFlags meterType) const override
 {
     if (meterType & foleys::LevelMeter::Minimal)
     {
@@ -193,8 +193,8 @@ juce::Rectangle<float> getMeterTickmarksBounds (const juce::Rectangle<float> bou
 
 /** Override this callback to define the placement of the clip indicator light.
  To disable this feature return an empty rectangle. */
-juce::Rectangle<float> getMeterClipIndicatorBounds (const juce::Rectangle<float> bounds,
-                                                    const foleys::LevelMeter::MeterFlags meterType) const override
+juce::Rectangle<float> getMeterClipIndicatorBounds (juce::Rectangle<float> bounds,
+                                                    foleys::LevelMeter::MeterFlags meterType) const override
 {
     if (meterType & foleys::LevelMeter::Minimal)
     {
@@ -247,8 +247,8 @@ juce::Rectangle<float> getMeterClipIndicatorBounds (const juce::Rectangle<float>
 
 /** Override this callback to define the placement of the max level.
  To disable this feature return an empty rectangle. */
-juce::Rectangle<float> getMeterMaxNumberBounds (const juce::Rectangle<float> bounds,
-                                                const foleys::LevelMeter::MeterFlags meterType) const override
+juce::Rectangle<float> getMeterMaxNumberBounds (juce::Rectangle<float> bounds,
+                                                foleys::LevelMeter::MeterFlags meterType) const override
 {
     if (meterType & foleys::LevelMeter::Minimal)
     {
@@ -301,8 +301,8 @@ juce::Rectangle<float> getMeterMaxNumberBounds (const juce::Rectangle<float> bou
 }
 
 juce::Rectangle<float> drawBackground (juce::Graphics& g,
-                                       const foleys::LevelMeter::MeterFlags meterType,
-                                       const juce::Rectangle<float> bounds) override
+                                       foleys::LevelMeter::MeterFlags meterType,
+                                       juce::Rectangle<float> bounds) override
 {
     g.setColour (findColour (foleys::LevelMeter::lmBackgroundColour));
     if (meterType & foleys::LevelMeter::HasBorder)
@@ -321,11 +321,11 @@ juce::Rectangle<float> drawBackground (juce::Graphics& g,
 }
 
 void drawMeterBars (juce::Graphics& g,
-                    const foleys::LevelMeter::MeterFlags meterType,
-                    const juce::Rectangle<float> bounds,
+                    foleys::LevelMeter::MeterFlags meterType,
+                    juce::Rectangle<float> bounds,
                     const foleys::LevelMeterSource* source,
-                    const int fixedNumChannels=-1,
-                    const int selectedChannel=-1) override
+                    int fixedNumChannels=-1,
+                    int selectedChannel=-1) override
 {
     if (source == nullptr)
         return;
@@ -419,10 +419,10 @@ void drawMeterBars (juce::Graphics& g,
 }
 
 void drawMeterBarsBackground (juce::Graphics& g,
-                              const foleys::LevelMeter::MeterFlags meterType,
-                              const juce::Rectangle<float> bounds,
-                              const int numChannels,
-                              const int fixedNumChannels) override
+                              foleys::LevelMeter::MeterFlags meterType,
+                              juce::Rectangle<float> bounds,
+                              int numChannels,
+                              int fixedNumChannels) override
 {
     const juce::Rectangle<float> innerBounds = getMeterInnerBounds (bounds, meterType);
     if (meterType & foleys::LevelMeter::Minimal) {
@@ -476,10 +476,10 @@ void drawMeterBarsBackground (juce::Graphics& g,
 
 
 void drawMeterChannel (juce::Graphics& g,
-                       const foleys::LevelMeter::MeterFlags meterType,
-                       const juce::Rectangle<float> bounds,
+                       foleys::LevelMeter::MeterFlags meterType,
+                       juce::Rectangle<float> bounds,
                        const foleys::LevelMeterSource* source,
-                       const int selectedChannel) override
+                       int selectedChannel) override
 {
     if (source == nullptr)
         return;
@@ -530,8 +530,8 @@ void drawMeterChannel (juce::Graphics& g,
 }
 
 void drawMeterChannelBackground (juce::Graphics& g,
-                                 const foleys::LevelMeter::MeterFlags meterType,
-                                 const juce::Rectangle<float> bounds) override
+                                 foleys::LevelMeter::MeterFlags meterType,
+                                 juce::Rectangle<float> bounds) override
 {
     juce::Rectangle<float> meter = getMeterBarBounds (bounds, meterType);
     if (! meter.isEmpty())
@@ -552,9 +552,9 @@ void drawMeterChannelBackground (juce::Graphics& g,
 }
 
 void drawMeterBar (juce::Graphics& g,
-                   const foleys::LevelMeter::MeterFlags meterType,
-                   const juce::Rectangle<float> bounds,
-                   const float rms, const float peak) override
+                   foleys::LevelMeter::MeterFlags meterType,
+                   juce::Rectangle<float> bounds,
+                   float rms, float peak) override
 {
     const auto infinity = meterType & foleys::LevelMeter::Reduction ? -30.0f :  -80.0f;
     const auto rmsDb  = juce::Decibels::gainToDecibels (rms,  infinity);
@@ -628,9 +628,9 @@ void drawMeterBar (juce::Graphics& g,
 }
 
 void drawMeterReduction (juce::Graphics& g,
-                         const foleys::LevelMeter::MeterFlags meterType,
-                         const juce::Rectangle<float> bounds,
-                         const float reduction) override
+                         foleys::LevelMeter::MeterFlags meterType,
+                         juce::Rectangle<float> bounds,
+                         float reduction) override
 {
     const auto infinity = -30.0f;
     
@@ -649,8 +649,8 @@ void drawMeterReduction (juce::Graphics& g,
 }
 
 void drawMeterBarBackground (juce::Graphics& g,
-                             const foleys::LevelMeter::MeterFlags meterType,
-                             const juce::Rectangle<float> bounds) override
+                             foleys::LevelMeter::MeterFlags meterType,
+                             juce::Rectangle<float> bounds) override
 {
     juce::ignoreUnused (meterType);
     g.setColour (findColour (foleys::LevelMeter::lmMeterBackgroundColour));
@@ -661,8 +661,8 @@ void drawMeterBarBackground (juce::Graphics& g,
 }
 
 void drawTickMarks (juce::Graphics& g,
-                    const foleys::LevelMeter::MeterFlags meterType,
-                    const juce::Rectangle<float> bounds) override
+                    foleys::LevelMeter::MeterFlags meterType,
+                    juce::Rectangle<float> bounds) override
 {
     const auto infinity = meterType & foleys::LevelMeter::Reduction ? -30.0f :  -80.0f;
 
@@ -746,9 +746,9 @@ void drawTickMarks (juce::Graphics& g,
 }
 
 void drawClipIndicator (juce::Graphics& g,
-                        const foleys::LevelMeter::MeterFlags meterType,
-                        const juce::Rectangle<float> bounds,
-                        const bool hasClipped) override
+                        foleys::LevelMeter::MeterFlags meterType,
+                        juce::Rectangle<float> bounds,
+                        bool hasClipped) override
 {
     juce::ignoreUnused (meterType);
 
@@ -759,8 +759,8 @@ void drawClipIndicator (juce::Graphics& g,
 }
 
 void drawClipIndicatorBackground (juce::Graphics& g,
-                                  const foleys::LevelMeter::MeterFlags meterType,
-                                  const juce::Rectangle<float> bounds) override
+                                  foleys::LevelMeter::MeterFlags meterType,
+                                  juce::Rectangle<float> bounds) override
 {
     juce::ignoreUnused (meterType);
 
@@ -771,9 +771,9 @@ void drawClipIndicatorBackground (juce::Graphics& g,
 }
 
 void drawMaxNumber (juce::Graphics& g,
-                    const foleys::LevelMeter::MeterFlags meterType,
-                    const juce::Rectangle<float> bounds,
-                    const float maxGain) override
+                    foleys::LevelMeter::MeterFlags meterType,
+                    juce::Rectangle<float> bounds,
+                    float maxGain) override
 {
     juce::ignoreUnused (meterType);
 
@@ -790,8 +790,8 @@ void drawMaxNumber (juce::Graphics& g,
 }
 
 void drawMaxNumberBackground (juce::Graphics& g,
-                              const foleys::LevelMeter::MeterFlags meterType,
-                              const juce::Rectangle<float> bounds) override
+                              foleys::LevelMeter::MeterFlags meterType,
+                              juce::Rectangle<float> bounds) override
 {
     juce::ignoreUnused (meterType);
 
@@ -799,9 +799,9 @@ void drawMaxNumberBackground (juce::Graphics& g,
     g.fillRect (bounds);
 }
 
-int hitTestClipIndicator (const juce::Point<int> position,
-                          const foleys::LevelMeter::MeterFlags meterType,
-                          const juce::Rectangle<float> bounds,
+int hitTestClipIndicator (juce::Point<int> position,
+                          foleys::LevelMeter::MeterFlags meterType,
+                          juce::Rectangle<float> bounds,
                           const foleys::LevelMeterSource* source) const override
 {
     if (source) {
@@ -817,9 +817,9 @@ int hitTestClipIndicator (const juce::Point<int> position,
     return -1;
 }
 
-int hitTestMaxNumber (const juce::Point<int> position,
-                      const foleys::LevelMeter::MeterFlags meterType,
-                      const juce::Rectangle<float> bounds,
+int hitTestMaxNumber (juce::Point<int> position,
+                      foleys::LevelMeter::MeterFlags meterType,
+                      juce::Rectangle<float> bounds,
                       const foleys::LevelMeterSource* source) const override
 {
     if (source) {

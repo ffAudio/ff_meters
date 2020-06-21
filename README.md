@@ -65,6 +65,12 @@ N.B. for backward compatibility, `FFAU` is an alias for `foleys`.
             return meterSource;
         }
 
+        void prepareToPlay (double sampleRate, int samplesPerBlockExpected) override
+        {
+            // this prepares the meterSource to measure all output blocks and average over 100ms to allow smooth movements
+            meterSource.resize (getTotalNumOutputChannels(), sampleRate * 0.1 / samplesPerBlockExpected);
+            // ...
+        }
         void processBlock (AudioSampleBuffer& buffer, MidiBuffer&) override
         {
             meterSource.measureBlock (buffer);

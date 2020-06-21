@@ -1,6 +1,6 @@
 /*
  ==============================================================================
- Copyright (c) 2017 Filmstro Ltd. / 2017-2020 Foleys Finest Audio Ltd. - Daniel Walz
+ Copyright (c) 2017 - 2020 Foleys Finest Audio Ltd. - Daniel Walz
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without modification,
@@ -104,132 +104,132 @@ public:
         virtual void updateMeterGradients () = 0;
 
         /** Override this to change the inner rectangle in case you want to paint a border e.g. */
-        virtual juce::Rectangle<float> getMeterInnerBounds (const juce::Rectangle<float> bounds,
-                                                            const MeterFlags meterType) const = 0;
+        virtual juce::Rectangle<float> getMeterInnerBounds (juce::Rectangle<float> bounds,
+                                                            MeterFlags meterType) const = 0;
 
         /** Override this callback to define the placement of a meter channel. */
-        virtual juce::Rectangle<float> getMeterBounds (const juce::Rectangle<float> bounds,
-                                                       const MeterFlags meterType,
-                                                       const int numChannels,
-                                                       const int channel) const = 0;
+        virtual juce::Rectangle<float> getMeterBounds (juce::Rectangle<float> bounds,
+                                                       MeterFlags meterType,
+                                                       int numChannels,
+                                                       int channel) const = 0;
 
         /** Override this callback to define the placement of the actual meter bar. */
-        virtual juce::Rectangle<float> getMeterBarBounds (const juce::Rectangle<float> bounds,
-                                                          const MeterFlags meterType) const = 0;
+        virtual juce::Rectangle<float> getMeterBarBounds (juce::Rectangle<float> bounds,
+                                                          MeterFlags meterType) const = 0;
 
         /** Override this callback to define the placement of the tickmarks.
          To disable this feature return an empty rectangle. */
-        virtual juce::Rectangle<float> getMeterTickmarksBounds (const juce::Rectangle<float> bounds,
-                                                                const MeterFlags meterType) const = 0;
+        virtual juce::Rectangle<float> getMeterTickmarksBounds (juce::Rectangle<float> bounds,
+                                                                MeterFlags meterType) const = 0;
 
         /** Override this callback to define the placement of the clip indicator light.
          To disable this feature return an empty rectangle. */
-        virtual juce::Rectangle<float> getMeterClipIndicatorBounds (const juce::Rectangle<float> bounds,
-                                                                    const MeterFlags meterType) const = 0;
+        virtual juce::Rectangle<float> getMeterClipIndicatorBounds (juce::Rectangle<float> bounds,
+                                                                    MeterFlags meterType) const = 0;
 
 
         /** Override this to draw background and if wanted a frame. If the frame takes space away, 
          it should return the reduced bounds */
         virtual juce::Rectangle<float> drawBackground (juce::Graphics&,
-                                                       const MeterFlags meterType,
-                                                       const juce::Rectangle<float> bounds) = 0;
+                                                       MeterFlags meterType,
+                                                       juce::Rectangle<float> bounds) = 0;
 
         /** This is called to draw the actual numbers and bars on top of the static background */
         virtual void drawMeterBars (juce::Graphics&,
-                                    const MeterFlags meterType,
-                                    const juce::Rectangle<float> bounds,
+                                    MeterFlags meterType,
+                                    juce::Rectangle<float> bounds,
                                     const LevelMeterSource* source,
-                                    const int fixedNumChannels=-1,
-                                    const int selectedChannel=-1) = 0;
+                                    int fixedNumChannels=-1,
+                                    int selectedChannel=-1) = 0;
 
         /** This draws the static background of the whole level meter group with all channels */
         virtual void drawMeterBarsBackground (juce::Graphics&,
-                                              const MeterFlags meterType,
-                                              const juce::Rectangle<float> bounds,
-                                              const int numChannels,
-                                              const int fixedNumChannels=-1) = 0;
+                                              MeterFlags meterType,
+                                              juce::Rectangle<float> bounds,
+                                              int numChannels,
+                                              int fixedNumChannels=-1) = 0;
 
         /** This draws a group of informations representing one channel */
         virtual void drawMeterChannel (juce::Graphics&,
-                                       const MeterFlags meterType,
-                                       const juce::Rectangle<float> bounds,
+                                       MeterFlags meterType,
+                                       juce::Rectangle<float> bounds,
                                        const LevelMeterSource* source,
-                                       const int selectedChannel) = 0;
+                                       int selectedChannel) = 0;
 
         /** This draws the static backgrounds representing one channel */
         virtual void drawMeterChannelBackground (juce::Graphics&,
-                                                 const MeterFlags meterType,
-                                                 const juce::Rectangle<float> bounds) = 0;
+                                                 MeterFlags meterType,
+                                                 juce::Rectangle<float> bounds) = 0;
 
         /** This callback draws the actual level bar. The background has an extra callback */
         virtual void drawMeterBar (juce::Graphics&,
-                                   const MeterFlags meterType,
-                                   const juce::Rectangle<float> bounds,
-                                   const float rms, const float peak) = 0;
+                                   MeterFlags meterType,
+                                   juce::Rectangle<float> bounds,
+                                   float rms, const float peak) = 0;
         
         /** This callback draws an reduction from top. Only triggered, if a reduction < 1.0 is set in the LevelMeterSource */
         virtual void drawMeterReduction (juce::Graphics& g,
-                                         const foleys::LevelMeter::MeterFlags meterType,
-                                         const juce::Rectangle<float> bounds,
-                                         const float reduction) = 0;
+                                         foleys::LevelMeter::MeterFlags meterType,
+                                         juce::Rectangle<float> bounds,
+                                         float reduction) = 0;
 
         /** This draws the background for the actual level bar */
         virtual void drawMeterBarBackground (juce::Graphics&,
-                                             const MeterFlags meterType,
-                                             const juce::Rectangle<float> bounds) = 0;
+                                             MeterFlags meterType,
+                                             juce::Rectangle<float> bounds) = 0;
 
         /** This draws the tickmarks for the level scale. It is painted on the static background */
         virtual void drawTickMarks (juce::Graphics&,
-                                    const MeterFlags meterType,
-                                    const juce::Rectangle<float> bounds) = 0;
+                                    MeterFlags meterType,
+                                    juce::Rectangle<float> bounds) = 0;
 
         /** This callback draws the clip indicator. The background has an extra callback */
         virtual void drawClipIndicator (juce::Graphics&,
-                                        const MeterFlags meterType,
-                                        const juce::Rectangle<float> bounds,
-                                        const bool hasClipped) = 0;
+                                        MeterFlags meterType,
+                                        juce::Rectangle<float> bounds,
+                                        bool hasClipped) = 0;
 
         /** This draws the background for the clip indicator LED */
         virtual void drawClipIndicatorBackground (juce::Graphics&,
-                                                  const MeterFlags meterType,
-                                                  const juce::Rectangle<float> bounds) = 0;
+                                                  MeterFlags meterType,
+                                                  juce::Rectangle<float> bounds) = 0;
 
         /** Override this callback to define the placement of the max level.
          To disable this feature return an empty rectangle. */
-        virtual juce::Rectangle<float> getMeterMaxNumberBounds (const juce::Rectangle<float> bounds,
-                                                                const MeterFlags meterType) const = 0;
+        virtual juce::Rectangle<float> getMeterMaxNumberBounds (juce::Rectangle<float> bounds,
+                                                                MeterFlags meterType) const = 0;
 
         /** This callback draws the number of maximum level. The background has an extra callback */
         virtual void drawMaxNumber (juce::Graphics&,
-                                    const MeterFlags meterType,
-                                    const juce::Rectangle<float> bounds,
-                                    const float maxGain) = 0;
+                                    MeterFlags meterType,
+                                    juce::Rectangle<float> bounds,
+                                    float maxGain) = 0;
 
         /** This draws the background for the maximum level display */
         virtual void drawMaxNumberBackground (juce::Graphics&,
-                                              const MeterFlags meterType,
-                                              const juce::Rectangle<float> bounds) = 0;
+                                              MeterFlags meterType,
+                                              juce::Rectangle<float> bounds) = 0;
 
         /** This is called by the frontend to check, if the clip indicator was clicked (e.g. for reset) */
-        virtual int hitTestClipIndicator (const juce::Point<int> position,
-                                          const MeterFlags meterType,
-                                          const juce::Rectangle<float> bounds,
+        virtual int hitTestClipIndicator (juce::Point<int> position,
+                                          MeterFlags meterType,
+                                          juce::Rectangle<float> bounds,
                                           const LevelMeterSource* source) const = 0;
 
         /** This is called by the frontend to check, if the maximum level number was clicked (e.g. for reset) */
-        virtual int hitTestMaxNumber (const juce::Point<int> position,
-                                      const MeterFlags meterType,
-                                      const juce::Rectangle<float> bounds,
+        virtual int hitTestMaxNumber (juce::Point<int> position,
+                                      MeterFlags meterType,
+                                      juce::Rectangle<float> bounds,
                                       const LevelMeterSource* source) const = 0;
     };
 
-    LevelMeter (const MeterFlags type = HasBorder);
+    LevelMeter (MeterFlags type = HasBorder);
     ~LevelMeter () override;
 
     /**
      Allows to change the meter's configuration by setting a combination of MeterFlags
      */
-    void setMeterFlags (const MeterFlags type);
+    void setMeterFlags (MeterFlags type);
 
     void paint (juce::Graphics&) override;
 
@@ -248,25 +248,25 @@ public:
     /**
      Set a specific channel to display. This is only useful, if MeterFlags::SingleChannel is set.
      */
-    void setSelectedChannel (const int c);
+    void setSelectedChannel (int c);
 
     /**
      If you don't know, how many channels will be in the processblock, you can set this number to avoid stretching
      the width of the channels.
      */
-    void setFixedNumChannels (const int numChannels);
+    void setFixedNumChannels (int numChannels);
 
-    void setRefreshRateHz (const int newRefreshRate);
+    void setRefreshRateHz (int newRefreshRate);
 
     /**
      Unset the clip indicator flag for a channel. Use -1 to reset all clip indicators.
      */
-    void clearClipIndicator (const int channel=-1);
+    void clearClipIndicator (int channel=-1);
 
     /**
      Set the max level display back to -inf for a channel. Use -1 to reset all max levels.
      */
-    void clearMaxLevelDisplay (const int channel=-1);
+    void clearMaxLevelDisplay (int channel=-1);
 
     /**
      This lambda is called when the user clicks on a clip light. It is initially set to clear all clip lights
@@ -314,12 +314,12 @@ public:
          To allow different behaviour, e.g. resetting only one indicator or even all meters spread over the UI.
          \see clearClipIndicator, maxLevelClicked
          */
-        virtual void clipLightClicked (foleys::LevelMeter* meter, const int channel, juce::ModifierKeys mods) = 0;
+        virtual void clipLightClicked (foleys::LevelMeter* meter, int channel, juce::ModifierKeys mods) = 0;
         /**
          This is called, when the user clicks a max level text. It can be used to reset the max number.
          \see clearMaxLevelDisplay, clipLightClicked
          */
-        virtual void maxLevelClicked (foleys::LevelMeter* meter, const int channel, juce::ModifierKeys mods)  = 0;
+        virtual void maxLevelClicked (foleys::LevelMeter* meter, int channel, juce::ModifierKeys mods)  = 0;
     };
 
     void addListener (foleys::LevelMeter::Listener*);

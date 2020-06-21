@@ -70,6 +70,10 @@
 #include <juce_gui_basics/juce_gui_basics.h>
 #include <juce_events/juce_events.h>
 
+#include <atomic>
+#include <vector>
+#include <numeric>
+
 #include "LevelMeter/LevelMeterSource.h"
 #include "LevelMeter/LevelMeter.h"
 #include "Visualisers/OutlineBuffer.h"
