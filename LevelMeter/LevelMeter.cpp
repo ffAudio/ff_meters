@@ -212,6 +212,11 @@ void LevelMeter::removeListener (LevelMeter::Listener* listener)
     listeners.remove (listener);
 }
 
+void LevelMeter::parentHierarchyChanged()
+{
+    lookAndFeelChanged();
+}
+
 void LevelMeter::lookAndFeelChanged()
 {
     if (auto* lnf = dynamic_cast<LookAndFeelMethods*> (&getLookAndFeel()))
