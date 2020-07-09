@@ -99,8 +99,8 @@ private:
         float getAvgRMS () const
         {
             if (rmsHistory.size() > 0)
-                return std::sqrtf (std::accumulate (rmsHistory.begin(), rmsHistory.end(), 0.0f) / rmsHistory.size());
-
+                return std::sqrt(std::accumulate (rmsHistory.begin(), rmsHistory.end(), 0.0f) / static_cast<float>(rmsHistory.size()));
+                
             return float (std::sqrt (rmsSum));
         }
 
