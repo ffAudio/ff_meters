@@ -222,6 +222,7 @@ void LevelMeter::lookAndFeelChanged()
     if (auto* lnf = dynamic_cast<LookAndFeelMethods*> (&getLookAndFeel()))
     {
         lmLookAndFeel = lnf;
+        fallbackLookAndFeel.reset();
     }
     else
     {
