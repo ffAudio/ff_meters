@@ -100,7 +100,7 @@ private:
         {
             if (rmsHistory.size() > 0)
                 return std::sqrt(std::accumulate (rmsHistory.begin(), rmsHistory.end(), 0.0f) / static_cast<float>(rmsHistory.size()));
-                
+
             return float (std::sqrt (rmsSum));
         }
 
@@ -189,27 +189,52 @@ public:
     template<typename FloatType>
     void measureBlock (const juce::AudioBuffer<FloatType>& buffer)
     {
+        measureBlock (buffer, 0, 0, buffer.getNumChannels ());
+    }
+
+    /**
+     Overload for when what you want to metasure comes from different "juce::AudioBuffers" or subsets
+     of them. Make sure that you pass all the buffers that you declared when calling "resize".
+     E.g.
+
+     // prepareToPlay
+     meterSource[0].resize (2, sampleRate * 0.1 / samplesPerBlockExpected);
+     meterSource[1].resize (2, sampleRate * 0.1 / samplesPerBlockExpected);
+     meterSource[2].resize (2, sampleRate * 0.1 / samplesPerBlockExpected);
+
+     // processBlock
+     meterSource[0].measureBlock (three_buses, 0, 0, 2);
+     meterSource[1].measureBlock (three_buses, 2, 0, 2);
+     meterSource[2].measureBlock (three_buses, 4, 0, 2);
+
+     */
+    template<typename FloatType>
+    void measureBlock (const juce::AudioBuffer<FloatType>& buffer, int firstBufferChannel, int firstMeterChannel, int nChannels)
+    {
+        jassert (firstBufferChannel >= 0 && firstMeterChannel >= 0 && nChannels >= 0);
+        jassert ((firstBufferChannel + nChannels) <= buffer.getNumChannels ());
+        jassert ((firstMeterChannel + nChannels) <= levels.size());
+
         lastMeasurement = juce::Time::currentTimeMillis();
         if (! suspended)
         {
-            const int         numChannels = buffer.getNumChannels ();
-            const int         numSamples  = buffer.getNumSamples ();
+            const int numSamples = buffer.getNumSamples ();
 
 #if FF_AUDIO_ALLOW_ALLOCATIONS_IN_MEASURE_BLOCK
 #warning The use of levels.resize() is not realtime safe. Please call resize from the message thread and set this config setting to 0 via Projucer.
-            levels.resize (size_t (numChannels));
+            levels.resize (std::max (size_t (firstMeterChannel + nChannels)), levels.size());
 #endif
-
-            for (int channel=0; channel < std::min (numChannels, int (levels.size())); ++channel) {
-                levels [size_t (channel)].setLevels (lastMeasurement,
-                                                     buffer.getMagnitude (channel, 0, numSamples),
-                                                     buffer.getRMSLevel  (channel, 0, numSamples),
-                                                     holdMSecs);
+            for (int i = 0; i < nChannels; ++i) {
+                levels [size_t (firstMeterChannel + i)].setLevels (lastMeasurement,
+                                                        buffer.getMagnitude (firstBufferChannel + i, 0, numSamples),
+                                                        buffer.getRMSLevel  (firstBufferChannel + i, 0, numSamples),
+                                                        holdMSecs);
             }
         }
 
-        newDataFlag = true;
+        newDataFlag = newDataFlag | (nChannels > 0);
     }
+
 
     /**
      This is called from the GUI. If processing was stalled, this will pump zeroes into the buffer,
