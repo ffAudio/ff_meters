@@ -132,7 +132,7 @@ namespace foleys
                         samples += samplesPerBlock - fraction;
                         fraction = leftover;
                     }
-                    jassert (minMax.getStart() == minMax.getStart() && minMax.getEnd() == minMax.getEnd());
+                    jassert (juce::approximatelyEqual(minMax.getStart(), minMax.getStart()) && juce::approximatelyEqual(minMax.getEnd(), minMax.getEnd()));
                 }
             }
 
