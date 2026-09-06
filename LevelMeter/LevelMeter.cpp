@@ -107,7 +107,6 @@ void LevelMeter::paint (juce::Graphics& g)
             juce::Graphics backGraphics (backgroundImage);
             lmLookAndFeel->drawBackground (backGraphics, meterType, bounds);
             lmLookAndFeel->drawMeterBarsBackground (backGraphics, meterType, bounds, numChannels, fixedNumChannels);
-            backgroundNeedsRepaint = false;
         }
         g.drawImageAt (backgroundImage, 0, 0);
         lmLookAndFeel->drawMeterBars (g, meterType, bounds, source, fixedNumChannels, selectedChannel);
@@ -118,6 +117,7 @@ void LevelMeter::paint (juce::Graphics& g)
         lmLookAndFeel->drawMeterBarsBackground (g, meterType, bounds, numChannels, fixedNumChannels);
         lmLookAndFeel->drawMeterBars (g, meterType, bounds, source, fixedNumChannels, selectedChannel);
     }
+    backgroundNeedsRepaint = false;
 
     if (source)
     {
